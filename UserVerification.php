@@ -1,6 +1,5 @@
 <?php
-// Vérifier que le nom d'utilisateur et le mdp entré en login correspondent dans la liste de la base de donnée 
-// Ouvrir la page correspondante au rôle d'utilisateur 
-
+// Check the username and password for a match in the database
+// If it is good, we open the corresponding main page, else we show the login page once more.
 
 ?>
