@@ -3,6 +3,4 @@
 // Ouvrir la page correspondante au rôle d'utilisateur 
 
 
-
-
 ?>
