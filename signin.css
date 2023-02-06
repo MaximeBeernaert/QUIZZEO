@@ -1,0 +1,28 @@
+html {
+    height: 100%;
+}
+body {
+    background-color: black;
+    color: white;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+
+}
+#username {
+  align-items: center;
+  text-align: center;
+  height: 100px;
+  margin-top: 200px;
+}
+#category {
+  align-items: center;
+  text-align: center;
+  height: 20px;
+  margin-top: 20px;
+
+}
+.password {
+  align-items: center;
+  text-align: center;
+  height: 100x;
+  margin-bottom: 70px;
+}
