@@ -26,3 +26,9 @@ body {
   height: 100x;
   margin-bottom: 70px;
 }
+#submit {
+  align-items: center;
+  text-align: center;
+  height: 200x;
+  margin-top: 50px;
+}
