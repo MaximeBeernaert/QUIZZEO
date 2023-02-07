@@ -9,18 +9,19 @@
 </head>
 
 <body>
-    <div id="mail">
-        <p>Entrez votre e-mail</p>
-        <input type="text" name="username" id="username-field" class="login-form-field" placeholder="E-mail">
-    </div>
-    <div class="password">
-        <p>Entrez votre mot de passe :</p>
-        <input type="password" name="password" id="password-field" class="login-form-field" placeholder="Mot de passe">
-    </div>
-    <div>
-        <input type="submit" value="Connextion" id="connexion-form-submit">
-    </div>
-
+    <form action="login.php" method="post">
+        <div id="mail">
+            <p>Entrez votre e-mail</p>
+            <input type="text" name="username" id="username-field" class="login-form-field" placeholder="E-mail">
+        </div>
+        <div class="password">
+            <p>Entrez votre mot de passe :</p>
+            <input type="password" name="password" id="password-field" class="login-form-field" placeholder="Mot de passe">
+        </div>
+        <div>
+            <input type="submit" value="Connextion" id="connexion-form-submit">
+        </div>
+    </form>
 </body>
 
 </html>
