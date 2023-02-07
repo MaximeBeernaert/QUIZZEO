@@ -14,7 +14,15 @@
 
         <div class="users">
             <div class="col-6">
-                <h2>Utilisateurs de Quizzeo :</h2>
+                <h2>Listes des utilisateurs de Quizzeo :</h2>
+
+                <?php
+                $sql = "SELECT * FROM users";
+                while ($user = mysqli_fetch_assoc($sql)){
+                    echo $user['username'];
+                }
+            
+                ?>
 
             </div>
 
