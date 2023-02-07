@@ -7,9 +7,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $prenom = $_POST['prenom'];
     $email = $_POST['email'];
     $mdp = $_POST['mdp'];
+    $category = $_POST['category'];
 
-    $sql = "INSERT INTO utilisateurs (nom, prenom, email, mdp)
-    VALUES ('$nom', '$prenom', '$email', '$mdp')";
+    $sql = "INSERT INTO utilisateurs (nom, prenom, email, mdp, category)
+    VALUES ('$nom', '$prenom', '$email', '$mdp', '$category')";
 
     if (mysqli_query($conn, $sql)) {
         echo "Compte créé avec succès";
