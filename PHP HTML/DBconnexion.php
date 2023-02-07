@@ -5,6 +5,7 @@ $password = "";
 $db_name = "Quizzeo";
 $conn = mysqli_connect($sname, $unmae, $password, $db_name);
 if (!$conn) {
-    echo "Connection failed!";
+    echo "Connection failed! : " . mysqli_connect_error();
 }
+echo "Connected!";
 ?>
