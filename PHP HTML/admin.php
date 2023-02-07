@@ -15,6 +15,7 @@
         <div class="users">
             <div class="col-6">
                 <h2>Utilisateurs de Quizzeo :</h2>
+
             </div>
 
         </div>
