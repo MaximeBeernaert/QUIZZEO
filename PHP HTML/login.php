@@ -24,7 +24,7 @@
         if ($rows == 1) {
             $_SESSION['username'] = $username;
             // Redirect to user dashboard page
-            header("Location: accueil.html");
+            header("Location: usermenu.php");
         } else {
             echo "<div class='form'>
                   <h3>Incorrect Username/password.</h3><br/>
@@ -38,7 +38,7 @@
         <input type="text" class="login-input" name="username" placeholder="Username" autofocus="true"/>
         <input type="password" class="login-input" name="password" placeholder="Password"/>
         <input type="submit" value="Login" name="submit" class="login-button"/>
-        <p class="link"><a href="usermenu.php">Entrer!</a></p>
+        <p class="link"><a href="signin.php">Entrer!</a></p>
   </form>
 <?php
     }
