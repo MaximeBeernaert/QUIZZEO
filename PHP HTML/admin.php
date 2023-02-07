@@ -17,7 +17,7 @@
                 <h2>Listes des utilisateurs de Quizzeo :</h2>
 
                 <?php
-                
+
                 require 'DBconnexion.php';
 
                 $sql = "SELECT * FROM utilisateurs";
@@ -25,7 +25,7 @@
                 $resultCheck = mysqli_num_rows($result);
 
                 while ($user = mysqli_fetch_assoc($result)) {
-                    var_dump($user);
+                    echo "<p>" " ID : " . $user['id'] . " Nom :" . $user['nom'] . " Prenom : " . $user['prenom'] . " email : " . $user['email'] . "</p>";
                 }
 
                 ?>
