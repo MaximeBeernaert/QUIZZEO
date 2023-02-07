@@ -5,7 +5,7 @@ include "DBconnexion.php";
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $nom = $_POST['nom'];
     $prenom = $_POST['prenom'];
-    $email = $_POST['email'];
+    $email = $_POST['mail'];
     $mdp = $_POST['mdp'];
     $category = $_POST['category'];
 
