@@ -1,7 +1,7 @@
 <?php
 $sname= "localhost";
 $unmae= "root";
-$password = "";
+$password = "root";
 $db_name = "quizzeo";
 
 $conn = mysqli_connect($sname, $unmae, $password, $db_name); 
