@@ -18,9 +18,8 @@
 
                 <?php
                 $sql = "SELECT * FROM users";
-                while ($user = mysqli_fetch_assoc($sql)){
-                    echo $user['username'];
-                }
+                
+
             
                 ?>
 
