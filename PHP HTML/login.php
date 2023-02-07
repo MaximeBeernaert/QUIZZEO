@@ -19,7 +19,7 @@ if (isset($_POST['username']) && isset($_POST['password'])) {
     }else{
         $sql = "SELECT * FROM users WHERE user_name='$username' AND password='$pass'";
         $result = mysqli_query($conn, $sql);
-        if (mysqli_num_rows($result) === TRUE) {
+        if (mysqli_num_rows($result) === 1) {
             $row = mysqli_fetch_assoc($result);
             if ($row['user_name'] === $username && $row['password'] === $pass) {
                 echo "Logged in!";
