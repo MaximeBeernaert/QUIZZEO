@@ -3,8 +3,7 @@ html {
 }
 
 body {
-  background-color: black;
-  color: white;
+  color: black;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
 
 }
@@ -16,7 +15,7 @@ body {
   margin-top: 200px;
 }
 
-#category {
+#milieu {
   align-items: center;
   text-align: center;
   height: 20px;

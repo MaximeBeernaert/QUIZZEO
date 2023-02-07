@@ -13,11 +13,8 @@ if (isset($_POST['username']) && isset($_POST['password'])) {
 
     if (mysqli_num_rows($result) == 1) {
         $row = mysqli_fetch_assoc($result);
-        if ($row['mail_utilisateur'] == $username && $row['mdp_utilisateur	'] == $pass) {
+        if ($row['mail_utilisateur'] == $username && $row['mdp_utilisateur'] == $pass) {
             echo "Logged in!";
-            $_SESSION['mail_utilisateur'] = $row['mail_utilisateur'];
-            $_SESSION['name'] = $row['name'];
-            $_SESSION['id'] = $row['id'];
         }else{
             header("Location: login.html");
         }        
@@ -25,7 +22,7 @@ if (isset($_POST['username']) && isset($_POST['password'])) {
         header("Location: login.html");
     }
 }else{
-    header("Location: index.php");
+    header("Location: login.html");
     exit();
 }
 ?>
