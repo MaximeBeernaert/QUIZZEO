@@ -9,7 +9,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $mdp = $_POST['mdp'];
     $category = $_POST['category'];
 
-    $sql = "INSERT INTO utilisateurs (nom, prenom, email, mdp, category)
+    $sql = "INSERT INTO utilisateurs (nom_utilisateur, prenom_utilisateur, mail_utilisateur, mdp_utilisateur, type_utilisateur)
     VALUES ('$nom', '$prenom', '$email', '$mdp', '$category')";
 
     if (mysqli_query($conn, $sql)) {
