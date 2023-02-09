@@ -9,12 +9,17 @@
     session_start();
     require('DBconnexion.php');
     $user = $_SESSION['user'];
+    $title = $_REQUEST['quizztitle'];
+
 
 ?>
     <form class="form" action="" method="post">
         <h1 class="Create Quizz">Create Quizz</h1>
         <input type="text" class="Quizz Title" name="quizztitle" placeholder="Titre Quizz" required />
-        
+        quand je clique sur plus (question)
+            <input type="text" class="Quizz Title" name="quizztitle" placeholder="Titre Quizz" required />
+            quand je clique sur plus (réponses)
+                <input type="text" class="Quizz Title" name="quizztitle" placeholder="Titre Quizz" required />
         <input type="submit" name="submit" value="Valider" class="submit-button">
     </form>
 </body>
