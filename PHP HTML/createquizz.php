@@ -17,5 +17,8 @@
         
         <input type="submit" name="submit" value="Valider" class="submit-button">
     </form>
+
+
+    <script src="createquizz.js"></script>
 </body>
 </html>
