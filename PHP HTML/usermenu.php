@@ -7,5 +7,7 @@
 <body>
 <?php
     require('DBconnexion.php');
-    echo "Vous êtes connecté sous le compte de ... (rentrer ici les infos du compte)";
+    echo "Vous êtes connecté sous le compte de ";
+    $username = $_SESSION['username'];
+    echo $username;
 ?>
