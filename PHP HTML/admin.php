@@ -27,7 +27,6 @@
 
                 // display all users in the database as a table whit their id, name, firstname and email and option button to delete them, edit them or add them
                 while ($user = mysqli_fetch_assoc($result)) {
-                    echo "<br> ID : " . $user['id_utilisateur'] . " Nom :" . $user['nom_utilisateur'] . " Prenom : " . $user['prenom_utilisateur'] . " email : " . $user['mail_utilisateur'];
                     echo "<table class='table table-striped'>
                     <thead>
                         <tr>
