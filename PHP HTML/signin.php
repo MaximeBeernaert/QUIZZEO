@@ -22,7 +22,7 @@
 
         //Check if passwords match and if email is valid
         if ($_REQUEST['password'] != $_REQUEST['confirmPassword']) {
-            echo "<h3>Les mots de passe ne correspondent pas.</h3><br/>;";
+            echo "<h3>Les mots de passe ne correspondent pas.</h3><br/>";
 
         } elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
             echo "<h3>Adresse mail invalide.</h3><br/>";
