@@ -9,9 +9,9 @@
     session_start();
     require('DBconnexion.php');
     $email = $_SESSION['email'];
-    $user    = "SELECT * FROM `utilisateurs` WHERE mail_utilisateur='$email'";
-    $result = mysqli_query($conn, $user);
+    $query    = "SELECT * FROM `utilisateurs` WHERE mail_utilisateur='$email'";
+    $result = mysqli_query($conn, $query);
+    $user = mysqli_fetch_assoc($result);
 
-    echo "Vous êtes connecté sous le compte de ";
-    echo $user['prenom_utilisateur'];
+    echo "Vous êtes connecté sous le compte de " . $user['nom_utilisateur'] ." ". $user['prenom_utilisateur'];
 ?>
