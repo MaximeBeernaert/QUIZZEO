@@ -22,7 +22,8 @@
         $result = mysqli_query($conn, $query);
         $rows = mysqli_num_rows($result);
         if ($rows == 1) {
-            $_SESSION['email'] = $email;
+            $user = mysqli_fetch_assoc($result);
+            $_SESSION['user'] = $user;
             // Redirect to user dashboard page
             header("Location: usermenu.php");
         } else {
