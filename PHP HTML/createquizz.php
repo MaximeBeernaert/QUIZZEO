@@ -23,9 +23,7 @@
         <h1 class="Create Quizz">Create Quizz</h1>
         <input type="text" class="Quizz Title" name="quizztitle" placeholder="Titre Quizz" required />
         <input type="submit" name="submit" value="Valider" class="submit-button">
-
     </form>
-
     <div class="addQuestions">
         <button type="text" class="addQuestion" name="addQuestion" placeholder="AddQuestion">
     </div>
