@@ -1,0 +1,39 @@
+body {
+    background-color: #F5F5F5;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+  }
+  
+
+  .Connexion {
+    background-color: #FFFFFF;
+    border-radius: 10px;
+    box-shadow: 0 0 10px #CCCCCC;
+    margin: 100px auto;
+    padding: 50px;
+    width: 500px;
+  }
+  
+
+  .Connexion {
+    color: #333333;
+    font-size: 36px;
+    text-align: center;
+    margin-bottom: 50px;
+  }
+  
+  .Connexion {
+    background-color: #00BFFF;
+    border: none;
+    border-radius: 25px;
+    color: #FFFFFF;
+    cursor: pointer;
+    font-size: 18px;
+    padding: 10px 20px;
+  }
+  
+  .Connexion button:hover {
+    background-color: #0070C0;
+  }
