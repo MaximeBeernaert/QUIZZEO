@@ -14,13 +14,18 @@
     <h1>Accueil</h1>
 
     <p>Voici la page d'accueil</p>
-
-    <p class="linkToSigin"><a href="signin.php">Inscription</a></p>
-
-    <a href="login.php">Connexion</a>
+    <section class="Connexion">
+        <button>
+        <a href="signin.php">Inscription</a>
+         </button>
+         <button>
+         <a href="login.php">Connexion</a>
+        </button>
+        <button>
 
     <a href="admin.php">Panel Admin</a>
-
+    </button>
+</section>
 </body>
 
 </html>
