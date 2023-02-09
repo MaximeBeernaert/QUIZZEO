@@ -11,8 +11,9 @@
     $user = $_SESSION['user'];
     $title = $_REQUEST['quizztitle'];
 
-
 ?>
+
+
     <form class="form" action="" method="post">
         <h1 class="Create Quizz">Create Quizz</h1>
         <input type="text" class="Quizz Title" name="quizztitle" placeholder="Titre Quizz" required />
