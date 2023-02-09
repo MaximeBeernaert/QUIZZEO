@@ -24,10 +24,41 @@
                 $result = mysqli_query($conn, $sql);
                 $resultCheck = mysqli_num_rows($result);
 
+                // display all users in the database as a table whit their id, name, firstname and email and option button to delete them, edit them or add them
+                ?>
+                <table class='table table-striped'>
+                <thead>
+                    <tr>
+                        <th scope='col'>ID</th>
+                        <th scope='col'>Nom</th>
+                        <th scope='col'>Prenom</th>
+                        <th scope='col'>Email</th>
+                        <th scope='col'>Action</th>
+                    </tr>
+                </thead>
+                <?php
                 while ($user = mysqli_fetch_assoc($result)) {
-                    echo " ID : " . $user['id_utilisateur'] . " Nom :" . $user['nom_utilisateur'] . " Prenom : " . $user['prenom_utilisateur'] . " email : " . $user['mail_utilisateur'];
+                    echo
+                    "<tbody>
+                        <tr>
+                            <td>" . $user['id_utilisateur'] . "</td>
+                            <td>" . $user['nom_utilisateur'] . "</td>
+                            <td>" . $user['prenom_utilisateur'] . "</td>
+                            <td>" . $user['mail_utilisateur'] . "</td>
+                            <td>
+                            <button type='button' class='btn-modif'>Modifier</button>
+                            <button type='button' class='btn-suppr'>Supprimer</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>";
                 }
 
+                function delete_user($id)
+                {
+                    $sql = "DELETE FROM utilisateurs WHERE id_utilisateur = $id";
+                    $result = mysqli_query($conn, $sql);
+                }
                 ?>
 
             </div>

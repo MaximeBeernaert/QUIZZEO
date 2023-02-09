@@ -8,7 +8,12 @@
 <?php
     session_start();
     require('DBconnexion.php');
-    echo "Vous êtes connecté sous le compte de ";
-    $username = $_SESSION['username'];
-    echo $username;
+    $user = $_SESSION['user'];
+    echo "Vous êtes connecté sous le compte de " . $user['nom_utilisateur'] ." ". $user['prenom_utilisateur'];
+    if($user['id_utilisateur']>0) {
+        echo "<br> Vous pouvez créer des quizz.";
+    }
+    if($user['id_utilisateur']>1) {
+        echo "<br> Vous pouvez gérer les utilisateurs.";
+    }
 ?>

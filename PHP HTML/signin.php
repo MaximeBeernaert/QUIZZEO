@@ -27,7 +27,7 @@
         if ($rows == 1) {
             echo "<div class='form'>
                   <h3>Adresse mail déjà utilisée.</h3><br/>
-                  <p class='link'>Click here to <a href='registration.php'>registration</a> again.</p>
+                  <p class='link'>Click here to <a href='signin.php'>signin</a> again.</p>
                   </div>";
         }else {
             //add user to database
@@ -44,7 +44,7 @@
             } else {
                 echo "<div class='form'>
                       <h3>Required fields are missing.</h3><br/>
-                      <p class='link'>Click here to <a href='registration.php'>registration</a> again.</p>
+                      <p class='link'>Click here to <a href='signin.php'>signin</a> again.</p>
                       </div>";
             }
         }
