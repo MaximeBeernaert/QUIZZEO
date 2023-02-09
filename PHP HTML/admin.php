@@ -39,6 +39,7 @@
                 </thead>
                 <?php
                 while ($user = mysqli_fetch_assoc($result)) {
+                    // change the type of user from number to string to display it
                     switch ($user['type_utilisateur']) {
                         case 1:
                             $user['type_utilisateur'] = "Quizzeur";
@@ -50,6 +51,7 @@
                             $user['type_utilisateur'] = "Utilisateur";
                             break;
                     }
+
                     echo
                     "<tbody>
                         <tr>
