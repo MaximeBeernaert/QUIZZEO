@@ -31,6 +31,7 @@
                   </div>";
         }
 
+        //add user to database
         $query    = "INSERT into `utilisateurs` (prenom_utilisateur, nom_utilisateur, mail_utilisateur, mdp_utilisateur, type_utilisateur)
                      VALUES ('$username', '$name', '$email', '" . md5($password) . "', '2')";
         $result   = mysqli_query($conn, $query);
