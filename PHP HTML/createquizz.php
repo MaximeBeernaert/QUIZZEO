@@ -22,5 +22,8 @@
                 <input type="text" class="Quizz Title" name="quizztitle" placeholder="Titre Quizz" required />
         <input type="submit" name="submit" value="Valider" class="submit-button">
     </form>
+
+
+    <script src="createquizz.js"></script>
 </body>
 </html>
