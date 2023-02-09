@@ -29,7 +29,6 @@
     <div class="addQuestions">
         <button type="text" class="addQuestion" name="addQuestion" placeholder="AddQuestion">
     </div>
-
     <script src="createquizz.js"></script>
 </body>
 </html>
