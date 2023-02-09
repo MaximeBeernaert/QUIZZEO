@@ -11,18 +11,17 @@
 
 <body>
 
-    <h1>Accueil</h1>
+    <h1>QUIZZEO</h1>
 
     <p>Voici la page d'accueil</p>
     <section class="Connexion">
-        <button>
+        <button id="button1">
         <a href="signin.php">Inscription</a>
          </button>
-         <button>
+         <button id="button2">
          <a href="login.php">Connexion</a>
         </button>
-        <button>
-
+        <button id="button3">
     <a href="admin.php">Panel Admin</a>
     </button>
 </section>
