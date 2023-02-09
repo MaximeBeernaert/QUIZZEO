@@ -37,10 +37,7 @@
             $result = mysqli_query($conn, $query);
             $rows = mysqli_num_rows($result);
             if ($rows == 1) {
-                echo "<div class='form'>
-                    <h3>Adresse mail déjà utilisée.</h3><br/>
-                    <p class='link'>Click here to <a href='signin.php'>signin</a> again.</p>
-                    </div>";
+                echo "<h3>Adresse mail déjà utilisée.</h3><br/>";
             }else {
                 //add user to database
                 $query    = "INSERT into `utilisateurs` (prenom_utilisateur, nom_utilisateur, mail_utilisateur, mdp_utilisateur, type_utilisateur)
