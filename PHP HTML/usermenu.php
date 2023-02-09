@@ -6,6 +6,7 @@
 </head>
 <body>
 <?php
+    session_start();
     require('DBconnexion.php');
     echo "Vous êtes connecté sous le compte de ";
     $username = $_SESSION['username'];
