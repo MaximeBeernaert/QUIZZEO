@@ -1,6 +1,6 @@
 class CreateQuizz {
     constructor() {
-        this.addQuestion.addEventListener('click', this.addQuestion())
+        this.addQuestion.addEventListener('click', this.addQuestionJS())
     }
 
     addQuestion() {
