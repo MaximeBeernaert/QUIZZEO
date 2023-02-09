@@ -6,20 +6,16 @@
 </head>
 <body>
 <?php
+    session_start();
     require('DBconnexion.php');
-    if (isset($_REQUEST['username'])) {
-        session_start();
-        require('DBconnexion.php');
-        $user = $_SESSION['user'];
-    } else {
+    $user = $_SESSION['user'];
+
 ?>
     <form class="form" action="" method="post">
         <h1 class="Create Quizz">Create Quizz</h1>
         <input type="text" class="Quizz Title" name="quizztitle" placeholder="Titre Quizz" required />
+        
         <input type="submit" name="submit" value="Valider" class="submit-button">
     </form>
-<?php
-    }
-?>
 </body>
 </html>
