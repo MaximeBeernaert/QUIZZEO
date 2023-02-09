@@ -11,9 +11,11 @@
     $user = $_SESSION['user'];
     echo "Vous êtes connecté sous le compte de " . $user['nom_utilisateur'] ." ". $user['prenom_utilisateur'];
     if($user['type_utilisateur']>0) {
-        echo "<br> Vous pouvez créer des quizz."; "<a href="createQuiz.php">Créer un quizz</a>"
+        echo "<br> Vous pouvez créer des quizz."; 
+        ?> <a href="createquizz.php">Créer un quizz</a> <?php
     }
     if($user['type_utilisateur']>1) {
-        echo "<br> Vous pouvez gérer les utilisateurs."; "<a href="admin.php">Gérer les utilisateurs</a>"
+        echo "<br> Vous pouvez gérer les utilisateurs.";
+        ?> <a href="admin.php">Gérer les utilisateurs</a> <?php
     }
 ?>
