@@ -10,6 +10,9 @@
 
 <body>
     <div class="container">
+
+        <a href="accueil.php">Accueil</a>
+
         <h1>Interface administrateur</h1>
 
         <div class="users">
