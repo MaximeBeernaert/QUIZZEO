@@ -44,9 +44,8 @@
                             <td>" . $user['prenom_utilisateur'] . "</td>
                             <td>" . $user['mail_utilisateur'] . "</td>
                             <td>
-                                <button type='button' class='btn btn-danger'>Supprimer</button>
-                                <button type='button' class='btn btn-warning'>Modifier</button>
-                                <button type='button' class='btn btn-success'>Ajouter</button>
+                            <button type='button' class='btn btn-warning'>Modifier</button>
+                            <button type='button' class='btn btn-danger'>Supprimer</button>
                             </td>
                         </tr>
                     </tbody>
