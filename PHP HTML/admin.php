@@ -25,7 +25,7 @@
                 $resultCheck = mysqli_num_rows($result);
 
                 while ($user = mysqli_fetch_assoc($result)) {
-                    echo "\r ID : " . $user['id_utilisateur'] . " Nom :" . $user['nom_utilisateur'] . " Prenom : " . $user['prenom_utilisateur'] . " email : " . $user['mail_utilisateur'];
+                    echo PHP_EOL . "ID : " . $user['id_utilisateur'] . " Nom :" . $user['nom_utilisateur'] . " Prenom : " . $user['prenom_utilisateur'] . " email : " . $user['mail_utilisateur'];
                 }
 
                 ?>
