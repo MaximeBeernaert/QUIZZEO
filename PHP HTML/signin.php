@@ -19,6 +19,18 @@
         $email    = mysqli_real_escape_string($conn, $email);
         $password = stripslashes($_REQUEST['password']);
         $password = mysqli_real_escape_string($conn, $password);
+
+        //check if email is already registered
+        $query    = "SELECT * FROM `utilisateurs` WHERE mail_utilisateur='$email'";
+        $result = mysqli_query($conn, $query);
+        $rows = mysqli_num_rows($result);
+        if ($rows == 1) {
+            echo "<div class='form'>
+                  <h3>Adresse mail déjà utilisée.</h3><br/>
+                  <p class='link'>Click here to <a href='registration.php'>registration</a> again.</p>
+                  </div>";
+        }
+
         $query    = "INSERT into `utilisateurs` (prenom_utilisateur, nom_utilisateur, mail_utilisateur, mdp_utilisateur, type_utilisateur)
                      VALUES ('$username', '$name', '$email', '" . md5($password) . "', '2')";
         $result   = mysqli_query($conn, $query);

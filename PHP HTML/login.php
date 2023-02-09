@@ -12,7 +12,7 @@
     // When form submitted, check and create user session.
     if (isset($_POST['username'])) {
         // removes backslashes
-        $username = stripslashes($_REQUEST['username']);    
+        $username = stripslashes($_REQUEST['username']);
         $username = mysqli_real_escape_string($conn, $username);
         $password = stripslashes($_REQUEST['password']);
         $password = mysqli_real_escape_string($conn, $password);
