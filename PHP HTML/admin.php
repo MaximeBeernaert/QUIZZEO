@@ -24,7 +24,9 @@
                 $result = mysqli_query($conn, $sql);
                 $resultCheck = mysqli_num_rows($result);
 
-                echo "<table class='table table-striped'>
+                // display all users in the database as a table whit their id, name, firstname and email and option button to delete them, edit them or add them
+                ?>
+                <table class='table table-striped'>
                 <thead>
                     <tr>
                         <th scope='col'>ID</th>
@@ -33,10 +35,10 @@
                         <th scope='col'>Email</th>
                         <th scope='col'>Action</th>
                     </tr>
-                </thead>";
-
-                // display all users in the database as a table whit their id, name, firstname and email and option button to delete them, edit them or add them
+                </thead>"
+                <?php
                 while ($user = mysqli_fetch_assoc($result)) {
+                    echo
                     "<tbody>
                         <tr>
                             <th scope='row'>" . $user['id_utilisateur'] . "</th>
