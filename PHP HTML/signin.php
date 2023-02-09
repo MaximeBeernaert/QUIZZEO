@@ -22,15 +22,10 @@
 
         //Check if passwords match and if email is valid
         if ($_REQUEST['password'] != $_REQUEST['confirmPassword']) {
-            echo "<div class='form'>
-                  <h3>Les mots de passe ne correspondent pas.</h3><br/>
-                  <p class='link'>Click here to <a href='signin.php'>signin</a> again.</p>
-                  </div>";
+            echo "<h3>Les mots de passe ne correspondent pas.</h3><br/>;";
+
         } elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-            echo "<div class='form'>
-                  <h3>Adresse mail invalide.</h3><br/>
-                  <p class='link'>Click here to <a href='signin.php'>signin</a> again.</p>
-                  </div>";
+            echo "<h3>Adresse mail invalide.</h3><br/>";
         } else {
             //check if email is already registered
             $query    = "SELECT * FROM `utilisateurs` WHERE mail_utilisateur='$email'";
