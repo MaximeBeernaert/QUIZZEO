@@ -10,7 +10,7 @@
     require('DBconnexion.php');
     session_start();
     // When form submitted, check and create user session.
-    if (isset($_POST['username'])) {
+    if (isset($_POST['email'])) {
         // removes backslashes
         $email = stripslashes($_REQUEST['email']);
         $email = mysqli_real_escape_string($conn, $email);
@@ -22,7 +22,7 @@
         $result = mysqli_query($conn, $query);
         $rows = mysqli_num_rows($result);
         if ($rows == 1) {
-            $_SESSION['username'] = $username;
+            $_SESSION['email'] = $email;
             // Redirect to user dashboard page
             header("Location: usermenu.php");
         } else {
