@@ -4,7 +4,8 @@ class CreateQuizz {
         this.addQuestion.addEventListener('click', () => { this.addQuestionJS() } )
     }
 
-    addQuestionJS() {
+    addQuestion() {
+
         // create a new div element
         const newDiv = document.createElement("div");
 
@@ -17,6 +18,7 @@ class CreateQuizz {
         // add the newly created element and its content into the DOM
         const currentDiv = document.querySelector('.addQuestions');
         document.body.insertBefore(newDiv, currentDiv);
+
     }
 }
-let createQuizz = new CreateQuizz()
+let createQuizz = new CreateQuizz() 
