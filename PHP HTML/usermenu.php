@@ -10,10 +10,10 @@
     require('DBconnexion.php');
     $user = $_SESSION['user'];
     echo "Vous êtes connecté sous le compte de " . $user['nom_utilisateur'] ." ". $user['prenom_utilisateur'];
-    if($user['id_utilisateur']>0) {
+    if($user['type_utilisateur']>0) {
         echo "<br> Vous pouvez créer des quizz.";
     }
-    if($user['id_utilisateur']>1) {
+    if($user['type_utilisateur']>1) {
         echo "<br> Vous pouvez gérer les utilisateurs.";
     }
 ?>
