@@ -7,7 +7,6 @@
 <body>
 <?php
     require('DBconnexion.php');
-    // When form submitted, insert values into the database.
     if (isset($_REQUEST['username'])) {
         session_start();
         require('DBconnexion.php');
