@@ -7,14 +7,6 @@
 <body>
 <?php
     require('DBconnexion.php');
-
-    if ($_REQUEST['password'] != $_REQUEST['confirmPassword']) {
-        echo "<h3>Les mots de passe ne correspondent pas.</h3><br/>";
-
-    } elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-        echo "<h3>Adresse mail invalide.</h3><br/>";
-    } else {
-
     // When form submitted, insert values into the database.
     if (isset($_REQUEST['username'])) {
         // removes backslashes
@@ -29,6 +21,10 @@
         $password = mysqli_real_escape_string($conn, $password);
 
         //Check if passwords match and if email is valid
+        if ($_REQUEST['password'] != $_REQUEST['confirmPassword']) {
+            echo "<h3>Les mots de passe ne correspondent pas.</h3><br/>";
+        } elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+            echo "<h3>Adresse mail invalide.</h3><br/>";
         } else {
             //check if email is already registered
             $query    = "SELECT * FROM `utilisateurs` WHERE mail_utilisateur='$email'";
@@ -57,7 +53,7 @@
                 }
             }
 
-        }
+        } else {
     ?>
 
 <form class="form" action="" method="post">
@@ -70,5 +66,9 @@
     <input type="submit" name="submit" value="Register" class="login-button">
     <p class="link"><a href="login.php">Click to Login</a></p>
 </form>
+
+<?php
+    }
+?>
 </body>
 </html>
