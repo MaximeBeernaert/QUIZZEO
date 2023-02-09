@@ -31,33 +31,33 @@
                   <h3>Adresse mail invalide.</h3><br/>
                   <p class='link'>Click here to <a href='signin.php'>signin</a> again.</p>
                   </div>";
-            } else {
-                //check if email is already registered
-                $query    = "SELECT * FROM `utilisateurs` WHERE mail_utilisateur='$email'";
-                $result = mysqli_query($conn, $query);
-                $rows = mysqli_num_rows($result);
-                if ($rows == 1) {
+        } else {
+            //check if email is already registered
+            $query    = "SELECT * FROM `utilisateurs` WHERE mail_utilisateur='$email'";
+            $result = mysqli_query($conn, $query);
+            $rows = mysqli_num_rows($result);
+            if ($rows == 1) {
+                echo "<div class='form'>
+                    <h3>Adresse mail déjà utilisée.</h3><br/>
+                    <p class='link'>Click here to <a href='signin.php'>signin</a> again.</p>
+                    </div>";
+            }else {
+                //add user to database
+                $query    = "INSERT into `utilisateurs` (prenom_utilisateur, nom_utilisateur, mail_utilisateur, mdp_utilisateur, type_utilisateur)
+                            VALUES ('$username', '$name', '$email', '" . md5($password) . "', '2')";
+                $result   = mysqli_query($conn, $query);
+                
+                //check if user is added to database
+                if ($result) {
                     echo "<div class='form'>
-                        <h3>Adresse mail déjà utilisée.</h3><br/>
+                        <h3>You are registered successfully.</h3><br/>
+                        <p class='link'>Click here to <a href='login.php'>Login</a></p>
+                        </div>";
+                } else {
+                    echo "<div class='form'>
+                        <h3>Required fields are missing.</h3><br/>
                         <p class='link'>Click here to <a href='signin.php'>signin</a> again.</p>
                         </div>";
-                }else {
-                     //add user to database
-                    $query    = "INSERT into `utilisateurs` (prenom_utilisateur, nom_utilisateur, mail_utilisateur, mdp_utilisateur, type_utilisateur)
-                                VALUES ('$username', '$name', '$email', '" . md5($password) . "', '2')";
-                    $result   = mysqli_query($conn, $query);
-                
-                    //check if user is added to database
-                    if ($result) {
-                        echo "<div class='form'>
-                            <h3>You are registered successfully.</h3><br/>
-                            <p class='link'>Click here to <a href='login.php'>Login</a></p>
-                            </div>";
-                    } else {
-                        echo "<div class='form'>
-                            <h3>Required fields are missing.</h3><br/>
-                            <p class='link'>Click here to <a href='signin.php'>signin</a> again.</p>
-                            </div>";
                     }
                 }
             }
