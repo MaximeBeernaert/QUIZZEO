@@ -41,7 +41,7 @@
                     echo
                     "<tbody>
                         <tr>
-                            <th scope='row'>" . $user['id_utilisateur'] . "</th>
+                            <td>" . $user['id_utilisateur'] . "</td>
                             <td>" . $user['nom_utilisateur'] . "</td>
                             <td>" . $user['prenom_utilisateur'] . "</td>
                             <td>" . $user['mail_utilisateur'] . "</td>
