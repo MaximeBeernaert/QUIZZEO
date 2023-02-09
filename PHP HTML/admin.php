@@ -71,12 +71,6 @@
                     </tbody>
                 </table>";
                 }
-
-                function delete_user($id)
-                {
-                    $sql = "DELETE FROM utilisateurs WHERE id_utilisateur = $id";
-                    $result = mysqli_query($conn, $sql);
-                }
                 ?>
 
             </div>
