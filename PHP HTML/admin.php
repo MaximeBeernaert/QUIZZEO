@@ -35,7 +35,7 @@
                         <th scope='col'>Email</th>
                         <th scope='col'>Action</th>
                     </tr>
-                </thead>"
+                </thead>
                 <?php
                 while ($user = mysqli_fetch_assoc($result)) {
                     echo
