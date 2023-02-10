@@ -4,6 +4,11 @@ class Admin {
         this.removeUser = document.querySelector('.removeUser')
         // Add event listener to remove user button
         this.removeUser.addEventListener('click', () => { this.removeUserJS() })
+
+        // Get modify user button
+        this.modifyUser = document.querySelector('.modifUser')
+        // Add event listener to modify user button
+        this.modifyUser.addEventListener('click', () => { this.modifyUserJS() })
     }
 
     // Call admin controller to remove user from database and ask for confirmation
@@ -31,5 +36,11 @@ class Admin {
                 })
         }
     }
+
+    // Call admin controller to modify user, name, firstname, email, type and ask for confirmation
+    modifyUserJS() {
+
+    }
+
 }
 let admin = new Admin()
