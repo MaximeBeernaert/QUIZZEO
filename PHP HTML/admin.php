@@ -40,6 +40,7 @@
                     <th scope='col'>Action</th>
                  </tr>
             </thead>
+            <tbody>
                 
             <?php
             while ($user = mysqli_fetch_assoc($result)) {
@@ -57,25 +58,24 @@
                     }
 
                 echo
-                "<tbody>
-                    <br><tr>
+                "<br><tr>
 
-                        <td>" . $user['id_utilisateur'] . "</td>
-                        <td>" . $user['nom_utilisateur'] . "</td>
-                        <td>" . $user['prenom_utilisateur'] . "</td>
-                        <td>" . $user['mail_utilisateur'] . "</td>
-                        <td>" . $user['type_utilisateur'] . "</td>
+                    <td>" . $user['id_utilisateur'] . "</td>
+                    <td>" . $user['nom_utilisateur'] . "</td>
+                    <td>" . $user['prenom_utilisateur'] . "</td>
+                    <td>" . $user['mail_utilisateur'] . "</td>
+                    <td>" . $user['type_utilisateur'] . "</td>
 
-                        <td>
-                        <button type='button' class='btn-modif'>Modifier</button>
-                        <button type='button' class='btn-suppr'>Supprimer</button>
-                        </td>
+                    <td>
+                    <button type='button' class='btn-modif'>Modifier</button>
+                    <button type='button' class='btn-suppr'>Supprimer</button>
+                    </td>
 
-                    </tr>
-                </tbody>
-            </table>";
+                </tr>";
             }
             ?>
+            </tbody>
+            </table>
 
         </div>
 

@@ -1,18 +1,1 @@
-html,
-body {
-    height: 100%;
-}
-
-body {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-table {
-    display: flex;
-    text-align: center;
-    border-collapse: collapse;
-    width: 100%;
-    border: 1px solid #ddd;
-}
+table {}
