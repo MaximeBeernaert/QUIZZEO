@@ -28,7 +28,7 @@
 
             // display all users in the database as a table whit their id, name, firstname, email and type and option button to delete them, edit them or add them
             ?>
-            <table class='table table-striped'>
+            <table class='table'>
             <thead>
                 <tr>
                     <th scope='col'>ID</th>
