@@ -1,13 +1,17 @@
 class Admin {
     constructor() {
+        // Get remove user button
         this.removeUser = document.querySelector('.removeUser')
+        // Add event listener to remove user button
         this.removeUser.addEventListener('click', () => { this.removeUserJS() })
     }
 
     // Call admin controller to remove user from database and ask for confirmation
     removeUserJS() {
+        // Get user id and name
         let id = document.querySelector('.removeUser').getAttribute('data-id')
         let name = document.querySelector('.removeUser').getAttribute('data-name')
+
         // Ask for confirmation
         if (confirm(`Voulez-vous vraiment supprimer l'utilisateur ${name} ?`)) {
             fetch(`admin.php?id=${id}`, {

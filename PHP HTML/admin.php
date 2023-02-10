@@ -36,6 +36,7 @@
                     <th scope='col'>Nom</th>
                     <th scope='col'>Prenom</th>
                     <th scope='col'>Email</th>
+                    <th scope='col'>Date de création du compte</th>
                     <th scope='col'>Type</th>
                     <th scope='col'>Action</th>
                  </tr>
@@ -64,11 +65,12 @@
                     <td>" . $user['nom_utilisateur'] . "</td>
                     <td>" . $user['prenom_utilisateur'] . "</td>
                     <td>" . $user['mail_utilisateur'] . "</td>
+                    <td>" . $user['date_creation_utilisateur'] . "</td>
                     <td>" . $user['type_utilisateur'] . "</td>
 
                     <td>
-                    <button type='button' class='btn-modif'>Modifier</button>
-                    <button type='button' class='btn-suppr'>Supprimer</button>
+                    <input type='submit' class='modifUser' name='modifUser' value='Modifer'>
+                    <input type='submit' class='removeUser' name='removeUser' value='Supprimer'>
                     </td>
 
                 </tr>";
