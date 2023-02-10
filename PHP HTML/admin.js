@@ -18,6 +18,8 @@ class Admin {
         let nom = document.querySelector('.removeUser').getAttribute('nom_utilisateur')
         let prenom = document.querySelector('.removeUser').getAttribute('prenom_utilisateur')
 
+        console.log(id, nom, prenom);
+
         // Ask for confirmation
         if (confirm(`Voulez-vous vraiment supprimer l'utilisateur ${nom} ${prenom} ?`)) {
             fetch(`admin.php?id=${id}`, {
