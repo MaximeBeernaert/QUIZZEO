@@ -82,8 +82,19 @@
         </div>
 
     </div>
-
-    <script src="admin.js"></script>
 </body>
 
 </html>
+
+<?php
+
+if (isset ($_POST['removeUser'])) {
+    echo "tu as cliqué sur supprimer";
+    $id = $_POST['id_utilisateur'];
+    $sql = "DELETE FROM utilisateurs WHERE id_utilisateur = $id";
+    $result = mysqli_query($conn, $sql);
+    header("Location: admin.php");
+    exit();
+}
+
+?>
