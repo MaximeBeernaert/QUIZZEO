@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="admin.css">
     <title>Panel Admin</title>
 </head>
 
@@ -28,7 +29,7 @@
 
             // display all users in the database as a table whit their id, name, firstname, email and type and option button to delete them, edit them or add them
             ?>
-            <table class='table table-striped'>
+            <table class='table'>
             <thead>
                 <tr>
                     <th scope='col'>ID</th>
@@ -39,6 +40,7 @@
                     <th scope='col'>Action</th>
                  </tr>
             </thead>
+            <tbody>
                 
             <?php
             while ($user = mysqli_fetch_assoc($result)) {
@@ -56,29 +58,30 @@
                     }
 
                 echo
-                "<tbody>
-                    <br><tr>
+                "<br><tr>
 
-                        <td>" . $user['id_utilisateur'] . "</td>
-                        <td>" . $user['nom_utilisateur'] . "</td>
-                        <td>" . $user['prenom_utilisateur'] . "</td>
-                        <td>" . $user['mail_utilisateur'] . "</td>
-                        <td>" . $user['type_utilisateur'] . "</td>
+                    <td>" . $user['id_utilisateur'] . "</td>
+                    <td>" . $user['nom_utilisateur'] . "</td>
+                    <td>" . $user['prenom_utilisateur'] . "</td>
+                    <td>" . $user['mail_utilisateur'] . "</td>
+                    <td>" . $user['type_utilisateur'] . "</td>
 
-                        <td>
-                        <button type='button' class='btn-modif'>Modifier</button>
-                        <button type='button' class='btn-suppr'>Supprimer</button>
-                        </td>
+                    <td>
+                    <button type='button' class='btn-modif'>Modifier</button>
+                    <button type='button' class='btn-suppr'>Supprimer</button>
+                    </td>
 
-                    </tr>
-                </tbody>
-            </table>";
+                </tr>";
             }
             ?>
+            </tbody>
+            </table>
 
         </div>
 
-     </div>
+    </div>
+
+    <script src="admin.js"></script>
 </body>
 
 </html>

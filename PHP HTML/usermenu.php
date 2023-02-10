@@ -19,3 +19,26 @@
         ?> <a href="admin.php">Gérer les utilisateurs</a> <?php
     }
 ?>
+  <header>
+    <h1>Menu utilisateur</h1>
+    <nav>
+      <ul>
+        <li><a href="#jouer">Jouer aux quizz</a></li>
+        <li><a href="#scores">Voir les scores</a></li>
+        <li><a href="#creer">Créer les quizz</a></li>
+        <li><a href="#admin">Accéder au panel admin</a></li>
+      </ul>
+    <button id="button1"><a href="accueil.php">Retour à l'accueil</a></button>
+</header>
+    <main>
+      <section id="jouer">
+        </section>
+      <section id="scores">
+        </section>
+      <section id="creer">
+        </section>
+      <section id="admin">
+        </section>
+    </main>
+  </body>
+</html>
