@@ -16,6 +16,11 @@ class CreateQuizz {
         newQuestion.type = 'text'
         newQuestion.className = `Question${this.numberQuestion}`
 
+        const rightAnswerText = document.createTextNode(` Entrer la bonne réponse : `)
+        const rightAnswer = document.createElement('input')
+        rightAnswer.type = 'text'
+        rightAnswer.className = `rightAnswer${this.numberQuestion}`
+
         const ligne = document.createElement('br')
 
         const divAnswerButton = document.createElement("div")
@@ -30,13 +35,17 @@ class CreateQuizz {
 
         newDiv.appendChild(newQuestionTitle)
         newDiv.appendChild(newQuestion)
+        newDiv.appendChild(rightAnswerText)
+        newDiv.appendChild(rightAnswer)
         newDiv.appendChild(ligne)
         divAnswerButton.appendChild(addAnswer)
         newDiv.appendChild(divAnswerButton)
         
        
-        const currentDiv = document.querySelector('.addQuestions')
-        document.body.insertBefore(newDiv, currentDiv)
+        
+        const element = document.querySelector('.form1')
+        const currentDiv = element.querySelector('.addQuestions')
+        element.insertBefore(newDiv, currentDiv)
     }
 
     addAnswerJS(numberQuestion) {
