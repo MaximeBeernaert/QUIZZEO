@@ -10,9 +10,7 @@
 </head>
 
 <body>
-
     <h1>QUIZZEO</h1>
-
     <p>Voici la page d'accueil</p>
     <section class="Connexion">
         <button id="button1">

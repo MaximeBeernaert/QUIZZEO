@@ -41,6 +41,9 @@
         <input type="submit" value="Login" name="submit" class="login-button"/>
         <p class="link"><a href="signin.php">Entrer!</a></p>
   </form>
+  <button id="button1">
+        <a href="accueil.php">Retour à l'accueil</a>
+         </button>
 <?php
     }
 ?>

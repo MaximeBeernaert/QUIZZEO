@@ -28,5 +28,6 @@
         <button type="text" class="addQuestion" name="addQuestion" placeholder="AddQuestion">
     </div>
     <script src="createquizz.js"></script>
+    <button id="button1"><a href="accueil.php">Retour à l'accueil</a></button>
 </body>
 </html>
