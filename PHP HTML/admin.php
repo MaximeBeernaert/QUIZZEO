@@ -69,8 +69,8 @@
                     <td>" . $user['type_utilisateur'] . "</td>
 
                     <td>
-                    <button type='button' class='btn-modif'>Modifier</button>
-                    <button type=text class=removeUser name=removeUser placeholder=removeUser>
+                    <button type='text' class='modifUser' name='modifUser' placeholder='modifUser'>
+                    <button type='text' class='removeUser' name='removeUser' placeholder='removeUser'>
                     </td>
 
                 </tr>";
