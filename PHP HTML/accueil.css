@@ -37,3 +37,25 @@ body {
   .Connexion button:hover {
     background-color: #0070C0;
   }
+
+  .Connexion button {
+    padding: 10px 20px;
+    background-color: #3498db;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    text-align: center;
+    font-size: 16px;
+    cursor: pointer;
+    margin: 10px;
+ }
+ 
+ .Connexion button:hover {
+    background-color: #2980b9;
+ }
+ 
+ .Connexion a {
+    color: #fff;
+    text-decoration: none;
+ }
+ 
