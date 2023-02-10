@@ -39,8 +39,36 @@ class Admin {
 
     // Call admin controller to modify user, name, firstname, email, type and ask for confirmation
     modifyUserJS() {
+        // Get user id and name
+        let id = document.querySelector('.modifUser').getAttribute('id_utilisateur')
+        let nom = document.querySelector('.modifUser').getAttribute('nom_utilisateur')
+        let prenom = document.querySelector('.modifUser').getAttribute('prenom_utilisateur')
+        let email = document.querySelector('.modifUser').getAttribute('email_utilisateur')
+        let type = document.querySelector('.modifUser').getAttribute('type_utilisateur')
 
+        // Ask for confirmation
+        if (confirm(`Voulez-vous vraiment modifier l'utilisateur ${nom} ${prenom} ?`)) {
+            fetch(`admin.php?id=${id}`, {
+                method: "PUT",
+                body: JSON.stringify({
+                    nom: nom,
+                    prenom: prenom,
+                    email: email,
+                    type: type
+                })
+            })
+                // Get response from controller
+                .then(response => response.json())
+                .then(data => {
+                    // If success, reload page
+                    if (data.message == 'success') {
+                        alert(`L'utilisateur ${name} a bien été modifié.`)
+                        window.location.reload()
+                    } else { // If error, display error message
+                        alert(`L'utilisateur ${name} n'a pas pu être modifié.`)
+                    }
+                })
+        }
     }
-
 }
 let admin = new Admin()
