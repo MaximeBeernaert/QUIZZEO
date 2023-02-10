@@ -54,5 +54,7 @@ class CreateQuizz {
         const currentDiv = document.querySelector(`.divAnswerButton${this.numberQuestion}`)
         document.body.insertBefore(newDiv, currentDiv)
     }
+
 }
-let createQuizz = new CreateQuizz()
+
+let createQuizz = new CreateQuizz() 
