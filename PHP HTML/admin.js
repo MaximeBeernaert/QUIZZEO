@@ -28,10 +28,10 @@ class Admin {
                 .then(data => {
                     // If success, reload page
                     if (data.message == 'success') {
-                        alert(`L'utilisateur ${name} a bien été supprimé.`)
+                        alert(`L'utilisateur ${nom} ${prenom} a bien été supprimé.`)
                         window.location.reload()
                     } else { // If error, display error message
-                        lert(`L'utilisateur ${name} n'a pas pu être supprimé.`)
+                        lert(`L'utilisateur ${nnom} ${prenom} n'a pas pu être supprimé.`)
                     }
                 })
         }
