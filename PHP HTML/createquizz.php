@@ -25,7 +25,7 @@
         <input type="submit" name="submit" value="Valider" class="submit-button">
     </form>
     <div class="addQuestions">
-        <button type="text" class="addQuestion" name="addQuestion" placeholder="AddQuestion">
+        <button type="text" class="addQuestion" name="addQuestion" placeholder="AddQuestion" >
     </div>
     <script src="createquizz.js"></script>
 </body>
