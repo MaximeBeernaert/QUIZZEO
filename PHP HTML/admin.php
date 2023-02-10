@@ -36,6 +36,7 @@
                     <th scope='col'>Nom</th>
                     <th scope='col'>Prenom</th>
                     <th scope='col'>Email</th>
+                    <th scope='col'>Date de création du compte</th>
                     <th scope='col'>Type</th>
                     <th scope='col'>Action</th>
                  </tr>
@@ -64,6 +65,7 @@
                     <td>" . $user['nom_utilisateur'] . "</td>
                     <td>" . $user['prenom_utilisateur'] . "</td>
                     <td>" . $user['mail_utilisateur'] . "</td>
+                    <td>" . $user['date_creation_utilisateur'] . "</td>
                     <td>" . $user['type_utilisateur'] . "</td>
 
                     <td>
