@@ -70,7 +70,7 @@
 
                     <td>
                     <button type='button' class='btn-modif'>Modifier</button>
-                    <button type='button' class='btn-suppr'>Supprimer</button>
+                    <button type=text class=removeUser name=removeUser placeholder=removeUser>
                     </td>
 
                 </tr>";
