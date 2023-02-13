@@ -13,7 +13,7 @@
         <?php
         require 'DBconnexion.php';
 
-        $sql = "SELECT * FROM utilisateurs WHERE id_utilisateur = " . $_GET['id'];
+        $sql = "SELECT * FROM utilisateurs";
         $result = mysqli_query($conn, $sql);
         $resultCheck = mysqli_num_rows($result);
         $actualUser = mysqli_fetch_assoc($result);
