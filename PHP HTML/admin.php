@@ -93,14 +93,26 @@
             <?php
             // if the user click on the delete button, delete the user from the database and ask confirmation
             if (isset($_POST['delete-btn'])) {
-                $id = $_POST['id'];
-                $sql = "DELETE FROM utilisateurs WHERE id_utilisateur = $id";
-                $result = mysqli_query($conn, $sql);
-                header("Location: admin.php");
+                ?>
+                <form action="admin.php" method="POST">
+                    <input type="hidden" name="id" value="<?php echo $row['id_utilisateur']; ?>">
+                    <button type="submit" name="confirm-delete" class="confirm-delete">Confirmer la suppression</button>
+                </form>
+                <?php
+                // if the user click on the confirm delete button, delete the user from the database
+                if (isset($_POST['confirm-delete'])) {
+                    $id = $_POST['id'];
+                    $sql = "DELETE FROM utilisateurs WHERE id_utilisateur = $id";
+                    $result = mysqli_query($conn, $sql);
+                    header("Location: admin.php");
+                }
             }
     
             // if the user click on the modify button, redirect to the modify page
-            //TODO: create the modify page
+            if (isset($_POST['modify-btn'])) {
+                $id = $_POST['id'];
+                header("Location: modifyUser.php?id=$id");
+            }
             ?>
 
         </div>
