@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="modifyuser.css">
     <title>User Modification</title>
 </head>
 <body>
@@ -21,7 +22,7 @@
         switch ($actualUser['type_utilisateur']) {
             case 1:
                 $actualUser['type_utilisateur'] = "Quizzeur";
-                    reak;
+                break;
             case 2:
                 $actualUser['type_utilisateur'] = "Administrateur";
                 break;
@@ -84,7 +85,7 @@
             }
         }
 
-        ?>
+        ?>  
 
     </div>
     

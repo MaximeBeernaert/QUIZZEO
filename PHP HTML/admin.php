@@ -56,7 +56,7 @@
                     switch ($row['type_utilisateur']) {
                         case 1:
                             $row['type_utilisateur'] = "Quizzeur";
-                                reak;
+                            break;
                         case 2:
                             $row['type_utilisateur'] = "Administrateur";
                             break;
