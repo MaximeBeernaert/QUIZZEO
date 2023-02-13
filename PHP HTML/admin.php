@@ -26,14 +26,15 @@
             $sql = "SELECT * FROM utilisateurs";
             $result = mysqli_query($conn, $sql);
             $resultCheck = mysqli_num_rows($result);
-            $checkIfNull = mysqli_fetch_assoc($result);
 
-            if ($checkIfNull == null) {
-                echo "<h4> Il n'y a pas d'utilisateurs dans la base de données </h4>";
+            //don't display if the database is empty
+            if ($resultCheck < 1) {
+                echo "Il n'y a pas d'utilisateurs dans la base de données";
                 return;
             }
-            // display all users in the database as a table whit their id, name, firstname, email and type and option button to delete them, edit them or add them
-            ?>
+
+        // display all users in the database as a table whit their id, name, firstname, email and type and option button to delete them, edit them or add them
+        ?>
         </tbody>
             </table>
     
@@ -51,7 +52,7 @@
                 </thead>
                 <tbody>
                 <?php while ($row = mysqli_fetch_assoc($result)):
-                    // change the type of user from number to string to display it
+                    //change the type of user from number to string to display it
                     switch ($row['type_utilisateur']) {
                         case 1:
                             $row['type_utilisateur'] = "Quizzeur";
