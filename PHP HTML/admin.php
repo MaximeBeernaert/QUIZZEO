@@ -27,63 +27,97 @@
             $result = mysqli_query($conn, $sql);
             $resultCheck = mysqli_num_rows($result);
 
-            // display all users in the database as a table whit their id, name, firstname, email and type and option button to delete them, edit them or add them
-            ?>
-            <table class='table'>
-            <thead>
-                <tr>
-                    <th scope='col'>ID</th>
-                    <th scope='col'>Nom</th>
-                    <th scope='col'>Prenom</th>
-                    <th scope='col'>Email</th>
-                    <th scope='col'>Date de création du compte</th>
-                    <th scope='col'>Type</th>
-                    <th scope='col'>Action</th>
-                 </tr>
-            </thead>
-            <tbody>
-                
-            <?php
-            while ($user = mysqli_fetch_assoc($result)) {
-                // change the type of user from number to string to display it
-                switch ($user['type_utilisateur']) {
-                    case 1:
-                        $user['type_utilisateur'] = "Quizzeur";
-                        break;
-                    case 2:
-                        $user['type_utilisateur'] = "Administrateur";
-                        break;
-                    default:
-                        $user['type_utilisateur'] = "Utilisateur";
-                        break;
+            //don't display if the database is empty
+            if ($resultCheck < 1) {
+                echo "Il n'y a pas d'utilisateurs dans la base de données";
+                return;
+            }
+
+        // display all users in the database as a table whit their id, name, firstname, email and type and option button to delete them, edit them or add them
+        ?>
+        </tbody>
+            </table>
+    
+            <table>
+                <thead>
+                    <tr>
+                    <th>ID</th>
+                    <th>Nom</th>
+                    <th>Prenom</th>
+                    <th>Email</th>
+                    <th>Date de création du compte</th>
+                    <th>Type</th>
+                    <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                <?php while ($row = mysqli_fetch_assoc($result)):
+                    //change the type of user from number to string to display it
+                    switch ($row['type_utilisateur']) {
+                        case 1:
+                            $row['type_utilisateur'] = "Quizzeur";
+                                reak;
+                        case 2:
+                            $row['type_utilisateur'] = "Administrateur";
+                            break;
+                        default:
+                            $row['type_utilisateur'] = "Utilisateur";
+                            break;
                     }
+                    ?>
+                    <tr>
+                        <td><?php echo $row['id_utilisateur']; ?></td>
+                        <td><?php echo $row['nom_utilisateur']; ?></td>
+                        <td><?php echo $row['prenom_utilisateur']; ?></td>
+                        <td><?php echo $row['mail_utilisateur']; ?></td>
+                        <td><?php echo $row['date_creation_utilisateur']; ?></td>
+                        <td><?php echo $row['type_utilisateur']; ?></td>
+                        <td>
+    
+                        <form action="admin.php" method="POST">
+                            <input type="hidden" name="id" value="<?php echo $row['id_utilisateur']; ?>">
+                            <button type="submit" name="modify-btn" class="modify-btn">Modifier</button>
+                        </form>
+                            
+                        <form action="admin.php" method="POST">
+                            <input type="hidden" name="id" value="<?php echo $row['id_utilisateur']; ?>">
+                            <button type="submit" name="delete-btn" class="delete-btn">Supprimer</button>
+                        </form>
+                        </td>
 
-                echo
-                "<br><tr>
-
-                    <td>" . $user['id_utilisateur'] . "</td>
-                    <td>" . $user['nom_utilisateur'] . "</td>
-                    <td>" . $user['prenom_utilisateur'] . "</td>
-                    <td>" . $user['mail_utilisateur'] . "</td>
-                    <td>" . $user['date_creation_utilisateur'] . "</td>
-                    <td>" . $user['type_utilisateur'] . "</td>
-
-                    <td>
-                    <button type='button' class='btn-modif'>Modifier</button>
-                    <button type='button' class='btn-suppr'>Supprimer</button>
-                    </td>
-
-                </tr>";
+                    </tr>
+                <?php endwhile; ?>
+            </tbody>
+        </table>
+    
+            <?php
+            // if the user click on the delete button, delete the user from the database and ask confirmation
+            if (isset($_POST['delete-btn'])) {
+                ?>
+                <form action="admin.php" method="POST">
+                    <input type="hidden" name="id" value="<?php echo $row['id_utilisateur']; ?>">
+                    <button type="submit" name="confirm-delete" class="confirm-delete">Confirmer la suppression</button>
+                </form>
+                <?php
+                // if the user click on the confirm delete button, delete the user from the database
+                if (isset($_POST['confirm-delete'])) {
+                    $id = $_POST['id'];
+                    $sql = "DELETE FROM utilisateurs WHERE id_utilisateur = $id";
+                    $result = mysqli_query($conn, $sql);
+                    header("Location: admin.php");
+                }
+            }
+    
+            // if the user click on the modify button, redirect to the modify page
+            if (isset($_POST['modify-btn'])) {
+                $id = $_POST['id'];
+                header("Location: modifyUser.php?id=$id");
             }
             ?>
-            </tbody>
-            </table>
 
         </div>
 
     </div>
-
-    <script src="admin.js"></script>
 </body>
 
 </html>
