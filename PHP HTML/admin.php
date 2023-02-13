@@ -21,6 +21,10 @@
 
             <?php
 
+            if (mysqli_fetch_assoc == 0) {
+                echo "Il n'y a pas d'utilisateurs dans la base de données";
+            };
+
             require 'DBconnexion.php';
 
             $sql = "SELECT * FROM utilisateurs";
@@ -69,9 +73,16 @@
                         <td><?php echo $row['type_utilisateur']; ?></td>
                         <td>
 
-                            <button class="update-btn" id="update-btn" data-id="<?php echo $row['id_utilisateur']; ?>">Modifier</button>
-                            <button class="delete-btn" id="delete-btn" data-id="<?php echo $row['id_utilisateur']; ?>">Supprimer</button>
-                        </td>
+                        <form action="admin.php" method="POST">
+                            <input type="hidden" name="id" value="<?php echo $row['id_utilisateur']; ?>">
+                            <button type="submit" name="modify-btn" class="modify-btn">Modifier</button>
+                        </form>
+                        
+                        <form action="admin.php" method="POST">
+                            <input type="hidden" name="id" value="<?php echo $row['id_utilisateur']; ?>">
+                            <button type="submit" name="delete-btn" class="delete-btn">Supprimer</button>
+                        </form>
+                    </td>
                     </tr>
                     <?php endwhile; ?>
                 </tbody>
@@ -80,10 +91,10 @@
             <?php
             // if the user click on the delete button, delete the user from the database
             if (isset($_POST['delete-btn'])) {
-                header("Location: admin.php");
                 $id = $_POST['id'];
                 $sql = "DELETE FROM utilisateurs WHERE id_utilisateur = $id";
                 $result = mysqli_query($conn, $sql);
+                header("Location: admin.php");
             }
 
 
