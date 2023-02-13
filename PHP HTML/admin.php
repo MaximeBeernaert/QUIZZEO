@@ -29,72 +29,71 @@
 
             // display all users in the database as a table whit their id, name, firstname, email and type and option button to delete them, edit them or add them
             ?>
-            <table class='table'>
-            <thead>
-                <tr>
-                    <th scope='col'>ID</th>
-                    <th scope='col'>Nom</th>
-                    <th scope='col'>Prenom</th>
-                    <th scope='col'>Email</th>
-                    <th scope='col'>Date de création du compte</th>
-                    <th scope='col'>Type</th>
-                    <th scope='col'>Action</th>
-                 </tr>
-            </thead>
-            <tbody>
-                
-            <?php
-            while ($user = mysqli_fetch_assoc($result)) {
-                // change the type of user from number to string to display it
-                switch ($user['type_utilisateur']) {
-                    case 1:
-                        $user['type_utilisateur'] = "Quizzeur";
-                        break;
-                    case 2:
-                        $user['type_utilisateur'] = "Administrateur";
-                        break;
-                    default:
-                        $user['type_utilisateur'] = "Utilisateur";
-                        break;
-                    }
-
-                echo
-                "<br><tr>
-
-                    <td>" . $user['id_utilisateur'] . "</td>
-                    <td>" . $user['nom_utilisateur'] . "</td>
-                    <td>" . $user['prenom_utilisateur'] . "</td>
-                    <td>" . $user['mail_utilisateur'] . "</td>
-                    <td>" . $user['date_creation_utilisateur'] . "</td>
-                    <td>" . $user['type_utilisateur'] . "</td>
-
-                    <td>
-                    <input type='submit' class='modifUser' name='modifUser' value='Modifer'>
-                    <input type='submit' class='removeUser' name='removeUser' value='Supprimer'>
-                    </td>
-
-                </tr>";
-            }
-            ?>
             </tbody>
             </table>
 
+            <table>
+                <thead>
+                    <tr>
+                    <th>ID</th>
+                    <th>Nom</th>
+                    <th>Prenom</th>
+                    <th>Email</th>
+                    <th>Date de création du compte</th>
+                    <th>Type</th>
+                    <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                <?php while ($row = mysqli_fetch_assoc($result)): ?>
+                <?php
+                    // change the type of user from number to string to display it
+                    switch ($row['type_utilisateur']) {
+                        case 1:
+                            $row['type_utilisateur'] = "Quizzeur";
+                            break;
+                        case 2:
+                            $row['type_utilisateur'] = "Administrateur";
+                            break;
+                         default:
+                            $row['type_utilisateur'] = "Utilisateur";
+                            break;
+                    }
+                    ?>
+                    <tr>
+                        <td><?php echo $row['id_utilisateur']; ?></td>
+                        <td><?php echo $row['nom_utilisateur']; ?></td>
+                        <td><?php echo $row['prenom_utilisateur']; ?></td>
+                        <td><?php echo $row['mail_utilisateur']; ?></td>
+                        <td><?php echo $row['date_creation_utilisateur']; ?></td>
+                        <td><?php echo $row['type_utilisateur']; ?></td>
+                        <td>
+
+                            <button class="update-btn" id="update-btn" data-id="<?php echo $row['id_utilisateur']; ?>">Modifier</button>
+                            <button class="delete-btn" id="delete-btn" data-id="<?php echo $row['id_utilisateur']; ?>">Supprimer</button>
+                        </td>
+                    </tr>
+                    <?php endwhile; ?>
+                </tbody>
+            </table>
+
+            <?php
+            // if the user click on the delete button, delete the user from the database
+            if (isset($_POST['delete-btn'])) {
+                header("Location: admin.php");
+                $id = $_POST['id'];
+                $sql = "DELETE FROM utilisateurs WHERE id_utilisateur = $id";
+                $result = mysqli_query($conn, $sql);
+            }
+
+
+            // if the user click on the modify button, redirect to the modify page
+            //TODO: create the modify page
+            ?>
+        
         </div>
 
     </div>
 </body>
 
 </html>
-
-<?php
-
-if (isset ($_POST['removeUser'])) {
-    echo "tu as cliqué sur supprimer";
-    $id = $_POST['id_utilisateur'];
-    $sql = "DELETE FROM utilisateurs WHERE id_utilisateur = $id";
-    $result = mysqli_query($conn, $sql);
-    header("Location: admin.php");
-    exit();
-}
-
-?>
