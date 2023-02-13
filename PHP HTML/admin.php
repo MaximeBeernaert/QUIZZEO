@@ -83,6 +83,7 @@
                             <input type="hidden" name="id" value="<?php echo $row['id_utilisateur']; ?>">
                             <button type="submit" name="delete-btn" class="delete-btn">Supprimer</button>
                         </form>
+                        </td>
 
                     </tr>
                 <?php endwhile; ?>
