@@ -75,12 +75,10 @@
                         <td>
     
                         <form action="admin.php" method="POST">
-                            <input type="hidden" name="id" value="<?php echo $row['id_utilisateur']; ?>">
                             <button type="submit" name="modify-btn" class="modify-btn">Modifier</button>
                         </form>
                             
                         <form action="admin.php" method="POST">
-                            <input type="hidden" name="id" value="<?php echo $row['id_utilisateur']; ?>">
                             <button type="submit" name="delete-btn" class="delete-btn">Supprimer</button>
                         </form>
                         </td>
@@ -95,7 +93,6 @@
             if (isset($_POST['delete-btn'])) {
                 ?>
                 <form action="admin.php" method="POST">
-                    <input type="hidden" name="id" value="<?php echo $row['id_utilisateur']; ?>">
                     <button type="submit" name="confirm-delete" class="confirm-delete">Confirmer la suppression</button>
                 </form>
                 <?php
