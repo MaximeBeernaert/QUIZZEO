@@ -4,7 +4,7 @@
     <meta charset="utf-8"/>
     <title>Registration</title>
 </head>
-<body>
+<body> 
 <?php
     require('DBconnexion.php');
     // When form submitted, insert values into the database.

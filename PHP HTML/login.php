@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <link rel="stylesheet" href="login.css">
     <meta charset="utf-8"/>
     <title>Login</title>
     <!-- <link rel="stylesheet" href="style.css"/> -->
@@ -34,16 +35,19 @@
         }
     } else {
 ?>
-    <form class="form" method="post" name="login">
-        <h1 class="login-title">Login</h1>
-        <input type="text" class="login-input" name="email" placeholder="Email" autofocus="true"/>
-        <input type="password" class="login-input" name="password" placeholder="Password"/>
-        <input type="submit" value="Login" name="submit" class="login-button"/>
-        <p class="link"><a href="signin.php">Entrer!</a></p>
-  </form>
-  <button id="button1">
-        <a href="accueil.php">Retour à l'accueil</a>
-         </button>
+    <div class="container">
+        <div class="no2-container">
+            <div class="header">
+                </div>
+                    <form class="form" method="post" name="login">
+                    <h1 class="login-title">Login</h1>
+                    <input type="text" class="login-input" name="email" placeholder="Email" autofocus="true"/>
+                    <input type="password" class="login-input" name="password" placeholder="Password"/>
+                    <a href="accueil.php" class="link">Retour à l'accueil</a>
+                    <a href="signin.php" class="link">Entrer !</a>
+                </form>
+            </div>
+         </div>
 <?php
     }
 ?>
