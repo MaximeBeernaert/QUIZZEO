@@ -1,3 +1,127 @@
-table {
-    text-align: center;
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  
+  body {
+    background-color: #f5f5f5;
+    font-family: 'Arial', sans-serif;
+  }
+  
+ 
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 30px;
+  }
+  
+  a {
+    display: block;
+    margin-bottom: 20px;
+    color: #00a2ff;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 20px;
+  }
+  
+  a:hover {
+    text-decoration: underline;
+  }
+  
+  h1 {
+    color: #333;
+    font-size: 32px;
+    margin-bottom: 30px;
+  }
+  
+  .users {
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    margin-bottom: 40px;
+  }
+  
+  .users h2 {
+    color: #00a2ff;
+    font-size: 28px;
+    margin-bottom: 20px;
+  }
+  
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 30px;
+  }
+  
+  th {
+    text-align: left;
+    background-color: #00a2ff;
+    color: #fff;
+    padding: 10px;
+  }
+  
+  td {
+    border: 1px solid #ddd;
+    padding: 10px;
+  }
+  
+  .modify-btn,
+  .delete-btn {
+    background-color: #00a2ff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    margin-right: 10px;
+    cursor: pointer;
+  }
+  
+  .modify-btn:hover,
+  .delete-btn:hover {
+    background-color: #005d8f;
+  }
+  
+  .confirm-delete-btn,
+  .cancel-delete-btn {
+    background-color: #fff;
+    color: #00a2ff;
+    border: 2px solid #00a2ff;
+    border-radius: 5px;
+    padding: 10px 20px;
+    margin-right: 10px;
+    cursor: pointer;
+  }
+  
+  .confirm-delete-btn:hover,
+  .cancel-delete-btn:hover {
+    background-color: #00a2ff;
+    color: #fff;
+  }
+  
+  @media screen and (max-width: 767px) {
+    h1 {
+      font-size: 24px;
+    }
+    
+    .users h2 {
+      font-size: 24px;
+    }
+    
+    table {
+      font-size: 14px;
+    }
+    
+    th, td {
+      padding: 5px;
+    }
+    
+    .modify-btn,
+    .delete-btn,
+    .confirm-delete-btn,
+    .cancel-delete-btn {
+      padding: 5px 10px;
+    }
 }
