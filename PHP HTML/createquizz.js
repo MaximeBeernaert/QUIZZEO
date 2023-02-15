@@ -1,12 +1,16 @@
 class CreateQuizz {
     constructor() {
         this.addQuestion = document.querySelector('.addQuestion')
+        this.addAnswer1 = document.querySelector('.Button1')
+        this.numberQuestion = 1
         this.addQuestion.addEventListener('click', () => { this.addQuestionJS() } )
-        this.numberQuestion = 0
+        this.addAnswer1.addEventListener('click', () => { this.addAnswerJS("Button1") } )
+        
     }
 
     addQuestionJS() {
-        this.numberQuestion += 1
+        
+        this.numberQuestion++
         this.numberAnswer = 0
         const newDiv = document.createElement("div")
         newDiv.className = `DivQuestion${this.numberQuestion}`
@@ -64,6 +68,7 @@ class CreateQuizz {
     }
 
     addAnswerJS(numberQuestion) {
+        console.log('numberQuestion')
         const element = document.querySelector(`.DivAnswer${numberQuestion}`)
         this.numberAnswer = 1
         for(let i=1; i<=element.childElementCount; i++){

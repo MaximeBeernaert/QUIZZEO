@@ -2,8 +2,8 @@
 <html>
 <head>
     <meta charset="utf-8"/>
-    <title>Mes Quizz</title>
-    <title>Mes Quizz</title>
+    <title>Gérer mes Quizz</title>
+    <title>Gérer mes Quizz</title>
 </head>
 <body>
     <table>
@@ -13,40 +13,29 @@
 
     $user = $_SESSION['user'];
     $id_utilisateur = $user['id_utilisateur'];
-    $type_utilisateur = $user['type_utilisateur'];
-    if($type_utilisateur==2){
-        $query = "SELECT * FROM `quizz`";
-    }else{
-        $query = "SELECT * FROM `quizz` WHERE auteur_quizz='$id_utilisateur'";
-    }
     
+    $query = "SELECT * FROM `quizz`";
     $result = mysqli_query($conn, $query);
+
     while ($row = mysqli_fetch_assoc($result)):
-        $id_user = $row['auteur_quizz'];
+        $id_quizz = $row['id_quizz'];
+        $id_userQuizz = $row['auteur_quizz'];
+        $queryUserQuizz = "SELECT * FROM `utilisateurs` WHERE `id_utilisateur` = '$id_userQuizz'";
+        $resultUserQuizz = mysqli_query($conn, $queryUserQuizz);
+        $userQuizz = mysqli_fetch_assoc($resultUserQuizz);
 ?>
         <tr>
+            <td><?php echo $row['id_quizz']; ?></td>
             <td><?php echo $row['titre_quizz']; ?></td>
-            <td><?php echo $id_user; ?></td>
+            <td><?php echo $userQuizz['prenom_utilisateur'].$userQuizz['id_utilisateur']; ?></td>
             <td><?php echo $row['date_creation_quizz']; ?></td>
             <td>
-                <form action="quizzlist.php" method="POST">
-                    <input type="hidden" name="id" value="<?php echo $row['titre_quizz']; ?>">
-                    <button type="submit" name="modify-btn" class="modify-btn">Modifier</button>
-                </form>
-            </td>
-            <td>                            
-                <form action="quizzlist.php" method="POST">
-                    <input type="hidden" name="id" value="<?php echo $row['titre_quizz']; ?>">
-                    <button type="submit" name="delete-btn" class="delete-btn">Supprimer</button>
+                <form action="quizz.php" method="POST">
+                    <?php echo "<input type='hidden' name='id_quizz' value='$id_quizz'>"?>
+                    <button type="submit" name="choose-quizz-btn" class="choose-quizz-btn">Choisir ce quizz</button>
                 </form>
             </td>
         </tr>
 <?php endwhile; ?>
     </table>
-<?php
-
-// DELETE BUTTON 
-// MODIFY BUTTON
-
-?>
 </html>
