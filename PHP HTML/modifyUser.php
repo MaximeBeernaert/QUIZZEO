@@ -60,10 +60,10 @@
             <label for="type">Type : </label>
             <?php echo "<input type='hidden' name='type' value=$type_utilisateur>" ?>
             <select name="type" id="type">
-                <option value="none" selected disabled hidden><?php echo $actualUser['type_utilisateur']; ?></option>
-                <option value="0">Utilisateur</option>
-                <option value="1">Quizzeur</option>
-                <option value="2">Administrateur</option>
+                <option selected disabled hidden><?php echo $actualUser['type_utilisateur']; ?></option>
+                <option>Utilisateur</option>
+                <option>Quizzeur</option>
+                <option>Administrateur</option>
             </select>
             <br>
 
@@ -80,6 +80,14 @@
             $prenom = $_POST['prenom'];
             $email = $_POST['email'];
             $type = $_POST['type'];
+
+            if ($type == "Utilisateur"){
+                $type = 0;
+            } elseif ($type == "Quizzeur"){
+                $type = 1;
+            } else {
+                $type = 2;
+            }
 
             $sql = "UPDATE utilisateurs SET nom_utilisateur = '$nom', prenom_utilisateur = '$prenom', mail_utilisateur = '$email', type_utilisateur = '$type' WHERE id_utilisateur = '$id'";
             
