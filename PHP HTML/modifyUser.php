@@ -40,18 +40,30 @@
         <h1>Modification de l'utilisateur suivant : </h1><br> <h3><?php echo "ID : " . $actualUser['id_utilisateur'] . " Nom : " . $actualUser['nom_utilisateur'] . " Prénom : " . $actualUser['prenom_utilisateur']; ?></h3>
 
         <form action="modifyUser.php" method="POST">
+            <?php 
+            $nom_utilisateur = $actualUser['nom_utilisateur'];
+            echo "<input type='hidden' name='id' value=$nom_utilisateur>" ?>
             <label for="nom">Nom : </label>
             <input type="text" name="nom" id="nom" value="<?php echo $actualUser['nom_utilisateur']; ?>">
             <br>
 
+            <?php 
+            $prenom_utilisateur = $actualUser['prenom_utilisateur'];
+            echo "<input type='hidden' name='id' value=$prenom_utilisateur>" ?>
             <label for="prenom">Prénom : </label>
             <input type="text" nane="prenom" id="prenom" value="<?php echo $actualUser['prenom_utilisateur']; ?>">
             <br>
 
+            <?php 
+            $mail_utilisateur = $actualUser['mail_utilisateur'];
+            echo "<input type='hidden' name='id' value=$mail_utilisateur>" ?>
             <label for="email">Email : </label>
             <input type="email" name="email" id="email" value="<?php echo $actualUser['mail_utilisateur']; ?>">
             <br>
 
+            <?php 
+            $type_utilisateur = $actualUser['type_utilisateur'];
+            echo "<input type='hidden' name='id' value=$type_utilisateur>" ?>
             <label for="type">Type : </label>
             <select name="type" id="type">
                 <option value="none" selected disabled hidden><?php echo $actualUser['type_utilisateur']; ?></option>
