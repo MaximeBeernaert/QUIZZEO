@@ -125,10 +125,7 @@
                 header("Location: modifyUser.php?id=$id");
             }
             ?>
-
         </div>
-
     </div>
 </body>
-
 </html>
