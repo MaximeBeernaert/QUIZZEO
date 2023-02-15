@@ -42,10 +42,11 @@
             <td><?php echo $id_user; ?></td>
             <td><?php echo $row['date_creation_quizz']; ?></td>
             <td>
-                <form action="myquizz.php" method="POST">
-                    <input type="hidden" name="id" value="<?php echo $row['titre_quizz']; ?>">
-                    <button type="submit" name="modify-btn" class="modify-btn">Modifier</button>
-                </form>
+            <form action="myquizz.php" method="POST">
+                    <?php $id_quizz = $row['id_quizz'];
+                    echo "<input type='hidden' name='id' value=$id_quizz>"?>
+                    <button type="submit" name="modif-btn" class="modif-btn">Modifier</button>
+                </form>   
             </td>
             <td>    
                 <form action="myquizz.php" method="POST">
@@ -81,10 +82,12 @@
         }
     }
 
-
-
-// MODIFY BUTTON
-
+    // if the user click on the modify button, redirect to the modify page
+    if (isset($_POST['modif-btn'])) {
+        $id = $_POST['id'];
+        header("Location: modifyquizz.php");
+        $_SESSION['id'] = $id;
+    }
 ?>
 
 </body>
