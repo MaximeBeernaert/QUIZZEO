@@ -58,9 +58,9 @@ class CreateQuizz {
         const currentDiv = element.querySelector('.addQuestions')
         element.insertBefore(newDiv, currentDiv)
         
-        const element = document.querySelector('.form1')
-        const currentDiv = element.querySelector('.addQuestions')
-        element.insertBefore(newDiv, currentDiv)
+        const element1 = document.querySelector('.form1')
+        const currentDiv1 = element1.querySelector('.addQuestions')
+        element1.insertBefore(newDiv, currentDiv1)
     }
 
     addAnswerJS(numberQuestion) {
