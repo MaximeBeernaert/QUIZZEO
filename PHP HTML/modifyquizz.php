@@ -14,6 +14,7 @@
         session_start();
         require('DBconnexion.php');
 
+        // Get the id of the quizz to modify
         $id = $_SESSION['id'];
         $query = "SELECT * FROM `quizz` WHERE id_quizz='$id'";
         $result = mysqli_query($conn, $query);
@@ -23,7 +24,7 @@
 
         <a href="myquizz.php">Retour à mes Quizz</a>
 
-        <h2>Bienvenue sur la page de modification de votre Quizz</h2> <?php echo " : " . $actualQuizz['titre_quizz']; ?>
+        <h2>Bienvenue sur la page de modification de votre Quizz<?php echo " : " . $actualQuizz['titre_quizz']; ?></h2> 
         <!-- Display all the quizz in form for modification by user -->
         <form action="modifyquizz.php" method="POST">
             <?php $titre_quizz = $actualQuizz['titre_quizz'];?>
@@ -41,12 +42,10 @@
             <?php echo "<input type='text' name='valeur_score' value=$valeur_score_quizz>"?>
             <br>
 
+            <!-- Display all questions and answer for modifcation -->
             
-
-
-
-
+            
+        </form>
     </div>
-    
 </body>
 </html>
