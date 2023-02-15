@@ -16,7 +16,7 @@
         while(isset($_POST["Question".$numberQuestion])) {
             $question = array();
             array_push($question, $_POST["Question".$numberQuestion]);
-            
+            array_push($question, $_POST["rightAnswer".$numberQuestion]);
             $numberAnswer = 0;
             while(isset($_POST["AnswerButton".$numberQuestion.$numberAnswer])) {
                 
@@ -102,7 +102,7 @@
             $question_text = $quizzSave[$numberQuestion][0];
 
             //Create the question in the database
-            $query = "INSERT INTO `questions`(`intitule_question`, `difficulte_question`, `type_question`) VALUES ('$question_text','1','1')";
+            $query = "INSERT INTO `questions`(`intitule_question`, `type_question`) VALUES ('$question_text','1')";
             $result = mysqli_query($conn, $query);
 
             //Select the question created in the Database
@@ -114,8 +114,43 @@
             $query = "INSERT INTO `contient`(`id_quizz`, `id_question`) VALUES ('$id_quizz','$id_question')";
             $result = mysqli_query($conn, $query);
 
-            $numberAnswer = 0;
+
+            $answer_text = $quizzSave[$numberQuestion][1];
+            //Create the answer in the database
+            $query = "INSERT INTO `choix`(`reponse_choix`, `bonne_reponse_choix`) VALUES ('$answer_text','1')";
+            $result = mysqli_query($conn, $query);
+            if(!$result){
+                echo "raté";
+            }
+
+            //Select the question created in the Database
+            $query = "SELECT * FROM `choix` WHERE reponse_choix='$answer_text' AND bonne_reponse_choix='1'";
+            $result = mysqli_query($conn, $query);
+            $answer = mysqli_fetch_assoc($result);
+            $id_answer = $answer['id_choix'];
+            //Create the link between the question and the quizz in the database
+            $query = "INSERT INTO `appartenir`(`ID_question`, `ID_choix`) VALUES ('$id_question','$id_answer')";
+            $result = mysqli_query($conn, $query);
+            
+            $numberAnswer = 2;
+
             while(isset($quizzSave[$numberQuestion][$numberAnswer])) {
+                $answer_text = $quizzSave[$numberQuestion][$numberAnswer];
+
+                //Create the answer in the database
+                $query = "INSERT INTO `choix`(`reponse_choix`, `bonne_reponse_choix`) VALUES ('$answer_text','0')";
+                $result = mysqli_query($conn, $query);
+    
+                //Select the question created in the Database
+                $query = "SELECT * FROM `choix` WHERE reponse_choix='$answer_text' AND bonne_reponse_choix='0'";
+                $result = mysqli_query($conn, $query);
+                $answer = mysqli_fetch_assoc($result);
+                $id_answer = $answer['id_choix'];
+                //Create the link between the question and the quizz in the database
+                $query = "INSERT INTO `appartenir`(`ID_question`, `ID_choix`) VALUES ('$id_question','$id_answer')";
+                $result = mysqli_query($conn, $query);
+
+
                 $numberAnswer += 1;
             }
     
@@ -133,48 +168,40 @@
         }  
     }
 
-
+    // MAIN 
+    // Start the local session
     session_start();
+    // connect to the Database
     require('DBconnexion.php');
 
-
-    
-    
-
+    // Check for two cases : 
+        // first is the title has been renamed (because it was already taken)
+        // second is the first time the quizz is been registered
+    // here is the first case : we check for a HTML node named 'quizztitlerenamed'
     if(isset($_POST['quizztitlerenamed'])) {
+        // we get the saved quizz (done in the second case) and rename the quizz there
         $quizzSave = $_SESSION['quizzSave'];
         $quizzSave[0][0] = $_POST['quizztitlerenamed'];
+        // we then send for the quizz to be checked again, and if TRUE, then we save the quizz in the database
         if(checkForTitle($conn,$_POST['quizztitlerenamed'])) {
             createQuizz($quizzSave,$conn);
         }
-    }else{  
+    }else // second case here where we check the quizz first the first time
+    {  
+        // we get the title of the quizz
         $title = $_POST['quizztitle'];
+        // we create the quizz, putting the valeus in an array to get it back in case of already taken title
         $quizzSave = createQuizzArray($title);
-        
+        // we then send for the quizz to be checked, and if TRUE, then we save the quizz in the database
         if(checkForTitle($conn,$title)) {
             createQuizz($quizzSave,$conn);
         }
     }
-
-
-      
-
-    
-
-
-
-    
-
-
-
-
-
-
-
-
-
-    
-
+?>
+    <form class="form1" action="quizzlist.php" method="post">
+        <input type="submit" name="submit" value="Valider" class="submit-button">
+    </form>  
+<?php
     //For() chaque question dans le quizz de la page d'avant 
         //INSERT la question (en fonction de la page précédente) ID_question individuel A-I
         //INSERT un 'contient' avec l'ID_quizz et l'ID_question
