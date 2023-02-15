@@ -60,7 +60,7 @@
             <label for="type">Type : </label>
             <?php echo "<input type='hidden' name='type' value=$type_utilisateur>" ?>
             <select name="type" id="type">
-                <option value="none" selected disabled hidden><?php echo $actualUser['type_utilisateur']; ?></option>
+                <option value="0" selected disabled hidden>Selectionner le type d'utilisateur</option>
                 <option value="0">Utilisateur</option>
                 <option value="1">Quizzeur</option>
                 <option value="2">Administrateur</option>
