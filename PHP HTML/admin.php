@@ -126,10 +126,7 @@
                 $_SESSION['id'] = $id;
             }
             ?>
-
         </div>
-
     </div>
 </body>
-
 </html>

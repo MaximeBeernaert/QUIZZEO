@@ -3,6 +3,7 @@
 <head>
     <meta charset="utf-8"/>
     <title>Menu</title>
+    <link rel="stylesheet" href="usermenu.css">
 </head>
 <body>
 <?php
@@ -19,26 +20,19 @@
         ?> <a href="admin.php">Gérer les utilisateurs</a> <?php
     }
 ?>
-  <header>
-    <h1>Menu utilisateur</h1>
-    <nav>
-      <ul>
-        <li><a href="#jouer">Jouer aux quizz</a></li>
-        <li><a href="#scores">Voir les scores</a></li>
-        <li><a href="#creer">Créer les quizz</a></li>
-        <li><a href="#admin">Accéder au panel admin</a></li>
-      </ul>
-    <button id="button1"><a href="accueil.php">Retour à l'accueil</a></button>
-</header>
-    <main>
-      <section id="jouer">
-        </section>
-      <section id="scores">
-        </section>
-      <section id="creer">
-        </section>
-      <section id="admin">
-        </section>
-    </main>
-  </body>
+    <header>
+        <h1>Menu utilisateur</h1>
+      </header>
+          <container>
+        <ul>
+          <li><a href="jouer" class="link1">Jouer aux quizz</a></li>
+          <li><a href="scores"class="link2">Voir les scores</a></li>
+          <li><a href="creer"class="link3">Créer les quizz</a></li>
+          <li><a href="admin"class="link4">Accéder au panel admin</a></li>
+        </ul>
+    </container> 
+        <a id="retour"href="accueil.php">Retour à l'accueil</a>
+    </body>
+    
+
 </html>
