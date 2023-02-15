@@ -18,7 +18,6 @@
 ?>
 
     <form class="form1" action="savequizz.php" method="post">
-    <form class="form1" action="savequizz.php" method="post">
 
         <h1 class="Create Quizz">Create Quizz</h1>
         <input type="text" class="quizztitle" name="quizztitle" placeholder="Titre Quizz" required />
@@ -32,6 +31,6 @@
     
     
     <script src="createquizz.js"></script>
-    <button id="button1"><a href="accueil.php">Retour à l'accueil</a></button>
+    <button id="button1"><a href="usermenu.php">Retour au menu utilisateur</a></button>
 </body>
 </html>

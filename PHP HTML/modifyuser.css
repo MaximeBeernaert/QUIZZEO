@@ -1,0 +1,55 @@
+body {
+    font-family: Arial, sans-serif;
+  }
+  
+  .userModif {
+    width: 60%;
+    margin: 50px auto;
+    text-align: center;
+    background-color: white;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px gray;
+  }
+  
+  .userModif h1, h3 {
+    color: black;
+    margin-bottom: 20px;
+  }
+  
+  .userModif a {
+    display: block;
+    margin-bottom: 20px;
+    color: blue;
+    text-decoration: none;
+  }
+  
+  .userModif form {
+    display: inline-block;
+    text-align: left;
+  }
+  
+  .userModif label {
+    color: gray;
+    font-weight: bold;
+    margin-right: 10px;
+  }
+  
+  .userModif input[type="text"], .userModif input[type="email"], .userModif select {
+    padding: 5px;
+    margin-bottom: 20px;
+    border: 1px solid lightgray;
+    border-radius: 5px;
+  }
+  
+  .userModif .modif-btn {
+    background-color: #00a2ff;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  .userModif .modif-btn:hover {
+background-color: #037cc2;
+}

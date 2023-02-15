@@ -56,7 +56,7 @@
                     switch ($row['type_utilisateur']) {
                         case 1:
                             $row['type_utilisateur'] = "Quizzeur";
-                                reak;
+                            break;
                         case 2:
                             $row['type_utilisateur'] = "Administrateur";
                             break;
@@ -64,6 +64,7 @@
                             $row['type_utilisateur'] = "Utilisateur";
                             break;
                     }
+                    $id_utilisateur = $row['id_utilisateur'];
                     ?>
                     <tr>
                         <td><?php echo $row['id_utilisateur']; ?></td>
@@ -75,12 +76,11 @@
                         <td>
     
                         <form action="admin.php" method="POST">
-                            <input type="hidden" name="id" value="<?php echo $row['id_utilisateur']; ?>">
                             <button type="submit" name="modify-btn" class="modify-btn">Modifier</button>
                         </form>
                             
                         <form action="admin.php" method="POST">
-                            <input type="hidden" name="id" value="<?php echo $row['id_utilisateur']; ?>">
+                            <?php echo "<input type='hidden' name='id-delete' class='id-delete' value='$id_utilisateur'>" ; ?>
                             <button type="submit" name="delete-btn" class="delete-btn">Supprimer</button>
                         </form>
                         </td>
@@ -93,18 +93,24 @@
             <?php
             // if the user click on the delete button, delete the user from the database and ask confirmation
             if (isset($_POST['delete-btn'])) {
+                $id_utilisateur = $_POST['id-delete'];
                 ?>
                 <form action="admin.php" method="POST">
-                    <input type="hidden" name="id" value="<?php echo $row['id_utilisateur']; ?>">
+                    <?php echo "<input type='hidden' name='id-delete' class='id-delete' value='$id_utilisateur'>" ; ?>
                     <button type="submit" name="confirm-delete" class="confirm-delete">Confirmer la suppression</button>
                 </form>
                 <?php
+                echo $id_utilisateur;
                 // if the user click on the confirm delete button, delete the user from the database
                 if (isset($_POST['confirm-delete'])) {
-                    $id = $_POST['id'];
+                    $id = $_POST['id-delete2'];
                     $sql = "DELETE FROM utilisateurs WHERE id_utilisateur = $id";
                     $result = mysqli_query($conn, $sql);
-                    header("Location: admin.php");
+                    if($result){
+                        header("Location: admin.php");
+                        
+                    }
+                    
                 }
             }
     
