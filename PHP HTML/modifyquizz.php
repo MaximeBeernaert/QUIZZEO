@@ -21,8 +21,27 @@
 
         ?>
 
-        
+        <a href="myquizz.php">Retour à mes Quizz</a>
 
+        <h2>Bienvenue sur la page de modification de votre Quizz</h2> <?php echo " : " . $actualQuizz['titre_quizz']; ?>
+        <!-- Display all the quizz in form for modification by user -->
+        <form action="modifyquizz.php" method="POST">
+            <?php $titre_quizz = $actualQuizz['titre_quizz'];?>
+            <label for="titre">Titre de votre Quizz : </label>
+            <?php echo "<input type='text' name='titre' value=$titre_quizz>"?>
+            <br>
+
+            <?php $difficulte_quizz = $actualQuizz['difficulte_quizz'];?>
+            <label for="difficulte">Difficulté de votre Quizz : </label>
+            <?php echo "<input type='text' name='difficulte' value=$difficulte_quizz>"?>
+            <br>
+
+            <?php $valeur_score_quizz = $actualQuizz['valeur_score_quizz'];?>
+            <label for="valeur_score">Score de votre Quizz : </label>
+            <?php echo "<input type='text' name='valeur_score' value=$valeur_score_quizz>"?>
+            <br>
+
+            
 
 
 
