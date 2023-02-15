@@ -3,8 +3,9 @@
 <head>
     <meta charset="utf-8"/>
     <title>Registration</title>
+    <link rel="stylesheet" href="signin.css">
 </head>
-<body>
+<body> 
 <?php
     require('DBconnexion.php');
     // When form submitted, insert values into the database.

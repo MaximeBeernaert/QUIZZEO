@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8"/>
     <title>Creation Quizz</title>
-    <title>Creation Quizz</title>
+    <link rel="stylesheet" href="createquizz.css">
 </head>
 <body>
 
@@ -15,8 +15,8 @@
     $user = $_SESSION['user'];
     
     
-?>
-
+    ?>
+    
     <form class="form1" action="savequizz.php" method="post">
 
         <h1 class="Create Quizz">Create Quizz</h1>
