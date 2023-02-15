@@ -27,12 +27,12 @@
         <ul>
           <li><a href="jouer" class="link1">Jouer aux quizz</a></li>
           <li><a href="scores"class="link2">Voir les scores</a></li>
-          <li><a href="creer"class="link3">Créer les quizz</a></li>
-          <li><a href="admin"class="link4">Accéder au panel admin</a></li>
+          <li><a href="createquizz.php"class="link3">Créer les quizz</a></li>
+          <li><a href="admin.php"class="link4">Accéder au panel admin</a></li>
         </ul>
     </container> 
         <a id="retour"href="accueil.php">Retour à l'accueil</a>
     </body>
-    
+
 
 </html>

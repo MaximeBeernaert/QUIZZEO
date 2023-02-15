@@ -3,7 +3,6 @@
 <head>
     <meta charset="utf-8"/>
     <title>Mes Quizz</title>
-    <title>Mes Quizz</title>
 </head>
 <body>
     <table>
