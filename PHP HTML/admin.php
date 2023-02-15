@@ -115,6 +115,7 @@
                     echo "Erreur lors de la suppression de l'utilisateur";
                 } else {
                     echo "L'utilisateur avec l'id $id a bien été supprimé !";
+                    header("Location: admin.php");
                 }
             }
 
