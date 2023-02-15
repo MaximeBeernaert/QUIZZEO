@@ -20,7 +20,7 @@
             <h2>Listes des utilisateurs de Quizzeo :</h2>
 
             <?php
-
+            session_start();
             require 'DBconnexion.php';
 
             $sql = "SELECT * FROM utilisateurs";
@@ -122,7 +122,8 @@
             // if the user click on the modify button, redirect to the modify page
             if (isset($_POST['modify-btn'])) {
                 $id = $_POST['id'];
-                header("Location: modifyUser.php?id=$id");
+                header("Location: modifyUser.php");
+                $_SESSION['id'] = $id;
             }
             ?>
 
