@@ -85,6 +85,51 @@
             ?>
             <button type="submit" name="modif-btn" class="modif-btn">Modifier</button>
         </form>
+
+        <?php
+        // If the user click on the button "Modifier", the quizz is modified in the database and the user is redirected to the page "myquizz.php"
+        // The modification will be take all the information in the form : the title, the difficulty, the score and all the answers for each question
+        if (isset($_POST['modif-btn'])) {
+            $titre = $_POST['titre'];
+            $difficulte = $_POST['difficulte'];
+            $valeur_score = $_POST['valeur_score'];
+
+            // Get the id of the quizz to modify and update the title, the difficulty and the score of the quizz
+            $query = "UPDATE `quizz` SET titre_quizz='$titre', difficulte_quizz='$difficulte', valeur_score_quizz='$valeur_score' WHERE id_quizz='$id'";
+            $result = mysqli_query($conn, $query);
+
+            // For each question of the quizz, update the question and the answer
+            while ($row = mysqli_fetch_assoc($resultQuestions)):
+                $id_question = $row['id_question'];
+                $intitule_question = $row['intitule_question'];
+
+                $query = "UPDATE `questions` SET intitule_question='$intitule_question' WHERE id_question='$id_question'";
+                $result = mysqli_query($conn, $query);
+                $i++;
+
+                $queryChoix = "SELECT * FROM `choix` WHERE id_choix IN (SELECT id_choix FROM `appartenir` WHERE id_question='$id_question')";
+                $resultChoix = mysqli_query($conn, $queryChoix);
+                $j = 1;
+
+                // For each answer of the question, update the answer
+                while ($row = mysqli_fetch_assoc($resultChoix)):
+                    $id_choix = $row['id_choix'];
+                    $reponse_choix = $row['reponse_choix'];
+
+                    $query = "UPDATE `choix` SET reponse_choix='$reponse_choix' WHERE id_choix='$id_choix'";
+                    $result = mysqli_query($conn, $query);
+                    $j++;
+                endwhile;
+            endwhile;
+
+            // Redirect to the page "myquizz.php" after the modification if the modification is successful
+            if ($result) {
+                header("Location: myquizz.php");
+            } else {
+                echo "Erreur";
+            }
+        }
+        ?>
     </div>
 </body>
 </html>
