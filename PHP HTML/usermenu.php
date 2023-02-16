@@ -28,7 +28,12 @@
           <li><a href="jouer" class="link1">Jouer aux quizz</a></li>
           <li><a href="scores"class="link2">Voir les scores</a></li>
           <li><a href="createquizz.php"class="link3">Créer les quizz</a></li>
-          <li><a href="admin.php"class="link4">Accéder au panel admin</a></li>
+          <li><a href="myquizz.php"class="link4">Accéder à mes quizz</a></li>
+
+          <!-- if you are administrator you can acces to admin panel  -->
+            <?php if($user['type_utilisateur']==2) { ?>
+                <li><a href="admin.php"class="link4">Accéder au panel admin</a></li>
+            <?php } ?>
         </ul>
     </container> 
         <a id="retour"href="accueil.php">Retour à l'accueil</a>

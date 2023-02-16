@@ -42,7 +42,34 @@
             <?php echo "<input type='text' name='valeur_score' value=$valeur_score_quizz>"?>
             <br>
 
-            <!-- Display all questions and answer for modifcation -->
+            <!-- Display all questions and answer for modifcation-->
+            <?php
+            $id_quizz = $actualQuizz['id_quizz'];
+            $query = "SELECT * FROM `question` WHERE id_quizz='$id_quizz'";
+            $result = mysqli_query($conn, $query);
+            $resultCheck = mysqli_num_rows($result);
+            $i = 1;
+            while ($row = mysqli_fetch_assoc($result)):
+                $id_question = $row['id_question'];
+                $query = "SELECT * FROM `reponse` WHERE id_question='$id_question'";
+                $result2 = mysqli_query($conn, $query);
+                $resultCheck2 = mysqli_num_rows($result2);
+                $j = 1;
+            ?>
+                <label for="question">Question <?php echo $i; ?> : </label>
+                <?php $question = $row['question'];?>
+                <?php echo "<input type='text' name='question$i' value=$question>"?>
+                <br>
+                <?php while ($row2 = mysqli_fetch_assoc($result2)): ?>
+                    <label for="reponse">Réponse <?php echo $j; ?> : </label>
+                    <?php $reponse = $row2['reponse'];?>
+                    <?php echo "<input type='text' name='reponse$i$j' value=$reponse>"?>
+                    <br>
+                <?php $j++; endwhile; ?>
+            <?php $i++; endwhile; ?>
+            <input type="submit" name="submit" value="Modifier">
+
+
             
             
         </form>
