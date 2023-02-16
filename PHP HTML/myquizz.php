@@ -29,13 +29,13 @@
             <td><?php echo $id_user; ?></td>
             <td><?php echo $row['date_creation_quizz']; ?></td>
             <td>
-                <form action="quizzlist.php" method="POST">
+                <form action="myquizz.php" method="POST">
                     <input type="hidden" name="id" value="<?php echo $row['titre_quizz']; ?>">
                     <button type="submit" name="modify-btn" class="modify-btn">Modifier</button>
                 </form>
             </td>
             <td>                            
-                <form action="quizzlist.php" method="POST">
+                <form action="myquizz.php" method="POST">
                     <input type="hidden" name="id" value="<?php echo $row['titre_quizz']; ?>">
                     <button type="submit" name="delete-btn" class="delete-btn">Supprimer</button>
                 </form>
