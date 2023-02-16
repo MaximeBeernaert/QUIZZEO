@@ -51,8 +51,8 @@ class Answer {
 }
 
 
-function createQuestion($conn,$row) {
-    $id_question = $row['id_question'];
+function createQuestion($conn,$row,$id_question) {
+    
     $queryQuestion = "SELECT * FROM `questions` WHERE `id_question` = '$id_question'";
     $resultQuestion = mysqli_query($conn, $queryQuestion);
     $question = mysqli_fetch_assoc($resultQuestion);
@@ -77,9 +77,10 @@ $query = "SELECT * FROM `contient` WHERE `id_quizz` = '$id_quizz'";
 $result = mysqli_query($conn, $query);
 
 while ($row = mysqli_fetch_assoc($result)) {
-    $question = createQuestion($conn,$row);
+    $id_question = $row['id_question'];
+    $question = createQuestion($conn,$row,$id_question);
     echo $question->getIdQuestion().$question->getTextQuestion();
-    
+   
 }
 
 ?>
