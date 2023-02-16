@@ -42,36 +42,48 @@
             <?php echo "<input type='text' name='valeur_score' value=$valeur_score_quizz>"?>
             <br>
 
-            <!-- Display all questions and answer for modifcation-->
-            <?php
-            $id_quizz = $actualQuizz['id_quizz'];
-            $query = "SELECT * FROM `question` WHERE id_quizz='$id_quizz'";
-            $result = mysqli_query($conn, $query);
-            $resultCheck = mysqli_num_rows($result);
+            <?php 
+            // Get the id of the quizz to modify
+            // For each question of the quizz, display the question and the answer in form for modification by user
+            // The quizz is identified by the id of the quizz in the table quizz
+            // The question is identified by the id of the question in the table questions
+            // The link between the quizz and the question is the table contient where the id of the quizz is in the column id_quizz and the id of the question is in the column id_question
+            // The answer is in the table choix
+            // The link between the question and the answer is the id of the question in the table appartenir
+            // A quizz can have multiple questions and a question can have multiple answers
+
+            $id = $_SESSION['id'];
+            $queryQuestions = "SELECT * FROM `questions` WHERE id_question IN (SELECT id_question FROM `contient` WHERE id_quizz='$id')";
+            $resultQuestions = mysqli_query($conn, $queryQuestions);
             $i = 1;
-            while ($row = mysqli_fetch_assoc($result)):
+
+            while ($row = mysqli_fetch_assoc($resultQuestions)):
                 $id_question = $row['id_question'];
-                $query = "SELECT * FROM `reponse` WHERE id_question='$id_question'";
-                $result2 = mysqli_query($conn, $query);
-                $resultCheck2 = mysqli_num_rows($result2);
+                $intitule_question = $row['intitule_question'];
+
+                echo "<br>";
+                echo "<label for='question'>Question $i : </label>";
+                echo "<input type='text' name='question' value=$intitule_question>";
+                echo "<br>";
+                $i++;
+
+                $queryChoix = "SELECT * FROM `choix` WHERE id_choix IN (SELECT id_choix FROM `appartenir` WHERE id_question='$id_question')";
+                $resultChoix = mysqli_query($conn, $queryChoix);
                 $j = 1;
+
+                while ($row = mysqli_fetch_assoc($resultChoix)):
+                    $id_choix = $row['id_choix'];
+                    $reponse_choix = $row['reponse_choix'];
+                    $bonne_reponse_choix = $row['bonne_reponse_choix'];
+
+                    echo "<label for='choix'>Choix $j : </label>";
+                    echo "<input type='text' name='choix' value=$reponse_choix>";
+                    echo "<br>";
+                    $j++;
+                endwhile;
+            endwhile;
             ?>
-                <label for="question">Question <?php echo $i; ?> : </label>
-                <?php $question = $row['question'];?>
-                <?php echo "<input type='text' name='question$i' value=$question>"?>
-                <br>
-                <?php while ($row2 = mysqli_fetch_assoc($result2)): ?>
-                    <label for="reponse">Réponse <?php echo $j; ?> : </label>
-                    <?php $reponse = $row2['reponse'];?>
-                    <?php echo "<input type='text' name='reponse$i$j' value=$reponse>"?>
-                    <br>
-                <?php $j++; endwhile; ?>
-            <?php $i++; endwhile; ?>
-            <input type="submit" name="submit" value="Modifier">
-
-
-            
-            
+            <button type="submit" name="modif-btn" class="modif-btn">Modifier</button>
         </form>
     </div>
 </body>
