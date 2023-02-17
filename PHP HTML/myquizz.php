@@ -12,7 +12,7 @@
 
     <a href="usermenu.php">Menu principal</a>
 
-    <h1>My Quizz</h1>
+    <h1>Mes Quizz</h1>
 
     <table>
         <?php
