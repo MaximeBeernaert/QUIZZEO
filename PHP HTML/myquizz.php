@@ -10,6 +10,8 @@
 
 <body>
 
+    <a href="usermenu.php">Menu principal</a>
+
     <h1>My Quizz</h1>
 
     <table>

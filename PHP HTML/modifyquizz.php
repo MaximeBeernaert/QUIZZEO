@@ -79,7 +79,7 @@
                     $bonne_reponse_choix = $row['bonne_reponse_choix'];
 
                     if ($bonne_reponse_choix == 1) {
-                        echo "<label for='bonne_reponse'>Bonne réponse : </label>";
+                        echo "<label for='bonne_reponse'>Choix $j bonne réponse : </label>";
                         echo "<input type='text' name='bonne_reponse' value=$reponse_choix>";
                         echo "<br>";
                         $j++;
@@ -107,27 +107,36 @@
             $query = "UPDATE `quizz` SET titre_quizz='$titre', difficulte_quizz='$difficulte', valeur_score_quizz='$valeur_score' WHERE id_quizz='$id'";
             $result = mysqli_query($conn, $query);
 
-            // For each question of the quizz, update the question and the answer
+            //For each question of the quizz, update the question and the answer of this question in the database
+            $queryQuestions = "SELECT * FROM `questions` WHERE id_question IN (SELECT id_question FROM `contient` WHERE id_quizz='$id')";
+            $resultQuestions = mysqli_query($conn, $queryQuestions);
+            $i = 1;
+
             while ($row = mysqli_fetch_assoc($resultQuestions)) :
                 $id_question = $row['id_question'];
-                $intitule_question = $row['intitule_question'];
+                $intitule_question = $_POST['question'];
 
                 $query = "UPDATE `questions` SET intitule_question='$intitule_question' WHERE id_question='$id_question'";
                 $result = mysqli_query($conn, $query);
-                $i++;
 
                 $queryChoix = "SELECT * FROM `choix` WHERE id_choix IN (SELECT id_choix FROM `appartenir` WHERE id_question='$id_question')";
                 $resultChoix = mysqli_query($conn, $queryChoix);
                 $j = 1;
 
-                // For each answer of the question, update the answer
                 while ($row = mysqli_fetch_assoc($resultChoix)) :
                     $id_choix = $row['id_choix'];
-                    $reponse_choix = $row['reponse_choix'];
+                    $reponse_choix = $_POST['choix'];
+                    $bonne_reponse_choix = $_POST['bonne_reponse'];
 
-                    $query = "UPDATE `choix` SET reponse_choix='$reponse_choix' WHERE id_choix='$id_choix'";
-                    $result = mysqli_query($conn, $query);
-                    $j++;
+                    if ($bonne_reponse_choix == 1) {
+                        $query = "UPDATE `choix` SET reponse_choix='$bonne_reponse_choix', bonne_reponse_choix='1' WHERE id_choix='$id_choix'";
+                        $result = mysqli_query($conn, $query);
+                        $j++;
+                    } else {
+                        $query = "UPDATE `choix` SET reponse_choix='$reponse_choix', bonne_reponse_choix='0' WHERE id_choix='$id_choix'";
+                        $result = mysqli_query($conn, $query);
+                        $j++;
+                    }
                 endwhile;
             endwhile;
 
