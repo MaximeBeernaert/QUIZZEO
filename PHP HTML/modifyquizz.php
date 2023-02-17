@@ -21,8 +21,117 @@
         $query = "SELECT * FROM `quizz` WHERE id_quizz='$id'";
         $result = mysqli_query($conn, $query);
         $actualQuizz = mysqli_fetch_assoc($result);
+        ?>
+
+        <?php
+        class Quizz // Class Quizz with all the attributes and methods : title, difficulty, score
+        {
+            public $titre_quizz;
+            public $difficulte_quizz;
+            public $valeur_score_quizz;
+
+            public function __construct($titre_quizz, $difficulte_quizz, $valeur_score_quizz)
+            {
+                $this->titre_quizz = $titre_quizz;
+                $this->difficulte_quizz = $difficulte_quizz;
+                $this->valeur_score_quizz = $valeur_score_quizz;
+            }
+
+            public function getTitreQuizz()
+            {
+                return $this->titre_quizz;
+            }
+            public function getDifficulteQuizz()
+            {
+                return $this->difficulte_quizz;
+            }
+            public function getValeurScoreQuizz()
+            {
+                return $this->valeur_score_quizz;
+            }
+
+            public function setTitreQuizz($titre_quizz)
+            {
+                $this->titre_quizz = $titre_quizz;
+            }
+            public function setDifficulteQuizz($difficulte_quizz)
+            {
+                $this->difficulte_quizz = $difficulte_quizz;
+            }
+            public function setValeurScoreQuizz($valeur_score_quizz)
+            {
+                $this->valeur_score_quizz = $valeur_score_quizz;
+            }
+        }
+
+        class Questions extends Quizz // Class Questions with all the attributes and methods : title, difficulty, score and the question
+        {
+            public $intitule_question;
+
+            public function __construct($titre_quizz, $difficulte_quizz, $valeur_score_quizz, $intitule_question)
+            {
+                parent::__construct($titre_quizz, $difficulte_quizz, $valeur_score_quizz);
+                $this->intitule_question = $intitule_question;
+            }
+
+            public function getIntituleQuestion()
+            {
+                return $this->intitule_question;
+            }
+
+            public function setIntituleQuestion($intitule_question)
+            {
+                $this->intitule_question = $intitule_question;
+            }
+        }
+
+        class Answers extends Questions // Class Answers with all the attributes and methods : title, difficulty, score, the question and the answers
+        {
+            public $reponse_choix;
+            public $bonne_reponse_choix;
+
+            public function __construct($titre_quizz, $difficulte_quizz, $valeur_score_quizz, $intitule_question, $reponse_choix, $bonne_reponse_choix)
+            {
+                parent::__construct($titre_quizz, $difficulte_quizz, $valeur_score_quizz, $intitule_question);
+                $this->reponse_choix = $reponse_choix;
+                $this->bonne_reponse_choix = $bonne_reponse_choix;
+            }
+
+            public function getReponseChoix()
+            {
+                return $this->reponse_choix;
+            }
+            public function getBonneReponseChoix()
+            {
+                return $this->bonne_reponse_choix;
+            }
+
+            public function setReponseChoix($reponse_choix)
+            {
+                $this->reponse_choix = $reponse_choix;
+            }
+            public function setBonneReponseChoix($bonne_reponse_choix)
+            {
+                $this->bonne_reponse_choix = $bonne_reponse_choix;
+            }
+        }
+
+        function setQuizz()
+        {
+        }
+
+
+
+
+
+
+        //TODO : Add button for question question and answer in the form 
+
+
+        //TODO : Add button for delete question and answer in the form
 
         ?>
+
 
         <a href="myquizz.php">Retour à mes Quizz</a>
 
@@ -65,7 +174,7 @@
 
                 echo "<br>";
                 echo "<label for='question'>Question $i : </label>";
-                echo "<input type='text' name='question' value=$intitule_question>";
+                echo "<input type='text' name='intitule_question' value=$intitule_question>";
                 echo "<br>";
                 $i++;
 
@@ -80,12 +189,12 @@
 
                     if ($bonne_reponse_choix == 1) {
                         echo "<label for='bonne_reponse'>Choix $j bonne réponse : </label>";
-                        echo "<input type='text' name='bonne_reponse' value=$reponse_choix>";
+                        echo "<input type='text' name='bonne_reponse_choix' value=$reponse_choix>";
                         echo "<br>";
                         $j++;
                     } else {
                         echo "<label for='choix'>Choix $j : </label>";
-                        echo "<input type='text' name='choix' value=$reponse_choix>";
+                        echo "<input type='text' name='reponse_choix' value=$reponse_choix>";
                         echo "<br>";
                         $j++;
                     }
@@ -95,59 +204,6 @@
             <button type="submit" name="modif-btn" class="modif-btn">Modifier</button>
         </form>
 
-        <?php
-        // If the user click on the button "Modifier", the quizz is modified in the database and the user is redirected to the page "myquizz.php"
-        // The modification will be take all the information in the form : the title, the difficulty, the score and all the answers for each question
-        if (isset($_POST['modif-btn'])) {
-            $titre = $_POST['titre'];
-            $difficulte = $_POST['difficulte'];
-            $valeur_score = $_POST['valeur_score'];
-
-            // Get the id of the quizz to modify and update the title, the difficulty and the score of the quizz
-            $query = "UPDATE `quizz` SET titre_quizz='$titre', difficulte_quizz='$difficulte', valeur_score_quizz='$valeur_score' WHERE id_quizz='$id'";
-            $result = mysqli_query($conn, $query);
-
-            //For each question of the quizz, update the question and the answer of this question in the database
-            $queryQuestions = "SELECT * FROM `questions` WHERE id_question IN (SELECT id_question FROM `contient` WHERE id_quizz='$id')";
-            $resultQuestions = mysqli_query($conn, $queryQuestions);
-            $i = 1;
-
-            while ($row = mysqli_fetch_assoc($resultQuestions)) :
-                $id_question = $row['id_question'];
-                $intitule_question = $_POST['question'];
-
-                $query = "UPDATE `questions` SET intitule_question='$intitule_question' WHERE id_question='$id_question'";
-                $result = mysqli_query($conn, $query);
-
-                $queryChoix = "SELECT * FROM `choix` WHERE id_choix IN (SELECT id_choix FROM `appartenir` WHERE id_question='$id_question')";
-                $resultChoix = mysqli_query($conn, $queryChoix);
-                $j = 1;
-
-                while ($row = mysqli_fetch_assoc($resultChoix)) :
-                    $id_choix = $row['id_choix'];
-                    $reponse_choix = $_POST['choix'];
-                    $bonne_reponse_choix = $_POST['bonne_reponse'];
-
-                    if ($bonne_reponse_choix == 1) {
-                        $query = "UPDATE `choix` SET reponse_choix='$bonne_reponse_choix', bonne_reponse_choix='1' WHERE id_choix='$id_choix'";
-                        $result = mysqli_query($conn, $query);
-                        $j++;
-                    } else {
-                        $query = "UPDATE `choix` SET reponse_choix='$reponse_choix', bonne_reponse_choix='0' WHERE id_choix='$id_choix'";
-                        $result = mysqli_query($conn, $query);
-                        $j++;
-                    }
-                endwhile;
-            endwhile;
-
-            // Redirect to the page "myquizz.php" after the modification if the modification is successful
-            if ($result) {
-                header("Location: myquizz.php");
-            } else {
-                echo "Erreur";
-            }
-        }
-        ?>
     </div>
 </body>
 
