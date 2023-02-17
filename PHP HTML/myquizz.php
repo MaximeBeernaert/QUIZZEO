@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -12,54 +13,54 @@
     <h1>My Quizz</h1>
 
     <table>
-<?php
-    session_start();
-    require('DBconnexion.php');
+        <?php
+        session_start();
+        require('DBconnexion.php');
 
-    $user = $_SESSION['user'];
-    $id_utilisateur = $user['id_utilisateur'];
-    $type_utilisateur = $user['type_utilisateur'];
-    if($type_utilisateur==2){
-        $query = "SELECT * FROM `quizz`";
-    }else{
-        $query = "SELECT * FROM `quizz` WHERE auteur_quizz='$id_utilisateur'";
-    }
-    
-    $result = mysqli_query($conn, $query);
-    $resultCheck = mysqli_num_rows($result);
-    
-    //don't display if the quizz list if is empty
-    if ($resultCheck < 1) {
-        echo "Il n'y a pas de quizz dans la base de données";
-        return;
-    }
+        $user = $_SESSION['user'];
+        $id_utilisateur = $user['id_utilisateur'];
+        $type_utilisateur = $user['type_utilisateur'];
+        if ($type_utilisateur == 2) {
+            $query = "SELECT * FROM `quizz`";
+        } else {
+            $query = "SELECT * FROM `quizz` WHERE auteur_quizz='$id_utilisateur'";
+        }
 
-    while ($row = mysqli_fetch_assoc($result)):
-        $id_user = $row['auteur_quizz'];
-?>
-        <tr>
-            <td><?php echo $row['titre_quizz']; ?></td>
-            <td><?php echo $id_user; ?></td>
-            <td><?php echo $row['date_creation_quizz']; ?></td>
-            <td>
-            <form action="myquizz.php" method="POST">
-                    <?php $id_quizz = $row['id_quizz'];
-                    echo "<input type='hidden' name='id' value=$id_quizz>"?>
-                    <button type="submit" name="modif-btn" class="modif-btn">Modifier</button>
-                </form>   
-            </td>
-            <td>    
-                <form action="myquizz.php" method="POST">
-                    <?php $id_quizz = $row['id_quizz'];
-                    echo "<input type='hidden' name='id' value=$id_quizz>"?>
-                    <button type="submit" name="delete-btn" class="delete-btn">Supprimer</button>
-                </form>                       
+        $result = mysqli_query($conn, $query);
+        $resultCheck = mysqli_num_rows($result);
 
-            </td>
-        </tr>
-<?php endwhile; ?>
+        //don't display if the quizz list if is empty
+        if ($resultCheck < 1) {
+            echo "Il n'y a pas de quizz dans la base de données";
+            return;
+        }
+
+        while ($row = mysqli_fetch_assoc($result)) :
+            $id_user = $row['auteur_quizz'];
+        ?>
+            <tr>
+                <td><?php echo $row['titre_quizz']; ?></td>
+                <td><?php echo $id_user; ?></td>
+                <td><?php echo $row['date_creation_quizz']; ?></td>
+                <td>
+                    <form action="myquizz.php" method="POST">
+                        <?php $id_quizz = $row['id_quizz'];
+                        echo "<input type='hidden' name='id' value=$id_quizz>" ?>
+                        <button type="submit" name="modif-btn" class="modif-btn">Modifier</button>
+                    </form>
+                </td>
+                <td>
+                    <form action="myquizz.php" method="POST">
+                        <?php $id_quizz = $row['id_quizz'];
+                        echo "<input type='hidden' name='id' value=$id_quizz>" ?>
+                        <button type="submit" name="delete-btn" class="delete-btn">Supprimer</button>
+                    </form>
+
+                </td>
+            </tr>
+        <?php endwhile; ?>
     </table>
-<?php
+    <?php
     // if the user click on the delete button, delete the quiz from the database and ask confirmation with a button
     if (isset($_POST['delete-btn'])) {
         $id = $_POST['id'];
@@ -77,7 +78,7 @@
         if ($result) {
             echo "Quizz supprimé avec succès";
             header("Location: myquizz.php");
-        }else{
+        } else {
             echo "Erreur lors de la suppression du quizz";
         }
     }
@@ -88,7 +89,8 @@
         header("Location: modifyquizz.php");
         $_SESSION['id'] = $id;
     }
-?>
+    ?>
 
 </body>
+
 </html>

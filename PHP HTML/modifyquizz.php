@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Modify Quizz</title>
 </head>
+
 <body>
 
     <div class="modifQuizz">
@@ -24,25 +26,25 @@
 
         <a href="myquizz.php">Retour à mes Quizz</a>
 
-        <h2>Bienvenue sur la page de modification de votre Quizz<?php echo " : " . $actualQuizz['titre_quizz']; ?></h2> 
+        <h2>Bienvenue sur la page de modification de votre Quizz<?php echo " : " . $actualQuizz['titre_quizz']; ?></h2>
         <!-- Display all the quizz in form for modification by user -->
         <form action="modifyquizz.php" method="POST">
-            <?php $titre_quizz = $actualQuizz['titre_quizz'];?>
+            <?php $titre_quizz = $actualQuizz['titre_quizz']; ?>
             <label for="titre">Titre de votre Quizz : </label>
-            <?php echo "<input type='text' name='titre' value=$titre_quizz>"?>
+            <?php echo "<input type='text' name='titre' value=$titre_quizz>" ?>
             <br>
 
-            <?php $difficulte_quizz = $actualQuizz['difficulte_quizz'];?>
+            <?php $difficulte_quizz = $actualQuizz['difficulte_quizz']; ?>
             <label for="difficulte">Difficulté de votre Quizz : </label>
-            <?php echo "<input type='text' name='difficulte' value=$difficulte_quizz>"?>
+            <?php echo "<input type='text' name='difficulte' value=$difficulte_quizz>" ?>
             <br>
 
-            <?php $valeur_score_quizz = $actualQuizz['valeur_score_quizz'];?>
+            <?php $valeur_score_quizz = $actualQuizz['valeur_score_quizz']; ?>
             <label for="valeur_score">Score de votre Quizz : </label>
-            <?php echo "<input type='text' name='valeur_score' value=$valeur_score_quizz>"?>
+            <?php echo "<input type='text' name='valeur_score' value=$valeur_score_quizz>" ?>
             <br>
 
-            <?php 
+            <?php
             // Get the id of the quizz to modify
             // For each question of the quizz, display the question and the answer in form for modification by user
             // The quizz is identified by the id of the quizz in the table quizz
@@ -57,7 +59,7 @@
             $resultQuestions = mysqli_query($conn, $queryQuestions);
             $i = 1;
 
-            while ($row = mysqli_fetch_assoc($resultQuestions)):
+            while ($row = mysqli_fetch_assoc($resultQuestions)) :
                 $id_question = $row['id_question'];
                 $intitule_question = $row['intitule_question'];
 
@@ -71,15 +73,22 @@
                 $resultChoix = mysqli_query($conn, $queryChoix);
                 $j = 1;
 
-                while ($row = mysqli_fetch_assoc($resultChoix)):
+                while ($row = mysqli_fetch_assoc($resultChoix)) :
                     $id_choix = $row['id_choix'];
                     $reponse_choix = $row['reponse_choix'];
                     $bonne_reponse_choix = $row['bonne_reponse_choix'];
 
-                    echo "<label for='choix'>Choix $j : </label>";
-                    echo "<input type='text' name='choix' value=$reponse_choix>";
-                    echo "<br>";
-                    $j++;
+                    if ($bonne_reponse_choix == 1) {
+                        echo "<label for='bonne_reponse'>Bonne réponse : </label>";
+                        echo "<input type='text' name='bonne_reponse' value=$reponse_choix>";
+                        echo "<br>";
+                        $j++;
+                    } else {
+                        echo "<label for='choix'>Choix $j : </label>";
+                        echo "<input type='text' name='choix' value=$reponse_choix>";
+                        echo "<br>";
+                        $j++;
+                    }
                 endwhile;
             endwhile;
             ?>
@@ -99,7 +108,7 @@
             $result = mysqli_query($conn, $query);
 
             // For each question of the quizz, update the question and the answer
-            while ($row = mysqli_fetch_assoc($resultQuestions)):
+            while ($row = mysqli_fetch_assoc($resultQuestions)) :
                 $id_question = $row['id_question'];
                 $intitule_question = $row['intitule_question'];
 
@@ -112,7 +121,7 @@
                 $j = 1;
 
                 // For each answer of the question, update the answer
-                while ($row = mysqli_fetch_assoc($resultChoix)):
+                while ($row = mysqli_fetch_assoc($resultChoix)) :
                     $id_choix = $row['id_choix'];
                     $reponse_choix = $row['reponse_choix'];
 
@@ -132,4 +141,5 @@
         ?>
     </div>
 </body>
+
 </html>
