@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8" />
     <title>Menu</title>
-    <link rel="stylesheet" href="usermenu.css">
+    <link rel="stylesheet" href="test.css">
 </head>
 
 <body>
@@ -14,7 +14,8 @@
     $user = $_SESSION['user'];
     ?>
     <header>
-        <h1>Menu utilisateur</h1>
+        <h1>QUIZZEO</h1>
+        <p>Menu utilisateur</p>
     </header>
 
     <div class="userinfo">
@@ -31,7 +32,6 @@
                 <li><a href="createquizz.php" class="link3">Créer un quizz</a></li>
             <?php } ?>
 
-            <li><a href="createquizz.php" class="link3">Créer les quizz</a></li>
             <li><a href="myquizz.php" class="link4">Accéder à mes quizz</a></li>
 
             <!-- if you are administrator you can acces to admin panel  -->
