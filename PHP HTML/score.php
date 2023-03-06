@@ -10,8 +10,11 @@
 session_start();
 require('DBconnexion.php');
 
-$user = $_SESSION['user']; 
 
+if(!isset($_SESSION['user'] )) {
+    header("Location:notconnected.php");
+}
+$user = $_SESSION['user']; 
 echo "<p class='link'><a href='usermenu.php'>Revenir au menu Utilisateur</a></p><br>";
 echo "<br>Votre Moyenne générale aux Quizz : ";
 
