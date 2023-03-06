@@ -19,37 +19,37 @@
         session_start();
         require('DBconnexion.php');
 
-    $user = $_SESSION['user'];
-    $id_utilisateur = $user['id_utilisateur'];
-    $type_utilisateur = $user['type_utilisateur'];
-    if($type_utilisateur==2){
-        $query = "SELECT * FROM `quizz`";
-    }else{
-        $query = "SELECT * FROM `quizz` WHERE auteur_quizz='$id_utilisateur'";
-    }
-    
-    $result = mysqli_query($conn, $query);
-    while ($row = mysqli_fetch_assoc($result)):
-        $id_user = $row['auteur_quizz'];
-?>
-        <tr>
-            <td><?php echo $row['titre_quizz']; ?></td>
-            <td><?php echo $id_user; ?></td>
-            <td><?php echo $row['date_creation_quizz']; ?></td>
-            <td>
-                <form action="myquizz.php" method="POST">
-                    <input type="hidden" name="id" value="<?php echo $row['titre_quizz']; ?>">
-                    <button type="submit" name="modify-btn" class="modify-btn">Modifier</button>
-                </form>
-            </td>
-            <td>                            
-                <form action="myquizz.php" method="POST">
-                    <input type="hidden" name="id" value="<?php echo $row['titre_quizz']; ?>">
-                    <button type="submit" name="delete-btn" class="delete-btn">Supprimer</button>
-                </form>
-            </td>
-        </tr>
-<?php endwhile; ?>
+        $user = $_SESSION['user'];
+        $id_utilisateur = $user['id_utilisateur'];
+        $type_utilisateur = $user['type_utilisateur'];
+        if ($type_utilisateur == 2) {
+            $query = "SELECT * FROM `quizz`";
+        } else {
+            $query = "SELECT * FROM `quizz` WHERE auteur_quizz='$id_utilisateur'";
+        }
+
+        $result = mysqli_query($conn, $query);
+        while ($row = mysqli_fetch_assoc($result)) :
+            $id_user = $row['auteur_quizz'];
+        ?>
+            <tr>
+                <td><?php echo $row['titre_quizz']; ?></td>
+                <td><?php echo $id_user; ?></td>
+                <td><?php echo $row['date_creation_quizz']; ?></td>
+                <td>
+                    <form action="myquizz.php" method="POST">
+                        <input type="hidden" name="id" value="<?php echo $row['id_quizz']; ?>">
+                        <button type="submit" name="modify-btn" class="modify-btn">Modifier</button>
+                    </form>
+                </td>
+                <td>
+                    <form action="myquizz.php" method="POST">
+                        <input type="hidden" name="id" value="<?php echo $row['id_quizz']; ?>">
+                        <button type="submit" name="delete-btn" class="delete-btn">Supprimer</button>
+                    </form>
+                </td>
+            </tr>
+        <?php endwhile; ?>
     </table>
     <?php
     // if the user click on the delete button, delete the quiz from the database and ask confirmation with a button
@@ -75,10 +75,10 @@
     }
 
     // if the user click on the modify button, redirect to the modify page
-    if (isset($_POST['modif-btn'])) {
-        $id = $_POST['id'];
-        header("Location: modifquizz.php");
-        $_SESSION['id'] = $id;
+    if (isset($_POST['modify-btn'])) {
+        $id_quizz = $_POST['id'];
+        header("Location: modifyquizz.php");
+        $_SESSION['id_quizz'] = $id_quizz;
     }
     ?>
 
