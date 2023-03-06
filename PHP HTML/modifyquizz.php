@@ -40,14 +40,42 @@
         <?php $theme_quizz = $actualQuizz['theme_quizz'] ?>
         <?php echo "<input type='text' class='themequizz' name='themequizz' placeholder='Thème du Quizz' value='$theme_quizz' />" ?>
 
-        <div class="DivQuestion1">Question 1 :
-            <input type="text" class="Question1" name="Question1"> Bonne réponse :
-            <input type="text" class="rightAnswer1" name="rightAnswer1"> Première mauvaise réponse :
-            <input type="text" class="Answer1" name="AnswerButton10">
-            <div class="DivAnswerButton1">
-                <input type="button" name="addAnswer1" value="Ajouter une réponse" class="Button1">
-            </div>
-        </div>
+        <?php
+        //Get the questions from database
+        $queryQuestions = "SELECT * FROM `questions` WHERE id_question IN (SELECT id_question FROM `contient` WHERE id_quizz='$id')";
+        $resultQuestions = mysqli_query($conn, $queryQuestions);
+        $i = 1;
+
+        while ($rowQuestion = mysqli_fetch_assoc($resultQuestions)) {
+            $id_question = $rowQuestion['id_question'];
+            $intitule_question = $rowQuestion['intitule_question'];
+
+            echo "<div class='DivQuestion1'>Question $i :";
+            echo "<input type='text' class='Question1' name='Question1' placeholder='Question : ' value='$intitule_question'/>";
+
+            $queryChoix = "SELECT * FROM `choix` WHERE id_choix IN (SELECT id_choix FROM `appartenir` WHERE id_question='$id_question')";
+            $resultChoix = mysqli_query($conn, $queryChoix);
+            $j = 1;
+
+            while ($rowChoix = mysqli_fetch_assoc($resultChoix)) {
+                $reponse_choix = $rowChoix['reponse_choix'];
+                $bonne_reponse_choix = $rowChoix['bonne_reponse_choix'];
+
+                if ($bonne_reponse_choix == 1) {
+                    echo "<input type='text' class='Question1' name='Question1' placeholder='Bonne réponse : ' value='$reponse_choix'/>";
+                } else {
+                    echo "<input type='text' class='Question1' name='Question1' placeholder='Mauvaise réponse $j : ' value='$reponse_choix'/>";
+                }
+                $j++;
+            }
+            echo "<div class='DivAnswerButton1'>";
+            echo "<input type='button' name='addAnswer1' value='Ajouter une réponse' class='Button1'>";
+            echo "</div>";
+            echo "</div>";
+            $i++;
+        }
+        ?>
+
         <div class="addQuestions">
             <input type="button" class="addQuestion" name="addQuestion" value="Ajouter une question">
         </div>
