@@ -2,10 +2,14 @@
 <html>
 <head>
     <meta charset="utf-8"/>
-    <title>Registration</title>
     <link rel="stylesheet" href="signin.css">
 </head>
 <body> 
+    
+<header>
+        <h1>QUIZZEO</h1>
+        <p>Registration</p>
+    </header>
 <?php
     require('DBconnexion.php');
     // When form submitted, insert values into the database.

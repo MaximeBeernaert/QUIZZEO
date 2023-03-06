@@ -6,15 +6,14 @@
     <link rel="stylesheet" href="createquizz.css">
 </head>
 <body>
-
+<header>
+        <h1>QUIZZEO</h1>
+        <p>Quizz creation</p>
+    </header>
 <?php
-
     session_start();
     require('DBconnexion.php');
-
     $user = $_SESSION['user'];
-    
-    
     ?>
     
     <form class="form1" action="savequizz.php" method="post">

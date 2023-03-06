@@ -34,6 +34,7 @@ class Answer {
     public function __construct($text,$id){
         $this->text_answer = $text;
         $this->id_answer = $id;
+        $this->id_answer = $id;
     }
     public function getTextAnswer() {
         return $this->text_answer;
@@ -50,6 +51,38 @@ class Answer {
 }
 
 
+function createQuizz($conn,$id_quizz) {
+    $query = "SELECT * FROM `quizz` WHERE `id_quizz` = '$id_quizz'";
+    $result = mysqli_query($conn, $query);
+    $quizz = mysqli_fetch_assoc($result);
+    echo $id_quizz." ".$quizz['titre_quizz'];
+    $query = "SELECT * FROM `contient` WHERE `id_quizz` = '$id_quizz'";
+    $result = mysqli_query($conn, $query);
+    
+    $quizzArray = [];
+
+    while ($row = mysqli_fetch_assoc($result)) {
+        $id_question = $row['id_question'];
+        $question = createQuestion($conn,$row,$id_question);
+        $questionArray = [];
+        
+        $queryQuestion = "SELECT * FROM `appartenir` WHERE `id_question` = '$id_question'";
+        $resultQuestion = mysqli_query($conn, $queryQuestion);
+        
+        while ($rowQuestion = mysqli_fetch_assoc($resultQuestion)) {
+            $id_answer = $rowQuestion['id_choix'];
+            $answer = createAnswer($conn,$rowQuestion,$id_answer);
+            array_push($questionArray,$answer);
+        }
+        shuffle($questionArray);
+        array_unshift($questionArray, $question);
+        array_push($quizzArray,$questionArray);
+    }
+    return $quizzArray;
+}
+
+function createQuestion($conn,$row,$id_question) {
+    
 function createQuizz($conn,$id_quizz) {
     $query = "SELECT * FROM `quizz` WHERE `id_quizz` = '$id_quizz'";
     $result = mysqli_query($conn, $query);
@@ -143,8 +176,14 @@ $_SESSION['id_quizz'] = $id_quizz;
 $quizzArray = createQuizz($conn,$id_quizz);
 createHTML($conn,$quizzArray);
 
+$quizzArray = createQuizz($conn,$id_quizz);
+createHTML($conn,$quizzArray);
+
 
 ?>
+
+<script name='src' src="quizz.js"></script>
+</html>
 
 <script name='src' src="quizz.js"></script>
 </html>

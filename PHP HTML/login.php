@@ -7,6 +7,12 @@
     <!-- <link rel="stylesheet" href="style.css"/> -->
 </head>
 <body>
+
+<header>
+        <h1>QUIZZEO</h1>
+        <p>Log in</p>
+
+    </header>
 <?php
     require('DBconnexion.php');
     session_start();

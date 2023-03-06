@@ -1,61 +1,73 @@
+:root {
+  --main-color: #00a2ff;
+}
+
 body {
-    background-color: #F5F5F5;
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    text-align: center;
-  }
-  
+  font-family: Arial, sans-serif;
+  background-color: #f2f2f2;
+  justify-content: center;
+  align-items: center;
+}
 
-  .Connexion .button1{
-    background-color: #FFFFFF;
-    border-radius: 10px;
-    box-shadow: 0 0 10px #CCCCCC;
-    margin: 100px auto;
-    padding: 50px;
-    width: 500px;
-  }
-  
+header {
+  background-color: var(--main-color);
+  color: #fff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+}
 
-  .Connexion {
-    color: #333333;
-    font-size: 36px;
-    text-align: center;
-    margin-bottom: 50px;
-  }
-  
-  .Connexion {
-    background-color: #00BFFF;
-    border: none;
-    border-radius: 25px;
-    color: #FFFFFF;
-    cursor: pointer;
-    font-size: 18px;
-    padding: 10px 20px;
-  }
-  
-  .Connexion button:hover {
-    background-color: #0070C0;
-  }
+h1 {
+  margin: 0;
+  font-size: 36px;
+  letter-spacing: 2px;
+}
 
-  .Connexion button {
-    padding: 10px 20px;
-    background-color: #3498db;
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    text-align: center;
-    font-size: 16px;
-    cursor: pointer;
-    margin: 10px;
- }
- 
- .Connexion button:hover {
-    background-color: #2980b9;
- }
- 
- .Connexion a {
-    color: #fff;
-    text-decoration: none;
- }
- 
+p {
+  margin: 0;
+  font-size: 18px;
+  letter-spacing: 2px;
+}
+
+.container {
+  max-width: 690px;
+  margin: 100px;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.2);
+  margin-top: 10px;
+  margin-left: 260px;
+}
+
+button {
+  border: none;
+  margin-left: 20px;
+  border-radius: 5px;
+  padding: 10px 50px;
+  margin-top: 20px;
+  font-size: 18px;
+  font-weight: bold;
+  color: #fff;
+  background-color: var(--main-color);
+  cursor: pointer;
+  margin-top: 0px;    
+}
+
+a {
+  text-decoration: none;
+  color: #fff;
+}
+
+#button1:hover {
+  background-color: #006ea1;
+}
+
+#button2:hover {
+  background-color: #005fa3;
+}
+
+#button3:hover {
+  background-color: #007196;
+}
