@@ -88,7 +88,7 @@
     // if the user click on the modify button, redirect to the modify page
     if (isset($_POST['modif-btn'])) {
         $id = $_POST['id'];
-        header("Location: modifyquizz.php");
+        header("Location: modifquizz.php");
         $_SESSION['id'] = $id;
     }
     ?>
