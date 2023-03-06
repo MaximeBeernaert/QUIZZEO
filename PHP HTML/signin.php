@@ -70,11 +70,12 @@
     <input type="text" class="login-input" name="email" placeholder="Email Adress" require>
     <input type="password" class="login-input" name="password" placeholder="Password" require>
     <input type="password" class="login-input" name="confirmPassword" placeholder="Confirm Password" require>
-    <input type="submit" name="submit" value="Register" class="login-button">
+    
     <select id="role">
         <option value="0">Utilisateur</option>
         <option value="1">Quizzeur</option>
-</select>
+    </select>
+    <input type="submit" name="submit" value="Register" class="login-button">
     <p class="link"><a href="login.php">Click to Login</a></p>
 </form>
 
