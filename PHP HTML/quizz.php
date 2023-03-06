@@ -59,7 +59,7 @@ function createQuizz($conn,$id_quizz) {
     $query = "SELECT * FROM `quizz` WHERE `id_quizz` = '$id_quizz'";
     $result = mysqli_query($conn, $query);
     $quizz = mysqli_fetch_assoc($result);
-    echo $id_quizz." ".$quizz['titre_quizz'];
+    echo $quizz['titre_quizz'];
     //get every questions that are linked to the quizz
     $query = "SELECT * FROM `contient` WHERE `id_quizz` = '$id_quizz'";
     $result = mysqli_query($conn, $query);
