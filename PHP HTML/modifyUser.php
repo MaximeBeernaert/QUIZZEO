@@ -64,7 +64,7 @@
                 <option>Utilisateur</option>
                 <option>Quizzeur</option>
                 <option>Administrateur</option>
-            </select>
+            </select!>
             <br>
 
             <button type="submit" name="modif-btn" class="modif-btn">Modifier</button>

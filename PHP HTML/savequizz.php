@@ -82,7 +82,8 @@
                     <p>Votre questionnaire a été enregistré</p>
                 </body>
             <?php
-        }else{
+        }
+        else{
             ?>
                 <body>
                     <h1>QUIZZEO</h1>
