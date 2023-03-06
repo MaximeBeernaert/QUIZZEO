@@ -36,14 +36,18 @@ while ($row_quizz_list = mysqli_fetch_assoc($result)) {
 
 for ($index=0; $index<count($quizz_list);$index++) {
     $quizz_average = [];
-    $quizz = $quizz_list[$index];
-    $query    = "SELECT * FROM `jouer` WHERE `id_utilisateur` = $id_user AND `id_quizz` = $quizz";
+    $id_quizz = $quizz_list[$index];
+    $query    = "SELECT * FROM `jouer` WHERE `id_utilisateur` = $id_user AND `id_quizz` = $id_quizz";
     $result = mysqli_query($conn, $query);
     while ($row_quizz = mysqli_fetch_assoc($result)) {
         array_push($quizz_average, $row_quizz['score']);
     }
     $average_result = round(array_sum($quizz_average) / count($quizz_average), 2);
-    echo "<br>Votre moyenne pour le quizz ". $quizz ." : ".$average_result;
+    $query    = "SELECT * FROM `quizz` WHERE `id_quizz` = $id_quizz";
+    $result = mysqli_query($conn, $query);
+    $quizz = mysqli_fetch_assoc($result);
+    $quizz_title = $quizz['titre_quizz'];
+    echo "<br>Votre moyenne pour le quizz ". $quizz_title ." : ".$average_result;
 }
 
 
