@@ -38,23 +38,60 @@
         <!-- Display quizz question in a two dim table -->
 
         <?php
-        //Get the questions from database for the quizz
         $id = $_SESSION['id_quizz'];
-        $queryQuestions = "SELECT * FROM `questions` WHERE id_quizz='$id'";
-        $questions = mysqli_query($conn, $queryQuestions);
+        $queryQuestions = "SELECT * FROM `questions` WHERE id_question IN (SELECT id_question FROM `contient` WHERE id_quizz='$id')";
+        $resultQuestions = mysqli_query($conn, $queryQuestions);
         $i = 1;
+        // Create a two dim table to store question and adwers
+        $quizzArray = array();
 
-        //Display the questions from database
-        while ($row = mysqli_fetch_assoc($questions)) :
-            $id_question = $row['id_question'];
-            $intitule_question = $row['intitule_question'];
+        while ($rowQuestion = mysqli_fetch_assoc($resultQuestions)) {
+            $id_question = $rowQuestion['id_question'];
+            $intitule_question = $rowQuestion['intitule_question'];
+
+            $questionArray = array();
 
             echo "<label for='question'>Question $i : </label>";
             echo "<input type='text' name='question[]' value=$intitule_question>";
             echo "<br>";
-        ?>
-        <?php endwhile ?>
+            //push question in the array
+            $i++;
 
+            // Get the adwers of the question 
+            $queryChoix = "SELECT * FROM `choix` WHERE id_choix IN (SELECT id_choix FROM `appartenir` WHERE id_question='$id_question')";
+            $resultChoix = mysqli_query($conn, $queryChoix);
+            $j = 1;
+
+            // Create a table to store adwers of the question
+            while ($rowChoix = mysqli_fetch_assoc($resultChoix)) {
+                $id_choix = $rowChoix['id_choix'];
+                $reponse_choix = $rowChoix['reponse_choix'];
+                $bonne_reponse_choix = $rowChoix['bonne_reponse_choix'];
+
+                // Display the adwers of the question and push them in the array
+                if ($bonne_reponse_choix == 1) {
+                    echo "<label for='reponse'>Bonne réponse $j : </label>";
+                    echo "<input type='text' name='reponse[]' value=$reponse_choix>";
+                    echo "<br>";
+                    //push adwers in the array
+                    array_push($questionArray, $id_choix, $reponse_choix, $bonne_reponse_choix);
+                    $j++;
+                } else {
+                    echo "<label for='reponse'>Mauvaise réponse $j : </label>";
+                    echo "<input type='text' name='reponse[]' value=$reponse_choix>";
+                    echo "<br>";
+                    //push adwers in the array
+                    array_push($questionArray, $id_choix, $reponse_choix, $bonne_reponse_choix);
+                    $j++;
+                }
+            }
+            //push question in the array
+            array_unshift($questionArray, $id_question, $intitule_question);
+            //push question and adwers in the array of the quizz
+            array_push($quizzArray, $questionArray);
+        }
+        print_r($quizzArray);
+        ?>
     </form>
 </body>
 
