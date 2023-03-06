@@ -2,7 +2,9 @@ body {
     margin: 0;
     padding: 0;
     font-family: Arial, sans-serif;
-  }
+    height: 100%;
+}
+
 header {
     background-color: #00a2ff;
     color: #fff;
@@ -10,49 +12,56 @@ header {
     display: flex;
     justify-content: space-between;
     text-align: center;
-  }
-  .image{
+}
+
+.image {
     display: flex;
-    width:  60px;
+    width: 60px;
     height: 60px;
     border-radius: 100px;
-}
-  
-  header h1 {
     margin: 0;
+}
+
+header h1 {
+    margin: 0;
+    margin-left: 15px;
     font-size: 36px;
-    text-align: center;
-  }
-  
-  header h1 a {
+    padding: 5px;
+}
+
+header h1 a {
     color: #fff;
     text-decoration: none;
-  }
-  
-  header h2 {
+}
+
+header h2 {
+    position: relative;
     margin: 0;
     font-size: 24px;
     text-align: center;
     padding: 10px;
-  }
-  
-  header h2 a {
+}
+
+header h2 a {
     color: #fff;
     text-decoration: none;
     padding: 10px;
-  }
-  
+}
 
-  a {
+a {
     color: #333;
     text-decoration: none;
-  }
-  
-  header h2 a:hover {
-    text-decoration: underline;
-  }  
+}
 
-  footer {
+header h2 a:hover {
+    text-decoration: underline;
+}
+
+footer {
     background-color: #00a2ff;
     color: #fff;
-  }
+    padding: 10px 20px;
+    position: absolute;
+    bottom: 0; 
+    width: 97%;
+}
