@@ -16,6 +16,9 @@
     if(!isset($_SESSION['user'] )) {
         header("Location:notconnected.php");
     }
+    if($user['type_utilisateur'] < 1) {
+        header("Location:notpermited.php");
+    }
     $user = $_SESSION['user'];
     ?>
     
