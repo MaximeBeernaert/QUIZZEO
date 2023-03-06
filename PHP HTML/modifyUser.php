@@ -14,7 +14,9 @@
         <?php
         session_start();
         require 'DBconnexion.php';
-
+        if(!isset($_SESSION['user'] )) {
+            header("Location:notconnected.php");
+        }
         // get the id of the user to modify
         $id = $_SESSION['id'];
         $sql = "SELECT * FROM utilisateurs WHERE id_utilisateur = '$id'";
