@@ -24,7 +24,14 @@
             <?php
             session_start();
             require 'DBconnexion.php';
+            if(!isset($_SESSION['user'] )) {
+                header("Location:notconnected.php");
+            }
             
+            $user = $_SESSION['user'];
+            if($user['type_utilisateur'] != 2) {
+                header("Location:notpermited.php");
+            }
             $sql = "SELECT * FROM utilisateurs";
             $result = mysqli_query($conn, $sql);
             $resultCheck = mysqli_num_rows($result);

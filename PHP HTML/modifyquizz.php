@@ -14,10 +14,11 @@
     </header>
     <?php
     session_start();
-    require('DBconnexion.php');
-
-    //Get the user and the quizz id from session
-    $user = $_SESSION['user'];
+    require("DBconnexion.php");
+    if (!isset($_SESSION['user'])) {
+        header("Location:notconnected.php");
+    }
+    //Get id of the quizz for the modification
     $id = $_SESSION['id_quizz'];
 
     //Get the quizz from database

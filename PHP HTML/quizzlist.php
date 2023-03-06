@@ -10,7 +10,9 @@
 <?php
     session_start();
     require('DBconnexion.php');
-
+    if(!isset($_SESSION['user'] )) {
+        header("Location:notconnected.php");
+    }
     $user = $_SESSION['user'];
     $id_utilisateur = $user['id_utilisateur'];
     
@@ -37,4 +39,10 @@
         </tr>
 <?php endwhile; ?>
     </table>
+<?php  
+    if (mysqli_fetch_assoc($result) == null){
+        echo "Il n'y a pas encore de quizz.";
+    }
+    echo "<p class='link'><a href='usermenu.php'>Revenir au menu Utilisateur</a></p>";
+?>
 </html>

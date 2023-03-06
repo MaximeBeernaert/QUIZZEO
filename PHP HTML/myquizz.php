@@ -18,7 +18,9 @@
         <?php
         session_start();
         require('DBconnexion.php');
-
+        if(!isset($_SESSION['user'] )) {
+            header("Location:notconnected.php");
+        }
         $user = $_SESSION['user'];
         $id_utilisateur = $user['id_utilisateur'];
         $type_utilisateur = $user['type_utilisateur'];

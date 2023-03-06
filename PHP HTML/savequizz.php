@@ -181,6 +181,13 @@ session_start();
 // connect to the Database
 require('DBconnexion.php');
 
+if(!isset($_SESSION['user'] )) {
+    header("Location:notconnected.php");
+}
+$user = $_SESSION['user'];
+if($user['type_utilisateur'] < 1) {
+    header("Location:notpermited.php");
+}
 // Check for two cases : 
 // first is the title has been renamed (because it was already taken)
 // second is the first time the quizz is been registered
