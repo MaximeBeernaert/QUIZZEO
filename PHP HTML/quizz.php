@@ -109,6 +109,48 @@
             }
             return $quizzArray;
         }
+        // in this function we assemble the values of a quizz (questions and answers) in a 2D array : each question has multiple answers
+        function createQuizz($conn, $id_quizz)
+        {
+            //get the quizz title
+            $query = "SELECT * FROM `quizz` WHERE `id_quizz` = '$id_quizz'";
+            $result = mysqli_query($conn, $query);
+            $quizz = mysqli_fetch_assoc($result);
+            echo $quizz['titre_quizz'];
+            //get every questions that are linked to the quizz
+            $query = "SELECT * FROM `contient` WHERE `id_quizz` = '$id_quizz'";
+            $result = mysqli_query($conn, $query);
+
+            $quizzArray = [];
+            // while there's a question in the request, this code will run
+            while ($row = mysqli_fetch_assoc($result)) {
+                //we get the question ID
+                $id_question = $row['id_question'];
+                //we call the function createQuestion to make an object
+                $question = createQuestion($conn, $row, $id_question);
+                $questionArray = [];
+
+                //we get every answers linked to that current question
+                $queryQuestion = "SELECT * FROM `appartenir` WHERE `id_question` = '$id_question'";
+                $resultQuestion = mysqli_query($conn, $queryQuestion);
+
+                while ($rowQuestion = mysqli_fetch_assoc($resultQuestion)) {
+                    //we get the question ID
+                    $id_answer = $rowQuestion['id_choix'];
+                    //we call the function to make an object 
+                    $answer = createAnswer($conn, $rowQuestion, $id_answer);
+                    // we add the object inside the question array
+                    array_push($questionArray, $answer);
+                }
+                //we shuffle the question array so the answers never come in the same order
+                shuffle($questionArray);
+                // we add the question text at the start of the question array
+                array_unshift($questionArray, $question);
+                //we push the question array in the quizz array, making it a 2D array
+                array_push($quizzArray, $questionArray);
+            }
+            return $quizzArray;
+        }
 
         function createQuestion($conn, $row, $id_question)
         {

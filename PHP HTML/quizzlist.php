@@ -25,7 +25,6 @@
         $userQuizz = mysqli_fetch_assoc($resultUserQuizz);
 ?>
         <tr>
-            <td><?php echo $row['id_quizz']; ?></td>
             <td><?php echo $row['titre_quizz']; ?></td>
             <td><?php echo $userQuizz['prenom_utilisateur'].$userQuizz['id_utilisateur']; ?></td>
             <td><?php echo $row['date_creation_quizz']; ?></td>

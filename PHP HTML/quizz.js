@@ -1,24 +1,28 @@
 class create {
     constructor(){
+        //we get every item with the 'question' selector : that is every question item with a text
         let questions = document.querySelectorAll(`.question`)
+        //we then call the looping function to display
         this.displayQuestion(0,questions)
     }
 
-
+    //this function's role is to create most of the work shown on the screen : making the question and displaying the possible answers
     displayQuestion(numberQuestion,questions) {
+        //we select the question ID and text
         let questionsId = document.querySelectorAll(`.questionId${numberQuestion}`)
         let questionsText = document.querySelectorAll(`.questionText${numberQuestion}`)
+        //length will be of 1
         if(questionsId.length ==1) {
-            let questionId = questionsId[0].value
 
             if(questionsText.length == 1) {
-
+                //we get the value from the question's item (which is the question's text)
                 let questionText = questionsText[0].value
 
+                //we create a div to put all the answers in
                 const newDivQuestion = document.createElement("div")
                 newDivQuestion.className = `DivQuestion${numberQuestion}`
                 newDivQuestion.id = `DivQuestion${numberQuestion}`
-        
+                
                 const newQuestionText = document.createTextNode(`${questionText}`) 
         
                 newDivQuestion.appendChild(newQuestionText)
@@ -34,6 +38,7 @@ class create {
                 const newSelect = document.createElement("select")
                 newSelect.setAttribute("id",`select${numberQuestion}`)
 
+                //we create an option selector to get all the questions
                 for(let i=0;i<answersId.length;i++) {
 
                     const newQuestionAnswer = document.createTextNode(`${answersText[i].value}`) 
@@ -67,18 +72,24 @@ class create {
         
     }
 
+    // this function is aimed at the transition and making the next question
     newQuestion(questions,numberQuestion) {
+        // we get the choice of answer of the user
         var answerSelected = document.getElementById(`select${numberQuestion}`);
         var answerValue = answerSelected.value;
+        // and create a cookie for future use
         this.createCookie(`cookieAnswer${numberQuestion}`,`${answerValue}`,"1")
 
+        //we remove the Div question
         var elem = document.getElementById(`DivQuestion${numberQuestion}`);
         elem.remove();
 
         numberQuestion++
         if(numberQuestion<questions.length){
+            // if there's still questions left, we display it with the function 
             this.displayQuestion(numberQuestion,questions)
         } else {
+            // if not, we forward the user to the end of the quizz and the saving of the choices.
             window.location.replace("http://localhost/QUIZZEO/PHP%20HTML/quizzEnd.php");
         }
     }
@@ -99,4 +110,5 @@ class create {
     }
 }
 
+//we create an object each time the page is loaded up.
 $create = new create()

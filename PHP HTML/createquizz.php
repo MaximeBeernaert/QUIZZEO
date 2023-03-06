@@ -21,7 +21,8 @@
         <h1 class="Create Quizz">Create Quizz</h1>
         <input type="text" class="quizztitle" name="quizztitle" placeholder="Titre Quizz" required />
         <input type="text" class="quizzdiff" name="quizzdiff" placeholder="Difficulté Quizz" required />
-        <input type="text" class="quizzreward" name="quizzreward" placeholder="Score Quizz" required />
+        <input type="text" class="themequizz" name="themequizz" placeholder="Thème du Quizz" required />
+        
         <div class="DivQuestion1">Question 1 - Entrer la question : 
             <input type="text" class="Question1" name="Question1"> Entrer la bonne réponse : 
             <input type="text" class="rightAnswer1" name="rightAnswer1"> Entrer la première mauvaise réponse : 
