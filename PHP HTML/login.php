@@ -1,19 +1,21 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <link rel="stylesheet" href="login.css">
-    <meta charset="utf-8"/>
+    <meta charset="utf-8" />
     <title>Login</title>
     <!-- <link rel="stylesheet" href="style.css"/> -->
 </head>
+
 <body>
 
-<header>
+    <header>
         <h1>QUIZZEO</h1>
         <p>Log in</p>
 
     </header>
-<?php
+    <?php
     require('DBconnexion.php');
     session_start();
     // When form submitted, check and create user session.
@@ -40,22 +42,23 @@
                   </div>";
         }
     } else {
-?>
-    <div class="container">
-        <div class="no2-container">
-            <div class="header">
+    ?>
+        <div class="container">
+            <div class="no2-container">
+                <div class="header">
                 </div>
-                    <form class="form" action='' method="post" name="login">
+                <form class="form" action='' method="post" name="login">
                     <h1 class="login-title">Login</h1>
-                    <input type="text" class="login-input" name="email" placeholder="Email" autofocus="true"/>
-                    <input type="password" class="login-input" name="password" placeholder="Password"/>
+                    <input type="text" class="login-input" name="email" placeholder="Email" autofocus="true" />
+                    <input type="password" class="login-input" name="password" placeholder="Password" />
                     <a href="accueil.php" class="link">Retour à l'accueil</a>
                     <input type="submit" name="submit" value="Valider ! " class="submit-button">
                 </form>
             </div>
-         </div>
-<?php
+        </div>
+    <?php
     }
-?>
+    ?>
 </body>
+
 </html>
