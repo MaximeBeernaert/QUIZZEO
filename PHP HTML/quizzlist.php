@@ -35,11 +35,12 @@
                 </form>
             </td>
         </tr>
-<?php endwhile; 
+<?php endwhile; ?>
+    </table>
+<?php  
     if (mysqli_fetch_assoc($result) == null){
         echo "Il n'y a pas encore de quizz.";
     }
     echo "<p class='link'><a href='usermenu.php'>Revenir au menu Utilisateur</a></p>";
 ?>
-    </table>
 </html>
