@@ -12,7 +12,7 @@
 
 function createQuizzArray($title)
 {
-    $quizzSave = array(array($title, $_POST['quizzdiff'], $_POST['quizzreward']));
+    $quizzSave = array(array($title, $_POST['quizzdiff'], $_POST['themequizz']));
     $numberQuestion = 1;
     while (isset($_POST["Question" . $numberQuestion])) {
         $question = array();
