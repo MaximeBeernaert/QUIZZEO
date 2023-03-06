@@ -49,7 +49,7 @@
                 if ($result) {
                     echo "<div class='form'>
                         <h3>Votre compte a bien été créer !</h3><br/>
-                        <p class='link'>Click here to <a href='login.php'>Login</a></p>
+                        <p class='link'>Cliquez <a href='login.php'>ici</a> pour vous connecter</p>
                         </div>";
                 } else {
                     echo "<div class='form'>
@@ -71,7 +71,7 @@
     <input type="password" class="login-input" name="password" placeholder="Password" require>
     <input type="password" class="login-input" name="confirmPassword" placeholder="Confirm Password" require>
     
-    <select id="role">
+    <select type="role" name="role" class="login-input">
         <option value="0">Utilisateur</option>
         <option value="1">Quizzeur</option>
     </select>
