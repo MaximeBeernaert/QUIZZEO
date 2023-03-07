@@ -24,6 +24,8 @@
         $email    = mysqli_real_escape_string($conn, $email);
         $password = stripslashes($_REQUEST['password']);
         $password = mysqli_real_escape_string($conn, $password);
+        $role = stripslashes($_REQUEST['role']);
+        $role = mysqli_real_escape_string($conn, $role);
 
         //Check if passwords match and if email is valid
         if ($_REQUEST['password'] != $_REQUEST['confirmPassword']) {
@@ -40,14 +42,14 @@
             }else {
                 //add user to database
                 $query    = "INSERT into `utilisateurs` (prenom_utilisateur, nom_utilisateur, mail_utilisateur, mdp_utilisateur, type_utilisateur)
-                            VALUES ('$username', '$name', '$email', '" . md5($password) . "', '2')";
+                            VALUES ('$username', '$name', '$email', '" . md5($password) . "', '$role')";
                 $result   = mysqli_query($conn, $query);
                 
                 //check if user is added to database
                 if ($result) {
                     echo "<div class='form'>
                         <h3>Votre compte a bien été créer !</h3><br/>
-                        <p class='link'>Click here to <a href='login.php'>Login</a></p>
+                        <p class='link'>Cliquez <a href='login.php'>ici</a> pour vous connecter</p>
                         </div>";
                 } else {
                     echo "<div class='form'>
@@ -68,6 +70,11 @@
     <input type="text" class="login-input" name="email" placeholder="Email Adress" require>
     <input type="password" class="login-input" name="password" placeholder="Password" require>
     <input type="password" class="login-input" name="confirmPassword" placeholder="Confirm Password" require>
+    
+    <select type="role" name="role" class="login-input">
+        <option value="0">Utilisateur</option>
+        <option value="1">Quizzeur</option>
+    </select>
     <input type="submit" name="submit" value="Register" class="login-button">
     <p class="link"><a href="login.php">Click to Login</a></p>
 </form>
