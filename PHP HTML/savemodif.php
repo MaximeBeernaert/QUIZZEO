@@ -50,7 +50,11 @@ function createQuizzArray($title)
 
 function checkForTitle($conn, $title)
 {
-
+    if ($title == null) {
+        echo "<h3>Titre de quizz vide.</h3><br/>";
+        titleAlreadyTaken();
+        return FALSE;
+    }
     $query  = "SELECT * FROM `quizz` WHERE titre_quizz='$title'";
     $result = mysqli_query($conn, $query);
     $rows = mysqli_num_rows($result);
@@ -64,9 +68,10 @@ function checkForTitle($conn, $title)
 
 function titleAlreadyTaken()
 {
-    echo "<form class='form1' action='savequizz.php' method='post'> 
+    echo "  <form class='form1' action='savequizz.php' method='post'> 
               <input type='text' class='quizztitlerenamed' name='quizztitlerenamed' placeholder='Renommez votre quizz' required />
-              </form>";
+              <input type='submit' name='submit' value='Valider' class='submit-button'>
+            </form>";
 }
 
 //Have the quizzer totally validate his choice. He can modify one last time here. 
@@ -99,7 +104,6 @@ function createQuizz($quizzSave, $conn)
     $result = mysqli_query($conn, $query);
     if ($result) {
 ?>
-
         <body>
             <h1>QUIZZEO</h1>
             <p>Votre questionnaire a été enregistré</p>
@@ -180,10 +184,34 @@ function createQuizz($quizzSave, $conn)
 
         <body>
             <p>Fin des questions</p>
-
+            <form class="form1" action="usermenu.php" method="post">
+                <input type="submit" name="submit" value="Valider" class="submit-button">
+            </form>
         </body>
 <?php
     }
+
+}
+function quizzSuppression($conn, $title_quizz) {
+    // suppress the quizz
+    $id_quizz = $_SESSION['id_quizz'];
+
+    $query = "DELETE FROM `choix` WHERE id_choix IN (SELECT id_choix FROM `appartenir` WHERE id_question IN (SELECT id_question FROM `questions` WHERE id_question IN (SELECT id_question FROM `contient` WHERE id_quizz='$id_quizz')))";
+    $result = mysqli_query($conn, $query);
+
+    $query = "DELETE FROM `appartenir` WHERE id_question IN (SELECT id_question FROM `questions` WHERE id_question IN (SELECT id_question FROM `contient` WHERE id_quizz='$id_quizz'))";
+    $result = mysqli_query($conn, $query);
+
+    $query = "DELETE FROM `questions` WHERE id_question IN (SELECT id_question FROM `contient` WHERE id_quizz='$id_quizz')";
+    $result = mysqli_query($conn, $query);
+
+    $query = "DELETE FROM `contient` WHERE id_quizz='$id_quizz'";
+    $result = mysqli_query($conn, $query);
+
+    $query = "DELETE FROM `quizz` WHERE id_quizz='$id_quizz'";
+    $result = mysqli_query($conn, $query);
+
+    
 }
 
 // MAIN 
@@ -209,25 +237,20 @@ if (isset($_POST['quizztitlerenamed'])) {
     $a = $_POST['quizztitlerenamed'];
     $title = stringCheck($a);
     $quizzSave[0][0] = $title;
-    // we then send for the quizz to be checked again, and if TRUE, then we save the quizz in the database
-    
-    if (checkForTitle($conn, $title)) {
-        createQuizz($quizzSave, $conn);
-    }
 } else // second case here where we check the quizz first the first time
 {
     // we get the title of the quizz
     $a = $_POST['quizztitle'];
     $title = stringCheck($a);
     // we create the quizz, putting the valeus in an array to get it back in case of already taken title
-    $quizzSave = createQuizzArray($title);
-    // we then send for the quizz to be checked, and if TRUE, then we save the quizz in the database
-    if (checkForTitle($conn, $title)) {
-        createQuizz($quizzSave, $conn);
-    }
+    $quizzSave = createQuizzArray($title);   
+}
+echo $title;
+quizzSuppression($conn, $title);
+// we then send for the quizz to be checked, and if TRUE, then we save the quizz in the database
+if (checkForTitle($conn, $title)) {
+    createQuizz($quizzSave, $conn);
 }
 ?>
-<form class="form1" action="usermenu.php" method="post">
-    <input type="submit" name="submit" value="Valider" class="submit-button">
-</form>
+
 </html>

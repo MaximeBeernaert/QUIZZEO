@@ -53,7 +53,7 @@
                 $text_question = $current_question['intitule_question'];
                 echo "<div class='DivQuestion DivQuestion".$index_question."'>Question ".$index_question." - Entrer la question :";  
                 ?>
-                <input type="text" class="Question1" name="Question1" value="<?php echo $text_question; ?>" required />
+                <input type="text" class="Question<?php echo $index_question; ?>" name="Question<?php echo $index_question; ?>"" value="<?php echo $text_question; ?>" required />
                 <?php 
                 $query    = "SELECT * FROM `appartenir` WHERE id_question='$id_question'";
                 $result_appartenir = mysqli_query($conn, $query);  
