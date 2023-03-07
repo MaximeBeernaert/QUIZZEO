@@ -10,6 +10,20 @@
 </head>
 <?php
 
+function titleCheck($title){
+    if($title == null || $title == 0){
+        echo "erreur ma gueule";
+    }
+    for($index=0;$index<strlen($title);$index++){
+        if(strpos($title, '"')){
+            $title = str_replace($title, "a",$index);
+        }
+    }
+    if($title == null || $title == 0){
+        echo "erreur ma gueule2";
+    }
+    return $title;
+}
 function createQuizzArray($title)
 {
     $quizzSave = array(array($title, $_POST['quizzdiff'], $_POST['themequizz']));
@@ -34,6 +48,7 @@ function createQuizzArray($title)
 
 function checkForTitle($conn, $title)
 {
+
     $query  = "SELECT * FROM `quizz` WHERE titre_quizz='$title'";
     $result = mysqli_query($conn, $query);
     $rows = mysqli_num_rows($result);
@@ -180,7 +195,6 @@ function createQuizz($quizzSave, $conn)
 session_start();
 // connect to the Database
 require('DBconnexion.php');
-
 if(!isset($_SESSION['user'] )) {
     header("Location:notconnected.php");
 }
@@ -195,15 +209,19 @@ if($user['type_utilisateur'] < 1) {
 if (isset($_POST['quizztitlerenamed'])) {
     // we get the saved quizz (done in the second case) and rename the quizz there
     $quizzSave = $_SESSION['quizzSave'];
-    $quizzSave[0][0] = $_POST['quizztitlerenamed'];
+    $a = $_POST['quizztitlerenamed'];
+    $title = titleCheck($a);
+    $quizzSave[0][0] = $title;
     // we then send for the quizz to be checked again, and if TRUE, then we save the quizz in the database
-    if (checkForTitle($conn, $_POST['quizztitlerenamed'])) {
+    
+    if (checkForTitle($conn, $title)) {
         createQuizz($quizzSave, $conn);
     }
 } else // second case here where we check the quizz first the first time
 {
     // we get the title of the quizz
-    $title = $_POST['quizztitle'];
+    $a = $_POST['quizztitle'];
+    $title = titleCheck($a);
     // we create the quizz, putting the valeus in an array to get it back in case of already taken title
     $quizzSave = createQuizzArray($title);
     // we then send for the quizz to be checked, and if TRUE, then we save the quizz in the database
@@ -215,21 +233,4 @@ if (isset($_POST['quizztitlerenamed'])) {
 <form class="form1" action="quizzlist.php" method="post">
     <input type="submit" name="submit" value="Valider" class="submit-button">
 </form>
-<?php
-//For() chaque question dans le quizz de la page d'avant 
-//INSERT la question (en fonction de la page précédente) ID_question individuel A-I
-//INSERT un 'contient' avec l'ID_quizz et l'ID_question
-//For() chaque réponse dans la question de la page d'avant
-//INSERT un choix (une réponse, sans doute changer le nom dans la DB en réponse) mettre si c'est un BOOL/bonne réponse (changer dans la DB) ID_choix A-I
-//INSERT un 'appartenir' (table similaire à 'contient' qui fait le lien entre les questions et les réponses) avec l'ID_question et ID_choix
-
-
-// pour récupérer les infos d'un quizz, faire un SELECT * dans 'contient' où on récupère tous les élèments correspondants à l'ID_quizz
-// on récupère alors avec le SELECT toutes les ID_questions référencées dans le quizz
-// pour chaque questions, faire un SELECT * dans 'appartenir' qui récupère tous les élèments correspondants à l'ID_question
-// on récupère alors avec le SELECT tous les ID_choix référencés dans la question
-// la bonne réponse à chaque question sera la seule avec le BOOL TRUE (ou jsp quoi)
-?>
-
-
 </html>
