@@ -19,7 +19,9 @@
             </div>
             <h2><a href="">Scores</a> | <a href="">Panel admin</a> | <a href="">Questions quizz</a> | <a href="">Déconnexion</a></h2>
         </header>
-        <div class="Quizzs">ici les quizz</div>
+        <div class="elements">
+
+        </div>
         <footer>
            <p> Company ©IPSSI . All rights reserved.</p>
         </footer>
