@@ -9,7 +9,6 @@
 
 <body>
     <?php
-    session_start();
     require('DBconnexion.php');
     require('header.php');
     if (!isset($_SESSION['user'])) {
