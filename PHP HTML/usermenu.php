@@ -148,7 +148,6 @@
         $query = "DELETE FROM `choix` WHERE id_choix IN (SELECT id_choix FROM `appartenir` WHERE id_question IN (SELECT id_question FROM `questions` WHERE id_question IN (SELECT id_question FROM `contient` WHERE id_quizz='$id')))";
         $result = mysqli_query($conn, $query);
 
-        $result = mysqli_query($conn, $sql);
         if ($result) {
             echo "Quizz supprimé avec succès";
             header("Location: usermenu.php");
