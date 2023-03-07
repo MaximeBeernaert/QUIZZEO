@@ -22,7 +22,8 @@
             <h2>Listes des utilisateurs de Quizzeo :</h2>
 
             <?php
-            require 'header.php';
+            session_start();
+            require 'DBconnexion.php';
             if (!isset($_SESSION['user'])) {
                 header("Location:notconnected.php");
             }
@@ -86,7 +87,7 @@
                                     <?php
                                     $id_utilisateur = $row['id_utilisateur'];
                                     echo "<input type='hidden' name='id' value=$id_utilisateur>" ?>
-                                    <button type="button" name="modify-btn" class="modify-btn" onclick="window.location.href = 'modifyUser.php';">Modifier</button>
+                                    <button type="submit" name="modify-btn" class="modify-btn">Modifier</button>
                                 </form>
                             </td>
                             <td>
@@ -123,7 +124,7 @@
                     echo "Erreur lors de la suppression de l'utilisateur";
                 } else {
                     echo "L'utilisateur avec l'id $id a bien été supprimé !";
-                    header("Location: admin.php");
+                    include_once 'admin.php';
                 }
             }
 
@@ -131,6 +132,7 @@
             if (isset($_POST['modify-btn'])) {
                 $id = $_POST['id'];
                 $_SESSION['id'] = $id;
+                include_once 'modifyUser.php';
             }
             ?>
             <a href="usermenu.php">Retour au menu principal</a>

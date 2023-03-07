@@ -5,14 +5,14 @@
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Creation Quizz</title>
+    <title>Modify Quizz</title>
     <link rel="stylesheet" href="createquizz.css">
 </head>
 
 <body>
     <header>
         <h1>QUIZZEO</h1>
-        <p>Quizz creation</p>
+        <p>Modify Quizz</p>
     </header>
     <?php
     session_start();
@@ -26,23 +26,61 @@
     }
 
     $id_quizz = $_SESSION['id_quizz'];
-    
+    $query    = "SELECT * FROM `quizz` WHERE id_quizz='$id_quizz'";
+    $result = mysqli_query($conn, $query);  
+    $quizz = mysqli_fetch_assoc($result);
+    $title_quizz = $quizz['titre_quizz'];
+    $diff_quizz = $quizz['difficulte_quizz'];
+    $theme_quizz = $quizz['theme_quizz'];
+
     ?>
 
     <form class="form1" action="savequizz.php" method="post">
 
-        <h1 class="Create Quizz">Create Quizz</h1>
-        <input type="text" class="quizztitle" name="quizztitle" placeholder="Titre Quizz" required />
-        <input type="text" class="quizzdiff" name="quizzdiff" placeholder="Difficulté Quizz" required />
-        <input type="text" class="themequizz" name="themequizz" placeholder="Thème du Quizz" required />
+        <h1 class="Create Quizz">Modify Quizz</h1>
+        <input type="text" class="quizztitle" name="quizztitle" placeholder="Titre Quizz" value= "<?php echo $title_quizz; ?>" required />
+        <input type="text" class="quizzdiff" name="quizzdiff" placeholder="Difficulté Quizz" value= "<?php echo $diff_quizz; ?>" required />
+        <input type="text" class="themequizz" name="themequizz" placeholder="Thème du Quizz" value= "<?php echo $theme_quizz; ?>" required />
+        <?php
+            $index_question = 1;
+            $query    = "SELECT * FROM `contient` WHERE id_quizz='$id_quizz'";
+            $result_contient = mysqli_query($conn, $query);  
+            while ($current_contient = mysqli_fetch_assoc($result_contient)) :
+                $id_question = $current_contient['id_question'];
+                $query    = "SELECT * FROM `questions` WHERE id_question='$id_question'";
+                $result_question = mysqli_query($conn, $query);  
+                $current_question = mysqli_fetch_assoc($result_question);
+                $text_question = $current_question['intitule_question'];
+                echo "<div class='DivQuestionNumber DivQuestion".$index_question."'>Question ".$index_question." - Entrer la question :";  
+                ?>
+                <input type="text" class="Question1" name="Question1" value="<?php echo $text_question; ?>" required />
+                <?php 
+                $query    = "SELECT * FROM `appartenir` WHERE id_question='$id_question'";
+                $result_appartenir = mysqli_query($conn, $query);  
+                $index_answer = 0;
+                while ($current_appartenir = mysqli_fetch_assoc($result_appartenir)) {
 
-        <div class="DivQuestion1">Question 1 - Entrer la question :
-            <input type="text" class="Question1" name="Question1"> Entrer la bonne réponse :
-            <input type="text" class="rightAnswer1" name="rightAnswer1"> Entrer la première mauvaise réponse :
-            <input type="text" class="Answer1" name="AnswerButton10">
-            <div class="DivAnswerButton1">
-                <input type="button" name="addAnswer1" value="Ajouter une réponse 1" class="Button1">
-            </div>
+                    $id_answer = $current_appartenir['id_choix'];
+                    $query    = "SELECT * FROM `choix` WHERE id_choix='$id_answer'";
+                    $result_answer = mysqli_query($conn, $query);  
+                    $current_answer = mysqli_fetch_assoc($result_answer);
+                    $text_answer = $current_answer['reponse_choix'];
+
+                    if($index_answer==0){
+                        echo "<p>Entrer la bonne réponse : </p>";
+                        echo "<input type='text' class='rightAnswer".$index_question."' name='rightAnswer".$index_question."' value='".$text_answer."'>";
+                    }else{
+                        echo "<p>Entrer la mauvaise réponse ".$index_answer." : </p>";
+                        echo "<input type='text' class='Answer".$index_question."' name='AnswerButton".$index_question.($index_answer-1)."' value='".$text_answer."'>";
+                    }
+                    $index_answer++;
+                }
+            echo "<div class='DivAnswerButton".$index_question."'> </div>";
+            $index_question++;
+            echo "</div>";
+            endwhile;
+            ?>
+            
         </div>
         <div class="addQuestions">
             <input type="button" class="addQuestion" name="addQuestion" value="Ajouter Question">
@@ -50,8 +88,7 @@
         <input type="submit" name="submit" value="Valider" class="submit-button">
     </form>
 
-
-    <script src="createquizz.js"></script>
+    <script src="modif.js"></script>
     <button id="button1"><a href="usermenu.php">Retour au menu utilisateur</a></button>
 </body>
 

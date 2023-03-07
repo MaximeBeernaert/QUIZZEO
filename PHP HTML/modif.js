@@ -2,7 +2,11 @@ class CreateQuizz {
     constructor() {
         this.addQuestion = document.querySelector('.addQuestion')
         this.addAnswer1 = document.querySelector('.Button1')
-        this.numberQuestion = 1
+
+        const elementQuestion = document.querySelector('.DivQuestionNumber')
+        for(let i_question=1; i_question<=elementQuestion.childElementCount; i_question++){
+            this.numberQuestion = i_question
+        }
         this.addQuestion.addEventListener('click', () => { this.addQuestionJS() } )
         this.addAnswer1.addEventListener('click', () => { this.addAnswerJS("Button1") } )
         
@@ -72,7 +76,6 @@ class CreateQuizz {
         const element = document.querySelector(`.DivAnswer${numberQuestion}`)
         this.numberAnswer = 1
         for(let i=1; i<=element.childElementCount; i++){
-            console.log(i)
             this.numberAnswer = i
         }
         

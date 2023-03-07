@@ -48,6 +48,12 @@
                         <button type="submit" name="delete-btn" class="delete-btn">Supprimer</button>
                     </form>
                 </td>
+                <td>
+                    <form action="quizz.php" method="POST">
+                        <input type="hidden" name="id_quizz" value="<?php echo $row['id_quizz']; ?>">
+                        <button type="submit" name="choose-quizz-btn" class="choose-quizz-btn">Jouer !</button>
+                    </form>
+                </td>
             </tr>
             <br>
         <?php endwhile; ?>
@@ -142,8 +148,8 @@
 
     // if the user click on the modify button, redirect to the modify page
     if (isset($_POST['modify-btn'])) {
-        $id_quizz = $_POST['id'];
-        header("Location: usermenu.php");
+        $id_quizz = $_POST['id_quizz'];
+        header("Location: modif.php");
         $_SESSION['id_quizz'] = $id_quizz;
     }
     ?>
