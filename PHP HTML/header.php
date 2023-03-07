@@ -19,7 +19,7 @@
             <img src="6221df85c9729_.png" class="image">
             <h1><a href="accueil.php">QUIZZEO</a></h1>
         </div>
-        <h2><a href="score.php">Scores</a> <?php if ($type_utilisateur == 2) : ?> | <a href="admin.php">Panel admin</a><?php endif ?> | <a href="createquizz.php">Créer un Quizz</a> | <a href="logout.php">Déconnexion</a></h2>
+        <h2><a href="score.php">Scores</a> <?php if ($type_utilisateur == 2) : ?> | <a href="admin.php">Panel admin</a><?php endif ?><?php if ($type_utilisateur >= 1) : ?> | <a href="createquizz.php">Créer un Quizz</a><?php endif ?> | <a href="logout.php">Déconnexion</a></h2>
     </header>
     <footer>
         <p> Company ©IPSSI . All rights reserved.</p>
