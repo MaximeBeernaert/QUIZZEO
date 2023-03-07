@@ -14,7 +14,7 @@
     <div class="userModif">
 
         <?php
-        require 'header.php';
+        require 'DBconnexion.php';
         if (!isset($_SESSION['user'])) {
             header("Location:notconnected.php");
         }
@@ -36,10 +36,7 @@
                 $actualUser['type_utilisateur'] = "Utilisateur";
                 break;
         }
-
         ?>
-
-        <a href="admin.php">Retour au panel admin</a>
         <!-- display the user to modify -->
         <h1>Modification de l'utilisateur suivant : </h1><br>
         <h3><?php echo "ID : " . $actualUser['id_utilisateur'] . " Nom : " . $actualUser['nom_utilisateur'] . " Prénom : " . $actualUser['prenom_utilisateur']; ?></h3>

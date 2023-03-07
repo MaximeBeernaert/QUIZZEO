@@ -132,7 +132,7 @@
             if (isset($_POST['modify-btn'])) {
                 $id = $_POST['id'];
                 $_SESSION['id'] = $id;
-                header("Location: modifyUser.php");   
+                include_once 'modifyUser.php';
             }
             ?>
             <a href="usermenu.php">Retour au menu principal</a>
