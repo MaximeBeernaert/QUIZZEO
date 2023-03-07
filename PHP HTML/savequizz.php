@@ -10,32 +10,34 @@
 </head>
 <?php
 
-function titleCheck($title){
-    if($title == null || $title == 0){
-        echo "erreur ma gueule";
+function stringCheck($string){
+    $needle = "'";
+    $replace = "''";
+    $lastPos = 0;
+    $positions = array();
+    
+    while (($lastPos = strpos($string, $needle, $lastPos))!== false) {
+        $positions[] = $lastPos;
+        $lastPos = $lastPos + strlen($needle);
     }
-    for($index=0;$index<strlen($title);$index++){
-        if(strpos($title, '"')){
-            $title = str_replace($title, "a",$index);
-        }
+    $stringChecked = $string;
+    foreach ($positions as $value) {
+        $stringChecked = str_replace($needle,$replace,$string);
     }
-    if($title == null || $title == 0){
-        echo "erreur ma gueule2";
-    }
-    return $title;
+    return $stringChecked;
 }
 function createQuizzArray($title)
 {
-    $quizzSave = array(array($title, $_POST['quizzdiff'], $_POST['themequizz']));
+    $quizzSave = array(array($title, $_POST['quizzdiff'], stringCheck($_POST['themequizz'])));
     $numberQuestion = 1;
     while (isset($_POST["Question" . $numberQuestion])) {
         $question = array();
-        array_push($question, $_POST["Question" . $numberQuestion]);
-        array_push($question, $_POST["rightAnswer" . $numberQuestion]);
+        array_push($question, stringCheck($_POST["Question" . $numberQuestion]));
+        array_push($question, stringCheck($_POST["rightAnswer" . $numberQuestion]));
         $numberAnswer = 0;
         while (isset($_POST["AnswerButton" . $numberQuestion . $numberAnswer])) {
 
-            array_push($question, $_POST["AnswerButton" . $numberQuestion . $numberAnswer]);
+            array_push($question, stringCheck($_POST["AnswerButton" . $numberQuestion . $numberAnswer]));
             $numberAnswer += 1;
         }
 
@@ -104,13 +106,7 @@ function createQuizz($quizzSave, $conn)
         </body>
     <?php
     } else {
-    ?>
-
-        <body>
-            <h1>QUIZZEO</h1>
-            <p>Votre questionnaire n'a pas été enregistré</p>
-        </body>
-    <?php
+        header("Location:quizznotsaved.php");
     }
     $query = "SELECT * FROM `quizz` WHERE titre_quizz='$title'";
     $result = mysqli_query($conn, $query);
@@ -211,7 +207,7 @@ if (isset($_POST['quizztitlerenamed'])) {
     // we get the saved quizz (done in the second case) and rename the quizz there
     $quizzSave = $_SESSION['quizzSave'];
     $a = $_POST['quizztitlerenamed'];
-    $title = titleCheck($a);
+    $title = stringCheck($a);
     $quizzSave[0][0] = $title;
     // we then send for the quizz to be checked again, and if TRUE, then we save the quizz in the database
     
@@ -222,7 +218,7 @@ if (isset($_POST['quizztitlerenamed'])) {
 {
     // we get the title of the quizz
     $a = $_POST['quizztitle'];
-    $title = titleCheck($a);
+    $title = stringCheck($a);
     // we create the quizz, putting the valeus in an array to get it back in case of already taken title
     $quizzSave = createQuizzArray($title);
     // we then send for the quizz to be checked, and if TRUE, then we save the quizz in the database
@@ -231,7 +227,7 @@ if (isset($_POST['quizztitlerenamed'])) {
     }
 }
 ?>
-<form class="form1" action="quizzlist.php" method="post">
+<form class="form1" action="usermenu.php" method="post">
     <input type="submit" name="submit" value="Valider" class="submit-button">
 </form>
 </html>
