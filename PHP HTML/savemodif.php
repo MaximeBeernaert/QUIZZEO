@@ -50,11 +50,7 @@ function createQuizzArray($title)
 
 function checkForTitle($conn, $title)
 {
-    if ($title == null) {
-        echo "<h3>Titre de quizz vide.</h3><br/>";
-        titleAlreadyTaken();
-        return FALSE;
-    }
+
     $query  = "SELECT * FROM `quizz` WHERE titre_quizz='$title'";
     $result = mysqli_query($conn, $query);
     $rows = mysqli_num_rows($result);
@@ -68,10 +64,9 @@ function checkForTitle($conn, $title)
 
 function titleAlreadyTaken()
 {
-    echo "  <form class='form1' action='savequizz.php' method='post'> 
+    echo "<form class='form1' action='savequizz.php' method='post'> 
               <input type='text' class='quizztitlerenamed' name='quizztitlerenamed' placeholder='Renommez votre quizz' required />
-              <input type='submit' name='submit' value='Valider' class='submit-button'>
-            </form>";
+              </form>";
 }
 
 //Have the quizzer totally validate his choice. He can modify one last time here. 
@@ -185,13 +180,10 @@ function createQuizz($quizzSave, $conn)
 
         <body>
             <p>Fin des questions</p>
-            <form class="form1" action="usermenu.php" method="post">
-                <input type="submit" name="submit" value="Valider" class="submit-button">
-            </form>
+
         </body>
 <?php
     }
-
 }
 
 // MAIN 
@@ -235,5 +227,7 @@ if (isset($_POST['quizztitlerenamed'])) {
     }
 }
 ?>
-
+<form class="form1" action="usermenu.php" method="post">
+    <input type="submit" name="submit" value="Valider" class="submit-button">
+</form>
 </html>
