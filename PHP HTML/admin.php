@@ -135,7 +135,7 @@
                 $_SESSION['id'] = $id;
             }
             ?>
-            <a href="accueil.php">Accueil</a>
+            <a href="usermenu.php">Retour menu principal</a>
         </div>
     </div>
 </body>
