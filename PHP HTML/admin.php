@@ -22,8 +22,7 @@
             <h2>Listes des utilisateurs de Quizzeo :</h2>
 
             <?php
-            session_start();
-            require 'DBconnexion.php';
+            require 'header.php';
             if (!isset($_SESSION['user'])) {
                 header("Location:notconnected.php");
             }
@@ -87,7 +86,7 @@
                                     <?php
                                     $id_utilisateur = $row['id_utilisateur'];
                                     echo "<input type='hidden' name='id' value=$id_utilisateur>" ?>
-                                    <button type="submit" name="modify-btn" class="modify-btn">Modifier</button>
+                                    <button type="button" name="modify-btn" class="modify-btn" onclick="window.location.href = 'modifyUser.php';">Modifier</button>
                                 </form>
                             </td>
                             <td>
@@ -131,7 +130,6 @@
             // if the user click on the modify button, redirect to the modify page
             if (isset($_POST['modify-btn'])) {
                 $id = $_POST['id'];
-                header("Location: modifyUser.php");
                 $_SESSION['id'] = $id;
             }
             ?>
