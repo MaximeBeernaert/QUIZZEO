@@ -60,7 +60,7 @@
             <?php
             $query = "SELECT * FROM `quizz`";
             $result = mysqli_query($conn, $query);
-            if(!$result){
+            if (!$result) {
                 echo "Il n'y a pas encore de quizz.";
             }
             while ($row = mysqli_fetch_assoc($result)) :
@@ -142,8 +142,8 @@
 
     // if the user click on the modify button, redirect to the modify page
     if (isset($_POST['modify-btn'])) {
-        $id_quizz = $_POST['id_quizz'];
-        header("Location: modif.php");
+        $id_quizz = $_POST['id'];
+        header("Location: usermenu.php");
         $_SESSION['id_quizz'] = $id_quizz;
     }
     ?>
