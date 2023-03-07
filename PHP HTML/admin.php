@@ -131,8 +131,8 @@
             // if the user click on the modify button, redirect to the modify page
             if (isset($_POST['modify-btn'])) {
                 $id = $_POST['id'];
-                header("Location: modifyUser.php");
                 $_SESSION['id'] = $id;
+                header("Location: modifyUser.php");   
             }
             ?>
             <a href="usermenu.php">Retour menu principal</a>
