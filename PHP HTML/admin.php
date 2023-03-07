@@ -22,8 +22,7 @@
             <h2>Listes des utilisateurs de Quizzeo :</h2>
 
             <?php
-            session_start();
-            require 'DBconnexion.php';
+            require 'header.php';
             if (!isset($_SESSION['user'])) {
                 header("Location:notconnected.php");
             }
