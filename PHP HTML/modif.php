@@ -68,10 +68,10 @@
 
                     if($index_answer==0){
                         echo "<p>Entrer la bonne réponse : </p>";
-                        echo "<input type='text' class='rightAnswer".$index_question."' name='rightAnswer".$index_question."' value='".$text_answer."'>";
+                        echo "<input type='text' class='rightAnswer".$index_question."' name='rightAnswer".$index_question."' value='".$text_answer."' required>";
                     }else{
                         echo "<p>Entrer la mauvaise réponse ".$index_answer." : </p>";
-                        echo "<input type='text' class='Answer".$index_question."' name='AnswerButton".$index_question.($index_answer-1)."' value='".$text_answer."'>";
+                        echo "<input type='text' class='Answer".$index_question."' name='AnswerButton".$index_question.($index_answer-1)."' value='".$text_answer."' required>";
                     }
                     $index_answer++;
                 }
@@ -83,9 +83,15 @@
             
         </div>
         <div class="addQuestions">
-            <input type="button" class="addQuestion" name="addQuestion" value="Ajouter Question">
+            <input type="button" class="addQuestion" name="addQuestion" value="Ajouter une question">
         </div>
-        <input type="submit" name="submit" value="Valider" class="submit-button">
+        <div class="removeQuestions">
+            <input type="button" class="removeQuestion" name="removeQuestion" value="Retirer la dernière question">
+        </div>
+        <div class="removeAnswers">
+            <input type="button" class="removeAnswer" name="removeAnswer" value="Retirer la dernière Answer">
+        </div>
+        <input type="submit" name="submit" value="Valider la modification" class="submit-button">
     </form>
 
     <script src="modif.js"></script>

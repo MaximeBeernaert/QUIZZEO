@@ -34,18 +34,24 @@
         <input type="text" class="quizzdiff" name="quizzdiff" placeholder="Difficulté Quizz" required />
         <input type="text" class="themequizz" name="themequizz" placeholder="Thème du Quizz" required />
 
-        <div class="DivQuestion1">Question 1 - Entrer la question :
-            <input type="text" class="Question1" name="Question1"> Entrer la bonne réponse :
-            <input type="text" class="rightAnswer1" name="rightAnswer1"> Entrer la première mauvaise réponse :
-            <input type="text" class="Answer1" name="AnswerButton10">
+        <div class="DivQuestion DivQuestion1">Question 1 - Entrer la question :
+            <input type="text" class="Question1" name="Question1" required> Entrer la bonne réponse :
+            <input type="text" class="rightAnswer1" name="rightAnswer1" required> Entrer la première mauvaise réponse :
+            <input type="text" class="Answer1" name="AnswerButton10" required>
             <div class="DivAnswerButton1">
                 <input type="button" name="addAnswer1" value="Ajouter une réponse 1" class="Button1">
             </div>
         </div>
         <div class="addQuestions">
-            <input type="button" class="addQuestion" name="addQuestion" value="Ajouter Question">
+            <input type="button" class="addQuestion" name="addQuestion" value="Ajouter une question">
         </div>
-        <input type="submit" name="submit" value="Valider" class="submit-button">
+        <div class="removeQuestions">
+            <input type="button" class="removeQuestion" name="removeQuestion" value="Retirer la dernière question">
+        </div>
+        <div class="removeAnswers">
+            <input type="button" class="removeAnswer" name="removeAnswer" value="Retirer la dernière Answer">
+        </div>
+        <input type="submit" name="submit" value="Valider le quizz" class="submit-button">
     </form>
 
 

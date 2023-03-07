@@ -97,10 +97,11 @@ function createQuizz($quizzSave, $conn)
     $title = $quizzSave[0][0];
     $quizz_diff = $quizzSave[0][1];
     $theme_quizz = $quizzSave[0][2];
-
+    $id_quizz = $_SESSION['id_quizz'];
+    
     //INSERT un nouveau quizz avec le titre récupéré à la page d'avant (createquizz.php) et le reste des infos (utilisateurs etc.) ID_quizz A-I
-    $query = "INSERT INTO `quizz`(`titre_quizz`, `difficulte_quizz`, `theme_quizz`,`auteur_quizz`) 
-                 VALUES ('$title','$quizz_diff','$theme_quizz',$user_id)";
+    $query = "INSERT INTO `quizz`(`id_quizz`, `titre_quizz`, `difficulte_quizz`, `theme_quizz`,`auteur_quizz`) 
+                 VALUES ('$id_quizz','$title','$quizz_diff','$theme_quizz',$user_id)";
     $result = mysqli_query($conn, $query);
     if ($result) {
 ?>

@@ -138,7 +138,7 @@
 
         if ($result) {
             echo "Quizz supprimé avec succès";
-            header("Location: usermenu.php");
+            header("Refresh:0");
         } else {
             echo "Erreur lors de la suppression du quizz";
         }
