@@ -44,27 +44,27 @@
         //Get the questions from database
         $queryQuestions = "SELECT * FROM `questions` WHERE id_question IN (SELECT id_question FROM `contient` WHERE id_quizz='$id')";
         $resultQuestions = mysqli_query($conn, $queryQuestions);
-        $i = 1;
+        $i = 0;
 
         while ($rowQuestion = mysqli_fetch_assoc($resultQuestions)) {
             $id_question = $rowQuestion['id_question'];
             $intitule_question = $rowQuestion['intitule_question'];
 
-            echo "<div class='DivQuestion1'>Question $i :";
-            echo "<input type='text' class='Question1' name='Question1' placeholder='Question : ' value='$intitule_question'/>";
+            echo "<div class='DivQuestion$i'>Question $i :";
+            echo "<input type='text' class='Question$i' name='Question$i' placeholder='Question : ' value='$intitule_question'/>";
 
             $queryChoix = "SELECT * FROM `choix` WHERE id_choix IN (SELECT id_choix FROM `appartenir` WHERE id_question='$id_question')";
             $resultChoix = mysqli_query($conn, $queryChoix);
-            $j = 1;
+            $j = 0;
 
             while ($rowChoix = mysqli_fetch_assoc($resultChoix)) {
                 $reponse_choix = $rowChoix['reponse_choix'];
                 $bonne_reponse_choix = $rowChoix['bonne_reponse_choix'];
 
                 if ($bonne_reponse_choix == 1) {
-                    echo "<input type='text' class='Question1' name='Question1' placeholder='Bonne réponse : ' value='$reponse_choix'/>";
+                    echo "<input type='text' class='Question$i' name='Question$i' placeholder='Bonne réponse : ' value='$reponse_choix'/>";
                 } else {
-                    echo "<input type='text' class='Question1' name='Question1' placeholder='Mauvaise réponse $j : ' value='$reponse_choix'/>";
+                    echo "<input type='text' class='rightAnswer$i' name='rightAnswer$i' placeholder='Mauvaise réponse $j : ' value='$reponse_choix'/>";
                 }
                 $j++;
             }
