@@ -66,7 +66,22 @@
             }
         }
         //the two classes above will be used to store information on each and every questions and answers the played quizz has
-
+        function stringCheck($string){
+            $needle = "'";
+            $replace = "`";
+            $lastPos = 0;
+            $positions = array();
+            
+            while (($lastPos = strpos($string, $needle, $lastPos))!== false) {
+                $positions[] = $lastPos;
+                $lastPos = $lastPos + strlen($needle);
+            }
+            $stringChecked = $string;
+            foreach ($positions as $value) {
+                $stringChecked = str_replace($needle,$replace,$string);
+            }
+            return $stringChecked;
+        }
         
         // in this function we assemble the values of a quizz (questions and answers) in a 2D array : each question has multiple answers
         function createQuizz($conn, $id_quizz)
@@ -118,7 +133,7 @@
             $resultQuestion = mysqli_query($conn, $queryQuestion);
             $question = mysqli_fetch_assoc($resultQuestion);
             $intitule = $question['intitule_question'];
-            $text_question = $intitule;
+            $text_question = stringCheck($intitule);
             $question = new Question($text_question, $id_question);
             return $question;
         }
@@ -129,7 +144,7 @@
             $resultAnswer = mysqli_query($conn, $queryAnswer);
             $answer = mysqli_fetch_assoc($resultAnswer);
             $intitule = $answer['reponse_choix'];
-            $text_answer = $intitule;
+            $text_answer = stringCheck($intitule);
             $answer = new Answer($text_answer, $id_answer);
             return $answer;
         }
