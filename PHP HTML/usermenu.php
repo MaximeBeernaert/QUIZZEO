@@ -60,7 +60,9 @@
             <?php
             $query = "SELECT * FROM `quizz`";
             $result = mysqli_query($conn, $query);
-
+            if(!$result){
+                echo "Il n'y a pas encore de quizz.";
+            }
             while ($row = mysqli_fetch_assoc($result)) :
                 $id_quizz = $row['id_quizz'];
                 $id_userQuizz = $row['auteur_quizz'];
@@ -98,11 +100,6 @@
                 </tr>
             <?php endwhile; ?>
         </table>
-        <?php
-        if (mysqli_fetch_assoc($result) == null) {
-            echo "Il n'y a pas encore de quizz.";
-        }
-        ?>
     </div>
     <a id="retour" href="accueil.php">Retour à l'accueil</a>
 
