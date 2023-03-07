@@ -1,15 +1,33 @@
 class CreateQuizz {
     constructor() {
         this.addQuestion = document.querySelector('.addQuestion')
-        this.addAnswer1 = document.querySelector('.Button1')
+        this.numberQuestion = 0
+        this.checkPreviousQuestions();
+        this.addQuestion.addEventListener('click', () => { this.addQuestionJS() } )
+        
+    }
 
-        const elementQuestion = document.querySelector('.DivQuestionNumber')
-        for(let i_question=1; i_question<=elementQuestion.childElementCount; i_question++){
+    checkPreviousQuestions() {
+        const elementQuestion = document.querySelector('.DivQuestion')
+        for(let i_question=1; i_question<=(elementQuestion.childElementCount/2); i_question++){
             this.numberQuestion = i_question
         }
-        this.addQuestion.addEventListener('click', () => { this.addQuestionJS() } )
-        this.addAnswer1.addEventListener('click', () => { this.addAnswerJS("Button1") } )
-        
+
+        const elementAnswer = document.querySelectorAll('.DivAnswer')
+        let length = elementAnswer.length
+
+        for(let i=1; i<=length; i++){
+            const element = document.querySelector(`.DivAnswerButton${i}`)
+
+            const addAnswer = document.createElement('input')
+            addAnswer.type = 'button'
+            addAnswer.id = `addAnswer${i}`
+            addAnswer.value = `Ajouter une réponse ${i}`
+            addAnswer.className = `Button${i}`
+            addAnswer.addEventListener('click', () => { this.addAnswerJS(addAnswer.className) } )
+
+            element.appendChild(addAnswer);
+        }
     }
 
     addQuestionJS() {
@@ -72,13 +90,11 @@ class CreateQuizz {
     }
 
     addAnswerJS(numberQuestion) {
-        console.log('numberQuestion')
         const element = document.querySelector(`.DivAnswer${numberQuestion}`)
         this.numberAnswer = 1
         for(let i=1; i<=element.childElementCount; i++){
             this.numberAnswer = i
         }
-        
         const newDiv = document.createElement("div")
         newDiv.className = `DivAnswer-${this.numberAnswer}`
 
