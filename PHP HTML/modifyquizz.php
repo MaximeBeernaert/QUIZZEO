@@ -81,8 +81,6 @@
         </div>
         <input type="submit" name="submit" value="Valider les modifications" class="submit-button">
     </form>
-
-
     <script src="createquizz.js"></script>
     <button id="button1"><a href="usermenu.php">Retour au menu utilisateur</a></button>
 </body>

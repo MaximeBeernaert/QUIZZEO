@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Affiches</title>
+  <style>
+    #affiches-container {
+      display: flex;
+      flex-wrap: wrap;
+    }
+
+    .affiche {
+      width: 200px;
+      height: 300px;
+      margin: 10px;
+      border: 1px solid black;
+      box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+      text-align: center;
+      background-color: #f9f9f9;
+    }
+
+    .affiche img {
+      width: 100%;
+      height: auto;
+      max-height: 200px;
+      object-fit: cover;
+    }
+
+    .affiche h2 {
+      margin-top: 10px;
+      font-size: 18px;
+    }
+
+    .affiche p {
+      margin-top: 5px;
+      font-size: 14px;
+      color: #666;
+    }
+  </style>
+</head>
+<body>
+  <div id="affiches-container">
+    <div class="affiche">
+      <img src="image1.jpg" alt="Affiche 1">
+      <h2>Affiche 1</h2>
+      <p>Description de l'affiche 1.</p>
+    </div>
+    <div class="affiche">
+      <img src="image2.jpg" alt="Affiche 2">
+      <h2>Affiche 2</h2>
+      <p>Description de l'affiche 2.</p>
+    </div>
+    <div class="affiche">
+      <img src="image3.jpg" alt="Affiche 3">
+      <h2>Affiche 3</h2>
+      <p>Description de l'affiche 3.</p>
+    </div>
+
+  </div>
+</body>
+</html>
