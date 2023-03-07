@@ -18,22 +18,10 @@
     $id_utilisateur = $user['id_utilisateur'];
     $type_utilisateur = $user['type_utilisateur'];
     ?>
-    <header>
-        <h1>QUIZZEO</h1>
-        <p>Menu utilisateur</p>
-    </header>
 
     <div class="userinfo">
         <p>Vous êtes connecté sous le compte de <?php echo $user['nom_utilisateur'] . " " . $user['prenom_utilisateur'] ?></p>
     </div>
-
-    <container>
-        <ul>
-            <li><a href="score.php" class="link2">Voir les scores</a></li>
-            <li><a href="createquizz.php" class="link3">Créer un quizz</a></li>
-            <li><a href="admin.php" class="link4">Accéder au panel admin</a></li>
-        </ul>
-    </container>
 
     <div class="displayPersonalQuizz">
         Mes quizz :
