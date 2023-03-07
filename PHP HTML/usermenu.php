@@ -48,6 +48,12 @@
                         <button type="submit" name="delete-btn" class="delete-btn">Supprimer</button>
                     </form>
                 </td>
+                <td>
+                    <form action="quizz.php" method="POST">
+                        <input type="hidden" name="id_quizz" value="<?php echo $row['id_quizz']; ?>">
+                        <button type="submit" name="choose-quizz-btn" class="choose-quizz-btn">Jouer !</button>
+                    </form>
+                </td>
             </tr>
             <br>
         <?php endwhile; ?>
