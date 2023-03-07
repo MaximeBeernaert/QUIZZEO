@@ -124,7 +124,7 @@
                     echo "Erreur lors de la suppression de l'utilisateur";
                 } else {
                     echo "L'utilisateur avec l'id $id a bien été supprimé !";
-                    header("Location: admin.php");
+                    include_once 'admin.php';
                 }
             }
 
@@ -132,7 +132,7 @@
             if (isset($_POST['modify-btn'])) {
                 $id = $_POST['id'];
                 $_SESSION['id'] = $id;
-                header("Location: modifyUser.php");   
+                include_once 'modifyUser.php';
             }
             ?>
             <a href="usermenu.php">Retour au menu principal</a>
