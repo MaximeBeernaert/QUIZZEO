@@ -10,6 +10,30 @@
 </head>
 <?php
 
+function deleteQuizz($id, $conn)
+{
+    $query = "DELETE FROM `quizz` WHERE id_quizz='$id'";
+    $result = mysqli_query($conn, $query);
+
+    $query = "DELETE FROM `contient` WHERE id_quizz='$id'";
+    $result = mysqli_query($conn, $query);
+
+    $query = "DELETE FROM `questions` WHERE id_question IN (SELECT id_question FROM `contient` WHERE id_quizz='$id')";
+    $result = mysqli_query($conn, $query);
+
+    $query = "DELETE FROM `appartenir` WHERE id_question IN (SELECT id_question FROM `questions` WHERE id_question IN (SELECT id_question FROM `contient` WHERE id_quizz='$id'))";
+    $result = mysqli_query($conn, $query);
+
+    $query = "DELETE FROM `choix` WHERE id_choix IN (SELECT id_choix FROM `appartenir` WHERE id_question IN (SELECT id_question FROM `questions` WHERE id_question IN (SELECT id_question FROM `contient` WHERE id_quizz='$id')))";
+    $result = mysqli_query($conn, $query);
+
+    if ($result) {
+        echo "<h3>Quizz supprimé.</h3><br/>";
+    } else {
+        echo "<h3>Erreur lors de la suppression du quizz.</h3><br/>";
+    }
+}
+
 function createQuizzArray($title)
 {
     $quizzSave = array(array($title, $_POST['quizzdiff'], $_POST['themequizz']));
@@ -74,11 +98,11 @@ function createQuizz($quizzSave, $conn)
     $user_id = $user['id_utilisateur'];
     $title = $quizzSave[0][0];
     $quizz_diff = $quizzSave[0][1];
-    $quizz_reward = $quizzSave[0][2];
+    $theme_quizz = $quizzSave[0][2];
 
     //INSERT un nouveau quizz avec le titre récupéré à la page d'avant (createquizz.php) et le reste des infos (utilisateurs etc.) ID_quizz A-I
-    $query = "INSERT INTO `quizz`(`titre_quizz`, `difficulte_quizz`, `valeur_score_quizz`,`auteur_quizz`) 
-                 VALUES ('$title','$quizz_diff','$quizz_reward',$user_id)";
+    $query = "INSERT INTO `quizz`(`titre_quizz`, `difficulte_quizz`, `theme_quizz`,`auteur_quizz`) 
+                 VALUES ('$title','$quizz_diff','$theme_quizz',$user_id)";
     $result = mysqli_query($conn, $query);
     if ($result) {
 ?>
@@ -181,6 +205,20 @@ session_start();
 // connect to the Database
 require('DBconnexion.php');
 
+if (!isset($_SESSION['user'])) {
+    header("Location:notconnected.php");
+}
+$user = $_SESSION['user'];
+if ($user['type_utilisateur'] < 1) {
+    header("Location:notpermited.php");
+}
+
+// get id of the quizz
+$id = $_SESSION['id_quizz'];
+
+// delete the quizz from the database (and all the questions and answers linked to it) for re-creation of the quizz with modifications
+deleteQuizz($id, $conn);
+
 // Check for two cases : 
 // first is the title has been renamed (because it was already taken)
 // second is the first time the quizz is been registered
@@ -208,21 +246,5 @@ if (isset($_POST['quizztitlerenamed'])) {
 <form class="form1" action="quizzlist.php" method="post">
     <input type="submit" name="submit" value="Valider" class="submit-button">
 </form>
-<?php
-//For() chaque question dans le quizz de la page d'avant 
-//INSERT la question (en fonction de la page précédente) ID_question individuel A-I
-//INSERT un 'contient' avec l'ID_quizz et l'ID_question
-//For() chaque réponse dans la question de la page d'avant
-//INSERT un choix (une réponse, sans doute changer le nom dans la DB en réponse) mettre si c'est un BOOL/bonne réponse (changer dans la DB) ID_choix A-I
-//INSERT un 'appartenir' (table similaire à 'contient' qui fait le lien entre les questions et les réponses) avec l'ID_question et ID_choix
-
-
-// pour récupérer les infos d'un quizz, faire un SELECT * dans 'contient' où on récupère tous les élèments correspondants à l'ID_quizz
-// on récupère alors avec le SELECT toutes les ID_questions référencées dans le quizz
-// pour chaque questions, faire un SELECT * dans 'appartenir' qui récupère tous les élèments correspondants à l'ID_question
-// on récupère alors avec le SELECT tous les ID_choix référencés dans la question
-// la bonne réponse à chaque question sera la seule avec le BOOL TRUE (ou jsp quoi)
-?>
-
 
 </html>
