@@ -125,7 +125,7 @@
     if (isset($_POST['delete-btn'])) {
         $id = $_POST['id'];
         echo "<p>Êtes-vous sûr de vouloir supprimer ce quizz ?</p>";
-        echo "<form action='myquizz.php' method='POST'>
+        echo "<form action='usermenu.php' method='POST'>
              <input type='hidden' name='id' value='$id'>
              <button type='submit' name='confirm-delete-btn' class='confirm-delete-btn'>Oui</button>
              <button type='submit' name='cancel-delete-btn' class='cancel-delete-btn'>Non</button>
@@ -133,11 +133,25 @@
     }
     if (isset($_POST['confirm-delete-btn'])) {
         $id = $_POST['id'];
-        $sql = "DELETE FROM quizz WHERE id_quizz = $id";
+        $query = "DELETE FROM `quizz` WHERE id_quizz='$id'";
+        $result = mysqli_query($conn, $query);
+
+        $query = "DELETE FROM `contient` WHERE id_quizz='$id'";
+        $result = mysqli_query($conn, $query);
+
+        $query = "DELETE FROM `questions` WHERE id_question IN (SELECT id_question FROM `contient` WHERE id_quizz='$id')";
+        $result = mysqli_query($conn, $query);
+
+        $query = "DELETE FROM `appartenir` WHERE id_question IN (SELECT id_question FROM `questions` WHERE id_question IN (SELECT id_question FROM `contient` WHERE id_quizz='$id'))";
+        $result = mysqli_query($conn, $query);
+
+        $query = "DELETE FROM `choix` WHERE id_choix IN (SELECT id_choix FROM `appartenir` WHERE id_question IN (SELECT id_question FROM `questions` WHERE id_question IN (SELECT id_question FROM `contient` WHERE id_quizz='$id')))";
+        $result = mysqli_query($conn, $query);
+
         $result = mysqli_query($conn, $sql);
         if ($result) {
             echo "Quizz supprimé avec succès";
-            header("Location: myquizz.php");
+            header("Location: usermenu.php");
         } else {
             echo "Erreur lors de la suppression du quizz";
         }
