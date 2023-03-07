@@ -135,7 +135,7 @@
                 header("Location: modifyUser.php");   
             }
             ?>
-            <a href="usermenu.php">Retour menu principal</a>
+            <a href="usermenu.php">Retour au menu principal</a>
         </div>
     </div>
 </body>
