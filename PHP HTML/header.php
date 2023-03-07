@@ -18,7 +18,7 @@
             <img src="6221df85c9729_.png" class="image">
             <h1><a href="accueil.php">QUIZZEO</a></h1>
         </div>
-        <h2><a href="">Scores</a> | <a href="">Panel admin</a> | <a href="">Questions quizz</a> | <a href="">Déconnexion</a></h2>
+        <h2><a href="score.php">Scores</a> | <a href="admin.php">Panel admin</a> | <a href="createquizz.php">Créer un Quizz</a> | <a href="logout.php">Déconnexion</a></h2>
     </header>
     <footer>
         <p> Company ©IPSSI . All rights reserved.</p>
