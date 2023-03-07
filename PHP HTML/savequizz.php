@@ -181,11 +181,11 @@ session_start();
 // connect to the Database
 require('DBconnexion.php');
 
-if(!isset($_SESSION['user'] )) {
+if (!isset($_SESSION['user'])) {
     header("Location:notconnected.php");
 }
 $user = $_SESSION['user'];
-if($user['type_utilisateur'] < 1) {
+if ($user['type_utilisateur'] < 1) {
     header("Location:notpermited.php");
 }
 // Check for two cases : 
