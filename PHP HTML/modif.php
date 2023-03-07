@@ -51,7 +51,7 @@
                 $result_question = mysqli_query($conn, $query);  
                 $current_question = mysqli_fetch_assoc($result_question);
                 $text_question = $current_question['intitule_question'];
-                echo "<div class='DivQuestion".$index_question."'>Question ".$index_question." - Entrer la question :";  
+                echo "<div class='DivQuestionNumber DivQuestion".$index_question."'>Question ".$index_question." - Entrer la question :";  
                 ?>
                 <input type="text" class="Question1" name="Question1" value="<?php echo $text_question; ?>" required />
                 <?php 
@@ -75,11 +75,7 @@
                     }
                     $index_answer++;
                 }
-                ?>
-                    <div class="DivAnswerButton1">
-                        <input type="button" name="addAnswer1" value="Ajouter une réponse 1" class="Button1">
-                    </div>
-                <?php
+            echo "<div class='DivAnswerButton".$index_question."'> </div>";
             $index_question++;
             echo "</div>";
             endwhile;
