@@ -11,9 +11,9 @@
 
 <body>
     <header>
-        <h1>QUIZZEO</h1>
-        <p>Interface utilisateur</p>
-
+        <?php
+        require 'header.php';
+        ?>
     </header>
 
     <div class="container">
@@ -23,8 +23,6 @@
             <h2>Listes des utilisateurs de Quizzeo :</h2>
 
             <?php
-            session_start();
-            require 'DBconnexion.php';
             if (!isset($_SESSION['user'])) {
                 header("Location:notconnected.php");
             }
