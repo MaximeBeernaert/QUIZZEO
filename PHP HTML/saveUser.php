@@ -23,7 +23,7 @@ if (isset($_POST['modif-btn'])) {
     //if the update is successful, redirect to the admin panel
     $result = mysqli_query($conn, $sql);
     if ($result) {
-        header("Location: admin.php");
+        header("Location: usermenu.php");
         echo "L'utilisateur a bien été modifié";
     } else {
         echo "L'utilisateur n'a pas été modifié";
