@@ -42,7 +42,7 @@
         </div>
 
         <div class="userinfo">
-            <p>Vous êtes connecté sous le compte de <?php echo $user['nom_utilisateur'] . " " . $user['prenom_utilisateur'] ?></p>
+            <p>Vous êtes connecté sous le compte de <a href="personalspace.php"><?php echo $user['nom_utilisateur'] . " " . $user['prenom_utilisateur'] ?></a></p>
         </div>
 
     </header>
