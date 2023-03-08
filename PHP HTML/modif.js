@@ -35,7 +35,10 @@ class CreateQuizz {
 
     addQuestionJS() {
         
-        this.numberQuestion++
+        const elementQuestion = document.querySelectorAll('.DivQuestion')
+        
+        this.numberQuestion = elementQuestion.length+1
+
         this.numberAnswer = 0
         const newDiv = document.createElement("div")
         newDiv.className = `DivQuestion DivQuestion${this.numberQuestion}`
@@ -95,34 +98,49 @@ class CreateQuizz {
         element1.insertBefore(newDiv, currentDiv1)
     }
 
-    addAnswerJS(numberQuestion) {
-        const element = document.querySelector(`.DivAnswer${numberQuestion}`)
+    addAnswerJS(buttonNumber) {
+        let number = buttonNumber.replace("Button", "")
+        const element = document.querySelector(`.DivAnswer${buttonNumber}`)
         this.numberAnswer = 1
         for(let i=1; i<=element.childElementCount; i++){
             this.numberAnswer = i
         }
+        
         const newDiv = document.createElement("div")
-        newDiv.className = `DivAnswer DivAnswer-${this.numberAnswer}`
+        newDiv.className = `DivAnswer${number} DivAnswer-${this.numberAnswer}`
 
         const newAnswer = document.createElement('input')
         newAnswer.type = 'text'
         newAnswer.className = `Answer${this.numberAnswer}`
-        newAnswer.name = `Answer${numberQuestion}${this.numberAnswer}`
+        newAnswer.name = `Answer${buttonNumber}${this.numberAnswer}`
         newAnswer.required = true
 
         newDiv.appendChild(newAnswer)
         
-        const currentDiv = document.querySelector(`.DivAnswer${numberQuestion}`)
+        const currentDiv = document.querySelector(`.DivAnswer${buttonNumber}`)
         currentDiv.appendChild(newDiv)
     }
 
     removeQuestionJS(){
-        const elementNumber = document.querySelectorAll('.DivQuestion')
-        this.lastQuestion = elementNumber.length
+        const elementQuestionNumber = document.querySelectorAll('.DivQuestion')
+        this.lastQuestion = elementQuestionNumber.length
         if(this.lastQuestion > 1) {
-            const elementLast = document.querySelector(`.DivQuestion${this.lastAnswer}`)
+            const elementLast = document.querySelector(`.DivQuestion${this.lastQuestion}`)
             elementLast.remove()
         }
+    }
+    removeAnswerJS(){
+        const elementQuestionNumber = document.querySelectorAll('.DivQuestion')
+        this.lastQuestion = elementQuestionNumber.length
+
+        const elementAnswerNumber = document.querySelectorAll(`.DivAnswer${this.lastQuestion}`)
+        this.lastAnswer = elementAnswerNumber.length
+
+        if(this.lastAnswer != 0){
+            const elementLast = document.querySelector(`.DivAnswer-${this.lastAnswer}`)
+            elementLast.remove()
+        }
+        
     }
 }
 

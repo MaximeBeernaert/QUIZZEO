@@ -49,7 +49,7 @@
             <input type="button" class="removeQuestion" name="removeQuestion" value="Retirer la dernière question">
         </div>
         <div class="removeAnswers">
-            <input type="button" class="removeAnswer" name="removeAnswer" value="Retirer la dernière Answer">
+            <input type="button" class="removeAnswer" name="removeAnswer" value="Retirer la dernière réponse">
         </div>
         <input type="submit" name="submit" value="Valider le quizz" class="submit-button">
     </form>
