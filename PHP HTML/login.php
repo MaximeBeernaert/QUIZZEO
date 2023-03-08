@@ -48,9 +48,9 @@
                 <div class="header">
                 </div>
                 <form class="form" action='' method="post" name="login">
-                    <h1 class="login-title">Login</h1>
+                    <h1 class="login-title">Connexion</h1>
                     <input type="text" class="login-input" name="email" placeholder="Email" autofocus="true" />
-                    <input type="password" class="login-input" name="password" placeholder="Password" />
+                    <input type="password" class="login-input" name="password" placeholder="Mot de passe" />
                     <a href="accueil.php" class="link">Retour à l'accueil</a>
                     <input type="submit" name="submit" value="Valider ! " class="submit-button">
                 </form>
