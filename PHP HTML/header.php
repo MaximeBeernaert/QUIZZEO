@@ -33,10 +33,6 @@
         </div>
 
     </header>
-
-    <footer>
-        <p>Company ©MEL . All rights reserved.</p>
-    </footer>
 </body>
 
 </html>
