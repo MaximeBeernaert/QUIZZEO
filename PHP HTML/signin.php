@@ -1,16 +1,18 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-    <meta charset="utf-8"/>
+    <meta charset="utf-8" />
     <link rel="stylesheet" href="signin.css">
 </head>
-<body> 
-    
-<header>
+
+<body>
+
+    <header>
         <h1>QUIZZEO</h1>
         <p>Registration</p>
     </header>
-<?php
+    <?php
     require('DBconnexion.php');
     // When form submitted, insert values into the database.
     if (isset($_REQUEST['username'])) {
@@ -39,12 +41,12 @@
             $rows = mysqli_num_rows($result);
             if ($rows == 1) {
                 echo "<h3>Adresse mail déjà utilisée.</h3><br/>";
-            }else {
+            } else {
                 //add user to database
                 $query    = "INSERT into `utilisateurs` (prenom_utilisateur, nom_utilisateur, mail_utilisateur, mdp_utilisateur, type_utilisateur)
                             VALUES ('$username', '$name', '$email', '" . md5($password) . "', '$role')";
                 $result   = mysqli_query($conn, $query);
-                
+
                 //check if user is added to database
                 if ($result) {
                     echo "<div class='form'>
@@ -56,31 +58,31 @@
                         <h3>Required fields are missing.</h3><br/>
                         <p class='link'>Click here to <a href='signin.php'>signin</a> again.</p>
                         </div>";
-                    }
                 }
             }
-
-        } else {
+        }
+    } else {
     ?>
 
-<form class="form" action="" method="post">
-    <h1 class="login-title">Registration</h1>
-    <input type="text" class="login-input" name="username" placeholder="Username" required />
-    <input type="text" class="login-input" name="name" placeholder="Name" required />
-    <input type="text" class="login-input" name="email" placeholder="Email Adress" require>
-    <input type="password" class="login-input" name="password" placeholder="Password" require>
-    <input type="password" class="login-input" name="confirmPassword" placeholder="Confirm Password" require>
-    
-    <select type="role" name="role" class="login-input">
-        <option value="0">Utilisateur</option>
-        <option value="1">Quizzeur</option>
-    </select>
-    <input type="submit" name="submit" value="Register" class="login-button">
-    <p class="link"><a href="login.php">Click to Login</a></p>
-</form>
+        <form class="form" action="" method="post">
+            <h1 class="login-title">Inscription</h1>
+            <input type="text" class="login-input" name="username" placeholder="Prénom" required />
+            <input type="text" class="login-input" name="name" placeholder="Non" required />
+            <input type="text" class="login-input" name="email" placeholder="Adresse Mail" require>
+            <input type="password" class="login-input" name="password" placeholder="Mot de passe" require>
+            <input type="password" class="login-input" name="confirmPassword" placeholder="Confirmer le mot de passe" require>
 
-<?php
+            <select type="role" name="role" class="login-input">
+                <option value="0">Utilisateur</option>
+                <option value="1">Quizzeur</option>
+            </select>
+            <input type="submit" name="submit" value="S'inscrire" class="login-button">
+            <p class="link"><a href="login.php">Cliquez ici si vous avez déjà un compte</a></p>
+        </form>
+
+    <?php
     }
-?>
+    ?>
 </body>
+
 </html>
