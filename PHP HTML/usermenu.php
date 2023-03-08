@@ -23,6 +23,20 @@
         <?php
         $query = "SELECT * FROM `quizz` WHERE auteur_quizz='$id_utilisateur'";
         $result = mysqli_query($conn, $query);
+
+        ?>
+        <div class="myquizz">
+            <?php
+            if (mysqli_num_rows($result) == 0) :
+            ?>
+                <h2>Tu n'as pas encore créer de quizz !</h2>
+                <a href="score.php">Créer mon premier quizz</a>
+            <?php
+            endif;
+            ?>
+        </div>
+        <?php
+
         while ($row = mysqli_fetch_assoc($result)) :
             $id_user = $row['auteur_quizz'];
             $id_quizz = $row['id_quizz'];
