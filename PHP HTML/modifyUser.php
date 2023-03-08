@@ -73,6 +73,7 @@
             <br>
             <div class="modif-btn">
                 <button type="submit" name="modif-btn" class="modif-btn">Modifier</button>
+                <a href="admin.php">Retour au panel d'administration</a>
             </div>
 
         </form>
