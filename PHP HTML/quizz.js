@@ -90,7 +90,7 @@ class create {
             this.displayQuestion(numberQuestion,questions)
         } else {
             // if not, we forward the user to the end of the quizz and the saving of the choices.
-            window.location.replace("http://localhost/QUIZZEO/PHP%20HTML/quizzEnd.php");
+            window.location.replace("quizzEnd.php");
         }
     }
 
