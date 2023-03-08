@@ -29,7 +29,8 @@
         </div>
 
         <div class="userinfo">
-            <p>Vous êtes connecté sous le compte de <a href="personalspace.php"><?php echo $user['nom_utilisateur'] . " " . $user['prenom_utilisateur'] ?></a></p>
+            <p>Vous êtes connecté sous le compte de <?php echo $user['nom_utilisateur'] . " " . $user['prenom_utilisateur'] ?></a></p>
+            <p> <a href="personalspace.php"> Cliquer ici pour modifier mon profil </a></p>
         </div>
 
     </header>

@@ -25,7 +25,7 @@ $quizz_list = [];
 
 $query    = "SELECT * FROM `jouer` WHERE `id_utilisateur` = $id_user";
 $result = mysqli_query($conn, $query);
-if (mysqli_fetch_assoc($result) == null){
+if (!mysqli_fetch_assoc($result)){
     echo "Vous n'avez pas encore de résultats.";
 } else{
    
