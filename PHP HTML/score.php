@@ -28,12 +28,8 @@ $result = mysqli_query($conn, $query);
 if (mysqli_fetch_assoc($result) == null){
     echo "Vous n'avez pas encore de résultats.";
 } else{
-    echo "<br>Votre Moyenne générale aux Quizz : ";
-    while ($row_quizz_played = mysqli_fetch_assoc($result)) {
-        array_push($quizz_total_average, $row_quizz_played['score']);
-    }
-    $average_result = round(array_sum($quizz_total_average) / count($quizz_total_average), 2);
-    echo $average_result;
+   
+
     
     $query    = "SELECT * FROM `quizz`";
     $result = mysqli_query($conn, $query);
@@ -55,7 +51,14 @@ if (mysqli_fetch_assoc($result) == null){
         $quizz = mysqli_fetch_assoc($result);
         $quizz_title = $quizz['titre_quizz'];
         echo "<br>Votre moyenne pour le quizz ". $quizz_title ." : ".$average_result;
+
+        array_push($quizz_total_average, $average_result);
     }
+
+    echo "<br>Votre Moyenne générale aux Quizz : ";
+    $average_result = round(array_sum($quizz_total_average) / count($quizz_total_average), 2);
+    echo $average_result;
+
 }
 
 
