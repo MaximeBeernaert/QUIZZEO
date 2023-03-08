@@ -97,14 +97,14 @@ function createQuizz($quizzSave, $conn)
     $title = $quizzSave[0][0];
     $quizz_diff = $quizzSave[0][1];
     $theme_quizz = $quizzSave[0][2];
-
+    $id_quizz = $_SESSION['id_quizz'];
+    
     //INSERT un nouveau quizz avec le titre récupéré à la page d'avant (createquizz.php) et le reste des infos (utilisateurs etc.) ID_quizz A-I
-    $query = "INSERT INTO `quizz`(`titre_quizz`, `difficulte_quizz`, `theme_quizz`,`auteur_quizz`) 
-                 VALUES ('$title','$quizz_diff','$theme_quizz',$user_id)";
+    $query = "INSERT INTO `quizz`(`id_quizz`, `titre_quizz`, `difficulte_quizz`, `theme_quizz`,`auteur_quizz`) 
+                 VALUES ('$id_quizz','$title','$quizz_diff','$theme_quizz',$user_id)";
     $result = mysqli_query($conn, $query);
     if ($result) {
 ?>
-
         <body>
             <h1>QUIZZEO</h1>
             <p>Votre questionnaire a été enregistré</p>
@@ -193,6 +193,27 @@ function createQuizz($quizzSave, $conn)
     }
 
 }
+function quizzSuppression($conn, $title_quizz) {
+    // suppress the quizz
+    $id_quizz = $_SESSION['id_quizz'];
+
+    $query = "DELETE FROM `choix` WHERE id_choix IN (SELECT id_choix FROM `appartenir` WHERE id_question IN (SELECT id_question FROM `questions` WHERE id_question IN (SELECT id_question FROM `contient` WHERE id_quizz='$id_quizz')))";
+    $result = mysqli_query($conn, $query);
+
+    $query = "DELETE FROM `appartenir` WHERE id_question IN (SELECT id_question FROM `questions` WHERE id_question IN (SELECT id_question FROM `contient` WHERE id_quizz='$id_quizz'))";
+    $result = mysqli_query($conn, $query);
+
+    $query = "DELETE FROM `questions` WHERE id_question IN (SELECT id_question FROM `contient` WHERE id_quizz='$id_quizz')";
+    $result = mysqli_query($conn, $query);
+
+    $query = "DELETE FROM `contient` WHERE id_quizz='$id_quizz'";
+    $result = mysqli_query($conn, $query);
+
+    $query = "DELETE FROM `quizz` WHERE id_quizz='$id_quizz'";
+    $result = mysqli_query($conn, $query);
+
+    
+}
 
 // MAIN 
 // Start the local session
@@ -217,22 +238,19 @@ if (isset($_POST['quizztitlerenamed'])) {
     $a = $_POST['quizztitlerenamed'];
     $title = stringCheck($a);
     $quizzSave[0][0] = $title;
-    // we then send for the quizz to be checked again, and if TRUE, then we save the quizz in the database
-    
-    if (checkForTitle($conn, $title)) {
-        createQuizz($quizzSave, $conn);
-    }
 } else // second case here where we check the quizz first the first time
 {
     // we get the title of the quizz
     $a = $_POST['quizztitle'];
     $title = stringCheck($a);
     // we create the quizz, putting the valeus in an array to get it back in case of already taken title
-    $quizzSave = createQuizzArray($title);
-    // we then send for the quizz to be checked, and if TRUE, then we save the quizz in the database
-    if (checkForTitle($conn, $title)) {
-        createQuizz($quizzSave, $conn);
-    }
+    $quizzSave = createQuizzArray($title);   
+}
+echo $title;
+quizzSuppression($conn, $title);
+// we then send for the quizz to be checked, and if TRUE, then we save the quizz in the database
+if (checkForTitle($conn, $title)) {
+    createQuizz($quizzSave, $conn);
 }
 ?>
 

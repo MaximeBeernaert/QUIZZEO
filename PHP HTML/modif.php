@@ -35,7 +35,7 @@
 
     ?>
 
-    <form class="form1" action="savequizz.php" method="post">
+    <form class="form1" action="savemodif.php" method="post">
 
         <h1 class="Create Quizz">Modify Quizz</h1>
         <input type="text" class="quizztitle" name="quizztitle" placeholder="Titre Quizz" value= "<?php echo $title_quizz; ?>" required />
@@ -51,9 +51,9 @@
                 $result_question = mysqli_query($conn, $query);  
                 $current_question = mysqli_fetch_assoc($result_question);
                 $text_question = $current_question['intitule_question'];
-                echo "<div class='DivQuestionNumber DivQuestion".$index_question."'>Question ".$index_question." - Entrer la question :";  
+                echo "<div class='DivQuestion DivQuestion".$index_question."'>Question ".$index_question." - Entrer la question :";  
                 ?>
-                <input type="text" class="Question1" name="Question1" value="<?php echo $text_question; ?>" required />
+                <input type="text" class="Question<?php echo $index_question; ?>" name="Question<?php echo $index_question; ?>"" value="<?php echo $text_question; ?>" required />
                 <?php 
                 $query    = "SELECT * FROM `appartenir` WHERE id_question='$id_question'";
                 $result_appartenir = mysqli_query($conn, $query);  
@@ -68,14 +68,14 @@
 
                     if($index_answer==0){
                         echo "<p>Entrer la bonne réponse : </p>";
-                        echo "<input type='text' class='rightAnswer".$index_question."' name='rightAnswer".$index_question."' value='".$text_answer."'>";
+                        echo "<input type='text' class='rightAnswer".$index_question."' name='rightAnswer".$index_question."' value='".$text_answer."' required>";
                     }else{
                         echo "<p>Entrer la mauvaise réponse ".$index_answer." : </p>";
-                        echo "<input type='text' class='Answer".$index_question."' name='AnswerButton".$index_question.($index_answer-1)."' value='".$text_answer."'>";
+                        echo "<input type='text' class='Answer".$index_question."' name='AnswerButton".$index_question.($index_answer-1)."' value='".$text_answer."' required>";
                     }
                     $index_answer++;
                 }
-            echo "<div class='DivAnswerButton".$index_question."'> </div>";
+            echo "<div class='DivAnswer DivAnswerButton".$index_question."'> </div>";
             $index_question++;
             echo "</div>";
             endwhile;
@@ -83,9 +83,15 @@
             
         </div>
         <div class="addQuestions">
-            <input type="button" class="addQuestion" name="addQuestion" value="Ajouter Question">
+            <input type="button" class="addQuestion" name="addQuestion" value="Ajouter une question">
         </div>
-        <input type="submit" name="submit" value="Valider" class="submit-button">
+        <div class="removeQuestions">
+            <input type="button" class="removeQuestion" name="removeQuestion" value="Retirer la dernière question">
+        </div>
+        <div class="removeAnswers">
+            <input type="button" class="removeAnswer" name="removeAnswer" value="Retirer la dernière Answer">
+        </div>
+        <input type="submit" name="submit" value="Valider la modification" class="submit-button">
     </form>
 
     <script src="modif.js"></script>
