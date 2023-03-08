@@ -52,7 +52,7 @@
                     <input type="text" class="login-input" name="email" placeholder="Email" autofocus="true" />
                     <input type="password" class="login-input" name="password" placeholder="Password" />
                     <a href="accueil.php" class="link">Retour à l'accueil</a>
-                    <input type="submit" name="submit" value="Valider ! " class="submit-button">
+                    <input type="submit" name="submit" value="Valider " class="submit-button">
                 </form>
             </div>
         </div>
