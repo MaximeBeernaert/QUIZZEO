@@ -24,7 +24,6 @@
         <footer>
            <p> Company ©IPSSI . All rights reserved.</p>
         </footer>
-    </body>
     <?php
     $type_utilisateur = $user['type_utilisateur'];
     ?>
