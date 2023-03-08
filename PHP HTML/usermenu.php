@@ -18,10 +18,6 @@
     $type_utilisateur = $user['type_utilisateur'];
     ?>
 
-    <div class="userinfo">
-        <p>Vous êtes connecté sous le compte de <?php echo $user['nom_utilisateur'] . " " . $user['prenom_utilisateur'] ?></p>
-    </div>
-
     <div class="displayPersonalQuizz">
         Mes quizz :
         <?php

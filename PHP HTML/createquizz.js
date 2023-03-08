@@ -85,20 +85,22 @@ class CreateQuizz {
         for(let i=1; i<=element.childElementCount; i++){
             this.numberAnswer = i
         }
+        if( this.numberAnswer <=8) {
+            const newDiv = document.createElement("div")
+            newDiv.className = `DivAnswer${number} DivAnswer-${this.numberAnswer}`
+    
+            const newAnswer = document.createElement('input')
+            newAnswer.type = 'text'
+            newAnswer.className = `Answer${this.numberAnswer}`
+            newAnswer.name = `Answer${buttonNumber}${this.numberAnswer}`
+            newAnswer.required = true
+    
+            newDiv.appendChild(newAnswer)
+            
+            const currentDiv = document.querySelector(`.DivAnswer${buttonNumber}`)
+            currentDiv.appendChild(newDiv)
+        }
         
-        const newDiv = document.createElement("div")
-        newDiv.className = `DivAnswer${number} DivAnswer-${this.numberAnswer}`
-
-        const newAnswer = document.createElement('input')
-        newAnswer.type = 'text'
-        newAnswer.className = `Answer${this.numberAnswer}`
-        newAnswer.name = `Answer${buttonNumber}${this.numberAnswer}`
-        newAnswer.required = true
-
-        newDiv.appendChild(newAnswer)
-        
-        const currentDiv = document.querySelector(`.DivAnswer${buttonNumber}`)
-        currentDiv.appendChild(newDiv)
     }
 
     removeQuestionJS(){

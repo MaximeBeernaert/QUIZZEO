@@ -52,24 +52,6 @@ h1 {
   letter-spacing: 2px;
 }
 
-p {
-  margin: 0;
-  font-size: 18px;
-  letter-spacing: 2px;
-}
-.userinfo {
-  background-color: #f2f2f2;
-  border: 1px solid #ccc;
-  padding: 10px;
-  font-size: 16px;
-  font-family: Arial, sans-serif;
-}
-
-.userinfo p {
-  margin: 0;
-}
-
-
 .container {
   display: flex;
   flex-direction: column;
