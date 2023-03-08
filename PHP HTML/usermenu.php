@@ -172,7 +172,9 @@
         <h2>Quizz 6</h2>
       </div>
   </div>
-
+  <?php
+    require('footer.php');
+  ?>
 </body>
 
 </html>
