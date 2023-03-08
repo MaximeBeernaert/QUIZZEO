@@ -160,35 +160,6 @@
         $_SESSION['id_quizz'] = $id_quizz;
     }
     ?>
-      <div id="affiches-container">
-    <div class="affiche">
-      <img src="image1.jpg" alt="Affiche 1">
-      <h2>Quizz 1</h2>
-    </div>
-    <div class="affiche">
-      <img src="image2.jpg" alt="Affiche 2">
-      <h2>Quizz 2</h2>
-    </div>
-    <div class="affiche">
-      <img src="image3.jpg" alt="Affiche 3">
-      <h2>Quizz 3</h2>
-    </div>
-      <div class="affiche">
-        <img src="image4.jpg" alt="Affiche 4">
-        <h2>Quizz 4</h2>
-      </div>
-      <div class="affiche">
-        <img src="image5.jpg" alt="Affiche 5">
-        <h2>Quizz 5</h2>
-      </div>
-      <div class="affiche">
-        <img src="image6.jpg" alt="Affiche 6">
-        <h2>Quizz 6</h2>
-      </div>
-  </div>
-  <?php
-  
-  ?>
 </body>
 
 </html>
