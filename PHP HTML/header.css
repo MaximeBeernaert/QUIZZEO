@@ -16,10 +16,21 @@ header {
 
 .image {
     display: flex;
-    width: 60px;
-    height: 60px;
-    border-radius: 100px;
+    justify-content: center;
+    align-items: center;
+    width: 100px;
+    height: 100px;
+    background-color: #fff;
+    border-radius: 50%;
     margin: 0;
+    padding: 0;
+}
+
+.quizzeo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
 }
 
 header h1 {
@@ -56,6 +67,23 @@ a {
 header h2 a:hover {
     text-decoration: underline;
 }
+
+p {
+    margin: 0;
+    font-size: 18px;
+    letter-spacing: 2px;
+  }
+  .userinfo {
+    background-color: #f2f2f2;
+    border: 1px solid #ccc;
+    padding: 10px;
+    font-size: 16px;
+    font-family: Arial, sans-serif;
+  }
+  
+  .userinfo p {
+    margin: 0;
+  }
 
 footer {
     background-color: #00a2ff;
