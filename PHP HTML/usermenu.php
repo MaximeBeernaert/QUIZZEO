@@ -9,7 +9,6 @@
 
 <body>
     <?php
-    require('DBconnexion.php');
     require('header.php');
     if (!isset($_SESSION['user'])) {
         header("Location:notconnected.php");
@@ -123,16 +122,16 @@
         $id_quizz = $_POST['id_quizz'];
         $query = "DELETE FROM `choix` WHERE id_choix IN (SELECT id_choix FROM `appartenir` WHERE id_question IN (SELECT id_question FROM `questions` WHERE id_question IN (SELECT id_question FROM `contient` WHERE id_quizz='$id_quizz')))";
         $result = mysqli_query($conn, $query);
-    
+
         $query = "DELETE FROM `appartenir` WHERE id_question IN (SELECT id_question FROM `questions` WHERE id_question IN (SELECT id_question FROM `contient` WHERE id_quizz='$id_quizz'))";
         $result = mysqli_query($conn, $query);
-    
+
         $query = "DELETE FROM `questions` WHERE id_question IN (SELECT id_question FROM `contient` WHERE id_quizz='$id_quizz')";
         $result = mysqli_query($conn, $query);
-    
+
         $query = "DELETE FROM `contient` WHERE id_quizz='$id_quizz'";
         $result = mysqli_query($conn, $query);
-    
+
         $query = "DELETE FROM `quizz` WHERE id_quizz='$id_quizz'";
         $result = mysqli_query($conn, $query);
 
