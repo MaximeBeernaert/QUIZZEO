@@ -65,10 +65,12 @@
                 <option>Utilisateur</option>
                 <option>Quizzeur</option>
                 <option>Administrateur</option>
-                </select!>
-                <br>
-
+            </select>
+            <br>
+            <div class="modif-btn">
                 <button type="submit" name="modif-btn" class="modif-btn">Modifier</button>
+            </div>
+
         </form>
 
         <?php

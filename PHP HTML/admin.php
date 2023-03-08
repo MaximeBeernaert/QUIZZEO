@@ -15,6 +15,7 @@
         <p>Interface utilisateur</p>
 
     </header>
+
     <div class="container">
 
 
@@ -29,6 +30,7 @@
             }
 
             $user = $_SESSION['user'];
+
             if ($user['type_utilisateur'] != 2) {
                 header("Location:notpermited.php");
             }
