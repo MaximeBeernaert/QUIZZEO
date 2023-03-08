@@ -84,12 +84,3 @@ p {
   .userinfo p {
     margin: 0;
   }
-
-footer {
-    background-color: #00a2ff;
-    color: #fff;
-    padding: 10px 20px;
-    position: absolute;
-    bottom: 0; 
-    width: 97%;
-}
