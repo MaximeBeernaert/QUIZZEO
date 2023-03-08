@@ -78,25 +78,26 @@ class CreateQuizz {
         element1.insertBefore(newDiv, currentDiv1)
     }
 
-    addAnswerJS(numberQuestion) {
-        const element = document.querySelector(`.DivAnswer${numberQuestion}`)
+    addAnswerJS(buttonNumber) {
+        let number = buttonNumber.replace("Button", "")
+        const element = document.querySelector(`.DivAnswer${buttonNumber}`)
         this.numberAnswer = 1
         for(let i=1; i<=element.childElementCount; i++){
             this.numberAnswer = i
         }
         
         const newDiv = document.createElement("div")
-        newDiv.className = `DivAnswer${this.numberQuestion} DivAnswer-${this.numberAnswer}`
+        newDiv.className = `DivAnswer${number} DivAnswer-${this.numberAnswer}`
 
         const newAnswer = document.createElement('input')
         newAnswer.type = 'text'
         newAnswer.className = `Answer${this.numberAnswer}`
-        newAnswer.name = `Answer${numberQuestion}${this.numberAnswer}`
+        newAnswer.name = `Answer${buttonNumber}${this.numberAnswer}`
         newAnswer.required = true
 
         newDiv.appendChild(newAnswer)
         
-        const currentDiv = document.querySelector(`.DivAnswer${numberQuestion}`)
+        const currentDiv = document.querySelector(`.DivAnswer${buttonNumber}`)
         currentDiv.appendChild(newDiv)
     }
 
@@ -119,7 +120,6 @@ class CreateQuizz {
             const elementLast = document.querySelector(`.DivAnswer-${this.lastAnswer}`)
             elementLast.remove()
         }
-        
     }
 }
 
