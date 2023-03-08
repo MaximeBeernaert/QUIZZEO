@@ -83,10 +83,10 @@
                             <td><?php echo $row['type_utilisateur']; ?></td>
 
                             <td>
-                                <form action="admin.php" method="POST">
+                                <form action="modifyUser.php" method="POST">
                                     <?php
                                     $id_utilisateur = $row['id_utilisateur'];
-                                    echo "<input type='hidden' name='id' value=$id_utilisateur>" ?>
+                                    echo "<input type='hidden' name='id_utilisateur' class='id_utilisateur' value=$id_utilisateur>" ?>
                                     <button type="submit" name="modify-btn" class="modify-btn">Modifier</button>
                                 </form>
                             </td>
@@ -126,13 +126,6 @@
                     echo "L'utilisateur avec l'id $id a bien été supprimé !";
                     include_once 'admin.php';
                 }
-            }
-
-            // if the user click on the modify button, redirect to the modify page
-            if (isset($_POST['modify-btn'])) {
-                $id = $_POST['id'];
-                $_SESSION['id'] = $id;
-                include_once 'modifyUser.php';
             }
             ?>
             <a href="usermenu.php">Retour au menu principal</a>
