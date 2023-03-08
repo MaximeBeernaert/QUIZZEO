@@ -44,7 +44,7 @@
         <!-- form to modify the user -->
         <form action="saveUser.php" method="POST">
             <?php $id_utilisateur1 = $actualUser['id_utilisateur'];
-                echo "<input type='hidden' name='id_utilisateur' id='id_utilisateur' value='$id_utilisateur1'>"; ?>
+            echo "<input type='hidden' name='id_utilisateur' id='id_utilisateur' value='$id_utilisateur1'>"; ?>
 
             <?php $nom_utilisateur = $actualUser['nom_utilisateur']; ?>
             <label for="nom">Nom : </label>
@@ -69,13 +69,16 @@
                 <option>Utilisateur</option>
                 <option>Quizzeur</option>
                 <option>Administrateur</option>
-                </select>
-                <br>
-
+            </select>
+            <br>
+            <div class="modif-btn">
                 <button type="submit" name="modif-btn" class="modif-btn">Modifier</button>
+                <a href="admin.php">Retour au panel d'administration</a>
+            </div>
+
         </form>
 
-        
+
 
     </div>
 
