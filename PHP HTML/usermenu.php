@@ -23,7 +23,7 @@
 
     <div class="usermenuQuizzList">Mes quizz :</div>
     <div class="display displayPersonalQuizz">
-        
+
         <?php
         $query = "SELECT * FROM `quizz` WHERE auteur_quizz='$id_utilisateur'";
         $result = mysqli_query($conn, $query);
@@ -78,7 +78,7 @@
     </div>
     <div class="usermenuQuizzList">Tous les quizz :</div>
     <div class="display displayAllQuizz">
-        
+
         <?php
         $query = "SELECT * FROM `quizz`";
         $result = mysqli_query($conn, $query);
@@ -148,9 +148,11 @@
         $query = "DELETE FROM `quizz` WHERE id_quizz='$id_quizz'";
         $result = mysqli_query($conn, $query);
 
+        $query = "DELETE FROM 'jouer' WHERE id_quizz='$id_quizz'";
+
         if ($result) {
             echo "Quizz supprimé avec succès";
-            echo("<meta http-equiv='refresh' content='1'>");
+            echo ("<meta http-equiv='refresh' content='1'>");
         } else {
             echo "Erreur lors de la suppression du quizz";
         }
