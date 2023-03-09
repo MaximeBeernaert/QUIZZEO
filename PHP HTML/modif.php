@@ -21,7 +21,7 @@
         header("Location:notpermited.php");
     }
 
-    $id_quizz = $_SESSION['id_quizz'];
+    $id_quizz = $_POST['id_quizz'];
     $query    = "SELECT * FROM `quizz` WHERE id_quizz='$id_quizz'";
     $result = mysqli_query($conn, $query);
     $quizz = mysqli_fetch_assoc($result);
