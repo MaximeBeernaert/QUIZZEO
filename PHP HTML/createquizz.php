@@ -37,12 +37,14 @@
         <h1 class="Create Quizz">Création de quizz</h1>
         <input type="text" class="input quizztitle" name="quizztitle" placeholder="Titre Quizz" required />
 
+        <br>
+        <p class="quizzdiff">Difficulté : </p>
         <i class="diffilculteStarCreateQuizz" data-note="1">&#9733;</i>
         <i class="diffilculteStarCreateQuizz" data-note="2">&#9733;</i>
         <i class="diffilculteStarCreateQuizz" data-note="3">&#9733;</i>
         <i class="diffilculteStarCreateQuizz" data-note="4">&#9733;</i>
         <i class="diffilculteStarCreateQuizz" data-note="5">&#9733;</i>
-        <i class="quizzdiff">Difficulté : </i>
+        <br>
 
         <script>
             const stars = document.querySelectorAll('.diffilculteStarCreateQuizz');
@@ -89,7 +91,24 @@
 
             function activeSelect(e) {
                 check = true;
-                document.querySelector('.quizzdiff').innerHTML = 'Difficulté : ' + e.target.dataset.note;
+                // Switch for the diffilculty replace number in letter
+                switch (e.target.dataset.note) {
+                    case '1':
+                        document.querySelector('.quizzdiff').innerHTML = 'Difficulté : très Facile';
+                        break;
+                    case '2':
+                        document.querySelector('.quizzdiff').innerHTML = 'Difficulté : facile';
+                        break;
+                    case '3':
+                        document.querySelector('.quizzdiff').innerHTML = 'Difficulté : moyen';
+                        break;
+                    case '4':
+                        document.querySelector('.quizzdiff').innerHTML = 'Difficulté : difficile';
+                        break;
+                    case '5':
+                        document.querySelector('.quizzdiff').innerHTML = 'Difficulté : très difficile';
+                        break;
+                }
             }
 
             function activeReSelect(e) {
@@ -109,7 +128,7 @@
             }
         </script>
 
-        <input type="text" class="input quizzdiff" name="quizzdiff" placeholder="Difficulté Quizz" required />
+        <br>
         <input type="text" class="input themequizz" name="themequizz" placeholder="Thème du Quizz" required />
 
         <div class="DivQuestion DivQuestion1">
