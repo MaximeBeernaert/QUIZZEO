@@ -70,7 +70,7 @@
         <form class="form" action="" method="post">
             <h1 class="login-title">Inscription</h1>
             <input type="text" class="login-input" name="username" placeholder="Prénom" required />
-            <input type="text" class="login-input" name="name" placeholder="Non" required />
+            <input type="text" class="login-input" name="name" placeholder="Nom" required />
             <input type="text" class="login-input" name="email" placeholder="Adresse Mail" require>
             <input type="password" class="login-input" name="password" placeholder="Mot de passe" require>
             <input type="password" class="login-input" name="confirmPassword" placeholder="Confirmer le mot de passe" require>
