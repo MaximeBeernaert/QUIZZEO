@@ -82,7 +82,7 @@
                                     <?php
                                     $id_utilisateur = $row['id_utilisateur'];
                                     echo "<input type='hidden' name='id_utilisateur' class='id_utilisateur' value=$id_utilisateur>" ?>
-                                    <button type="submit" name="modify-btn" class="modify-btn">Modifier</button>
+                                    <button type="submit" name="modify-btn" class="buttonBlue modify-btn">Modifier</button>
                                 </form>
                             </td>
                             <td>
@@ -90,7 +90,7 @@
                                     <?php
                                     $id_utilisateur = $row['id_utilisateur'];
                                     echo "<input type='hidden' name='id' value=$id_utilisateur>" ?>
-                                    <button type="submit" name="delete-btn" class="delete-btn">Supprimer</button>
+                                    <button type="submit" name="delete-btn" class="buttonRed delete-btn">Supprimer</button>
                                 </form>
                             </td>
 
@@ -106,8 +106,8 @@
                 echo "<p>Êtes-vous sûr de vouloir supprimer l'utilisateur avec l'ID $id ?</p>";
                 echo "<form action='admin.php' method='POST'>
                 <input type='hidden' name='id' value='$id'>
-                <button type='submit' name='confirm-delete-btn' class='confirm-delete-btn'>Oui</button>
-                <button type='submit' name='cancel-delete-btn' class='cancel-delete-btn'>Non</button>
+                <button type='submit' name='confirm-delete-btn' class='buttonRed confirm-delete-btn'>Oui</button>
+                <button type='submit' name='cancel-delete-btn' class='buttonBlack cancel-delete-btn'>Non</button>
                 </form>";
             }
             // if the user click on the confirm delete button, delete the user from the database

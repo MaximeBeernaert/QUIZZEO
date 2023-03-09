@@ -11,15 +11,13 @@
 
 <body>
     <header>
-        <h1>QUIZZEO</h1>
-        <p>Quizz creation</p>
+        <?php
+        require 'header.php';
+        ?>
     </header>
+
     <?php
-    session_start();
     require('DBconnexion.php');
-    if (!isset($_SESSION['user'])) {
-        header("Location:notconnected.php");
-    }
     $user = $_SESSION['user'];
     if ($user['type_utilisateur'] < 1) {
         header("Location:notpermited.php");
@@ -27,7 +25,7 @@
 
     ?>
 
-    <form class="form1" action="savequizz.php" method="post">
+    <form class="formQuestion" action="savequizz.php" method="post">
 
         <h1 class="Create Quizz">Création de quizz</h1>
         <input type="text" class="quizztitle" name="quizztitle" placeholder="Titre Quizz" required />
@@ -42,16 +40,22 @@
                 <input type="button" name="addAnswer1" value="Ajouter une réponse 1" class="Button1">
             </div>
         </div>
+        
+        <div class="spaceDiv"></div>
         <div class="addQuestions">
-            <input type="button" class="addQuestion" name="addQuestion" value="Ajouter une question">
+            <input type="button" class="buttonBlack addQuestion" name="addQuestion" value="Ajouter une question">
         </div>
+        <div class="spaceDiv"></div>
         <div class="removeQuestions">
-            <input type="button" class="removeQuestion" name="removeQuestion" value="Retirer la dernière question">
+            <input type="button" class="buttonBlack removeQuestion" name="removeQuestion" value="Retirer la dernière question">
         </div>
+        <div class="spaceDiv"></div>
         <div class="removeAnswers">
-            <input type="button" class="removeAnswer" name="removeAnswer" value="Retirer la dernière réponse">
+        <div class="spaceDiv"></div>
+            <input type="button" class="buttonBlack removeAnswer" name="removeAnswer" value="Retirer la dernière réponse">
         </div>
-        <input type="submit" name="submit" value="Valider le quizz" class="submit-button">
+        <div class="spaceDiv"></div>
+        <input type="submit" name="submit" value="Valider le quizz" class="buttonBlue submit-button">
     </form>
 
 
