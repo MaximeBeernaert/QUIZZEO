@@ -22,8 +22,9 @@
     $type_utilisateur = $user['type_utilisateur'];
     ?>
 
-    <div class="displayPersonalQuizz">
-        Mes quizz :
+    <div class="usermenuQuizzList">Mes quizz :</div>
+    <div class="display displayPersonalQuizz">
+        
         <?php
         $query = "SELECT * FROM `quizz` WHERE auteur_quizz='$id_utilisateur'";
         $result = mysqli_query($conn, $query);
@@ -42,12 +43,15 @@
         <?php
 
         while ($row = mysqli_fetch_assoc($result)) :
-            $id_user = $row['auteur_quizz'];
             $id_quizz = $row['id_quizz'];
+            $id_userQuizz = $row['auteur_quizz'];
+            $queryUserQuizz = "SELECT * FROM `utilisateurs` WHERE `id_utilisateur` = '$id_userQuizz'";
+            $resultUserQuizz = mysqli_query($conn, $queryUserQuizz);
+            $userQuizz = mysqli_fetch_assoc($resultUserQuizz);
         ?>
-            <div class="personalMain">
+            <div class="quizz">
                 <?php echo $row['titre_quizz']; ?>
-                <div class="personalPlay">
+                <div class="quizzButton quizzPlay">
                     <form action="quizz.php" method="POST">
                         <?php echo "<input type='hidden' name='id_quizz' value='$id_quizz'>" ?>
                         <button type="submit" name="choose-quizz-btn" class="choose-quizz-btn">Jouer !</button>
@@ -55,14 +59,14 @@
                 </div>
                 <?php
                 if ($type_utilisateur == 2) : ?>
-                    <div class="personalModif">
+                    <div class="quizzButton quizzModif">
                         <form action="modif.php" method="POST">
                             <input type="hidden" name="id_quizz" value="<?php echo $row['id_quizz']; ?>">
                             <button type="submit" name="modify-btn" class="modify-btn">Modifier</button>
                         </form>
                     </div>
-                    <div class="personalDelete">
-                        <form action="usermenu.php" method="POST">
+                    <div class="quizzButton quizzDelete">
+                        <form action="modif.php" method="POST">
                             <input type="hidden" name="id_quizz" value="<?php echo $row['id_quizz']; ?>">
                             <button type="submit" name="delete-btn" class="delete-btn">Supprimer</button>
                         </form>
@@ -73,9 +77,9 @@
             </div>
         <?php endwhile; ?>
     </div>
-
-    <div class="displayAllQuizz">
-        Tous les quizz :
+    <div class="usermenuQuizzList">Tous les quizz :</div>
+    <div class="display displayAllQuizz">
+        
         <?php
         $query = "SELECT * FROM `quizz`";
         $result = mysqli_query($conn, $query);
@@ -89,9 +93,9 @@
             $resultUserQuizz = mysqli_query($conn, $queryUserQuizz);
             $userQuizz = mysqli_fetch_assoc($resultUserQuizz);
         ?>
-            <div class="globalMain">
+            <div class="quizz">
                 <?php echo $row['titre_quizz']; ?>
-                <div class="globalPlay">
+                <div class="quizzButton quizzPlay">
                     <form action="quizz.php" method="POST">
                         <?php echo "<input type='hidden' name='id_quizz' value='$id_quizz'>" ?>
                         <button type="submit" name="choose-quizz-btn" class="choose-quizz-btn">Jouer !</button>
@@ -99,13 +103,13 @@
                 </div>
                 <?php
                 if ($type_utilisateur == 2) : ?>
-                    <div class="globalModif">
+                    <div class="quizzButton quizzModif">
                         <form action="modif.php" method="POST">
                             <input type="hidden" name="id_quizz" value="<?php echo $row['id_quizz']; ?>">
                             <button type="submit" name="modify-btn" class="modify-btn">Modifier</button>
                         </form>
                     </div>
-                    <div class="globalDelete">
+                    <div class="quizzButton quizzDelete">
                         <form action="modif.php" method="POST">
                             <input type="hidden" name="id_quizz" value="<?php echo $row['id_quizz']; ?>">
                             <button type="submit" name="delete-btn" class="delete-btn">Supprimer</button>

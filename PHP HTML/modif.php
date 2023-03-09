@@ -22,6 +22,7 @@
     }
 
     $id_quizz = $_POST['id_quizz'];
+    $_SESSION['id_quizz'] = $id_quizz;
     $query    = "SELECT * FROM `quizz` WHERE id_quizz='$id_quizz'";
     $result = mysqli_query($conn, $query);
     $quizz = mysqli_fetch_assoc($result);
@@ -31,7 +32,7 @@
 
     ?>
 
-    <form class="form1" action="savemodifyquizz.php" method="post">
+    <form class="form1" action="savemodif.php" method="post">
 
         <h1 class="Create Quizz">Modify Quizz</h1>
         <input type="text" class="quizztitle" name="quizztitle" placeholder="Titre Quizz" value="<?php echo $title_quizz; ?>" required />
@@ -49,7 +50,7 @@
             $text_question = $current_question['intitule_question'];
             echo "<div class='DivQuestion DivQuestion" . $index_question . "'>Question " . $index_question . " - Entrer la question :";
         ?>
-            <input type="text" class="Question<?php echo $index_question; ?>" name="Question<?php echo $index_question; ?>"" value=" <?php echo $text_question; ?>" required />
+            <input type="text" class="Question<?php echo $index_question; ?>" name="Question<?php echo $index_question; ?>" value="<?php echo $text_question; ?>" required />
         <?php
             $query    = "SELECT * FROM `appartenir` WHERE id_question='$id_question'";
             $result_appartenir = mysqli_query($conn, $query);
