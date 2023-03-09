@@ -4,15 +4,11 @@
 <head>
     <meta charset="utf-8" />
     <title>Menu</title>
-    <link rel="stylesheet" href="usermenu.css">
 </head>
 
 <body>
     <?php
     require('header.php');
-    if (!isset($_SESSION['user'])) {
-        header("Location:notconnected.php");
-    }
     $user = $_SESSION['user'];
     $id_utilisateur = $user['id_utilisateur'];
     $type_utilisateur = $user['type_utilisateur'];

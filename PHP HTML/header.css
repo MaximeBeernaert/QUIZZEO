@@ -8,88 +8,45 @@ body {
 header {
     background-color: #00a2ff;
     color: #fff;
-    padding: 20px;
-    display: flex;
-    justify-content: space-between;
-    text-align: center;
+    padding : 0em 2em 0em 2em;
 }
-
-.image {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100px;
-    height: 100px;
-    background-color: #fff;
-    border-radius: 50%;
-    margin: 0;
-    padding: 0;
-}
-
-.quizzeo {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-}
-
-header h1 {
-    margin: 0;
-    margin-left: 15px;
-    font-size: 36px;
-    padding: 5px;
-}
-
-header h1 a {
-    color: #fff;
-    text-decoration: none;
-}
-
-header h2 {
-    position: relative;
-    margin: 0;
-    font-size: 24px;
-    text-align: center;
-    padding: 10px;
-}
-
-header h2 a {
-    color: #fff;
-    text-decoration: none;
-    padding: 10px;
-}
-
 a {
-    color: #333;
-    text-decoration: none;
-}
-
-header h2 a:hover {
-    text-decoration: underline;
-}
-
-p {
-    margin: 0;
-    font-size: 18px;
-    letter-spacing: 2px;
-  }
-  .userinfo {
-    background-color: #f2f2f2;
-    border: 1px solid #ccc;
-    padding: 10px;
-    font-size: 16px;
-    font-family: Arial, sans-serif;
-  }
-  
-  .userinfo p {
-    margin: 0;
-  }
-
-footer {
-    background-color: #00a2ff;
     color: #fff;
-    padding: 10px 20px;
-    position: absolute;
-    bottom: 0; 
-    width: 97%;
+    text-decoration: none;
+    transition: all 0.3s ease;
 }
+.containerHeader{
+    display: flex; 
+    justify-content:space-between;
+    text-align: center;
+}
+.containerQuizzeo{
+    font-size:xx-large;
+    display: flex;
+    justify-content:space-between;
+    text-align: center;
+}
+.containerOptions{
+    width: 25em;
+    margin: auto;
+    display: flex;
+    align-items: center;
+    justify-content:space-between;
+    text-align: center;
+}
+.containerAccount{
+    width: 12em;
+    display: flex;
+    flex-flow:column-reverse;
+    justify-content:center;
+    align-content:space-between;
+}
+.containerIPSSI{
+    width: 12em;
+    display: flex;
+    flex-direction: column;
+    justify-content:center;
+    text-align: center;
+}
+
+

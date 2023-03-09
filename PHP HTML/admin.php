@@ -19,14 +19,10 @@
     <div class="container">
 
 
-        <div class="users">
+        <div class="userList">
             <h2>Listes des utilisateurs de Quizzeo :</h2>
 
             <?php
-            if (!isset($_SESSION['user'])) {
-                header("Location:notconnected.php");
-            }
-
             $user = $_SESSION['user'];
 
             if ($user['type_utilisateur'] != 2) {
