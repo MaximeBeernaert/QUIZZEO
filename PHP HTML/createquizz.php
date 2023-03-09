@@ -37,34 +37,53 @@
         <h1 class="Create Quizz">Création de quizz</h1>
         <input type="text" class="input quizztitle" name="quizztitle" placeholder="Titre Quizz" required />
 
-        <i class="diffilculteStarCreateQuizz">&#9733;</i>
-        <i class="diffilculteStarCreateQuizz">&#9733;</i>
-        <i class="diffilculteStarCreateQuizz">&#9733;</i>
-        <i class="diffilculteStarCreateQuizz">&#9733;</i>
-        <i class="diffilculteStarCreateQuizz">&#9733;</i>
+        <i class="diffilculteStarCreateQuizz" data-note="1">&#9733;</i>
+        <i class="diffilculteStarCreateQuizz" data-note="2">&#9733;</i>
+        <i class="diffilculteStarCreateQuizz" data-note="3">&#9733;</i>
+        <i class="diffilculteStarCreateQuizz" data-note="4">&#9733;</i>
+        <i class="diffilculteStarCreateQuizz" data-note="5">&#9733;</i>
+        <i class="quizzdiff">Difficulté : </i>
 
         <script>
             const stars = document.querySelectorAll('.diffilculteStarCreateQuizz');
+            let check = false;
             stars.forEach(star => {
                 star.addEventListener('mouseover', selectStars)
                 star.addEventListener('mouseleave', unselectStars)
-                star.addEventListener('click', selectStars)
+                star.addEventListener('click', activeSelect)
+                star.addEventListener('click', activeReSelect)
             });
 
             function selectStars(e) {
                 const data = e.target;
                 const etoiles = priviousSiblings(data);
-                etoiles.forEach(etoile => {
-                    etoile.classList.add('hover');
-                })
+                if (check == false) {
+                    etoiles.forEach(etoile => {
+                        etoile.classList.add('hover');
+                    })
+                }
             }
 
             function unselectStars(e) {
                 const data = e.target;
                 const etoiles = priviousSiblings(data);
-                etoiles.forEach(etoile => {
-                    etoile.classList.remove('hover');
-                })
+                if (check == false) {
+                    etoiles.forEach(etoile => {
+                        etoile.classList.remove('hover');
+                    })
+                }
+            }
+
+            function activeSelect(e) {
+                check = true;
+                document.querySelector('.quizzdiff').innerHTML = 'Difficulté : ' + e.target.dataset.note;
+                console.log(check);
+            }
+
+            function activeReSelect(e) {
+                if (check == true) {
+                    check = false;
+                }
             }
 
             function priviousSiblings(data) {
@@ -83,9 +102,10 @@
 
         <div class="DivQuestion DivQuestion1">
             <p>Question 1 - Entrer la question :</p>
-            <input type="text" class="Question1" name="Question1" required> 
+            <input type="text" class="Question1" name="Question1" required>
             <p>Entrer la bonne réponse :</p>
-            <input type="text" class="rightAnswer1" name="rightAnswer1" required> <p>Entrer la première mauvaise réponse :</p>
+            <input type="text" class="rightAnswer1" name="rightAnswer1" required>
+            <p>Entrer la première mauvaise réponse :</p>
             <input type="text" class="Answer1" name="AnswerButton10" required>
             <div class="DivAnswerButton1">
                 <input type="button" name="addAnswer1" value="Ajouter une réponse à la question 1" class="Button1">
