@@ -30,9 +30,6 @@
         if (!mysqli_fetch_assoc($result)) {
             echo "<p>Vous n'avez pas encore de résultats.</p>";
         } else {
-
-
-
             $query    = "SELECT * FROM `quizz`";
             $result = mysqli_query($conn, $query);
             while ($row_quizz_list = mysqli_fetch_assoc($result)) {
