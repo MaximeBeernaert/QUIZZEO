@@ -116,10 +116,6 @@
             </div>
         <?php endwhile; ?>
     </div>
-
-    <a id_quizz="retour" href="accueil.php">Retour à l'accueil</a>
-
-
     <?php
     // if the user click on the delete button, delete the quiz from the database and ask confirmation with a button
     if (isset($_POST['delete-btn'])) {
@@ -159,8 +155,8 @@
     // if the user click on the modify button, redirect to the modify page
     if (isset($_POST['modify-btn'])) {
         $id_quizz = $_POST['id_quizz'];
-        header("Location: modif.php");
         $_SESSION['id_quizz'] = $id_quizz;
+        header("Location: modif.php");
     }
     ?>
 </body>
