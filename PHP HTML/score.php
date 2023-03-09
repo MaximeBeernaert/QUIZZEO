@@ -15,11 +15,10 @@
         ?>
     </header>
 
-    <table>
+    <div class='form'>
         <?php
         $user = $_SESSION['user'];
-        echo "<p class='link'><a href='usermenu.php'>Revenir au menu Utilisateur</a></p><br>";
-
+        echo "<h1>Mes Scores</h1>";
 
         $id_user = $user['id_utilisateur'];
         $quizz_total_average = [];
@@ -29,7 +28,7 @@
         $query    = "SELECT * FROM `jouer` WHERE `id_utilisateur` = $id_user";
         $result = mysqli_query($conn, $query);
         if (!mysqli_fetch_assoc($result)) {
-            echo "Vous n'avez pas encore de résultats.";
+            echo "<p>Vous n'avez pas encore de résultats.</p>";
         } else {
 
 
@@ -53,18 +52,18 @@
                 $result = mysqli_query($conn, $query);
                 $quizz = mysqli_fetch_assoc($result);
                 $quizz_title = $quizz['titre_quizz'];
-                echo "<br>Votre moyenne pour le quizz " . $quizz_title . " : " . $average_result;
+                echo "<br><p>Votre moyenne pour le quizz " . $quizz_title . " : " . $average_result." % </p>";
 
                 array_push($quizz_total_average, $average_result);
             }
 
-            echo "<br>Votre Moyenne générale aux Quizz : ";
+            echo "<br><br>Votre Moyenne générale aux Quizz : ";
             $average_result = round(array_sum($quizz_total_average) / count($quizz_total_average), 2);
-            echo $average_result;
+            echo $average_result." % </p>";
         }
 
         ?>
-    </table>
+    </div>
 
 </body>
 
