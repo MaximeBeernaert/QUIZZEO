@@ -28,44 +28,6 @@ li {
 
 
 
-.link1 {
-  background-color: #0077cc;
-  color: white;
-}
-
-.link1:hover {
-  background-color: #004b80;
-  color: white;
-}
-
-.link2 {
-  background-color: #00cc77;
-  color: white;
-}
-.link2:hover {
-  background-color: #009456;
-  color: white;
-}
-
-.link3 {
-  background-color: #cc7700;
-  color: white;
-}
-.link3:hover {
-  background-color: #8b5100;
-  color: white;
-}
-
-
-.link4 {
-  background-color: #cc0077;
-  color: white;
-}
-.link4:hover {
-  background-color: #940056;
-  color: white;
-}
-
 a:last-child {
   display: block;
   text-align: center;
@@ -77,3 +39,66 @@ a.retour {
   bottom: 0;
   left: 0;
 }
+
+.globalMain {
+  position: relative;
+  width: 150px;
+  height: 200px;
+  background-color: #def3ff;
+  border: solid;
+  border-radius: 5px;
+  border-color: #00a2ff;
+}
+
+.choose-quizz-btn {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  margin: 0;
+  font-size: 13px;
+  letter-spacing: 1px;
+  color: white;
+  background-color: #00a2ff;
+  border-color: #00a2ff;
+  border-radius: 5px;
+
+}
+
+.delete-btn {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  margin: 0;
+  font-size: 13px;
+  color: white;
+  background-color: #00a2ff;
+  border-color: #00a2ff;
+  border-radius: 5px;
+  margin-bottom: 4px;
+  margin-right: 4px;
+}
+
+.modify-btn{
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  margin: 0;
+  font-size: 13px;
+  color: white;
+  background-color: #00a2ff;
+  border-color: #00a2ff;
+  border-radius: 5px;
+  margin-bottom: 4px;
+  margin-left: 4px;
+}
+.choose-quizz-btn:hover{
+  background-color: #017ec7;
+}
+.delete-btn:hover{
+  background-color: #017ec7;
+}
+.modify-btn:hover{
+  background-color: #017ec7;
+}
+  

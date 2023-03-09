@@ -156,7 +156,5 @@
         $_SESSION['id_quizz'] = $id_quizz;
     }
     ?>
-
 </body>
-
 </html>
