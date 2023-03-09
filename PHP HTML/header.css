@@ -5,6 +5,7 @@ body {
     height: 100%;
 }
 
+/* HEADER */
 header {
     background-color: #00a2ff;
     color: #fff;
@@ -49,4 +50,86 @@ a {
     text-align: center;
 }
 
+/* BODY */
+
+.containerBody {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 30px;
+}
+
+h1 {
+    color: #333;
+    font-size: 32px;
+    margin-bottom: 30px;
+}
+
+/* BUTTON */
+
+.modify-btn, .delete-btn {
+    background-color: #00a2ff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    margin-right: 10px;
+    cursor: pointer;
+}
+  
+.modify-btn:hover, .delete-btn:hover {
+    background-color: #005d8f;
+}
+  
+.confirm-delete-btn, .cancel-delete-btn {
+    background-color: #fff;
+    color: #00a2ff;
+    border: 2px solid #00a2ff;
+    border-radius: 5px;
+    padding: 10px 20px;
+    margin-right: 10px;
+    cursor: pointer;
+}
+  
+.confirm-delete-btn:hover, .cancel-delete-btn:hover {
+    background-color: #00a2ff;
+    color: #fff;
+}
+
+
+/* TABLES */
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 30px;
+}
+  
+th {
+    text-align: left;
+    background-color: #00a2ff;
+    color: #fff;
+    padding: 10px;
+}
+  
+td {
+    border: 1px solid #ddd;
+    padding: 10px;
+}
+
+
+/* ADMIN */
+
+.usersList {
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    margin-bottom: 40px;
+}
+  
+.usersList h2 {
+    color: #00a2ff;
+    font-size: 28px;
+    margin-bottom: 20px;
+}
 
