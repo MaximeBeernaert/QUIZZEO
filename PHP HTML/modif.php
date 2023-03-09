@@ -34,7 +34,7 @@
 
     <form class="form1" action="savemodif.php" method="post">
 
-        <h1 class="Create Quizz">Modify Quizz</h1>
+        <h1 class="Create Quizz">Modification de quizz</h1>
         <input type="text" class="quizztitle" name="quizztitle" placeholder="Titre Quizz" value="<?php echo $title_quizz; ?>" required />
         <input type="text" class="quizzdiff" name="quizzdiff" placeholder="Difficulté Quizz" value="<?php echo $diff_quizz; ?>" required />
         <input type="text" class="themequizz" name="themequizz" placeholder="Thème du Quizz" value="<?php echo $theme_quizz; ?>" required />
