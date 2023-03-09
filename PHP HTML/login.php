@@ -9,15 +9,12 @@
 </head>
 
 <body>
-
     <header>
-        <h1>QUIZZEO</h1>
-        <p>Log in</p>
-
+        <?php
+        require('header.php');
+        ?>
     </header>
     <?php
-    require('DBconnexion.php');
-    session_start();
     // When form submitted, check and create user session.
     if (isset($_POST['email'])) {
         // removes backslashes

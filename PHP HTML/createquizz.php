@@ -17,12 +17,10 @@
     </header>
 
     <?php
-    require('DBconnexion.php');
     $user = $_SESSION['user'];
     if ($user['type_utilisateur'] < 1) {
         header("Location:notpermited.php");
     }
-
     ?>
 
     <form class="formQuestion" action="savequizz.php" method="post">
