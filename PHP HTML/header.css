@@ -100,7 +100,7 @@ h1 {
     cursor: pointer;
 }
 
-.modify-btn:hover, .delete-btn:hover, .confirm-delete-btn:hover, .cancel-delete-btn:hover {
+.buttonBlack:hover, .buttonRed:hover, .buttonBlue:hover {
     background-color: #1e2c34;
 }
 
@@ -129,7 +129,7 @@ td {
 /* FORM */
 
 /* Dans createquizz.php */
-.formQuestion {
+.form {
     width: 50%;
     margin: 0 auto;
     text-align: center;
@@ -139,7 +139,15 @@ td {
     box-shadow: 0px 0px 10px #BBBBBB;
     margin-top: 20px;
 }
-
+.input {
+    font-size: 16px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    margin-bottom: 20px;
+    width: 100%;
+    box-sizing: border-box;
+}
 
 
 /* ADMIN */
@@ -156,17 +164,6 @@ td {
     color: #00a2ff;
     font-size: 28px;
     margin-bottom: 20px;
-}
-
-/* Create Quizz (et sans doute modif quizz) */
-
-.quizztitle, .quizzdiff, .themequizz {
-    width: 100%;
-    padding: 15px;
-    margin-bottom: 20px;
-    border: 1px solid #BBBBBB;
-    border-radius: 5px;
-    font-size: 18px;
 }
 
 

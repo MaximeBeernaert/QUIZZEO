@@ -22,12 +22,12 @@
     }
     ?>
 
-    <form class="formQuestion" action="savequizz.php" method="post">
+    <form class="form" action="savequizz.php" method="post">
 
         <h1 class="Create Quizz">Création de quizz</h1>
-        <input type="text" class="quizztitle" name="quizztitle" placeholder="Titre Quizz" required />
-        <input type="text" class="quizzdiff" name="quizzdiff" placeholder="Difficulté Quizz" required />
-        <input type="text" class="themequizz" name="themequizz" placeholder="Thème du Quizz" required />
+        <input type="text" class="input quizztitle" name="quizztitle" placeholder="Titre Quizz" required />
+        <input type="text" class="input quizzdiff" name="quizzdiff" placeholder="Difficulté Quizz" required />
+        <input type="text" class="input themequizz" name="themequizz" placeholder="Thème du Quizz" required />
 
         <div class="DivQuestion DivQuestion1">Question 1 - Entrer la question :
             <input type="text" class="Question1" name="Question1" required> Entrer la bonne réponse :

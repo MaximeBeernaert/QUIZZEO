@@ -41,33 +41,34 @@
                 break;
         }
         ?>
-        <!-- display the user to modify -->
-        <h1>Modification de l'utilisateur suivant : </h1><br>
-        <h3><?php echo "ID : " . $actualUser['id_utilisateur'] . " Nom : " . $actualUser['nom_utilisateur'] . " Prénom : " . $actualUser['prenom_utilisateur']; ?></h3>
         <!-- form to modify the user -->
-        <form action="saveUser.php" method="POST">
+        <form class="form" action="saveUser.php" method="POST">
+            <!-- display the user to modify -->
+            <h2>Modification de l'utilisateur suivant : </h2><br>
+            <h3><?php echo "ID : " . $actualUser['id_utilisateur'] . " Nom : " . $actualUser['nom_utilisateur'] . " Prénom : " . $actualUser['prenom_utilisateur']; ?></h3>
+        
             <?php $id_utilisateur1 = $actualUser['id_utilisateur'];
             echo "<input type='hidden' name='id_utilisateur' id='id_utilisateur' value='$id_utilisateur1'>"; ?>
 
             <?php $nom_utilisateur = $actualUser['nom_utilisateur']; ?>
             <label for="nom">Nom : </label>
-            <?php echo "<input type='text' name='nom' id='nom' value='$nom_utilisateur'>"; ?>
+            <?php echo "<input class='input' type='text' name='nom' id='nom' value='$nom_utilisateur'>"; ?>
             <br>
 
             <?php $prenom_utilisateur = $actualUser['prenom_utilisateur']; ?>
             <label for="prenom">Prénom : </label>
-            <?php echo "<input type='text' name='prenom' id='prenom' value='$prenom_utilisateur'>"; ?>
+            <?php echo "<input class='input' type='text' name='prenom' id='prenom' value='$prenom_utilisateur'>"; ?>
             <br>
 
             <?php $email_utilisateur = $actualUser['mail_utilisateur']; ?>
             <label for="email">Email : </label>
-            <?php echo "<input type='text' name='email' id='email' value='$email_utilisateur'>"; ?>
+            <?php echo "<input class='input' type='text' name='email' id='email' value='$email_utilisateur'>"; ?>
             <br>
 
             <?php $type_utilisateur = $actualUser['type_utilisateur']; ?>
             <label for="type">Type : </label>
             <?php echo "<input type='hidden' name='type' value=$type_utilisateur>" ?>
-            <select name="type" id="type">
+            <select class='input' name="type" id="type">
                 <option selected disabled hidden><?php echo $actualUser['type_utilisateur']; ?></option>
                 <option>Utilisateur</option>
                 <option>Quizzeur</option>
@@ -75,10 +76,8 @@
             </select>
             <br>
             <div class="modif-btn">
-                <button type="submit" name="modif-btn" class="modif-btn">Modifier</button>
-                <a href="admin.php">Retour au panel d'administration</a>
+                <button type="submit" name="modif-btn" class="buttonBlue modif-btn">Modifier</button>
             </div>
-
         </form>
 
 
