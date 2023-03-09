@@ -1,17 +1,20 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
-    <meta charset="utf-8" />
-    <link rel="stylesheet" href="signin.css">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inscription</title>
 </head>
 
 <body>
-
     <header>
-        <h1>QUIZZEO</h1>
-        <p>Registration</p>
+        <?php
+        require('header.php');
+        ?>
     </header>
+
     <?php
     require('DBconnexion.php');
     // When form submitted, insert values into the database.
@@ -83,6 +86,7 @@
     <?php
     }
     ?>
+
 </body>
 
 </html>
