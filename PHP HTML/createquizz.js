@@ -3,12 +3,12 @@ class CreateQuizz {
         this.addQuestion = document.querySelector('.addQuestion')
         this.addAnswer1 = document.querySelector('.Button1')
         this.removeQuestion = document.querySelector('.removeQuestion')
-        this.removeAnswer = document.querySelector('.removeAnswer')
+        this.removeAnswer1 = document.querySelector('.removeAnswer1')
         this.numberQuestion = 1
         this.addQuestion.addEventListener('click', () => { this.addQuestionJS() } )
         this.addAnswer1.addEventListener('click', () => { this.addAnswerJS("Button1") } )
         this.removeQuestion.addEventListener('click', () => { this.removeQuestionJS() } )
-        this.removeAnswer.addEventListener('click', () => { this.removeAnswerJS() } )
+        this.removeAnswer1.addEventListener('click', () => { this.removeAnswerJS(this.removeAnswer1.name) } )
     }
 
     addQuestionJS() {
@@ -26,14 +26,21 @@ class CreateQuizz {
         const newDiv = document.createElement("div")
         newDiv.className = `DivQuestion DivQuestion${this.numberQuestion}`
 
+        const questionText = document.createElement("p")
         const newQuestionTitle = document.createTextNode(`Question ${this.numberQuestion} - Entrer la question : `)
+        questionText.appendChild(newQuestionTitle)
+
         const newQuestion = document.createElement('input')
         newQuestion.type = 'text'
         newQuestion.className = `Question${this.numberQuestion}`
         newQuestion.name = `Question${this.numberQuestion}`
         newQuestion.required = true
 
+        const rightText = document.createElement("p")
         const rightAnswerText = document.createTextNode(` Entrer la bonne réponse : `)
+        rightText.appendChild(rightAnswerText)
+
+        
         const rightAnswer = document.createElement('input')
         rightAnswer.type = 'text'
         rightAnswer.className = `rightAnswer${this.numberQuestion}`
@@ -41,9 +48,13 @@ class CreateQuizz {
         rightAnswer.required = true
 
         const newDivWrongAnswer = document.createElement("div")
-        newDivWrongAnswer.className = `DivAnswer-0`
+        newDivWrongAnswer.className = `DivAnswer${this.numberQuestion}0`
 
+        const wrongText = document.createElement("p")
         const wrongAnswerText = document.createTextNode(` Entrer la première mauvaise réponse : `)
+        wrongText.appendChild(wrongAnswerText)
+
+        
         const newAnswer = document.createElement('input')
         newAnswer.type = 'text'
         newAnswer.className = `Answer0`
@@ -60,18 +71,30 @@ class CreateQuizz {
         addAnswer.className = `Button${this.numberQuestion}`
         addAnswer.addEventListener('click', () => { this.addAnswerJS(addAnswer.className) } )
 
+        const divAnswerRemove = document.createElement("div")
+        divAnswerRemove.className = `DivAnswerRemove${this.numberQuestion}`
+
+        const removeAnswer = document.createElement('input')
+        removeAnswer.type = 'button'
+        removeAnswer.id = `removeAnswer${this.numberQuestion}`
+        removeAnswer.value = `Retirer une réponse ${this.numberQuestion}`
+        removeAnswer.className = `removeAnswer${this.numberQuestion}`
+        removeAnswer.name = `removeAnswer${this.numberQuestion}`
+        removeAnswer.addEventListener('click', () => { this.removeAnswerJS(removeAnswer.name) } )
+
         newDiv.appendChild(space)
-        newDiv.appendChild(newQuestionTitle)
+        newDiv.appendChild(questionText)
         newDiv.appendChild(newQuestion)
-        newDiv.appendChild(rightAnswerText)
+        newDiv.appendChild(rightText)
         newDiv.appendChild(rightAnswer)
-        newDiv.appendChild(wrongAnswerText)
+        newDiv.appendChild(wrongText)
         newDivWrongAnswer.appendChild(newAnswer)
         newDiv.appendChild(newAnswer)
         divAnswerButton.appendChild(addAnswer)
+        divAnswerRemove.appendChild(removeAnswer)
 
         newDiv.appendChild(divAnswerButton)
-        
+        newDiv.appendChild(divAnswerRemove)
        
         
         const element = document.querySelector('.form')
@@ -88,7 +111,7 @@ class CreateQuizz {
         }
         if( this.numberAnswer <=8) {
             const newDiv = document.createElement("div")
-            newDiv.className = `DivAnswer${number} DivAnswer-${this.numberAnswer}`
+            newDiv.className = `DivAnswer${number} DivAnswer${number}${this.numberAnswer}`
     
             const newAnswer = document.createElement('input')
             newAnswer.type = 'text'
@@ -112,15 +135,14 @@ class CreateQuizz {
             elementLast.remove()
         }
     }
-    removeAnswerJS(){
-        const elementQuestionNumber = document.querySelectorAll('.DivQuestion')
-        this.lastQuestion = elementQuestionNumber.length
+    removeAnswerJS(classname){
+        let number = classname.replace("removeAnswer", "")
 
-        const elementAnswerNumber = document.querySelectorAll(`.DivAnswer${this.lastQuestion}`)
-        this.lastAnswer = elementAnswerNumber.length
+        const elementAnswerNumber = document.querySelectorAll(`.DivAnswer${number}`)
+        let lastAnswer = elementAnswerNumber.length
 
-        if(this.lastAnswer != 0){
-            const elementLast = document.querySelector(`.DivAnswer-${this.lastAnswer}`)
+        if(lastAnswer != 0){
+            const elementLast = document.querySelector(`.DivAnswer${number}${lastAnswer}`)
             elementLast.remove()
         }
     }

@@ -6,6 +6,16 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Creation Quizz</title>
+    <style>
+        .diffilculteStarCreateQuizz {
+            font-size: 1.5rem;
+        }
+
+        .hover {
+            color: #FFD700;
+        }
+    </style>
+
 </head>
 
 <body>
@@ -26,15 +36,62 @@
 
         <h1 class="Create Quizz">Création de quizz</h1>
         <input type="text" class="input quizztitle" name="quizztitle" placeholder="Titre Quizz" required />
+
+        <i class="diffilculteStarCreateQuizz">&#9733;</i>
+        <i class="diffilculteStarCreateQuizz">&#9733;</i>
+        <i class="diffilculteStarCreateQuizz">&#9733;</i>
+        <i class="diffilculteStarCreateQuizz">&#9733;</i>
+        <i class="diffilculteStarCreateQuizz">&#9733;</i>
+
+        <script>
+            const stars = document.querySelectorAll('.diffilculteStarCreateQuizz');
+            stars.forEach(star => {
+                star.addEventListener('mouseover', selectStars)
+                star.addEventListener('mouseleave', unselectStars)
+                star.addEventListener('click', selectStars)
+            });
+
+            function selectStars(e) {
+                const data = e.target;
+                const etoiles = priviousSiblings(data);
+                etoiles.forEach(etoile => {
+                    etoile.classList.add('hover');
+                })
+            }
+
+            function unselectStars(e) {
+                const data = e.target;
+                const etoiles = priviousSiblings(data);
+                etoiles.forEach(etoile => {
+                    etoile.classList.remove('hover');
+                })
+            }
+
+            function priviousSiblings(data) {
+                let values = [data];
+                while (data = data.previousSibling) {
+                    if (data.nodeName == "I") {
+                        values.push(data);
+                    }
+                }
+                return values;
+            }
+        </script>
+
         <input type="text" class="input quizzdiff" name="quizzdiff" placeholder="Difficulté Quizz" required />
         <input type="text" class="input themequizz" name="themequizz" placeholder="Thème du Quizz" required />
 
-        <div class="DivQuestion DivQuestion1">Question 1 - Entrer la question :
-            <input type="text" class="Question1" name="Question1" required> Entrer la bonne réponse :
-            <input type="text" class="rightAnswer1" name="rightAnswer1" required> Entrer la première mauvaise réponse :
+        <div class="DivQuestion DivQuestion1">
+            <p>Question 1 - Entrer la question :</p>
+            <input type="text" class="Question1" name="Question1" required> 
+            <p>Entrer la bonne réponse :</p>
+            <input type="text" class="rightAnswer1" name="rightAnswer1" required> <p>Entrer la première mauvaise réponse :</p>
             <input type="text" class="Answer1" name="AnswerButton10" required>
             <div class="DivAnswerButton1">
-                <input type="button" name="addAnswer1" value="Ajouter une réponse 1" class="Button1">
+                <input type="button" name="addAnswer1" value="Ajouter une réponse à la question 1" class="Button1">
+            </div>
+            <div class="DivAnswerRemove1">
+                <input type="button" class='removeAnswer1' name="removeAnswer1" value="Retirer une réponse à la question 1">
             </div>
         </div>
         <div class="spaceDiv spaceDivQuestion"></div>
@@ -47,7 +104,7 @@
         </div>
         <div class="spaceDiv"></div>
         <div class="removeAnswers">
-        <div class="spaceDiv"></div>
+            <div class="spaceDiv"></div>
             <input type="button" class="buttonBlack removeAnswer" name="removeAnswer" value="Retirer la dernière réponse">
         </div>
         <div class="spaceDiv"></div>
