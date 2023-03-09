@@ -11,7 +11,7 @@
 <body>
     <header>
         <?php
-        require('header.php');
+        require('headerMenu.php');
         ?>
     </header>
 

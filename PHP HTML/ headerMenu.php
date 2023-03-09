@@ -12,9 +12,6 @@
     <?php
     session_start();
     require('DBconnexion.php');
-    if (!isset($_SESSION['user'])) {
-        header("Location:notconnected.php");
-    }
 
     ?>
     <header>
