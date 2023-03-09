@@ -42,6 +42,7 @@
             }
             ?>
             <p><a href="score.php">Mes Scores</a></p>
+            <p>|</p>
             <p><a href="usermenu.php">Retour menu principal</a></p>
         </div>
 

@@ -6,7 +6,6 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Creation Quizz</title>
-    <link rel="stylesheet" href="createquizz.css">
 </head>
 
 <body>
@@ -58,7 +57,6 @@
 
 
     <script src="createquizz.js"></script>
-    <button id="button1"><a href="usermenu.php">Retour au menu utilisateur</a></button>
 </body>
 
 </html>
