@@ -35,7 +35,7 @@
         } else {
             echo "<div class='form'>
                   <h3>Mot de passe ou identifiant incorrecte</h3><br/>
-                  <p class='link'>Cliquez ici pour <a href='login.php'></a>réessayer</p>
+                  <p class='link'>Cliquez ici pour <a href='accueil.php'></a>réessayer</p>
                   </div>";
         }
     } else {
