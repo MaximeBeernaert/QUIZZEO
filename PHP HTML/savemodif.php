@@ -206,21 +206,25 @@
     {
         // suppress the quizz
         $id_quizz = $_SESSION['id_quizz'];
-
+        echo $id_quizz;
         $query = "DELETE FROM `choix` WHERE id_choix IN (SELECT id_choix FROM `appartenir` WHERE id_question IN (SELECT id_question FROM `questions` WHERE id_question IN (SELECT id_question FROM `contient` WHERE id_quizz='$id_quizz')))";
         $result = mysqli_query($conn, $query);
-
-        $query = "DELETE FROM `appartenir` WHERE id_question IN (SELECT id_question FROM `questions` WHERE id_question IN (SELECT id_question FROM `contient` WHERE id_quizz='$id_quizz'))";
-        $result = mysqli_query($conn, $query);
-
-        $query = "DELETE FROM `questions` WHERE id_question IN (SELECT id_question FROM `contient` WHERE id_quizz='$id_quizz')";
-        $result = mysqli_query($conn, $query);
-
-        $query = "DELETE FROM `contient` WHERE id_quizz='$id_quizz'";
-        $result = mysqli_query($conn, $query);
-
-        $query = "DELETE FROM `quizz` WHERE id_quizz='$id_quizz'";
-        $result = mysqli_query($conn, $query);
+        if($result) {
+            $query = "DELETE FROM `appartenir` WHERE id_question IN (SELECT id_question FROM `questions` WHERE id_question IN (SELECT id_question FROM `contient` WHERE id_quizz='$id_quizz'))";
+            $result = mysqli_query($conn, $query);
+            if($result) {
+                $query = "DELETE FROM `questions` WHERE id_question IN (SELECT id_question FROM `contient` WHERE id_quizz='$id_quizz')";
+                $result = mysqli_query($conn, $query);
+                if($result) {
+                    $query = "DELETE FROM `contient` WHERE id_quizz='$id_quizz'";
+                    $result = mysqli_query($conn, $query);
+                    if($result) {
+                        $query = "DELETE FROM `quizz` WHERE id_quizz='$id_quizz'";
+                        $result = mysqli_query($conn, $query);
+                    }
+                }
+            }            
+        }
     }
 
     // MAIN 
@@ -247,7 +251,7 @@
         $quizzSave = createQuizzArray($title);
     }
     echo $title;
-    quizzSuppression($conn, $title);
+    echo quizzSuppression($conn, $title);
     // we then send for the quizz to be checked, and if TRUE, then we save the quizz in the database
     if (checkForTitle($conn, $title)) {
         createQuizz($quizzSave, $conn);

@@ -1,53 +1,12 @@
-h1 {
-  margin: 0;
-  font-size: 36px;
-  letter-spacing: 2px;
-}
-
-.container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin: 50px 0;
-}
-
-
-ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-}
-
-
-li {
-  margin: 10px;
-}
-
-
-
-a:last-child {
-  display: block;
-  text-align: center;
-  margin-top: 50px;
-  font-size: 1.2em;
-}
-a.retour {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-}
-
-.globalMain {
+.quizz {
   position: relative;
   width: 150px;
-  height: 200px;
+  height: 150px;
   background-color: #def3ff;
   border: solid;
   border-radius: 5px;
   border-color: #00a2ff;
+  margin: 10px;
 }
 
 .choose-quizz-btn {
@@ -64,7 +23,6 @@ a.retour {
   border-radius: 5px;
 
 }
-
 .delete-btn {
   position: absolute;
   bottom: 0;
@@ -78,7 +36,6 @@ a.retour {
   margin-bottom: 4px;
   margin-right: 4px;
 }
-
 .modify-btn{
   position: absolute;
   bottom: 0;
@@ -101,12 +58,15 @@ a.retour {
 .modify-btn:hover{
   background-color: #017ec7;
 }
-  
 
-h2{
-  margin: 0;
-  padding: 10px;
-  color: black;
-  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-  background: radial-gradient(rgb(217, 217, 217),rgb(140, 140, 140))
+.usermenuQuizzList{
+  padding: 1em ;
+  display: flex;
+  justify-content:center;
+}
+.display {
+  display: flex;
+  align-items: center;
+  justify-content:center;
+  text-align: center;
 }
