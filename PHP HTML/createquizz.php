@@ -48,6 +48,7 @@
             stars.forEach(star => {
                 star.addEventListener('mouseover', selectStars)
                 star.addEventListener('mouseleave', unselectStars)
+                star.addEventListener('click', selectStars)
             });
 
             function selectStars(e) {
