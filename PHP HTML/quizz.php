@@ -11,6 +11,7 @@
         <?php
         // the following lines are the generation of the quizz questions. 
         // we create a class Question
+        require('header.php');
         class Question
         {
             private $text_question;
