@@ -29,7 +29,7 @@
 
     <form class="form1" action="savequizz.php" method="post">
 
-        <h1 class="Create Quizz">Create Quizz</h1>
+        <h1 class="Create Quizz">Création de quizz</h1>
         <input type="text" class="quizztitle" name="quizztitle" placeholder="Titre Quizz" required />
         <input type="text" class="quizzdiff" name="quizzdiff" placeholder="Difficulté Quizz" required />
         <input type="text" class="themequizz" name="themequizz" placeholder="Thème du Quizz" required />
