@@ -8,63 +8,45 @@ body {
 header {
     background-color: #00a2ff;
     color: #fff;
-    padding: 20px;
+    padding : 0em 2em 0em 2em;
+}
+a {
+    color: #fff;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+.containerHeader{
+    display: flex; 
+    justify-content:space-between;
+    text-align: center;
+}
+.containerQuizzeo{
+    font-size:xx-large;
     display: flex;
-    justify-content: space-evenly;
+    justify-content:space-between;
+    text-align: center;
+}
+.containerOptions{
+    width: 25em;
+    margin: auto;
+    display: flex;
+    align-items: center;
+    justify-content:space-between;
+    text-align: center;
+}
+.containerAccount{
+    width: 12em;
+    display: flex;
+    flex-flow:column-reverse;
+    justify-content:center;
+    align-content:space-between;
+}
+.containerIPSSI{
+    width: 12em;
+    display: flex;
+    flex-direction: column;
+    justify-content:center;
     text-align: center;
 }
 
-.container{
-    display: flex;
-    justify-content: center;
-    flex-direction: row;
-    width: 100%;
-    height: 100%;
-    margin: 0;
-    padding: 0;
-}
 
-.image {
-    display: flex;
-    justify-content: center;
-    text-align: start;
-    width: 30%;
-    height: 30%;
-    margin: 0;
-    padding: 0;
-}
-
-.panel{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: row;
-    width: 60%;
-    height: 60%;
-    margin: 0;
-    padding: 0;
-}
-
-.panel:hover{
-    text-decoration: underline;
-}
-
-.userinfo{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin: 0;
-    font-size: 18px;
-    letter-spacing: 2px;
-  }
-  .userinfo {
-    background-color: #f2f2f2;
-    border: 1px solid #ccc;
-    padding: 10px;
-    font-size: 16px;
-    font-family: Arial, sans-serif;
-  }
-  
-  .userinfo p {
-    margin: 0;
-  }
