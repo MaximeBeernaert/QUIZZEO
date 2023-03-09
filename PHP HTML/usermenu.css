@@ -102,3 +102,11 @@ a.retour {
   background-color: #017ec7;
 }
   
+
+h2{
+  margin: 0;
+  padding: 10px;
+  color: black;
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  background: radial-gradient(rgb(217, 217, 217),rgb(140, 140, 140))
+}
