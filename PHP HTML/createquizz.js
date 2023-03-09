@@ -18,6 +18,9 @@ class CreateQuizz {
             this.numberQuestion = i_question
         }
 
+        const space = document.createElement('div')
+        space.className = 'spaceDiv'
+
         this.numberQuestion++
         this.numberAnswer = 0
         const newDiv = document.createElement("div")
@@ -69,13 +72,16 @@ class CreateQuizz {
         
        
         
-        const element = document.querySelector('.form1')
+        const element = document.querySelector('.formQuestion')
         const currentDiv = element.querySelector('.addQuestions')
         element.insertBefore(newDiv, currentDiv)
         
-        const element1 = document.querySelector('.form1')
+        const element1 = document.querySelector('.formQuestion')
         const currentDiv1 = element1.querySelector('.addQuestions')
         element1.insertBefore(newDiv, currentDiv1)
+
+        
+        element1.insertBefore(space, currentDiv1)
     }
 
     addAnswerJS(buttonNumber) {
