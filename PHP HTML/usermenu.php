@@ -149,6 +149,7 @@
         $result = mysqli_query($conn, $query);
 
         $query = "DELETE FROM 'jouer' WHERE id_quizz='$id_quizz'";
+        $result = mysqli_query($conn, $query);
 
         if ($result) {
             echo "Quizz supprimé avec succès";
