@@ -7,11 +7,17 @@
 </head>
 
 <body>
+    <header>
+        <?php
+        require('header.php');
+        ?>
+    </header>
+
     <table>
         <?php
         // the following lines are the generation of the quizz questions. 
         // we create a class Question
-        require('header.php');
+
         class Question
         {
             private $text_question;
@@ -67,23 +73,24 @@
             }
         }
         //the two classes above will be used to store information on each and every questions and answers the played quizz has
-        function stringCheck($string){
+        function stringCheck($string)
+        {
             $needle = "'";
             $replace = "`";
             $lastPos = 0;
             $positions = array();
-            
-            while (($lastPos = strpos($string, $needle, $lastPos))!== false) {
+
+            while (($lastPos = strpos($string, $needle, $lastPos)) !== false) {
                 $positions[] = $lastPos;
                 $lastPos = $lastPos + strlen($needle);
             }
             $stringChecked = $string;
             foreach ($positions as $value) {
-                $stringChecked = str_replace($needle,$replace,$string);
+                $stringChecked = str_replace($needle, $replace, $string);
             }
             return $stringChecked;
         }
-        
+
         // in this function we assemble the values of a quizz (questions and answers) in a 2D array : each question has multiple answers
         function createQuizz($conn, $id_quizz)
         {
@@ -180,7 +187,7 @@
         // start of the page : we get (as always) the session, the connection to the database
         session_start();
         require('DBconnexion.php');
-        if(!isset($_SESSION['user'] )) {
+        if (!isset($_SESSION['user'])) {
             header("Location:notconnected.php");
         }
 
