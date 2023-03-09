@@ -24,21 +24,10 @@
 
             </div>
             <div class="containerAccount">
-                <p class="accountName"><a href="personalspace.php">Compte de <?php echo $_SESSION['user']['prenom_utilisateur'] ?></a></p>
                 <p><a href="logout.php">Déconnexion</a></p>
             </div>
         </div>
         <div class="containerOptions">
-            <?php
-            if ($_SESSION['user']['type_utilisateur'] == 2) {
-                echo "<p><a href='admin.php'>Administration</a></p><p>|</p>";
-            }
-            if ($_SESSION['user']['type_utilisateur'] != 0) {
-                echo "<p><a href='createquizz.php'>Création de quizz</a></p> <p>|</p>";
-            }
-            ?>
-            <p><a href="score.php">Mes Scores</a></p>
-            <p>|</p>
             <p><a href="usermenu.php">Retour menu principal</a></p>
         </div>
 

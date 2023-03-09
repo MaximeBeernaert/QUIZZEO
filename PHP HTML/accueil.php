@@ -12,7 +12,7 @@
 <body>
     <header>
         <?php
-        require('headerMenu.php');
+        require('headermenu.php');
         ?>
     </header>
 
