@@ -47,12 +47,25 @@
         <script>
             const stars = document.querySelectorAll('.diffilculteStarCreateQuizz');
             let check = false;
+            let count = 0;
             stars.forEach(star => {
                 star.addEventListener('mouseover', selectStars)
                 star.addEventListener('mouseleave', unselectStars)
-                star.addEventListener('click', activeSelect)
-                star.addEventListener('click', activeReSelect)
+                star.addEventListener('click', onClick)
+                if (count % 2 === 0) {
+                    star.addEventListener('click', activeSelect)
+                }
             });
+
+            function onClick(e) {
+                count++;
+                console.log(check);
+                console.log(count);
+
+                if (count % 2 == 1) {
+                    check = false;
+                }
+            }
 
             function selectStars(e) {
                 const data = e.target;
@@ -77,7 +90,6 @@
             function activeSelect(e) {
                 check = true;
                 document.querySelector('.quizzdiff').innerHTML = 'Difficulté : ' + e.target.dataset.note;
-                console.log(check);
             }
 
             function activeReSelect(e) {
