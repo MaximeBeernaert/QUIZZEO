@@ -20,7 +20,7 @@ class CreateQuizz {
 
         const space = document.createElement('div')
         space.className = 'spaceDiv'
-
+        
         this.numberQuestion++
         this.numberAnswer = 0
         const newDiv = document.createElement("div")
@@ -60,6 +60,7 @@ class CreateQuizz {
         addAnswer.className = `Button${this.numberQuestion}`
         addAnswer.addEventListener('click', () => { this.addAnswerJS(addAnswer.className) } )
 
+        newDiv.appendChild(space)
         newDiv.appendChild(newQuestionTitle)
         newDiv.appendChild(newQuestion)
         newDiv.appendChild(rightAnswerText)
@@ -68,20 +69,14 @@ class CreateQuizz {
         newDivWrongAnswer.appendChild(newAnswer)
         newDiv.appendChild(newAnswer)
         divAnswerButton.appendChild(addAnswer)
+
         newDiv.appendChild(divAnswerButton)
         
        
         
-        const element = document.querySelector('.formQuestion')
-        const currentDiv = element.querySelector('.addQuestions')
+        const element = document.querySelector('.form')
+        const currentDiv = element.querySelector('.spaceDivQuestion')
         element.insertBefore(newDiv, currentDiv)
-        
-        const element1 = document.querySelector('.formQuestion')
-        const currentDiv1 = element1.querySelector('.addQuestions')
-        element1.insertBefore(newDiv, currentDiv1)
-
-        
-        element1.insertBefore(space, currentDiv1)
     }
 
     addAnswerJS(buttonNumber) {
@@ -100,7 +95,7 @@ class CreateQuizz {
             newAnswer.className = `Answer${this.numberAnswer}`
             newAnswer.name = `Answer${buttonNumber}${this.numberAnswer}`
             newAnswer.required = true
-    
+
             newDiv.appendChild(newAnswer)
             
             const currentDiv = document.querySelector(`.DivAnswer${buttonNumber}`)

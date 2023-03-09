@@ -37,8 +37,7 @@
                 <input type="button" name="addAnswer1" value="Ajouter une réponse 1" class="Button1">
             </div>
         </div>
-        
-        <div class="spaceDiv"></div>
+        <div class="spaceDiv spaceDivQuestion"></div>
         <div class="addQuestions">
             <input type="button" class="buttonBlack addQuestion" name="addQuestion" value="Ajouter une question">
         </div>
