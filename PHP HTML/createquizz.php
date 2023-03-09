@@ -6,6 +6,16 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Creation Quizz</title>
+    <style>
+        .diffilculteStarCreateQuizz {
+            font-size: 1.5rem;
+        }
+
+        .hover {
+            color: #FFD700;
+        }
+    </style>
+
 </head>
 
 <body>
@@ -26,6 +36,47 @@
 
         <h1 class="Create Quizz">Création de quizz</h1>
         <input type="text" class="input quizztitle" name="quizztitle" placeholder="Titre Quizz" required />
+
+        <i class="diffilculteStarCreateQuizz">&#9733;</i>
+        <i class="diffilculteStarCreateQuizz">&#9733;</i>
+        <i class="diffilculteStarCreateQuizz">&#9733;</i>
+        <i class="diffilculteStarCreateQuizz">&#9733;</i>
+        <i class="diffilculteStarCreateQuizz">&#9733;</i>
+
+        <script>
+            const stars = document.querySelectorAll('.diffilculteStarCreateQuizz');
+            stars.forEach(star => {
+                star.addEventListener('mouseover', selectStars)
+                star.addEventListener('mouseleave', unselectStars)
+            });
+
+            function selectStars(e) {
+                const data = e.target;
+                const etoiles = priviousSiblings(data);
+                etoiles.forEach(etoile => {
+                    etoile.classList.add('hover');
+                })
+            }
+
+            function unselectStars(e) {
+                const data = e.target;
+                const etoiles = priviousSiblings(data);
+                etoiles.forEach(etoile => {
+                    etoile.classList.remove('hover');
+                })
+            }
+
+            function priviousSiblings(data) {
+                let values = [data];
+                while (data = data.previousSibling) {
+                    if (data.nodeName == "I") {
+                        values.push(data);
+                    }
+                }
+                return values;
+            }
+        </script>
+
         <input type="text" class="input quizzdiff" name="quizzdiff" placeholder="Difficulté Quizz" required />
         <input type="text" class="input themequizz" name="themequizz" placeholder="Thème du Quizz" required />
 
@@ -52,6 +103,9 @@
         </div>
         <div class="spaceDiv"></div>
         <div class="removeAnswers">
+            <div class="spaceDiv"></div>
+            <input type="button" class="buttonBlack removeAnswer" name="removeAnswer" value="Retirer la dernière réponse">
+        </div>
         <div class="spaceDiv"></div>
         <input type="submit" name="submit" value="Valider le quizz" class="buttonBlue submit-button">
     </form>
