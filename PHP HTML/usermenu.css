@@ -49,43 +49,6 @@ a {
   transition: all 0.3s ease;
 }
 
-.link1 {
-  background-color: #0077cc;
-  color: white;
-}
-
-.link1:hover {
-  background-color: #004b80;
-  color: white;
-}
-
-.link2 {
-  background-color: #00cc77;
-  color: white;
-}
-.link2:hover {
-  background-color: #009456;
-  color: white;
-}
-
-.link3 {
-  background-color: #cc7700;
-  color: white;
-}
-.link3:hover {
-  background-color: #8b5100;
-  color: white;
-}
-
-.link4 {
-  background-color: #cc0077;
-  color: white;
-}
-.link4:hover {
-  background-color: #940056;
-  color: white;
-}
-
 a:last-child {
   display: block;
   text-align: center;
