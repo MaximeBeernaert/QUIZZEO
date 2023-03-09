@@ -33,7 +33,6 @@ if (isset($_POST['modif-btn'])) {
         }
 
         header("Location: usermenu.php");
-        echo "L'utilisateur a bien été modifié";
     } else {
         echo "L'utilisateur n'a pas été modifié";
     }
