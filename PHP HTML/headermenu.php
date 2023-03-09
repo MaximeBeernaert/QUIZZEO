@@ -23,12 +23,10 @@
                 <p><a href="accueil.php">QUIZZEO</a></p>
 
             </div>
-            <div class="containerAccount">
-                <p><a href="logout.php">Déconnexion</a></p>
-            </div>
         </div>
         <div class="containerOptions">
             <p><a href="usermenu.php">Retour menu principal</a></p>
         </div>
 
     </header>
+</body>
