@@ -31,7 +31,7 @@
 
     ?>
 
-    <form class="form1" action="savemodif.php" method="post">
+    <form class="form1" action="savemodifyquizz.php" method="post">
 
         <h1 class="Create Quizz">Modify Quizz</h1>
         <input type="text" class="quizztitle" name="quizztitle" placeholder="Titre Quizz" value="<?php echo $title_quizz; ?>" required />
@@ -91,7 +91,6 @@
     </form>
 
     <script src="modif.js"></script>
-    <button id="button1"><a href="usermenu.php">Retour au menu utilisateur</a></button>
 </body>
 
 </html>

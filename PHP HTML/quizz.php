@@ -183,14 +183,7 @@
             }
             echo "</div></table>";
         }
-
-        // start of the page : we get (as always) the session, the connection to the database
-        session_start();
-        require('DBconnexion.php');
-        if (!isset($_SESSION['user'])) {
-            header("Location:notconnected.php");
-        }
-
+        
         //Suppress all cookies except the 'user' one (cookies are used to store the answers chosen in a quizz)
         if (isset($_COOKIE)) {
             foreach ($_COOKIE as $name => $value) {
