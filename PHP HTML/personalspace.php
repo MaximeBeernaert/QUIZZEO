@@ -42,35 +42,32 @@
                     break;
             }
             ?>
-
-            <div class="personalSpace">Mon espace personnel</div>
-
             <div class="infoDisplay">
-                <form action="saveUser.php" method="POST">
+                <form class='form' action="saveUser.php" method="POST">
+                    <h1>Mon espace personnel</h1>
                     <?php $id_utilisateur = $actualUser['id_utilisateur'];
                     echo "<input type='hidden' name='id_utilisateur' id='id_utilisateur' value='$id_utilisateur'>"; ?>
 
                     <?php $nom_utilisateur = $actualUser['nom_utilisateur']; ?>
                     <label for="nom">Nom : </label>
-                    <?php echo "<input type='text' name='nom' id='nom' value='$nom_utilisateur'>"; ?>
+                    <?php echo "<input class='input' type='text' name='nom' id='nom' value='$nom_utilisateur'>"; ?>
                     <br>
 
                     <?php $prenom_utilisateur = $actualUser['prenom_utilisateur']; ?>
                     <label for="prenom">Prénom : </label>
-                    <?php echo "<input type='text' name='prenom' id='prenom' value='$prenom_utilisateur'>"; ?>
+                    <?php echo "<input class='input' type='text' name='prenom' id='prenom' value='$prenom_utilisateur'>"; ?>
                     <br>
 
                     <?php $email_utilisateur = $actualUser['mail_utilisateur'];
                     echo "<label for='type'>Votre email : $email_utilisateur </label>"; ?>
                     <br>
-
+                    <br>
                     <?php $type_utilisateur = $actualUser['type_utilisateur'];
                     echo "<label for='type'>Vous avez le grade : $type_utilisateur </label>"; ?>
                     <br>
-
+                    <br>
                     <div class="modif-btn">
-                        <button type="submit" name="modif-btn" class="modif-btn">Modifier</button>
-                        <a href="usermenu.php">Retour au menu principal</a>
+                        <button type="submit" name="modif-btn" class="buttonBlue modif-btn">Modifier</button>
                     </div>
                 </form>
 

@@ -1,17 +1,20 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
-    <meta charset="utf-8" />
-    <link rel="stylesheet" href="signin.css">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inscription</title>
 </head>
 
 <body>
-
     <header>
-        <h1>QUIZZEO</h1>
-        <p>Registration</p>
+        <?php
+        require('headermenu.php');
+        ?>
     </header>
+
     <?php
     require('DBconnexion.php');
     // When form submitted, insert values into the database.
@@ -67,7 +70,7 @@
         <form class="form" action="" method="post">
             <h1 class="login-title">Inscription</h1>
             <input type="text" class="login-input" name="username" placeholder="Prénom" required />
-            <input type="text" class="login-input" name="name" placeholder="Non" required />
+            <input type="text" class="login-input" name="name" placeholder="Nom" required />
             <input type="text" class="login-input" name="email" placeholder="Adresse Mail" require>
             <input type="password" class="login-input" name="password" placeholder="Mot de passe" require>
             <input type="password" class="login-input" name="confirmPassword" placeholder="Confirmer le mot de passe" require>
@@ -83,6 +86,7 @@
     <?php
     }
     ?>
+
 </body>
 
 </html>

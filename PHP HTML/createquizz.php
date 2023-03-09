@@ -6,7 +6,6 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Creation Quizz</title>
-    <link rel="stylesheet" href="createquizz.css">
 </head>
 
 <body>
@@ -23,12 +22,12 @@
     }
     ?>
 
-    <form class="formQuestion" action="savequizz.php" method="post">
+    <form class="form" action="savequizz.php" method="post">
 
         <h1 class="Create Quizz">Création de quizz</h1>
-        <input type="text" class="quizztitle" name="quizztitle" placeholder="Titre Quizz" required />
-        <input type="text" class="quizzdiff" name="quizzdiff" placeholder="Difficulté Quizz" required />
-        <input type="text" class="themequizz" name="themequizz" placeholder="Thème du Quizz" required />
+        <input type="text" class="input quizztitle" name="quizztitle" placeholder="Titre Quizz" required />
+        <input type="text" class="input quizzdiff" name="quizzdiff" placeholder="Difficulté Quizz" required />
+        <input type="text" class="input themequizz" name="themequizz" placeholder="Thème du Quizz" required />
 
         <div class="DivQuestion DivQuestion1">Question 1 - Entrer la question :
             <input type="text" class="Question1" name="Question1" required> Entrer la bonne réponse :
@@ -38,8 +37,7 @@
                 <input type="button" name="addAnswer1" value="Ajouter une réponse 1" class="Button1">
             </div>
         </div>
-        
-        <div class="spaceDiv"></div>
+        <div class="spaceDiv spaceDivQuestion"></div>
         <div class="addQuestions">
             <input type="button" class="buttonBlack addQuestion" name="addQuestion" value="Ajouter une question">
         </div>
@@ -58,7 +56,6 @@
 
 
     <script src="createquizz.js"></script>
-    <button id="button1"><a href="usermenu.php">Retour au menu utilisateur</a></button>
 </body>
 
 </html>

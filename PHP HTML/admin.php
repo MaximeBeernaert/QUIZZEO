@@ -119,11 +119,10 @@
                     echo "Erreur lors de la suppression de l'utilisateur";
                 } else {
                     echo "L'utilisateur avec l'id $id a bien été supprimé !";
-                    include_once 'admin.php';
+                    echo("<meta http-equiv='refresh' content='1'>");
                 }
             }
             ?>
-            <a href="usermenu.php">Retour au menu principal</a>
         </div>
     </div>
 </body>

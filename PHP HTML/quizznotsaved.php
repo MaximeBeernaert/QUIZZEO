@@ -15,10 +15,15 @@
         ?>
     </header>
 
-    <?php
-    echo "Le Quizz n'a pas été sauvegardé<br><p class='link'><a href='usermenu.php'>menu</a></p><br><p class='link'><a href='accueil.php'>accueil</a></p><br>";
-    ?>
-
+    <div class="containerQuizzNotSaved">
+        <div class="textQuizzNotSaved">
+            Le Quizz n'a pas été sauvegardé !
+        </div>
+        <div class="btnQuizzNotSaved">
+            <a href="usermenu.php">Menu utilisateur</a>
+            <a href="accueil.php">Accueil</a>
+        </div>
+    </div>
 </body>
 
 </html>
