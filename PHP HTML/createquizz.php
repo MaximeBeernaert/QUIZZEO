@@ -53,13 +53,20 @@
             stars.forEach(star => {
                 star.addEventListener('mouseover', selectStars)
                 star.addEventListener('mouseleave', unselectStars)
-                star.addEventListener('click', onClick)
+                star.addEventListener('click', click())
                 if (count % 2 === 0) {
                     star.addEventListener('click', activeSelect)
                 }
             });
 
-            function onClick(e) {
+            function click(){
+                const data = e.target;
+                const etoiles = priviousSiblings(data);
+                etoiles.forEach(etoile => {
+                    etoile.classList.add('hover');
+                })
+            }
+            function onClick() {
                 count++;
                 console.log(check);
                 console.log(count);

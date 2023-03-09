@@ -179,7 +179,7 @@ td {
     margin: 10px;
   }
   
-  .choose-quizz-btn {
+  .choose2-quizz-btn {
     position: absolute;
     top: 50%;
     left: 50%;
@@ -193,7 +193,7 @@ td {
     border-radius: 5px;
   
   }
-  .delete-btn {
+  .delete2-btn {
     position: absolute;
     bottom: 0;
     right: 0;
@@ -206,7 +206,7 @@ td {
     margin-bottom: 4px;
     margin-right: 4px;
   }
-  .modify-btn{
+  .modify2-btn{
     position: absolute;
     bottom: 0;
     left: 0;
@@ -219,13 +219,13 @@ td {
     margin-bottom: 4px;
     margin-left: 4px;
   }
-  .choose-quizz-btn:hover{
+  .choose2-quizz-btn:hover{
     background-color: #017ec7;
   }
-  .delete-btn:hover{
+  .delete2-btn:hover{
     background-color: #017ec7;
   }
-  .modify-btn:hover{
+  .modify2-btn:hover{
     background-color: #017ec7;
   }
   

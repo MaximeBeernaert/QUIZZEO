@@ -53,7 +53,7 @@
                 <div class="quizzButton quizzPlay">
                     <form action="quizz.php" method="POST">
                         <?php echo "<input type='hidden' name='id_quizz' value='$id_quizz'>" ?>
-                        <button type="submit" name="choose-quizz-btn" class="choose-quizz-btn">Jouer !</button>
+                        <button type="submit" name="choose2-quizz-btn" class="choose2-quizz-btn">Jouer !</button>
                     </form>
                 </div>
                 <?php
@@ -61,13 +61,13 @@
                     <div class="quizzButton quizzModif">
                         <form action="modif.php" method="POST">
                             <input type="hidden" name="id_quizz" value="<?php echo $row['id_quizz']; ?>">
-                            <button type="submit" name="modify-btn" class="modify-btn">Modifier</button>
+                            <button type="submit" name="modify2-btn" class="modify2-btn">Modifier</button>
                         </form>
                     </div>
                     <div class="quizzButton quizzDelete">
                         <form action="usermenu.php" method="POST">
                             <input type="hidden" name="id_quizz" value="<?php echo $row['id_quizz']; ?>">
-                            <button type="submit" name="delete-btn" class="delete-btn">Supprimer</button>
+                            <button type="submit" name="delete2-btn" class="delete2-btn">Supprimer</button>
                         </form>
                     </div>
                 <?php
@@ -97,7 +97,7 @@
                 <div class="quizzButton quizzPlay">
                     <form action="quizz.php" method="POST">
                         <?php echo "<input type='hidden' name='id_quizz' value='$id_quizz'>" ?>
-                        <button type="submit" name="choose-quizz-btn" class="choose-quizz-btn">Jouer !</button>
+                        <button type="submit" name="choose2-quizz-btn" class="choose2-quizz-btn">Jouer !</button>
                     </form>
                 </div>
                 <?php
@@ -105,13 +105,13 @@
                     <div class="quizzButton quizzModif">
                         <form action="modif.php" method="POST">
                             <input type="hidden" name="id_quizz" value="<?php echo $row['id_quizz']; ?>">
-                            <button type="submit" name="modify-btn" class="modify-btn">Modifier</button>
+                            <button type="submit" name="modify2-btn" class="modify2-btn">Modifier</button>
                         </form>
                     </div>
                     <div class="quizzButton quizzDelete">
                         <form action="usermenu.php" method="POST">
                             <input type="hidden" name="id_quizz" value="<?php echo $row['id_quizz']; ?>">
-                            <button type="submit" name="delete-btn" class="delete-btn">Supprimer</button>
+                            <button type="submit" name="delete2-btn" class="delete2-btn">Supprimer</button>
                         </form>
                     </div>
                 <?php
@@ -133,6 +133,8 @@
     }
     if (isset($_POST['confirm-delete-btn'])) {
         $id_quizz = $_POST['id_quizz'];
+        
+
         $query = "DELETE FROM `choix` WHERE id_choix IN (SELECT id_choix FROM `appartenir` WHERE id_question IN (SELECT id_question FROM `questions` WHERE id_question IN (SELECT id_question FROM `contient` WHERE id_quizz='$id_quizz')))";
         $result = mysqli_query($conn, $query);
 
