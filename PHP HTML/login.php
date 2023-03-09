@@ -34,8 +34,8 @@
             header("Location: usermenu.php");
         } else {
             echo "<div class='form'>
-                  <h3>Incorrect Username/password.</h3><br/>
-                  <p class='link'>Click here to <a href='login.php'>Login</a> again.</p>
+                  <h3>Mot de passe ou identifiant incorrecte</h3><br/>
+                  <p class='link'><a href='login.php'>Cliquez ici pour réessayer</a></p>
                   </div>";
         }
     } else {

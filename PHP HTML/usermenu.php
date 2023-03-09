@@ -55,7 +55,7 @@
                 <?php
                 if ($type_utilisateur == 2) : ?>
                     <div class="personalModif">
-                        <form action="usermenu.php" method="POST">
+                        <form action="modif.php" method="POST">
                             <input type="hidden" name="id_quizz" value="<?php echo $row['id_quizz']; ?>">
                             <button type="submit" name="modify-btn" class="modify-btn">Modifier</button>
                         </form>
@@ -99,13 +99,13 @@
                 <?php
                 if ($type_utilisateur == 2) : ?>
                     <div class="globalModif">
-                        <form action="usermenu.php" method="POST">
+                        <form action="modif.php" method="POST">
                             <input type="hidden" name="id_quizz" value="<?php echo $row['id_quizz']; ?>">
                             <button type="submit" name="modify-btn" class="modify-btn">Modifier</button>
                         </form>
                     </div>
                     <div class="globalDelete">
-                        <form action="usermenu.php" method="POST">
+                        <form action="modif.php" method="POST">
                             <input type="hidden" name="id_quizz" value="<?php echo $row['id_quizz']; ?>">
                             <button type="submit" name="delete-btn" class="delete-btn">Supprimer</button>
                         </form>
@@ -116,10 +116,6 @@
             </div>
         <?php endwhile; ?>
     </div>
-
-    <a id_quizz="retour" href="accueil.php">Retour à l'accueil</a>
-
-
     <?php
     // if the user click on the delete button, delete the quiz from the database and ask confirmation with a button
     if (isset($_POST['delete-btn'])) {
@@ -154,13 +150,6 @@
         } else {
             echo "Erreur lors de la suppression du quizz";
         }
-    }
-
-    // if the user click on the modify button, redirect to the modify page
-    if (isset($_POST['modify-btn'])) {
-        $id_quizz = $_POST['id_quizz'];
-        header("Location: modif.php");
-        $_SESSION['id_quizz'] = $id_quizz;
     }
     ?>
 </body>
