@@ -29,7 +29,6 @@ function stringCheck($string){
 function createQuizzArray($title)
 {
     $quizz_diff = $_POST['hiddenQuizzDiff'];
-    echo $quizz_diff;
     $quizzSave = array(array($title, $quizz_diff, stringCheck($_POST['themequizz'])));
     $numberQuestion = 1;
     while (isset($_POST["Question" . $numberQuestion])) {
@@ -113,8 +112,7 @@ function createQuizz($quizzSave, $conn)
         </body>
     <?php
     } else {
-        echo $quizz_diff;
-        // header("Location:quizznotsaved.php");
+        header("Location:quizznotsaved.php");
     }
     $query = "SELECT * FROM `quizz` WHERE titre_quizz='$title'";
     $result = mysqli_query($conn, $query);

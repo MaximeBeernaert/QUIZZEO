@@ -38,7 +38,8 @@
         <input type="text" class="input quizztitle" name="quizztitle" placeholder="Titre Quizz" required />
 
         <br>
-        <div class="quizzdiff" name="quizzdiff">Difficulté : Moyen </div>
+        <div class="quizzdiff" name="quizzdiff">Difficulté : Moyen <input type="hidden" class="hiddenQuizzDiff" name="hiddenQuizzDiff" value="3"></div>
+        
         <i class="diffilculteStarCreateQuizz" data-note="1">&#9733;</i>
         <i class="diffilculteStarCreateQuizz" data-note="2">&#9733;</i>
         <i class="diffilculteStarCreateQuizz" data-note="3">&#9733;</i>
