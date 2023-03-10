@@ -20,7 +20,6 @@
     $id_utilisateur = $user['id_utilisateur'];
     $type_utilisateur = $user['type_utilisateur'];
     ?>
-
     <?php
     //if the user is a  utilisateur (type_utilisateur = 0), he can only see all the quizzes
     if ($type_utilisateur == 1 || $type_utilisateur == 2) :
@@ -125,14 +124,10 @@
             <?php endwhile;
             }
             ?>
-            <?php
-            // if the user click on the delete button, delete the quiz from the database and ask confirmation with a button
-            if (isset($_POST['delete2-btn'])) {
+            <div class="popup" id="popup">
+                <?php
                 $id_quizz = $_POST['id_quizz'];
-            ?>
-                <div class="popup" id="popup">
-                    <?php
-                    echo "
+                echo "
                 <br>
                 <form action='usermenu.php' method='POST'>
                     <input type='hidden' name='id_quizz' value='$id_quizz'>
@@ -141,49 +136,47 @@
                     <button type='submit' name='buttonBlack cancel-delete-btn' class='buttonBlack cancel-delete-btn' onclick='closePopup()'>Non</button>
                 </form>
                 <br>";
-                    ?>
-                <?php
+                ?>
+            </div>
+            <?php
+            if (isset($_POST['confirm-delete-btn'])) {
+                $id_quizz = $_POST['id_quizz'];
+
+
+                $query = "DELETE FROM `choix` WHERE id_choix IN (SELECT id_choix FROM `appartenir` WHERE id_question IN (SELECT id_question FROM `questions` WHERE id_question IN (SELECT id_question FROM `contient` WHERE id_quizz='$id_quizz')))";
+                $result = mysqli_query($conn, $query);
+
+                $query = "DELETE FROM `appartenir` WHERE id_question IN (SELECT id_question FROM `questions` WHERE id_question IN (SELECT id_question FROM `contient` WHERE id_quizz='$id_quizz'))";
+                $result = mysqli_query($conn, $query);
+
+                $query = "DELETE FROM `questions` WHERE id_question IN (SELECT id_question FROM `contient` WHERE id_quizz='$id_quizz')";
+                $result = mysqli_query($conn, $query);
+
+                $query = "DELETE FROM `contient` WHERE id_quizz='$id_quizz'";
+                $result = mysqli_query($conn, $query);
+
+                $query = "DELETE FROM `quizz` WHERE id_quizz='$id_quizz'";
+                $result = mysqli_query($conn, $query);
+
+                $query = "DELETE FROM 'jouer' WHERE id_quizz='$id_quizz'";
+                $result = mysqli_query($conn, $query);
+
+                echo ("<meta http-equiv='refresh' content='1'>");
             }
-                ?>
-                <script>
-                    let popup = document.getElementById('popup');
+            ?>
+            <script>
+                const popup = document.querySelector('.popup');
 
-                    function openPopup() {
-                        popup.classList.add('open-popup');
-                    }
-
-                    function closePopup() {
-                        popup.classList.remove('open-popup');
-                    }
-                </script>
-                </div>
-
-                <?php
-                if (isset($_POST['confirm-delete-btn'])) {
-                    $id_quizz = $_POST['id_quizz'];
-
-
-                    $query = "DELETE FROM `choix` WHERE id_choix IN (SELECT id_choix FROM `appartenir` WHERE id_question IN (SELECT id_question FROM `questions` WHERE id_question IN (SELECT id_question FROM `contient` WHERE id_quizz='$id_quizz')))";
-                    $result = mysqli_query($conn, $query);
-
-                    $query = "DELETE FROM `appartenir` WHERE id_question IN (SELECT id_question FROM `questions` WHERE id_question IN (SELECT id_question FROM `contient` WHERE id_quizz='$id_quizz'))";
-                    $result = mysqli_query($conn, $query);
-
-                    $query = "DELETE FROM `questions` WHERE id_question IN (SELECT id_question FROM `contient` WHERE id_quizz='$id_quizz')";
-                    $result = mysqli_query($conn, $query);
-
-                    $query = "DELETE FROM `contient` WHERE id_quizz='$id_quizz'";
-                    $result = mysqli_query($conn, $query);
-
-                    $query = "DELETE FROM `quizz` WHERE id_quizz='$id_quizz'";
-                    $result = mysqli_query($conn, $query);
-
-                    $query = "DELETE FROM 'jouer' WHERE id_quizz='$id_quizz'";
-                    $result = mysqli_query($conn, $query);
-
-                    echo ("<meta http-equiv='refresh' content='1'>");
+                function openPopup() {
+                    popup.classList.add('open-popup');
                 }
-                ?>
+
+                function closePopup() {
+                    popup.classList.remove('open-popup');
+                }
+            </script>
+        </div>
+        </div>
 </body>
 
 </html>
