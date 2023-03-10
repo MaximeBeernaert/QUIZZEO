@@ -48,20 +48,11 @@
 
         <script>
             const stars = document.querySelectorAll('.diffilculteStarCreateQuizz');
-            let check = false;
-            let count = 0;
             stars.forEach(star => {
                 star.addEventListener('mouseover', onHover)
                 star.addEventListener('mouseleave', unselectStars)
-                star.addEventListener('click', onClick)
+                star.addEventListener('click', activeSelect)
             });
-            function onClick(e) {
-                count++;
-                console.log(check);
-                console.log(count);
-                
-                activeSelect(e);
-            }
 
             function onHover(e) {
                 const data = e.target;
@@ -80,7 +71,6 @@
             }
 
             function activeSelect(e) {
-                check = true;
                 // Switch for the diffilculty replace number in letter
                 switch (e.target.dataset.note) {
                     case '1':
@@ -99,8 +89,17 @@
                         document.querySelector('.quizzdiff').innerHTML = 'Difficulté : Très difficile';
                         break;
                 }
+                const stars = document.querySelectorAll('.diffilculteStarCreateQuizz');
+                stars.forEach(star => {
+                    star.classList.remove('hover');
+                    star.removeEventListener('mouseleave', unselectStars)
+                })
+                const data = e.target;
+                const etoiles = priviousSiblings(data);
+                etoiles.forEach(etoile => {
+                        etoile.classList.add('hover');
+                    })
             }
-
             function priviousSiblings(data) {
                 let values = [data];
                 while (data = data.previousSibling) {
