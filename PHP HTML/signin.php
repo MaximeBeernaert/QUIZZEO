@@ -69,17 +69,17 @@
 
         <form class="form" action="" method="post">
             <h1 class="login-title">Inscription</h1>
-            <input type="text" class="login-input" name="username" placeholder="Prénom" required />
-            <input type="text" class="login-input" name="name" placeholder="Nom" required />
-            <input type="text" class="login-input" name="email" placeholder="Adresse Mail" require>
-            <input type="password" class="login-input" name="password" placeholder="Mot de passe" require>
-            <input type="password" class="login-input" name="confirmPassword" placeholder="Confirmer le mot de passe" require>
+            <input type="text" class="input" name="username" placeholder="Prénom" required />
+            <input type="text" class="input" name="name" placeholder="Nom" required />
+            <input type="text" class="input" name="email" placeholder="Adresse Mail" require>
+            <input type="password" class="input" name="password" placeholder="Mot de passe" require>
+            <input type="password" class="input" name="confirmPassword" placeholder="Confirmer le mot de passe" require>
 
-            <select type="role" name="role" class="login-input">
+            <select type="role" name="role" class="input">
                 <option value="0">Utilisateur</option>
                 <option value="1">Quizzeur</option>
             </select>
-            <input type="submit" name="submit" value="S'inscrire" class="login-button">
+            <input type="submit" name="submit" value="S'inscrire" class="buttonBlue">
             <p class="link"><a href="login.php">Cliquez ici si vous avez déjà un compte</a></p>
         </form>
 
