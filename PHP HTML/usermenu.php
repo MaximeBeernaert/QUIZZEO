@@ -37,8 +37,7 @@
                 <?php
                 if (mysqli_num_rows($result) == 0) :
                 ?>
-                    <h2>Tu n'as pas encore créer de quizz !</h2>
-                    <a href="createquizz.php">Créer mon premier quizz</a>
+                    <h2>Tu n'as pas encore créé de quizz !</h2>
                 <?php
                 endif;
                 ?>
@@ -128,13 +127,13 @@
         </div>
         <?php
         // if the user click on the delete button, delete the quiz from the database and ask confirmation with a button
-        if (isset($_POST['delete-btn'])) {
+        if (isset($_POST['delete2-btn'])) {
             $id_quizz = $_POST['id_quizz'];
-            echo "<p>Êtes-vous sûr de vouloir supprimer ce quizz ?</p>";
-            echo "<form action='usermenu.php' method='POST'>
+            echo "<form class='form' action='usermenu.php' method='POST'>
              <input type='hidden' name='id_quizz' value='$id_quizz'>
-             <button type='submit' name='confirm-delete-btn' class='confirm-delete-btn'>Oui</button>
-             <button type='submit' name='cancel-delete-btn' class='cancel-delete-btn'>Non</button>
+             <p>Êtes-vous sûr de vouloir supprimer ce quizz ?</p>
+             <button type='submit' name='confirm-delete-btn' class='confirm-delete-btn buttonRed'>Oui</button>
+             <button type='submit' name='buttonBlack cancel-delete-btn' class='buttonBlack cancel-delete-btn'>Non</button>
          </form>";
         }
         if (isset($_POST['confirm-delete-btn'])) {
@@ -159,12 +158,7 @@
             $query = "DELETE FROM 'jouer' WHERE id_quizz='$id_quizz'";
             $result = mysqli_query($conn, $query);
 
-            if ($result) {
-                echo "Quizz supprimé avec succès";
-                echo ("<meta http-equiv='refresh' content='1'>");
-            } else {
-                echo "Erreur lors de la suppression du quizz";
-            }
+            echo ("<meta http-equiv='refresh' content='1'>");
         }
         ?>
 </body>
