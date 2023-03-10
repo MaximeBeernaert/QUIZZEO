@@ -51,42 +51,32 @@
             let check = false;
             let count = 0;
             stars.forEach(star => {
-                star.addEventListener('mouseover', selectStars)
+                star.addEventListener('mouseover', onHover)
                 star.addEventListener('mouseleave', unselectStars)
                 star.addEventListener('click', onClick)
-                if (count % 2 === 0) {
-                    star.addEventListener('click', activeSelect)
-                }
             });
-
             function onClick(e) {
                 count++;
                 console.log(check);
                 console.log(count);
-
-                if (count % 2 == 1) {
-                    check = false;
-                }
+                
+                activeSelect(e);
             }
 
-            function selectStars(e) {
+            function onHover(e) {
                 const data = e.target;
                 const etoiles = priviousSiblings(data);
-                if (check == false) {
-                    etoiles.forEach(etoile => {
+                etoiles.forEach(etoile => {
                         etoile.classList.add('hover');
                     })
-                }
             }
 
             function unselectStars(e) {
                 const data = e.target;
                 const etoiles = priviousSiblings(data);
-                if (check == false) {
-                    etoiles.forEach(etoile => {
+                etoiles.forEach(etoile => {
                         etoile.classList.remove('hover');
                     })
-                }
             }
 
             function activeSelect(e) {
@@ -94,26 +84,20 @@
                 // Switch for the diffilculty replace number in letter
                 switch (e.target.dataset.note) {
                     case '1':
-                        document.querySelector('.quizzdiff').innerHTML = 'Difficulté : très Facile';
+                        document.querySelector('.quizzdiff').innerHTML = 'Difficulté : Très facile';
                         break;
                     case '2':
-                        document.querySelector('.quizzdiff').innerHTML = 'Difficulté : facile';
+                        document.querySelector('.quizzdiff').innerHTML = 'Difficulté : Facile';
                         break;
                     case '3':
-                        document.querySelector('.quizzdiff').innerHTML = 'Difficulté : moyen';
+                        document.querySelector('.quizzdiff').innerHTML = 'Difficulté : Moyen';
                         break;
                     case '4':
-                        document.querySelector('.quizzdiff').innerHTML = 'Difficulté : difficile';
+                        document.querySelector('.quizzdiff').innerHTML = 'Difficulté : Difficile';
                         break;
                     case '5':
-                        document.querySelector('.quizzdiff').innerHTML = 'Difficulté : très difficile';
+                        document.querySelector('.quizzdiff').innerHTML = 'Difficulté : Très difficile';
                         break;
-                }
-            }
-
-            function activeReSelect(e) {
-                if (check == true) {
-                    check = false;
                 }
             }
 

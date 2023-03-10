@@ -93,7 +93,6 @@
                                     <button type="submit" name="delete-btn" class="buttonRed delete-btn">Supprimer</button>
                                 </form>
                             </td>
-
                         </tr>
                     <?php endwhile; ?>
                 </tbody>
