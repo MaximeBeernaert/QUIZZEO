@@ -25,7 +25,7 @@
             </div>
         </div>
         <div class="containerOptions">
-            <p><a href="usermenu.php">Retour menu principal</a></p>
+            <p><a href="accueil.php">Retour à l'accueil</a></p>
         </div>
 
     </header>
