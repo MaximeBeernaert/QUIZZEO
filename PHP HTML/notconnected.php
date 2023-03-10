@@ -17,14 +17,18 @@
 
   <!-- // When the user is not yet logged in, he is forwarded to this page, where he has the option to go to Login, or the Main Page.  -->
 
-  <div class="containerNotConnected">
-    <div class="textNotConnected">
+  <div class="containerNot">
+    <div class="containerText">
       Vous n'êtes pas encore connecté !
     </div>
-    <div class="btnNotConnected">
-      <a href="login.php">Connexion</a>
-      <a href="accueil.p">Accueil</a>
-    </div>
+
+    <form action="login.php">
+      <input type="submit" name="submit" value="Connexion" class="buttonBlue">
+    </form>
+
+    <form action="accueil.php">
+      <input type="submit" name="submit" value="Accueil" class="buttonBlue">
+    </form>
   </div>
 </body>
 
