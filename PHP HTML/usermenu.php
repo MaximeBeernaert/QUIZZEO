@@ -68,10 +68,8 @@
                             </form>
                         </div>
                         <div class="quizzButton quizzDelete">
-                            <form action="usermenu.php" method="POST">
-                                <input type="hidden" name="id_quizz" value="<?php echo $row['id_quizz']; ?>">
-                                <button type="submit" name="delete2-btn" class="delete2-btn">Supprimer</button>
-                            </form>
+                            <input type="hidden" name="id_quizz" value="<?php echo $row['id_quizz']; ?>">
+                            <button type="submit" name="delete2-btn" class="delete2-btn" onclick="openPopup()">Supprimer</button>
                         </div>
                     <?php
                     endif;
@@ -90,7 +88,6 @@
             if (mysqli_num_rows($result) == 0) {
             ?>
                 <h2>Il n'y a pas encore de quizz sur le site !</h2>
-                <a href="createquizz.php">Créer le premier quizz</a>
                 <?php
             } else {
 
@@ -118,10 +115,8 @@
                                 </form>
                             </div>
                             <div class="quizzButton quizzDelete">
-                                <form action="usermenu.php" method="POST">
-                                    <input type="hidden" name="id_quizz" value="<?php echo $row['id_quizz']; ?>">
-                                    <button type="submit" name="delete2-btn" class="delete2-btn">Supprimer</button>
-                                </form>
+                                <input type="hidden" name="id_quizz" value="<?php echo $row['id_quizz']; ?>">
+                                <button type="submit" name="delete2-btn" class="delete2-btn" onclick="openPopup()">Supprimer</button>
                             </div>
                         <?php
                         endif;
@@ -134,38 +129,61 @@
             // if the user click on the delete button, delete the quiz from the database and ask confirmation with a button
             if (isset($_POST['delete2-btn'])) {
                 $id_quizz = $_POST['id_quizz'];
-                echo "<form action='usermenu.php' method='POST'>
+            ?>
+                <div class="popup" id="popup">
+                    <?php
+                    echo "
+                <br>
+                <form action='usermenu.php' method='POST'>
                     <input type='hidden' name='id_quizz' value='$id_quizz'>
                     <p>Êtes-vous sûr de vouloir supprimer ce quizz ?</p>
-                    <button type='submit' name='confirm-delete-btn' class='confirm-delete-btn buttonRed'>Oui</button>
-                    <button type='submit' name='buttonBlack cancel-delete-btn' class='buttonBlack cancel-delete-btn'>Non</button>
-                </form>";
+                    <button type='submit' name='confirm-delete-btn' class='confirm-delete-btn buttonRed' onclick='closePopup()'>Oui</button>
+                    <button type='submit' name='buttonBlack cancel-delete-btn' class='buttonBlack cancel-delete-btn' onclick='closePopup()'>Non</button>
+                </form>
+                <br>";
+                    ?>
+                <?php
             }
-            if (isset($_POST['confirm-delete-btn'])) {
-                $id_quizz = $_POST['id_quizz'];
+                ?>
+                <script>
+                    let popup = document.getElementById('popup');
+
+                    function openPopup() {
+                        popup.classList.add('open-popup');
+                    }
+
+                    function closePopup() {
+                        popup.classList.remove('open-popup');
+                    }
+                </script>
+                </div>
+
+                <?php
+                if (isset($_POST['confirm-delete-btn'])) {
+                    $id_quizz = $_POST['id_quizz'];
 
 
-                $query = "DELETE FROM `choix` WHERE id_choix IN (SELECT id_choix FROM `appartenir` WHERE id_question IN (SELECT id_question FROM `questions` WHERE id_question IN (SELECT id_question FROM `contient` WHERE id_quizz='$id_quizz')))";
-                $result = mysqli_query($conn, $query);
+                    $query = "DELETE FROM `choix` WHERE id_choix IN (SELECT id_choix FROM `appartenir` WHERE id_question IN (SELECT id_question FROM `questions` WHERE id_question IN (SELECT id_question FROM `contient` WHERE id_quizz='$id_quizz')))";
+                    $result = mysqli_query($conn, $query);
 
-                $query = "DELETE FROM `appartenir` WHERE id_question IN (SELECT id_question FROM `questions` WHERE id_question IN (SELECT id_question FROM `contient` WHERE id_quizz='$id_quizz'))";
-                $result = mysqli_query($conn, $query);
+                    $query = "DELETE FROM `appartenir` WHERE id_question IN (SELECT id_question FROM `questions` WHERE id_question IN (SELECT id_question FROM `contient` WHERE id_quizz='$id_quizz'))";
+                    $result = mysqli_query($conn, $query);
 
-                $query = "DELETE FROM `questions` WHERE id_question IN (SELECT id_question FROM `contient` WHERE id_quizz='$id_quizz')";
-                $result = mysqli_query($conn, $query);
+                    $query = "DELETE FROM `questions` WHERE id_question IN (SELECT id_question FROM `contient` WHERE id_quizz='$id_quizz')";
+                    $result = mysqli_query($conn, $query);
 
-                $query = "DELETE FROM `contient` WHERE id_quizz='$id_quizz'";
-                $result = mysqli_query($conn, $query);
+                    $query = "DELETE FROM `contient` WHERE id_quizz='$id_quizz'";
+                    $result = mysqli_query($conn, $query);
 
-                $query = "DELETE FROM `quizz` WHERE id_quizz='$id_quizz'";
-                $result = mysqli_query($conn, $query);
+                    $query = "DELETE FROM `quizz` WHERE id_quizz='$id_quizz'";
+                    $result = mysqli_query($conn, $query);
 
-                $query = "DELETE FROM 'jouer' WHERE id_quizz='$id_quizz'";
-                $result = mysqli_query($conn, $query);
+                    $query = "DELETE FROM 'jouer' WHERE id_quizz='$id_quizz'";
+                    $result = mysqli_query($conn, $query);
 
-                echo ("<meta http-equiv='refresh' content='1'>");
-            }
-            ?>
+                    echo ("<meta http-equiv='refresh' content='1'>");
+                }
+                ?>
 </body>
 
 </html>
