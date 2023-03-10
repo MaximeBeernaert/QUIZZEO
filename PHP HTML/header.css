@@ -112,8 +112,16 @@ h1 {
     cursor: pointer;
 }
 
-.buttonBlack:hover, .buttonRed:hover, .buttonBlue:hover {
-    background-color: #1e2c34;
+.buttonBlack:hover {
+    background-color: #383737;
+}
+
+.buttonRed:hover{
+    background-color: #751414;
+}
+
+.buttonBlue:hover{
+    background-color: #0076bb;
 }
 
 /* TABLES */
