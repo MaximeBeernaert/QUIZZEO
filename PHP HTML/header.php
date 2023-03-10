@@ -39,11 +39,21 @@
             if ($_SESSION['user']['type_utilisateur'] != 0) {
                 echo "<p class='optionHeader'><a href='createquizz.php'>Création de quizz</a></p> <p class='spaceHeader'>|</p>";
             }
+            if( isset($_COOKIE['currentHouse'])) {
+                $currentHouse = $_COOKIE['currentHouse'];
+            }else{
+                $currentHouse = 'houseButton Serpentard';
+            }
+            
             ?>
             <p class='optionHeader'><a href="score.php">Mes Scores</a></p>
             <p class='spaceHeader'>|</p>
             <p class='optionHeader'><a href="usermenu.php">Retour menu principal</a></p>
+            <p class='spaceHeader'>|</p>
+            <?php
+            echo "<p class='$currentHouse'>Maison (temporaire)</p>"
+            ?>
         </div>
-
+        <script name='src' src="header.js"></script>
     </header>
 </body>

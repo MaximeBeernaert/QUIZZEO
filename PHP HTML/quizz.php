@@ -189,8 +189,10 @@
             foreach ($_COOKIE as $name => $value) {
                 if ($name != "PHPSESSID") // Name of the cookie 'User' we want to keep
                 {
-                    setcookie($name, '', 1); // Better use 1 (for the time) to avoid time problems, like timezones
-                    setcookie($name, '', 1, '/');
+                    if($name != "currentHouse") {
+                        setcookie($name, '', 1); // Better use 1 (for the time) to avoid time problems, like timezones
+                        setcookie($name, '', 1, '/');
+                    }
                 }
             }
         }
