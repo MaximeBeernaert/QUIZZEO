@@ -59,11 +59,12 @@
                     <br>
 
                     <?php $email_utilisateur = $actualUser['mail_utilisateur'];
-                    echo "<label for='type'>Votre email : $email_utilisateur </label>"; ?>
+                    $_SESSION['email']=$email_utilisateur;
+                    echo "<div>Votre email : $email_utilisateur</div>"; ?>
                     <br>
                     <br>
                     <?php $type_utilisateur = $actualUser['type_utilisateur'];
-                    echo "<label for='type'>Vous avez le grade : $type_utilisateur </label>"; ?>
+                    echo "<label for='type' name='type' id='type'>Vous avez le grade : $type_utilisateur </label>"; ?>
                     <br>
                     <br>
                     <div class="modif-btn">
