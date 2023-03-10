@@ -7,7 +7,7 @@ body {
 
 /* HEADER */
 header {
-    background-color: #00a2ff;
+    background-color: #220901;
     color: #fff;
 }
 a {
@@ -16,6 +16,10 @@ a {
     transition: all 0.3s ease;
 }
 .containerHeader{
+    background-image: url("hufflepuffBG.png");
+    background-repeat: no-repeat;
+    background-size:cover;
+    height: 10em;
     display: flex; 
     justify-content:space-between;
     text-align: center;
@@ -28,8 +32,7 @@ a {
     text-align: center;
 }
 .containerOptions{
-    color: #220901;
-    width: 45em;
+    width: 55em;
     margin: auto;
     display: flex;
     align-items: center;
@@ -67,6 +70,9 @@ a {
 }
 .spaceHeader {
     padding: 0 0.2em 0 0.2em;
+}
+.backgroundG{
+    object-fit:scale-down;
 }
 /* BODY */
 
