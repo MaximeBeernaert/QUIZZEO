@@ -135,11 +135,11 @@
             if (isset($_POST['delete2-btn'])) {
                 $id_quizz = $_POST['id_quizz'];
                 echo "<form action='usermenu.php' method='POST'>
-             <input type='hidden' name='id_quizz' value='$id_quizz'>
-             <p>Êtes-vous sûr de vouloir supprimer ce quizz ?</p>
-             <button type='submit' name='confirm-delete-btn' class='confirm-delete-btn buttonRed'>Oui</button>
-             <button type='submit' name='buttonBlack cancel-delete-btn' class='buttonBlack cancel-delete-btn'>Non</button>
-         </form>";
+                    <input type='hidden' name='id_quizz' value='$id_quizz'>
+                    <p>Êtes-vous sûr de vouloir supprimer ce quizz ?</p>
+                    <button type='submit' name='confirm-delete-btn' class='confirm-delete-btn buttonRed'>Oui</button>
+                    <button type='submit' name='buttonBlack cancel-delete-btn' class='buttonBlack cancel-delete-btn'>Non</button>
+                </form>";
             }
             if (isset($_POST['confirm-delete-btn'])) {
                 $id_quizz = $_POST['id_quizz'];
