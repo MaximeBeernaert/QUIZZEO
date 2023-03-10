@@ -8,7 +8,12 @@ if (isset($_POST['modif-btn'])) {
     $id = $_POST['id_utilisateur'];
     $nom = $_POST['nom'];
     $prenom = $_POST['prenom'];
-    $email = $_POST['email'];
+    if(isset($_POST['email'])){
+        $email = $_POST['email'];
+    }else{
+        $email = $_SESSION['email'];
+    }
+
     $type = $_POST['type'];
 
     if ($type == "Utilisateur") {

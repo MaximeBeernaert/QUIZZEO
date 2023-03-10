@@ -9,7 +9,6 @@ body {
 header {
     background-color: #00a2ff;
     color: #fff;
-    padding : 0em 2em 0em 2em;
 }
 a {
     color: #fff;
@@ -20,6 +19,7 @@ a {
     display: flex; 
     justify-content:space-between;
     text-align: center;
+    padding : 0em 2em 0em 2em;
 }
 .containerQuizzeo{
     font-size:xx-large;
@@ -28,7 +28,8 @@ a {
     text-align: center;
 }
 .containerOptions{
-    width: 40em;
+    color: #220901;
+    width: 45em;
     margin: auto;
     display: flex;
     align-items: center;
@@ -61,7 +62,12 @@ a {
     width: 12em;
     display: flex;
 }
-
+.optionHeader {
+    padding: 0 1em 0 1em;
+}
+.spaceHeader {
+    padding: 0 0.2em 0 0.2em;
+}
 /* BODY */
 
 .containerBody {
