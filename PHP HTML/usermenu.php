@@ -23,7 +23,7 @@
 
     <?php
     //if the user is a  utilisateur (type_utilisateur = 0), he can only see all the quizzes
-    if ($type_utilisateur == 1) :
+    if ($type_utilisateur == 1 || $type_utilisateur == 2) :
     ?>
         <div class="usermenuQuizzList">Mes quizz :</div>
         <div class="display displayPersonalQuizz">
