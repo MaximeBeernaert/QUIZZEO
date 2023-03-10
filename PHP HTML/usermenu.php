@@ -85,15 +85,6 @@
         <div class="display displayAllQuizz">
 
             <?php
-            if (mysqli_num_rows($result) == 0) :
-            ?>
-                <h2>Il n'y a pas encore de quizz sur le site !</h2>
-                <a href="createquizz.php">Créer le premier quizz</a>
-            <?php
-            endif;
-            ?>
-
-            <?php
             $query = "SELECT * FROM `quizz`";
             $result = mysqli_query($conn, $query);
             if (mysqli_num_rows($result) == 0) {
@@ -173,9 +164,9 @@
                 $query = "DELETE FROM 'jouer' WHERE id_quizz='$id_quizz'";
                 $result = mysqli_query($conn, $query);
 
-            echo ("<meta http-equiv='refresh' content='1'>");
-        }
-        ?>
+                echo ("<meta http-equiv='refresh' content='1'>");
+            }
+            ?>
 </body>
 
 </html>
