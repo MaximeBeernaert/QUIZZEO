@@ -134,7 +134,6 @@
             // if the user click on the delete button, delete the quiz from the database and ask confirmation with a button
             if (isset($_POST['delete2-btn'])) {
                 $id_quizz = $_POST['id_quizz'];
-                echo "<p>Êtes-vous sûr de vouloir supprimer ce quizz ?</p>";
                 echo "<form action='usermenu.php' method='POST'>
              <input type='hidden' name='id_quizz' value='$id_quizz'>
              <p>Êtes-vous sûr de vouloir supprimer ce quizz ?</p>
