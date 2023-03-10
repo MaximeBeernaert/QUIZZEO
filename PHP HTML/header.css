@@ -7,7 +7,7 @@ body {
 
 /* HEADER */
 header {
-    background-color: #220901;
+    background-color: #1c1c1c;
     color: #fff;
 }
 a {
@@ -16,7 +16,7 @@ a {
     transition: all 0.3s ease;
 }
 .containerHeader{
-    background-image: url("hufflepuffBG.png");
+    background-image: url("griffondor.png");
     background-repeat: no-repeat;
     background-size:cover;
     height: 10em;
