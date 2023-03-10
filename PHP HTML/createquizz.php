@@ -38,7 +38,7 @@
         <input type="text" class="input quizztitle" name="quizztitle" placeholder="Titre Quizz" required />
 
         <br>
-        <p class="quizzdiff">Difficulté : </p>
+        <div class="quizzdiff" name="quizzdiff">Difficulté : Moyen </div>
         <i class="diffilculteStarCreateQuizz" data-note="1">&#9733;</i>
         <i class="diffilculteStarCreateQuizz" data-note="2">&#9733;</i>
         <i class="diffilculteStarCreateQuizz" data-note="3">&#9733;</i>
@@ -72,23 +72,38 @@
 
             function activeSelect(e) {
                 // Switch for the diffilculty replace number in letter
+
+                const hiddenDiff = document.createElement('input');
+                hiddenDiff.type = 'hidden';
+                hiddenDiff.className = 'hiddenQuizzDiff';
+                hiddenDiff.name = 'hiddenQuizzDiff';
+
+                element = document.querySelector('.quizzdiff')
                 switch (e.target.dataset.note) {
                     case '1':
-                        document.querySelector('.quizzdiff').innerHTML = 'Difficulté : Très facile';
+                        element.innerHTML = 'Difficulté : Très facile';
+                        hiddenDiff.value = "1";
                         break;
                     case '2':
-                        document.querySelector('.quizzdiff').innerHTML = 'Difficulté : Facile';
+                        element.innerHTML = 'Difficulté : Facile';
+                        hiddenDiff.value = "2";
                         break;
                     case '3':
-                        document.querySelector('.quizzdiff').innerHTML = 'Difficulté : Moyen';
+                        element.innerHTML = 'Difficulté : Moyen';
+                        hiddenDiff.value = "3";
                         break;
                     case '4':
-                        document.querySelector('.quizzdiff').innerHTML = 'Difficulté : Difficile';
+                        element.innerHTML = 'Difficulté : Difficile';
+                        hiddenDiff.value = "4";
                         break;
                     case '5':
-                        document.querySelector('.quizzdiff').innerHTML = 'Difficulté : Très difficile';
+                        element.innerHTML = 'Difficulté : Très difficile';
+                        hiddenDiff.value = "5";
                         break;
                 }
+                element.appendChild(hiddenDiff);
+
+
                 const stars = document.querySelectorAll('.diffilculteStarCreateQuizz');
                 stars.forEach(star => {
                     star.classList.remove('hover');
