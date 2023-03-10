@@ -43,6 +43,8 @@
             <p class='optionHeader'><a href="score.php">Mes Scores</a></p>
             <p class='spaceHeader'>|</p>
             <p class='optionHeader'><a href="usermenu.php">Retour menu principal</a></p>
+            <p class='spaceHeader'>|</p>
+            <p class='houseChange'>Maison (temporaire)</p>
         </div>
 
     </header>
