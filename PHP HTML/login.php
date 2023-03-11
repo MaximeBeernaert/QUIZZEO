@@ -5,14 +5,14 @@
     <link rel="stylesheet" href="login.css">
     <meta charset="utf-8" />
     <title>Login</title>
-    <!-- <link rel="stylesheet" href="style.css" /> -->
 </head>
 
 <body>
-
-    <?php
-    require('headermenu.php');
-    ?>
+    <header>
+        <?php
+        require('headermenu.php');
+        ?>
+    </header>
 
     <?php
     // When form submitted, check and create user session.

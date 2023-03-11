@@ -10,10 +10,11 @@
 </head>
 
 <body>
-
-    <?php
-    require('headermenu.php');
-    ?>
+    <header>
+        <?php
+        require('headermenu.php');
+        ?>
+    </header>
 
     <?php
     require('DBconnexion.php');
