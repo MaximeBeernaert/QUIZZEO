@@ -183,7 +183,7 @@
             $result_question = mysqli_query($conn, $query);
             $current_question = mysqli_fetch_assoc($result_question);
             $text_question = $current_question['intitule_question'];
-            echo "<div class='DivQuestion DivQuestion" . $index_question . "'>Question " . $index_question . " - Entrer la question :";
+            echo "<div class='DivQuestion DivQuestion" . $index_question . "'><p>Question " . $index_question . " - Entrer la question :</p>";
         ?>
             <input type="text" class="Question<?php echo $index_question; ?>" name="Question<?php echo $index_question; ?>" value="<?php echo $text_question; ?>" required />
         <?php
@@ -201,27 +201,36 @@
                 if ($index_answer == 0) {
                     echo "<p>Entrer la bonne réponse : </p>";
                     echo "<input type='text' class='rightAnswer" . $index_question . "' name='rightAnswer" . $index_question . "' value='" . $text_answer . "' required>";
-                } else {
-                    echo "<p>Entrer la mauvaise réponse " . $index_answer . " : </p>";
-                    echo "<input type='text' class='Answer" . $index_question . "' name='AnswerButton" . $index_question . ($index_answer - 1) . "' value='" . $text_answer . "' required>";
+                } elseif($index_answer == 1) {
+                    echo "<p>Entrer la(les) mauvaise(s) réponse(s) : </p>";
+                    echo "<input type='text' class='Answer" . $index_question . "' name='AnswerButton" . $index_question . ($index_answer - 1) . "' value='" . $text_answer . "' required><br>";
+                }else{
+                echo "<br><input type='text' class='Answer" . $index_question . "' name='AnswerButton" . $index_question . ($index_answer - 1) . "' value='" . $text_answer . "' required><br>";
                 }
                 $index_answer++;
             }
-            echo "<div class='DivAnswer DivAnswerButton" . $index_question . "'> </div>";
+            ?>
+            <br>
+            <div class='DivAnswer DivAnswerButton<?php echo $index_question ?>'> </div>
+            <div class="DivAnswerRemove DivAnswerRemove<?php echo $index_question ?>"></div>
+
+            <?php
             $index_question++;
             echo "</div>";
+
         endwhile;
         ?>
+        <div class="spaceDiv spaceDivQuestion"></div>
         <div class="addQuestions">
-            <input type="button" class="addQuestion" name="addQuestion" value="Ajouter une question">
+            <input type="button" class="buttonBlack addQuestion" name="addQuestion" value="Ajouter une question">
         </div>
+        <div class="spaceDiv"></div>
         <div class="removeQuestions">
-            <input type="button" class="removeQuestion" name="removeQuestion" value="Retirer la dernière question">
+            <input type="button" class="buttonBlack removeQuestion" name="removeQuestion" value="Retirer la dernière question">
         </div>
-        <div class="removeAnswers">
-            <input type="button" class="removeAnswer" name="removeAnswer" value="Retirer la dernière réponse">
-        </div>
-        <input type="submit" name="submit" value="Valider la modification" class="submit-button">
+        <div class="spaceDiv"></div>
+        <div class="spaceDiv"></div>
+        <input type="submit" name="submit" value="Valider le quizz" class="buttonBlue submit-button">
     </form>
     <div class="banner">
                 <?php echo "<img class='houseIcone $currentHouse' src='GriffondorIcone.png'>" ?>

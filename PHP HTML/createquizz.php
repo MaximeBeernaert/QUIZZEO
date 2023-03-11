@@ -163,10 +163,6 @@
             <input type="button" class="buttonBlack removeQuestion" name="removeQuestion" value="Retirer la dernière question">
         </div>
         <div class="spaceDiv"></div>
-        <div class="removeAnswers">
-            <div class="spaceDiv"></div>
-            <input type="button" class="buttonBlack removeAnswer" name="removeAnswer" value="Retirer la dernière réponse">
-        </div>
         <div class="spaceDiv"></div>
         <input type="submit" name="submit" value="Valider le quizz" class="buttonBlue submit-button">
     </form>
