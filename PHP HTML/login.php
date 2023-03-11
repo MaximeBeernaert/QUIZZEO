@@ -5,15 +5,15 @@
     <link rel="stylesheet" href="login.css">
     <meta charset="utf-8" />
     <title>Login</title>
-    <!-- <link rel="stylesheet" href="style.css"/> -->
+    <!-- <link rel="stylesheet" href="style.css" /> -->
 </head>
 
 <body>
-    <header>
-        <?php
-        require('headermenu.php');
-        ?>
-    </header>
+
+    <?php
+    require('headermenu.php');
+    ?>
+
     <?php
     // When form submitted, check and create user session.
     if (isset($_POST['email'])) {
@@ -42,8 +42,6 @@
     ?>
         <div class="container">
             <div class="no2-container">
-                <div class="header">
-                </div>
                 <form class="form" action='' method="post" name="login">
                     <h1 class="login-title">Connexion</h1>
                     <input type="text" class="login-input" name="email" placeholder="Email" autofocus="true" require />
