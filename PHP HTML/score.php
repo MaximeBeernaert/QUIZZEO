@@ -60,7 +60,7 @@
             
         }
         if($quizz_total_average != null) {
-            echo "<br><br>Votre Moyenne générale aux Quizz : ";
+            echo "<br><br>Votre moyenne générale aux Quizz : ";
             $average_result = round(array_sum($quizz_total_average) / count($quizz_total_average), 2);
             echo $average_result." % </p>";
         }else{
