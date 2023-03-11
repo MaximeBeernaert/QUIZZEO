@@ -59,6 +59,14 @@ a {
     text-align: center;
 }
 
+.containerPoudlard{
+    width: 12em;
+    display: flex;
+    flex-direction: column;
+    justify-content:center;
+    text-align: center;
+}
+
 .containerNot{
     width: 12em;
     display: flex;
