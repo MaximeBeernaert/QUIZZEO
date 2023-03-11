@@ -2,14 +2,29 @@
 <html lang="en">
 
 <head>
-    <link rel="stylesheet" href="accueil.css">
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
+<body>
+<header>
+        <?php
+        require('header.php');
+        ?>
+    </header>
 <?php
-
+if( isset($_COOKIE['currentHouse'])) {
+    $currentHouse = str_replace("houseButton ","",$_COOKIE['currentHouse']);
+}else{
+    $currentHouse = 'Serpentard';
+}
+?>
+<div class="mainPage">
+<div class="banner">
+    <?php echo "<img class='houseIcone $currentHouse' src='GriffondorIcone.png'>" ?>
+</div>
+<?php
 function stringCheck($string){
     $needle = "'";
     $replace = "''";
@@ -194,20 +209,13 @@ function createQuizz($quizzSave, $conn)
     }
 
 }
-
-// MAIN 
-// Start the local session
-session_start();
-// connect to the Database
-require('DBconnexion.php');
-
-if (!isset($_SESSION['user'])) {
-    header("Location:notconnected.php");
-}
 $user = $_SESSION['user'];
 if ($user['type_utilisateur'] < 1) {
     header("Location:notpermited.php");
 }
+?>
+<div class="form">
+<?php
 // Check for two cases : 
 // first is the title has been renamed (because it was already taken)
 // second is the first time the quizz is been registered
@@ -236,5 +244,12 @@ if (isset($_POST['quizztitlerenamed'])) {
     }
 }
 ?>
-
+</div>
+    <div class="banner">
+                <?php echo "<img class='houseIcone $currentHouse' src='GriffondorIcone.png'>" ?>
+            </div>
+    </div>
+    <?php
+        require('footer.php');
+?>
 </html>

@@ -12,7 +12,18 @@
         require('header.php');
         ?>
     </header>
-
+    <?php
+    if( isset($_COOKIE['currentHouse'])) {
+        $currentHouse = str_replace("houseButton ","",$_COOKIE['currentHouse']);
+    }else{
+        $currentHouse = 'Serpentard';
+    }
+    ?>
+    <div class="mainPage">
+        <div class="banner">
+            <?php echo "<img class='houseIcone $currentHouse' src='GriffondorIcone.png'>" ?>
+        </div>
+        <div class="form">
     <table>
         <?php
         // the following lines are the generation of the quizz questions. 
@@ -189,8 +200,10 @@
             foreach ($_COOKIE as $name => $value) {
                 if ($name != "PHPSESSID") // Name of the cookie 'User' we want to keep
                 {
-                    setcookie($name, '', 1); // Better use 1 (for the time) to avoid time problems, like timezones
-                    setcookie($name, '', 1, '/');
+                    if($name != "currentHouse") {
+                        setcookie($name, '', 1); // Better use 1 (for the time) to avoid time problems, like timezones
+                        setcookie($name, '', 1, '/');
+                    }
                 }
             }
         }
@@ -207,6 +220,14 @@
 
 
         ?>
+        </div>
+        <div class="banner">
+                <?php echo "<img class='houseIcone $currentHouse' src='GriffondorIcone.png'>" ?>
+            </div>
+    </div>
+        <?php
+        require('footer.php');
+?>
         <!-- we link the html page to quizz.js for a better question/answer implementation  -->
         <script name='src' src="quizz.js"></script>
 

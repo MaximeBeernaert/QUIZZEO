@@ -1,13 +1,17 @@
+html {
+    height: 100%;
+}
 body {
+    min-height: 100vh;
     margin: 0;
     padding: 0;
     font-family: Arial, sans-serif;
-    height: 100%;
+    width:100%;
 }
+
 
 /* HEADER */
 header {
-    background-color: #220901;
     color: #fff;
 }
 a {
@@ -16,7 +20,7 @@ a {
     transition: all 0.3s ease;
 }
 .containerHeader{
-    background-image: url("hufflepuffBG.png");
+    background-image: url("griffondor.png");
     background-repeat: no-repeat;
     background-size:cover;
     height: 10em;
@@ -30,6 +34,7 @@ a {
     display: flex;
     justify-content:space-between;
     text-align: center;
+    align-items: center;
 }
 .containerOptions{
     width: 55em;
@@ -47,6 +52,14 @@ a {
     align-content:space-between;
 }
 .containerIPSSI{
+    width: 12em;
+    display: flex;
+    flex-direction: column;
+    justify-content:center;
+    text-align: center;
+}
+
+.containerPoudlard{
     width: 12em;
     display: flex;
     flex-direction: column;
@@ -74,12 +87,25 @@ a {
 .backgroundG{
     object-fit:scale-down;
 }
+.houseButton{
+    width:2.7em;
+    height: 2.7em;
+}
+.decoText{
+    display: flex;
+    align-items: center;
+}
+.decoIcone{
+    width:1em;
+    height: 1em;
+}
 /* BODY */
 
 .containerBody {
-    max-width: 1200px;
+    max-width: 750px;
     margin: 0 auto;
-    padding: 30px;
+    padding: 10px;
+    font-size: x-small;
 }
 
 h1 {
@@ -91,6 +117,29 @@ h1 {
     margin-top: 20px;
     margin-bottom: 20px;
 }
+.mainPage{
+    display:flex;
+    justify-content:space-between;
+
+}
+.banner{
+    background-color: #F6AA1C;
+    width: 18%;
+    display:flex;
+    justify-content: center;
+}
+.houseIcone{
+    width: 11em;
+    height: 12em;
+}
+/* FOOTER */
+
+.footer{
+    display: flex;
+    justify-content: space-around;
+    color:white;
+}
+
 
 /* BUTTON */
 
@@ -100,7 +149,7 @@ h1 {
     color: #FFFFFF;
     border: none;
     border-radius: 5px;
-    font-size: 18px;
+    font-size: 12px;
     cursor: pointer;
 }
 
@@ -110,7 +159,7 @@ h1 {
     color: #FFFFFF;
     border: none;
     border-radius: 5px;
-    font-size: 18px;
+    font-size: 12px;
     cursor: pointer;
 }
 
@@ -120,7 +169,7 @@ h1 {
     color: #FFFFFF;
     border: none;
     border-radius: 5px;
-    font-size: 18px;
+    font-size: 12px;
     cursor: pointer;
 }
 
@@ -146,7 +195,6 @@ table {
   
 th {
     text-align: left;
-    background-color: #00a2ff;
     color: #fff;
     padding: 10px;
 }
@@ -170,6 +218,7 @@ td {
     border-radius: 10px;
     box-shadow: 0px 0px 10px #BBBBBB;
     margin-top: 20px;
+    margin-bottom: 20px;
 }
 .input {
     font-size: 16px;
@@ -198,58 +247,32 @@ td {
     margin-bottom: 20px;
 }
 
-/* usermenu */
+/* USERMENU */
 
 .quizz {
-    position: relative;
     width: 150px;
-    height: 150px;
-    background-color: #def3ff;
+    height: 225px;
     border: solid;
     border-radius: 5px;
-    border-color: #00a2ff;
     margin: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
   }
-  
+  .quizzButton{
+    border-radius: 5px;
+    color: white;
+  }
   .choose2-quizz-btn {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    margin: 0;
     font-size: 13px;
     letter-spacing: 1px;
-    color: white;
-    background-color: #00a2ff;
-    border-color: #00a2ff;
-    border-radius: 5px;
-  
   }
   .delete2-btn {
-    position: absolute;
-    bottom: 0;
-    right: 0;
-    margin: 0;
-    font-size: 13px;
-    color: white;
-    background-color: #00a2ff;
-    border-color: #00a2ff;
-    border-radius: 5px;
-    margin-bottom: 4px;
-    margin-right: 4px;
+    font-size: 13px;    
   }
   .modify2-btn{
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    margin: 0;
     font-size: 13px;
-    color: white;
-    background-color: #00a2ff;
-    border-color: #00a2ff;
-    border-radius: 5px;
-    margin-bottom: 4px;
-    margin-left: 4px;
   }
   .choose2-quizz-btn:hover{
     background-color: #017ec7;
@@ -271,4 +294,24 @@ td {
     align-items: center;
     justify-content:center;
     text-align: center;
+  }
+
+  .popup{
+    width: 400px;
+    background: #fff;
+    border-radius: px;
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0.1);
+    text-align: center;
+    padding: 0 30px 30px;
+    visibility: hidden;
+    transition: transform 0.4s, top 0.4s;
+  }
+
+  .open-popup{
+    visibility: visible;
+    top: 50%;
+    transform: translate(-50%, -50%) scale(1);
   }
