@@ -46,7 +46,8 @@
     }
     function createQuizzArray($title)
     {
-        $quizzSave = array(array($title, $_POST['quizzdiff'], stringCheck($_POST['themequizz'])));
+        $quizz_diff = $_POST['hiddenQuizzDiff'];
+        $quizzSave = array(array($title, $quizz_diff, stringCheck($_POST['themequizz'])));
         $numberQuestion = 1;
         while (isset($_POST["Question" . $numberQuestion])) {
             $question = array();

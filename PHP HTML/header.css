@@ -9,7 +9,6 @@ body {
     width:100%;
 }
 
-
 /* HEADER */
 header {
     color: #fff;
@@ -21,6 +20,16 @@ a {
 }
 .containerHeader{
     background-image: url("griffondor.png");
+    background-repeat: no-repeat;
+    background-size:cover;
+    height: 10em;
+    display: flex; 
+    justify-content:space-between;
+    text-align: center;
+    padding : 0em 2em 0em 2em;
+}
+.containerHeaderMenu{
+    background-image: url("poudlard.jpeg");
     background-repeat: no-repeat;
     background-size:cover;
     height: 10em;
@@ -314,4 +323,16 @@ td {
     visibility: visible;
     top: 50%;
     transform: translate(-50%, -50%) scale(1);
+  }
+
+  /* signin & login */
+
+  .link{
+    margin-top: 20px;
+    font-size: 18px;
+  }
+
+  .link a {
+    color: #333;
+    text-decoration: none;
   }

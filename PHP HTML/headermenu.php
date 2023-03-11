@@ -15,9 +15,9 @@
     if (!isset($_SESSION['user'])) {
     ?>
         <header>
-            <div class="containerHeader">
-                <div class="containerPoudlard">
-                    <img src="poudlard.jpeg" class="image">
+            <div class="containerHeaderMenu">
+                <div class="containerIPSSI">
+                    <img src="ipssi-logo.png" class="image">
                 </div>
                 <div class="containerQuizzeo">
                     <p><a href="accueil.php">QUIZZEO<br>HARRY POTTER</a></p>
