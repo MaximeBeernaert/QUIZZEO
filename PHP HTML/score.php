@@ -14,7 +14,17 @@
         require('header.php');
         ?>
     </header>
-
+    <?php
+    if( isset($_COOKIE['currentHouse'])) {
+        $currentHouse = str_replace("houseButton ","",$_COOKIE['currentHouse']);
+    }else{
+        $currentHouse = 'Serpentard';
+    }
+    ?>
+    <div class="mainPage">
+        <div class="banner">
+            <?php echo "<img class='houseIcone $currentHouse' src='GriffondorIcone.png'>" ?>
+        </div>
     <div class='form'>
         <?php
         $user = $_SESSION['user'];
@@ -49,7 +59,8 @@
                 $result = mysqli_query($conn, $query);
                 $quizz = mysqli_fetch_assoc($result);
                 $quizz_title = $quizz['titre_quizz'];
-                echo "<br><p>Votre moyenne pour le quizz " . $quizz_title . " : " . $average_result." % </p>";
+                echo "<br><p>Votre moyenne pour le quizz " . $quizz_title . " : " . $average_result." % <br>Nombre d'essai : ".count($quizz_average)."</p>";
+
 
                 array_push($quizz_total_average, $average_result);
             }
@@ -61,7 +72,13 @@
 
         ?>
     </div>
-
+    <div class="banner">
+                <?php echo "<img class='houseIcone $currentHouse' src='GriffondorIcone.png'>" ?>
+            </div>
+    </div>
+    <?php
+        require('footer.php');
+?>
 </body>
 
 </html>

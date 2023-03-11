@@ -14,7 +14,18 @@
         require('header.php');
         ?>
     </header>
-
+    <?php
+    if( isset($_COOKIE['currentHouse'])) {
+        $currentHouse = str_replace("houseButton ","",$_COOKIE['currentHouse']);
+    }else{
+        $currentHouse = 'Serpentard';
+    }
+    ?>
+    <div class="mainPage">
+        <div class="banner">
+            <?php echo "<img class='houseIcone $currentHouse' src='GriffondorIcone.png'>" ?>
+        </div>
+    <div class="form">
     <table>
         <?php
         $user = $_SESSION['user'];
@@ -65,6 +76,15 @@
         echo "<p class='link'><a href='usermenu.php'>Revenir au menu Utilisateur</a></p>";
         ?>
     </table>
+    </div>
+    <div class="banner">
+                <?php echo "<img class='houseIcone $currentHouse' src='GriffondorIcone.png'>" ?>
+            </div>
+    </div>
+    
+    <?php
+        require('footer.php');
+?>
 </body>
 
 </html>

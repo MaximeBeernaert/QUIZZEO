@@ -16,6 +16,17 @@
         ?>
     </header>
     <?php
+    if( isset($_COOKIE['currentHouse'])) {
+        $currentHouse = str_replace("houseButton ","",$_COOKIE['currentHouse']);
+    }else{
+        $currentHouse = 'Serpentard';
+    }
+    ?>
+    <div class="mainPage">
+        <div class="banner">
+            <?php echo "<img class='houseIcone $currentHouse' src='GriffondorIcone.png'>" ?>
+        </div>
+    <?php
     $user = $_SESSION['user'];
     if ($user['type_utilisateur'] < 1) {
         header("Location:notpermited.php");
@@ -32,7 +43,7 @@
 
     ?>
 
-    <form class="form1" action="savemodif.php" method="post">
+    <form class="form" action="savemodif.php" method="post">
 
         <h1 class="Create Quizz">Modification de quizz</h1>
         <input type="text" class="quizztitle" name="quizztitle" placeholder="Titre Quizz" value="<?php echo $title_quizz; ?>" required />
@@ -77,8 +88,6 @@
             echo "</div>";
         endwhile;
         ?>
-
-        </div>
         <div class="addQuestions">
             <input type="button" class="addQuestion" name="addQuestion" value="Ajouter une question">
         </div>
@@ -90,8 +99,15 @@
         </div>
         <input type="submit" name="submit" value="Valider la modification" class="submit-button">
     </form>
-
+    <div class="banner">
+                <?php echo "<img class='houseIcone $currentHouse' src='GriffondorIcone.png'>" ?>
+            </div>
+    </div>
+    <?php
+        require('footer.php');
+?>
     <script src="modif.js"></script>
+
 </body>
 
 </html>

@@ -24,7 +24,17 @@
         require 'header.php';
         ?>
     </header>
-
+    <?php
+    if( isset($_COOKIE['currentHouse'])) {
+        $currentHouse = str_replace("houseButton ","",$_COOKIE['currentHouse']);
+    }else{
+        $currentHouse = 'Serpentard';
+    }
+    ?>
+    <div class="mainPage">
+        <div class="banner">
+            <?php echo "<img class='houseIcone $currentHouse' src='GriffondorIcone.png'>" ?>
+        </div>
     <?php
     $user = $_SESSION['user'];
     if ($user['type_utilisateur'] < 1) {
@@ -160,8 +170,13 @@
         <div class="spaceDiv"></div>
         <input type="submit" name="submit" value="Valider le quizz" class="buttonBlue submit-button">
     </form>
-
-
+    <div class="banner">
+                <?php echo "<img class='houseIcone $currentHouse' src='GriffondorIcone.png'>" ?>
+            </div>
+    </div>
+    <?php
+        require('footer.php');
+?>
     <script src="createquizz.js"></script>
 </body>
 

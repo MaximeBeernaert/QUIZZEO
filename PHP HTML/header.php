@@ -23,12 +23,12 @@
                 <img src="ipssi-logo.png" class="image">
             </div>
             <div class="containerQuizzeo">
-                <p><a href="accueil.php">QUIZZEO</a></p>
+                <p><a href="accueil.php">QUIZZEO<br>HARRY POTTER</a></p>
 
             </div>
             <div class="containerAccount">
                 <p class="accountName"><a href="personalspace.php">Compte de <?php echo $_SESSION['user']['prenom_utilisateur'] ?></a></p>
-                <p><a href="logout.php">Déconnexion</a></p>
+                <p classe="decoText"><a href="logout.php"><img class="decoIcone" src="deco.png" class="image"> Déconnexion</a></p>
             </div>
         </div>
         <div class="containerOptions">
@@ -51,9 +51,8 @@
             <p class='optionHeader'><a href="usermenu.php">Retour menu principal</a></p>
             <p class='spaceHeader'>|</p>
             <?php
-            echo "<p class='$currentHouse'>Maison (temporaire)</p>"
+                echo "<img class='$currentHouse' src=''></div>"
             ?>
         </div>
-        <script name='src' src="header.js"></script>
+        
     </header>
-</body>

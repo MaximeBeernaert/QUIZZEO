@@ -2,7 +2,6 @@
 <html lang="en">
 
 <head>
-    <link rel="stylesheet" href="accueil.css">
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -15,7 +14,17 @@
         require('header.php');
         ?>
     </header>
-
+    <?php
+    if( isset($_COOKIE['currentHouse'])) {
+        $currentHouse = str_replace("houseButton ","",$_COOKIE['currentHouse']);
+    }else{
+        $currentHouse = 'Serpentard';
+    }
+    ?>
+    <div class="mainPage">
+        <div class="banner">
+            <?php echo "<img class='houseIcone $currentHouse' src='GriffondorIcone.png'>" ?>
+        </div>
     <?php
 
     function stringCheck($string)
@@ -127,7 +136,6 @@
         $result = mysqli_query($conn, $query);
         $quizz = mysqli_fetch_assoc($result);
         $id_quizz = $quizz['id_quizz'];
-        echo $id_quizz;
 
         checkQuizzForValidation($quizzSave, $conn);
         $numberQuestion = 1;
@@ -206,7 +214,6 @@
     {
         // suppress the quizz
         $id_quizz = $_SESSION['id_quizz'];
-        echo $id_quizz;
         $query = "DELETE FROM `choix` WHERE id_choix IN (SELECT id_choix FROM `appartenir` WHERE id_question IN (SELECT id_question FROM `questions` WHERE id_question IN (SELECT id_question FROM `contient` WHERE id_quizz='$id_quizz')))";
         $result = mysqli_query($conn, $query);
         if($result) {
@@ -232,6 +239,9 @@
     if ($user['type_utilisateur'] < 1) {
         header("Location:notpermited.php");
     }
+    ?>
+    <div class="form">
+    <?php
     // Check for two cases : 
     // first is the title has been renamed (because it was already taken)
     // second is the first time the quizz is been registered
@@ -250,13 +260,19 @@
         // we create the quizz, putting the valeus in an array to get it back in case of already taken title
         $quizzSave = createQuizzArray($title);
     }
-    echo $title;
     echo quizzSuppression($conn, $title);
     // we then send for the quizz to be checked, and if TRUE, then we save the quizz in the database
     if (checkForTitle($conn, $title)) {
         createQuizz($quizzSave, $conn);
     }
     ?>
-
+    </div>
+    <div class="banner">
+                <?php echo "<img class='houseIcone $currentHouse' src='GriffondorIcone.png'>" ?>
+            </div>
+    </div>
+<?php
+        require('footer.php');
+?>
 </html>
 </body>

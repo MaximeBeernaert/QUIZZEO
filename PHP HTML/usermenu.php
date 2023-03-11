@@ -14,7 +14,17 @@
         require('header.php');
         ?>
     </header>
-
+    <?php
+    if( isset($_COOKIE['currentHouse'])) {
+        $currentHouse = str_replace("houseButton ","",$_COOKIE['currentHouse']);
+    }else{
+        $currentHouse = 'Serpentard';
+    }
+    ?>
+    <div class="mainPage">
+        <div class="banner">
+            <?php echo "<img class='houseIcone $currentHouse' src='GriffondorIcone.png'>" ?>
+        </div>
     <?php
     $user = $_SESSION['user'];
     $id_utilisateur = $user['id_utilisateur'];
@@ -25,6 +35,7 @@
     //if the user is a  utilisateur (type_utilisateur = 0), he can only see all the quizzes
     if ($type_utilisateur == 1 || $type_utilisateur == 2) :
     ?>
+        <div class="userQuizzList">
         <div class="usermenuQuizzList">Mes quizz :</div>
         <div class="display displayPersonalQuizz">
 
@@ -52,11 +63,16 @@
                 $userQuizz = mysqli_fetch_assoc($resultUserQuizz);
             ?>
                 <div class="quizz">
-                    <?php echo $row['titre_quizz']; ?>
+                    <div class="titlequizzmainpage">
+                        <?php echo $row['titre_quizz']; ?>
+                    </div>
+                    <div class="themequizzmainpage">
+                        <?php echo $row['theme_quizz']; ?>
+                    </div>
                     <div class="quizzButton quizzPlay">
                         <form action="quizz.php" method="POST">
                             <?php echo "<input type='hidden' name='id_quizz' value='$id_quizz'>" ?>
-                            <button type="submit" name="choose2-quizz-btn" class="choose2-quizz-btn">Jouer !</button>
+                            <button type="submit" name="choose2-quizz-btn" class="quizzButton choose2-quizz-btn">Jouer !</button>
                         </form>
                     </div>
                     <?php
@@ -64,12 +80,12 @@
                         <div class="quizzButton quizzModif">
                             <form action="modif.php" method="POST">
                                 <input type="hidden" name="id_quizz" value="<?php echo $row['id_quizz']; ?>">
-                                <button type="submit" name="modify2-btn" class="modify2-btn">Modifier</button>
+                                <button type="submit" name="modify2-btn" class="quizzButton modify2-btn">Modifier</button>
                             </form>
                         </div>
                         <div class="quizzButton quizzDelete">
                             <input type="hidden" name="id_quizz" value="<?php echo $row['id_quizz']; ?>">
-                            <button type="submit" name="delete2-btn" class="delete2-btn" onclick="openPopup()">Supprimer</button>
+                            <button type="submit" name="delete2-btn" class="quizzButton delete2-btn" onclick="openPopup()">Supprimer</button>
                         </div>
                     <?php
                     endif;
@@ -99,11 +115,16 @@
                     $userQuizz = mysqli_fetch_assoc($resultUserQuizz);
                 ?>
                     <div class="quizz">
-                        <?php echo $row['titre_quizz']; ?>
+                        <div class="titlequizzmainpage">
+                            <?php echo $row['titre_quizz']; ?>
+                        </div>
+                        <div class="themequizzmainpage">
+                            <?php echo $row['theme_quizz']; ?>
+                        </div>
                         <div class="quizzButton quizzPlay">
                             <form action="quizz.php" method="POST">
                                 <?php echo "<input type='hidden' name='id_quizz' value='$id_quizz'>" ?>
-                                <button type="submit" name="choose2-quizz-btn" class="choose2-quizz-btn">Jouer !</button>
+                                <button type="submit" name="choose2-quizz-btn" class="quizzButton choose2-quizz-btn">Jouer !</button>
                             </form>
                         </div>
                         <?php
@@ -111,20 +132,26 @@
                             <div class="quizzButton quizzModif">
                                 <form action="modif.php" method="POST">
                                     <input type="hidden" name="id_quizz" value="<?php echo $row['id_quizz']; ?>">
-                                    <button type="submit" name="modify2-btn" class="modify2-btn">Modifier</button>
+                                    <button type="submit" name="modify2-btn" class="quizzButton modify2-btn">Modifier</button>
                                 </form>
                             </div>
                             <div class="quizzButton quizzDelete">
                                 <input type="hidden" name="id_quizz" value="<?php echo $row['id_quizz']; ?>">
-                                <button type="submit" name="delete2-btn" class="delete2-btn" onclick="openPopup()">Supprimer</button>
+                                <button type="submit" name="delete2-btn" class="quizzButton delete2-btn" onclick="openPopup()">Supprimer</button>
                             </div>
                         <?php
                         endif;
                         ?>
-                    </div>
+            </div>
+        
             <?php endwhile;
             }
             ?>
+            </div></div>
+            <div class="banner">
+                <?php echo "<img class='houseIcone $currentHouse' src='GriffondorIcone.png'>" ?>
+            </div>
+    </div>
             <?php
             // if the user click on the delete button, delete the quiz from the database and ask confirmation with a button
             if (isset($_POST['delete2-btn'])) {
@@ -184,6 +211,11 @@
                     echo ("<meta http-equiv='refresh' content='1'>");
                 }
                 ?>
-</body>
+                
 
+
+<?php
+        require('footer.php');
+?>
+</body>
 </html>
