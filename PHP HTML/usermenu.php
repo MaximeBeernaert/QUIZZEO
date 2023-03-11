@@ -135,8 +135,7 @@
                                         </form>
                                     </div>
                                     <div class="quizzButton quizzDelete">
-                                        <input type="hidden" name="id_quizz" value="<?php echo $row['id_quizz']; ?>">
-                                        <button type="submit" name="delete2-btn" class="quizzButton delete2-btn" onclick="openPopup()">Supprimer</button>
+                                        <button type="submit" name="delete2-btn" class="quizzButton delete2-btn" value="<?php echo $row['id_quizz']; ?>" onclick="openPopup('<?php echo $row['id_quizz']; ?>')">Supprimer</button>
                                     </div>
                                 <?php
                                 endif;
@@ -148,7 +147,7 @@
                     ?>
                 </div>
             </div>
-            <div class="banner">
+            <div class=" banner">
                 <?php echo "<img class='houseIcone $currentHouse' src='GriffondorIcone.png'>" ?>
             </div>
     </div>
@@ -170,7 +169,6 @@
     if (isset($_POST['confirm-delete-btn'])) {
         $id_quizz = $_POST['id_quizz'];
 
-
         $query = "DELETE FROM `choix` WHERE id_choix IN (SELECT id_choix FROM `appartenir` WHERE id_question IN (SELECT id_question FROM `questions` WHERE id_question IN (SELECT id_question FROM `contient` WHERE id_quizz='$id_quizz')))";
         $result = mysqli_query($conn, $query);
 
@@ -183,25 +181,31 @@
         $query = "DELETE FROM `contient` WHERE id_quizz='$id_quizz'";
         $result = mysqli_query($conn, $query);
 
-        $query = "DELETE FROM `quizz` WHERE id_quizz='$id_quizz'";
+        $query = "DELETE FROM 'jouer' WHERE id_quizz='$id_quizz'";
         $result = mysqli_query($conn, $query);
 
-        $query = "DELETE FROM 'jouer' WHERE id_quizz='$id_quizz'";
+        $query = "DELETE FROM `quizz` WHERE id_quizz='$id_quizz'";
         $result = mysqli_query($conn, $query);
 
         echo ("<meta http-equiv='refresh' content='1'>");
     }
     ?>
 
-
-
     <?php
     require('footer.php');
     ?>
+    </div>
+    </div>
+
     <script>
+        //open popup and close popup animation
         const popup = document.querySelector('.popup');
 
-        function openPopup() {
+        function openPopup(id_quizz) {
+
+            const id_quizz = document.querySelector('.delete2-btn').value;
+
+            document.getElementById('id_quizz').value = id_quizz;
             popup.classList.add('open-popup');
         }
 
@@ -209,8 +213,6 @@
             popup.classList.remove('open-popup');
         }
     </script>
-    </div>
-    </div>
 </body>
 
 </html>
