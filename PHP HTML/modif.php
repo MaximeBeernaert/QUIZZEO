@@ -6,7 +6,16 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Modify Quizz</title>
-    <link rel="stylesheet" href="createquizz.css">
+    <style>
+        .diffilculteStarCreateQuizz {
+            font-size: 1.5rem;
+        }
+
+        .hover {
+            color: #FFD700;
+        }
+    </style>
+
 </head>
 
 <body>
@@ -26,11 +35,16 @@
         <div class="banner">
             <?php echo "<img class='houseIcone $currentHouse' src='GriffondorIcone.png'>" ?>
         </div>
+
+
     <?php
     $user = $_SESSION['user'];
     if ($user['type_utilisateur'] < 1) {
         header("Location:notpermited.php");
     }
+
+
+
 
     $id_quizz = $_POST['id_quizz'];
     $_SESSION['id_quizz'] = $id_quizz;
@@ -46,9 +60,119 @@
     <form class="form" action="savemodif.php" method="post">
 
         <h1 class="Create Quizz">Modification de quizz</h1>
-        <input type="text" class="quizztitle" name="quizztitle" placeholder="Titre Quizz" value="<?php echo $title_quizz; ?>" required />
-        <input type="text" class="quizzdiff" name="quizzdiff" placeholder="Difficulté Quizz" value="<?php echo $diff_quizz; ?>" required />
-        <input type="text" class="themequizz" name="themequizz" placeholder="Thème du Quizz" value="<?php echo $theme_quizz; ?>" required />
+        <input type="text" class="input quizztitle" name="quizztitle" placeholder="Titre Quizz" value="<?php echo $title_quizz; ?>" required />
+        <?php 
+            switch($diff_quizz) {
+                case 1:
+                    $quizz_diff_text = 'Difficulté : Très facile';
+                    break;
+                case 2:
+                    $quizz_diff_text = 'Difficulté : Facile';
+                    break;
+                case 3:
+                    $quizz_diff_text = 'Difficulté : Moyen';
+                    break;
+                case 4:
+                    $quizz_diff_text = 'Difficulté : Difficile';
+                    break;
+                case 5:
+                    $quizz_diff_text = 'Difficulté : Très difficile';
+                    break;
+            } 
+        ?>
+        
+        <div class="quizzdiff" name="quizzdiff"><?php echo $quizz_diff_text; ?><input type="hidden" class="hiddenQuizzDiff" name="hiddenQuizzDiff" value=<?php echo $diff_quizz; ?>></div>
+        
+        <i class="diffilculteStarCreateQuizz" data-note="1">&#9733;</i>
+        <i class="diffilculteStarCreateQuizz" data-note="2">&#9733;</i>
+        <i class="diffilculteStarCreateQuizz" data-note="3">&#9733;</i>
+        <i class="diffilculteStarCreateQuizz" data-note="4">&#9733;</i>
+        <i class="diffilculteStarCreateQuizz" data-note="5">&#9733;</i>
+        <br>
+
+        <script>
+            const stars = document.querySelectorAll('.diffilculteStarCreateQuizz');
+            stars.forEach(star => {
+                star.addEventListener('mouseover', onHover)
+                star.addEventListener('mouseleave', unselectStars)
+                star.addEventListener('click', activeSelect)
+            });
+
+            function onHover(e) {
+                const data = e.target;
+                const etoiles = priviousSiblings(data);
+                etoiles.forEach(etoile => {
+                        etoile.classList.add('hover');
+                    })
+            }
+
+            function unselectStars(e) {
+                const data = e.target;
+                const etoiles = priviousSiblings(data);
+                etoiles.forEach(etoile => {
+                        etoile.classList.remove('hover');
+                    })
+            }
+
+            function activeSelect(e) {
+                // Switch for the diffilculty replace number in letter
+
+                const hiddenDiff = document.createElement('input');
+                hiddenDiff.type = 'hidden';
+                hiddenDiff.className = 'hiddenQuizzDiff';
+                hiddenDiff.name = 'hiddenQuizzDiff';
+
+                element = document.querySelector('.quizzdiff')
+                switch (e.target.dataset.note) {
+                    case '1':
+                        element.innerHTML = 'Difficulté : Très facile';
+                        hiddenDiff.value = "1";
+                        break;
+                    case '2':
+                        element.innerHTML = 'Difficulté : Facile';
+                        hiddenDiff.value = "2";
+                        break;
+                    case '3':
+                        element.innerHTML = 'Difficulté : Moyen';
+                        hiddenDiff.value = "3";
+                        break;
+                    case '4':
+                        element.innerHTML = 'Difficulté : Difficile';
+                        hiddenDiff.value = "4";
+                        break;
+                    case '5':
+                        element.innerHTML = 'Difficulté : Très difficile';
+                        hiddenDiff.value = "5";
+                        break;
+                }
+                element.appendChild(hiddenDiff);
+
+
+                const stars = document.querySelectorAll('.diffilculteStarCreateQuizz');
+                stars.forEach(star => {
+                    star.classList.remove('hover');
+                    star.removeEventListener('mouseleave', unselectStars)
+                })
+                const data = e.target;
+                const etoiles = priviousSiblings(data);
+                etoiles.forEach(etoile => {
+                        etoile.classList.add('hover');
+                    })
+            }
+            function priviousSiblings(data) {
+                let values = [data];
+                while (data = data.previousSibling) {
+                    if (data.nodeName == "I") {
+                        values.push(data);
+                    }
+                }
+                return values;
+            }
+        </script>
+
+        <br>
+        
+        <input type="text" class="input themequizz" name="themequizz" placeholder="Thème du Quizz" value="<?php echo $theme_quizz; ?>" required />
         <?php
         $index_question = 1;
         $query    = "SELECT * FROM `contient` WHERE id_quizz='$id_quizz'";
