@@ -135,13 +135,12 @@
                                         </form>
                                     </div>
                                     <div class="quizzButton quizzDelete">
-                                        <button type="submit" name="delete2-btn" class="quizzButton delete2-btn" value="<?php echo $row['id_quizz']; ?>" onclick="openPopup('<?php echo $row['id_quizz']; ?>')">Supprimer</button>
+                                        <button type="submit" name="delete2-btn" class="quizzButton delete2-btn" id="id_quizz" value="<?php echo $row['id_quizz']; ?>" onclick="openPopup(this.value)">Supprimer</button>
                                     </div>
                                 <?php
                                 endif;
                                 ?>
                             </div>
-
                     <?php endwhile;
                     }
                     ?>
@@ -151,10 +150,9 @@
                 <?php echo "<img class='houseIcone $currentHouse' src='GriffondorIcone.png'>" ?>
             </div>
     </div>
-    <div class="popup" id="popup">
-        <?php
-        $id_quizz = $_POST['id_quizz'];
-        echo "
+    <?php
+    $id_quizz = $_POST['id_quizz'];
+    echo "
                 <br>
                 <form action='usermenu.php' method='POST'>
                     <input type='hidden' name='id_quizz' value='$id_quizz'>
@@ -163,7 +161,7 @@
                     <button type='submit' name='buttonBlack cancel-delete-btn' class='buttonBlack cancel-delete-btn' onclick='closePopup()'>Non</button>
                 </form>
                 <br>";
-        ?>
+    ?>
     </div>
     <?php
     if (isset($_POST['confirm-delete-btn'])) {
@@ -198,14 +196,12 @@
     </div>
 
     <script>
-        //open popup and close popup animation
+        //open popup and close popup animation  
         const popup = document.querySelector('.popup');
+        const id_quizz_input = document.querySelector('.quizzDelete');
 
         function openPopup(id_quizz) {
-
-            const id_quizz = document.querySelector('.delete2-btn').value;
-
-            document.getElementById('id_quizz').value = id_quizz;
+            id_quizz_input.value = id_quizz;
             popup.classList.add('open-popup');
         }
 
