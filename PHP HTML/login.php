@@ -1,9 +1,10 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
-    <link rel="stylesheet" href="login.css">
-    <meta charset="utf-8" />
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
 </head>
 
@@ -40,17 +41,16 @@
         }
     } else {
     ?>
-        <div class="container">
-            <div class="no2-container">
-                <form class="form" action='' method="post" name="login">
-                    <h1 class="login-title">Connexion</h1>
-                    <input type="text" class="login-input" name="email" placeholder="Email" autofocus="true" require />
-                    <input type="password" class="login-input" name="password" placeholder="Mot de passe" require />
-                    <a href="accueil.php" class="link">Retour à l'accueil</a>
-                    <input type="submit" name="submit" value="Valider " class="submit-button">
-                </form>
-            </div>
-        </div>
+        <form class="form" action='' method="post">
+
+            <h1 class="login-title">Connexion</h1>
+
+            <input type="text" class="input" name="email" placeholder="Email" autofocus="true" require />
+            <input type="password" class="input" name="password" placeholder="Mot de passe" require />
+
+            <input type="submit" name="submit" value="Connexion" class="buttonBlue">
+            <p class="link"><a href="signin.php">Cliquez ici si vous n'avez pas encore de compte</a></p>
+        </form>
     <?php
     }
     ?>

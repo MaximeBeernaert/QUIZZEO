@@ -317,3 +317,15 @@ td {
     top: 50%;
     transform: translate(-50%, -50%) scale(1);
   }
+
+  /* signin & login */
+
+  .link{
+    margin-top: 20px;
+    font-size: 18px;
+  }
+
+  .link a {
+    color: #333;
+    text-decoration: none;
+  }
