@@ -15,6 +15,9 @@ class create {
         if(questionsId.length ==1) {
 
             if(questionsText.length == 1) {
+                const space = document.createElement('div')
+                space.className = 'spaceDiv'
+
                 //we get the value from the question's item (which is the question's text)
                 let questionText = questionsText[0].value
 
@@ -26,6 +29,7 @@ class create {
                 const newQuestionText = document.createTextNode(`${questionText}`) 
         
                 newDivQuestion.appendChild(newQuestionText)
+                newDivQuestion.appendChild(space)
 
 
 
@@ -40,14 +44,18 @@ class create {
 
                 //we create an option selector to get all the questions
                 for(let i=0;i<answersId.length;i++) {
-
+                    const textDiv = document.createElement('div')
+                    textDiv.className = `textDiv`
                     const newQuestionAnswer = document.createTextNode(`${answersText[i].value}`) 
-                    newDivAnswer.appendChild(newQuestionAnswer)
+
+                    textDiv.appendChild(newQuestionAnswer)
+                    newDivAnswer.appendChild(textDiv)
 
                     const newOptionAnswer = document.createElement("option")
                     newOptionAnswer.setAttribute("value",`${answersId[i].value}`)
                     const newOptionText = document.createTextNode(`${answersText[i].value}`)
                     newOptionAnswer.appendChild(newOptionText)
+                    newOptionAnswer.appendChild(space)
                     newSelect.appendChild(newOptionAnswer)
                 }
                 
