@@ -39,12 +39,12 @@
             if ($_SESSION['user']['type_utilisateur'] != 0) {
                 echo "<p class='optionHeader'><a href='createquizz.php'>Création de quizz</a></p> <p class='spaceHeader'>|</p>";
             }
-            if( isset($_COOKIE['currentHouse'])) {
+            if (isset($_COOKIE['currentHouse'])) {
                 $currentHouse = $_COOKIE['currentHouse'];
-            }else{
+            } else {
                 $currentHouse = 'houseButton Serpentard';
             }
-            
+
             ?>
             <p class='optionHeader'><a href="score.php">Mes Scores</a></p>
             <p class='spaceHeader'>|</p>
