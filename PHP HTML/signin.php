@@ -5,15 +5,15 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="signin.css">
     <title>Inscription</title>
 </head>
 
 <body>
-
-    <?php
-    require('headermenu.php');
-    ?>
+    <header>
+        <?php
+        require('headermenu.php');
+        ?>
+    </header>
 
     <?php
     require('DBconnexion.php');
@@ -68,7 +68,9 @@
     ?>
 
         <form class="form" action="" method="post">
+
             <h1 class="login-title">Inscription</h1>
+
             <input type="text" class="input" name="username" placeholder="Prénom" required />
             <input type="text" class="input" name="name" placeholder="Nom" required />
             <input type="text" class="input" name="email" placeholder="Adresse Mail" require>
@@ -76,13 +78,13 @@
             <input type="password" class="input" name="confirmPassword" placeholder="Confirmer le mot de passe" require>
 
             <select type="role" name="role" class="input">
-                <option value="0">Utilisateur</option>
-                <option value="1">Quizzeur</option>
+                <option value="0">Utilisateur : vous pourrez uniquement jouer au quizz déjà créer par d'autre joueur</option>
+                <option value="1">Quizzeur : vous pourrez jouer et créer des quizz</option>
             </select>
-            <input type="submit" name="submit" value="S'inscrire" class="buttonBlue">
+
+            <input type="submit" name="submit" value="S'inscrire" class="buttonBlue"></inupt>
             <p class="link"><a href="login.php">Cliquez ici si vous avez déjà un compte</a></p>
         </form>
-
     <?php
     }
     ?>
