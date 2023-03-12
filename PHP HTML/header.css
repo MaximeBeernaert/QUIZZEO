@@ -121,6 +121,7 @@ h1 {
     margin-bottom: 20px;
 }
 .mainPage{
+    min-height: 67.9vh;
     display:flex;
     justify-content:space-between;
 }

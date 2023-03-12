@@ -31,7 +31,6 @@
         $quizz = mysqli_fetch_assoc($result);
         $title_quizz = $quizz['titre_quizz'];
         $theme_quizz = $quizz['theme_quizz'];
-    
         return "<div class='quizz'>
             <div class='titlequizzmainpage'>
                 $title_quizz
@@ -69,7 +68,6 @@
                             <button type='submit' name='buttonBlack cancel-delete-btn' class='buttonBlack cancel-delete-btn'>Non</button>
                         </form>
                         <br>";
-            
         }
     }
     function suppression($conn) {
@@ -98,8 +96,60 @@
             echo ("<meta http-equiv='refresh' content='1'>");
         }
     }
+    function carrouselMaker($carrouselMyQuizzArray) {
+        $previousLink='';
+        $quizzShown=$carrouselMyQuizzArray[1];
+        if(count($carrouselMyQuizzArray) == 2) {
+            $previousLink='';
+            $previousQuizz='';
+            $quizzShown=quizzDivMaker($carrouselMyQuizzArray[1]);
+            $nextQuizz='';
+            $nextLink='';
+        }elseif( count($carrouselMyQuizzArray) == 3 ) {
+            $previousLink=isset($carrouselMyQuizzArray[2])?'<div class="carrouselButton"><a class="buttonBlack" href="usermenu.php?myquizz='.(2).'">Quizz précédent</a></div>':'';
+            $previousQuizz=quizzDivMaker($carrouselMyQuizzArray[count($carrouselMyQuizzArray)-1]);
+            $quizzShown=quizzDivMaker($carrouselMyQuizzArray[1]);
+            $nextQuizz=quizzDivMaker($carrouselMyQuizzArray[2]);
+            $nextLink=isset($carrouselMyQuizzArray[2])?'<div class="carrouselButton"><a class="buttonBlack" href="usermenu.php?myquizz='.(2).'">Quizz suivant</a></div>':'';
+        }elseif(count($carrouselMyQuizzArray) >= 4) {
+            $previousLink=isset($carrouselMyQuizzArray[count($carrouselMyQuizzArray)-1])?'<div class="carrouselButton"><a class="buttonBlack" href="usermenu.php?myquizz='.(count($carrouselMyQuizzArray)-1).'">Quizz précédent</a></div>':'';
+            $previousQuizz=quizzDivMaker($carrouselMyQuizzArray[1]);
+            $quizzShown=quizzDivMaker($carrouselMyQuizzArray[2]);
+            $nextQuizz=quizzDivMaker($carrouselMyQuizzArray[3]);
+            $nextLink=isset($carrouselMyQuizzArray[3])?'<div class="carrouselButton"><a class="buttonBlack" href="usermenu.php?myquizz='.(3).'">Quizz suivant</a></div>':'';
+        }
+        if(isset($_GET['myquizz']) and is_int((int)$_GET['myquizz'])){
+            if(array_key_exists($_GET['myquizz'],$carrouselMyQuizzArray)){
+                if($_GET['myquizz'] == 1){
+                    $previousLink=isset($carrouselMyQuizzArray[count($carrouselMyQuizzArray)-1])?'<div class="carrouselButton"><a class="buttonBlack" href="usermenu.php?myquizz='.(count($carrouselMyQuizzArray)-1).'">Quizz précédent</a></div>':'';
+                    $previousQuizz=quizzDivMaker($carrouselMyQuizzArray[count($carrouselMyQuizzArray)-1]);
+                    $quizzShown=quizzDivMaker($carrouselMyQuizzArray[$_GET['myquizz']]);
+                    $nextQuizz=quizzDivMaker($carrouselMyQuizzArray[$_GET['myquizz']+1]);
+                    $nextLink=isset($carrouselMyQuizzArray[$_GET['myquizz']+1])?'<div class="carrouselButton"><a class="buttonBlack" href="usermenu.php?myquizz='.($_GET['myquizz']+1).'">Quizz suivant</a></div>':'';
+                    
+                }elseif($_GET['myquizz'] == count($carrouselMyQuizzArray)-1){
+                    $previousLink=isset($carrouselMyQuizzArray[$_GET['myquizz']-1])?'<div class="carrouselButton"><a class="buttonBlack" href="usermenu.php?myquizz='.($_GET['myquizz']-1).'">Quizz précédent</a></div>':'';
+                    $previousQuizz=quizzDivMaker($carrouselMyQuizzArray[$_GET['myquizz']-1]);
+                    $quizzShown=quizzDivMaker($carrouselMyQuizzArray[$_GET['myquizz']]);
+                    $nextQuizz=quizzDivMaker($carrouselMyQuizzArray[1]);
+                    $nextLink=isset($carrouselMyQuizzArray[1])?'<div class="carrouselButton"><a class="buttonBlack" href="usermenu.php?myquizz='.(1).'">Quizz suivant</a></div>':'';
+                }else{
+                    $previousLink=isset($carrouselMyQuizzArray[$_GET['myquizz']-1])?'<div class="carrouselButton"><a class="buttonBlack" href="usermenu.php?myquizz='.($_GET['myquizz']-1).'">Quizz précédent</a></div>':'';
+                    $previousQuizz=quizzDivMaker($carrouselMyQuizzArray[$_GET['myquizz']-1]);
+                    $quizzShown=quizzDivMaker($carrouselMyQuizzArray[$_GET['myquizz']]);
+                    $nextQuizz=quizzDivMaker($carrouselMyQuizzArray[$_GET['myquizz']+1]);
+                    $nextLink=isset($carrouselMyQuizzArray[$_GET['myquizz']+1])?'<div class="carrouselButton"><a class="buttonBlack" href="usermenu.php?myquizz='.($_GET['myquizz']+1).'">Quizz suivant</a></div>':'';
+                }
+            }
+        }
+        echo $previousLink;
+        echo $previousQuizz;
+        echo $quizzShown;
+        echo $nextQuizz;
+        echo $nextLink;
+    }
 
-
+    
     if (isset($_COOKIE['currentHouse'])) {
         $currentHouse = str_replace("houseButton ", "", $_COOKIE['currentHouse']);
     } else {
@@ -117,88 +167,30 @@
         ?>
         <div class="userQuizzList">
         <?php
-        
         //if the user is a  utilisateur (type_utilisateur = 0), he can only see all the quizzes
         if ($type_utilisateur == 1 || $type_utilisateur == 2) :
         ?>
-            
             <div class="usermenuQuizzList">Mes quizz :</div>
         <?php
-            
-
-            
             $query = "SELECT * FROM `quizz` WHERE auteur_quizz='$id_utilisateur'";
             $result = mysqli_query($conn, $query);
             $carrouselMyQuizzArray = [0];
             while($row = mysqli_fetch_assoc($result)){
                 array_push($carrouselMyQuizzArray,$row['id_quizz']);
             }
-            
             echo '<div class="carrouselMyQuizz">';
             if(count($carrouselMyQuizzArray)==1){
                 echo "Tu n'as pas encore créé de quizz !";
             } else {
-                $previousLink='';
-                $quizzShown=$carrouselMyQuizzArray[1];
-                if(count($carrouselMyQuizzArray) == 2) {
-                    $previousLink='';
-                    $previousQuizz='';
-                    $quizzShown=quizzDivMaker($carrouselMyQuizzArray[1]);
-                    $nextQuizz='';
-                    $nextLink='';
-                }elseif( count($carrouselMyQuizzArray) == 3 ) {
-                    $previousLink=isset($carrouselMyQuizzArray[2])?'<div class="carrouselButton"><a class="buttonBlack" href="usermenu.php?myquizz='.(2).'">Quizz précédent</a></div>':'';
-                    $previousQuizz=quizzDivMaker($carrouselMyQuizzArray[count($carrouselMyQuizzArray)-1]);
-                    $quizzShown=quizzDivMaker($carrouselMyQuizzArray[1]);
-                    $nextQuizz=quizzDivMaker($carrouselMyQuizzArray[2]);
-                    $nextLink=isset($carrouselMyQuizzArray[2])?'<div class="carrouselButton"><a class="buttonBlack" href="usermenu.php?myquizz='.(2).'">Quizz suivant</a></div>':'';
-                }elseif(count($carrouselMyQuizzArray) >= 4) {
-                    $previousLink=isset($carrouselMyQuizzArray[count($carrouselMyQuizzArray)-1])?'<div class="carrouselButton"><a class="buttonBlack" href="usermenu.php?myquizz='.(count($carrouselMyQuizzArray)-1).'">Quizz précédent</a></div>':'';
-                    $previousQuizz=quizzDivMaker($carrouselMyQuizzArray[1]);
-                    $quizzShown=quizzDivMaker($carrouselMyQuizzArray[2]);
-                    $nextQuizz=quizzDivMaker($carrouselMyQuizzArray[3]);
-                    $nextLink=isset($carrouselMyQuizzArray[3])?'<div class="carrouselButton"><a class="buttonBlack" href="usermenu.php?myquizz='.(3).'">Quizz suivant</a></div>':'';
-                }
-            
-                if(isset($_GET['myquizz']) and is_int((int)$_GET['myquizz'])){
-                    if(array_key_exists($_GET['myquizz'],$carrouselMyQuizzArray)){
-                        if($_GET['myquizz'] == 1){
-                            $previousLink=isset($carrouselMyQuizzArray[count($carrouselMyQuizzArray)-1])?'<div class="carrouselButton"><a class="buttonBlack" href="usermenu.php?myquizz='.(count($carrouselMyQuizzArray)-1).'">Quizz précédent</a></div>':'';
-                            $previousQuizz=quizzDivMaker($carrouselMyQuizzArray[count($carrouselMyQuizzArray)-1]);
-                            $quizzShown=quizzDivMaker($carrouselMyQuizzArray[$_GET['myquizz']]);
-                            $nextQuizz=quizzDivMaker($carrouselMyQuizzArray[$_GET['myquizz']+1]);
-                            $nextLink=isset($carrouselMyQuizzArray[$_GET['myquizz']+1])?'<div class="carrouselButton"><a class="buttonBlack" href="usermenu.php?myquizz='.($_GET['myquizz']+1).'">Quizz suivant</a></div>':'';
-                            
-                        }elseif($_GET['myquizz'] == count($carrouselMyQuizzArray)-1){
-                            $previousLink=isset($carrouselMyQuizzArray[$_GET['myquizz']-1])?'<div class="carrouselButton"><a class="buttonBlack" href="usermenu.php?myquizz='.($_GET['myquizz']-1).'">Quizz précédent</a></div>':'';
-                            $previousQuizz=quizzDivMaker($carrouselMyQuizzArray[$_GET['myquizz']-1]);
-                            $quizzShown=quizzDivMaker($carrouselMyQuizzArray[$_GET['myquizz']]);
-                            $nextQuizz=quizzDivMaker($carrouselMyQuizzArray[1]);
-                            $nextLink=isset($carrouselMyQuizzArray[1])?'<div class="carrouselButton"><a class="buttonBlack" href="usermenu.php?myquizz='.(1).'">Quizz suivant</a></div>':'';
-                        }else{
-                            $previousLink=isset($carrouselMyQuizzArray[$_GET['myquizz']-1])?'<div class="carrouselButton"><a class="buttonBlack" href="usermenu.php?myquizz='.($_GET['myquizz']-1).'">Quizz précédent</a></div>':'';
-                            $previousQuizz=quizzDivMaker($carrouselMyQuizzArray[$_GET['myquizz']-1]);
-                            $quizzShown=quizzDivMaker($carrouselMyQuizzArray[$_GET['myquizz']]);
-                            $nextQuizz=quizzDivMaker($carrouselMyQuizzArray[$_GET['myquizz']+1]);
-                            $nextLink=isset($carrouselMyQuizzArray[$_GET['myquizz']+1])?'<div class="carrouselButton"><a class="buttonBlack" href="usermenu.php?myquizz='.($_GET['myquizz']+1).'">Quizz suivant</a></div>':'';
-                        }
-                    }
-                }
-                echo $previousLink;
-                echo $previousQuizz;
-                echo $quizzShown;
-                echo $nextQuizz;
-                echo $nextLink;
+                carrouselMaker($carrouselMyQuizzArray);
             }
             echo '</div>';
         endif;
         checkSuppression();
         suppression($conn);
         ?>
-        
                 <div class="usermenuQuizzList">Tous les quizz :</div>
-                <?php
-            
+        <?php
             $query = "SELECT * FROM `quizz`";
             $result = mysqli_query($conn, $query);
             $carrouselMyQuizzArray = [0];
@@ -210,57 +202,7 @@
             if(count($carrouselMyQuizzArray)==1){
                 echo "Il n'y a pas encore de quizz !";
             } else {
-                $previousLink='';
-                $quizzShown=$carrouselMyQuizzArray[1];
-                if(count($carrouselMyQuizzArray) == 2) {
-                    $previousLink='';
-                    $previousQuizz='';
-                    $quizzShown=quizzDivMaker($carrouselMyQuizzArray[1]);
-                    $nextQuizz='';
-                    $nextLink='';
-                }elseif( count($carrouselMyQuizzArray) == 3 ) {
-                    $previousLink=isset($carrouselMyQuizzArray[2])?'<div class="carrouselButton"><a class="buttonBlack" href="usermenu.php?quizz='.(2).'">Quizz précédent</a></div>':'';
-                    $previousQuizz=quizzDivMaker($carrouselMyQuizzArray[count($carrouselMyQuizzArray)-1]);
-                    $quizzShown=quizzDivMaker($carrouselMyQuizzArray[1]);
-                    $nextQuizz=quizzDivMaker($carrouselMyQuizzArray[2]);
-                    $nextLink=isset($carrouselMyQuizzArray[2])?'<div class="carrouselButton"><a class="buttonBlack" href="usermenu.php?quizz='.(2).'">Quizz suivant</a></div>':'';
-                }elseif(count($carrouselMyQuizzArray) >= 4) {
-                    $previousLink=isset($carrouselMyQuizzArray[count($carrouselMyQuizzArray)-1])?'<div class="carrouselButton"><a class="buttonBlack" href="usermenu.php?quizz='.(count($carrouselMyQuizzArray)-1).'">Quizz précédent</a></div>':'';
-                    $previousQuizz=quizzDivMaker($carrouselMyQuizzArray[1]);
-                    $quizzShown=quizzDivMaker($carrouselMyQuizzArray[2]);
-                    $nextQuizz=quizzDivMaker($carrouselMyQuizzArray[3]);
-                    $nextLink=isset($carrouselMyQuizzArray[3])?'<div class="carrouselButton"><a class="buttonBlack" href="usermenu.php?quizz='.(3).'">Quizz suivant</a></div>':'';
-                }
-            
-                if(isset($_GET['quizz']) and is_int((int)$_GET['quizz'])){
-                    if(array_key_exists($_GET['quizz'],$carrouselMyQuizzArray)){
-                        if($_GET['quizz'] == 1){
-                            $previousLink=isset($carrouselMyQuizzArray[count($carrouselMyQuizzArray)-1])?'<div class="carrouselButton"><a class="buttonBlack" href="usermenu.php?quizz='.(count($carrouselMyQuizzArray)-1).'">Quizz précédent</a></div>':'';
-                            $previousQuizz=quizzDivMaker($carrouselMyQuizzArray[count($carrouselMyQuizzArray)-1]);
-                            $quizzShown=quizzDivMaker($carrouselMyQuizzArray[$_GET['quizz']]);
-                            $nextQuizz=quizzDivMaker($carrouselMyQuizzArray[$_GET['quizz']+1]);
-                            $nextLink=isset($carrouselMyQuizzArray[$_GET['quizz']+1])?'<div class="carrouselButton"><a class="buttonBlack" href="usermenu.php?quizz='.($_GET['quizz']+1).'">Quizz suivant</a></div>':'';
-                            
-                        }elseif($_GET['quizz'] == count($carrouselMyQuizzArray)-1){
-                            $previousLink=isset($carrouselMyQuizzArray[$_GET['quizz']-1])?'<div class="carrouselButton"><a class="buttonBlack" href="usermenu.php?quizz='.($_GET['quizz']-1).'">Quizz précédent</a></div>':'';
-                            $previousQuizz=quizzDivMaker($carrouselMyQuizzArray[$_GET['quizz']-1]);
-                            $quizzShown=quizzDivMaker($carrouselMyQuizzArray[$_GET['quizz']]);
-                            $nextQuizz=quizzDivMaker($carrouselMyQuizzArray[1]);
-                            $nextLink=isset($carrouselMyQuizzArray[1])?'<div class="carrouselButton"><a class="buttonBlack" href="usermenu.php?quizz='.(1).'">Quizz suivant</a></div>':'';
-                        }else{
-                            $previousLink=isset($carrouselMyQuizzArray[$_GET['quizz']-1])?'<div class="carrouselButton"><a class="buttonBlack" href="usermenu.php?quizz='.($_GET['quizz']-1).'">Quizz précédent</a></div>':'';
-                            $previousQuizz=quizzDivMaker($carrouselMyQuizzArray[$_GET['quizz']-1]);
-                            $quizzShown=quizzDivMaker($carrouselMyQuizzArray[$_GET['quizz']]);
-                            $nextQuizz=quizzDivMaker($carrouselMyQuizzArray[$_GET['quizz']+1]);
-                            $nextLink=isset($carrouselMyQuizzArray[$_GET['quizz']+1])?'<div class="carrouselButton"><a class="buttonBlack" href="usermenu.php?quizz='.($_GET['quizz']+1).'">Quizz suivant</a></div>':'';
-                        }
-                    }
-                }
-                echo $previousLink;
-                echo $previousQuizz;
-                echo $quizzShown;
-                echo $nextQuizz;
-                echo $nextLink;
+                carrouselMaker($carrouselMyQuizzArray);
             }
             echo '</div>';
         ?>
@@ -272,12 +214,8 @@
     </div>
     <?php
     require('footer.php');
-    
     ?>
-    
     </div>
     </div>
-    
 </body>
-
 </html>
