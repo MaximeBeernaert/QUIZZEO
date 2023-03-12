@@ -76,17 +76,11 @@ a {
     text-align: center;
 }
 
-.containerNot{
-    width: 12em;
-    display: flex;
+.containerNot, .container, .text{
     justify-content:center;
     text-align: center;
 }
 
-.containerText{
-    width: 12em;
-    display: flex;
-}
 .optionHeader {
     padding: 0 1em 0 1em;
 }

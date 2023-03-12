@@ -15,14 +15,14 @@
         ?>
     </header>
 
-    <!-- // When the user is not correctly logged in, he is forwarded to this page, where he has the option to go to Login, or the Main Page. -->
-
-    <div class="containerNot">
-        Vous n'avez pas les droits pour accéder à cette page !
-    </div>
-    <div class="buttonBlue ">
-        <a href="usermenu.php">Menu utilisateur</a>
-        <a href="accueil.php">Accueil</a>
+    <div class="container">
+        <div class="containerNot">
+            Vous n'avez pas les droits pour accéder à cette page !
+            <br>
+        </div>
+        <div class="text">
+            Votre grade actuel ne vous permet pas d'accéder à cette section de Quizzeo, si cela vous semble étrange contacter un administrateur !
+        </div>
     </div>
 
 </body>
