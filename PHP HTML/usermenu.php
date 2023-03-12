@@ -7,7 +7,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Menu utilisateur</title>
 </head>
+    <script>
+        document.addEventListener("DOMContentLoaded", function(event) { 
+            var scrollpos = localStorage.getItem('scrollpos');
+            if (scrollpos) window.scrollTo(0, scrollpos);
+        });
 
+        window.onbeforeunload = function(e) {
+            localStorage.setItem('scrollpos', window.scrollY);
+        };
+    </script>
 <body>
     <header>
         <?php
@@ -260,19 +269,15 @@
                 <?php echo "<img class='houseIcone $currentHouse' src='GriffondorIcone.png'>" ?>
             </div>
     </div>
-    <?php
-    
-    ?>
     </div>
-    <?php
-    
-    ?>
-
     <?php
     require('footer.php');
+    
     ?>
+    
     </div>
     </div>
+    
 </body>
 
 </html>
