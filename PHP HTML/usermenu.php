@@ -36,6 +36,7 @@
         ?>
             <div class="userQuizzList">
                 <div class="usermenuQuizzList">Mes quizz :</div>
+                <div class="displayAll">
                 <div class="display displayPersonalQuizz">
 
                     <?php
@@ -53,48 +54,60 @@
                         ?>
                     </div>
                     <?php
-
+                    $quizzListArray = [];
                     while ($row = mysqli_fetch_assoc($result)) :
+                        $quizzArray = [];
                         $id_quizz = $row['id_quizz'];
                         $id_userQuizz = $row['auteur_quizz'];
                         $queryUserQuizz = "SELECT * FROM `utilisateurs` WHERE `id_utilisateur` = '$id_userQuizz'";
                         $resultUserQuizz = mysqli_query($conn, $queryUserQuizz);
                         $userQuizz = mysqli_fetch_assoc($resultUserQuizz);
-                    ?>
-                        <div class="quizz">
-                            <div class="titlequizzmainpage">
-                                <?php echo $row['titre_quizz']; ?>
-                            </div>
-                            <div class="themequizzmainpage">
-                                <?php echo $row['theme_quizz']; ?>
-                            </div>
-                            <div class="quizzButton quizzPlay">
-                                <form action="quizz.php" method="POST">
-                                    <?php echo "<input type='hidden' name='id_quizz' value='$id_quizz'>" ?>
-                                    <button type="submit" name="choose2-quizz-btn" class="quizzButton choose2-quizz-btn">Jouer !</button>
-                                </form>
-                            </div>
-                            <?php
-                            if ($type_utilisateur >= 1) : ?>
-                                <div class="quizzButton quizzModif">
-                                    <form action="modif.php" method="POST">
-                                        <input type="hidden" name="id_quizz" value="<?php echo $row['id_quizz']; ?>">
-                                        <button type="submit" name="modify2-btn" class="quizzButton modify2-btn">Modifier</button>
+                        array_push($quizzArray,$row['titre_quizz']);
+                        array_push($quizzArray,$row['titre_quizz']);
+                        array_push($quizzArray,$row['theme_quizz']);
+                        array_push($quizzListArray,$quizzArray);
+                        if(!isset($quizzListArray[3][0])){
+                            ?>
+                            <div class="quizz">
+                                <div class="titlequizzmainpage">
+                                    <?php echo $row['titre_quizz']; ?>
+                                </div>
+                                <div class="themequizzmainpage">
+                                    <?php echo $row['theme_quizz']; ?>
+                                </div>
+                                <div class="quizzButton quizzPlay">
+                                    <form action="quizz.php" method="POST">
+                                        <?php echo "<input type='hidden' name='id_quizz' value='$id_quizz'>" ?>
+                                        <button type="submit" name="choose2-quizz-btn" class="quizzButton choose2-quizz-btn">Jouer !</button>
                                     </form>
                                 </div>
-                                <div class="quizzButton quizzDelete">
-                                    <input type="hidden" name="id_quizz" value="<?php echo $row['id_quizz']; ?>">
-                                    <button type="submit" name="delete2-btn" class="quizzButton delete2-btn" onclick="openPopup()">Supprimer</button>
-                                </div>
-                            <?php
-                            endif;
-                            ?>
-                        </div>
-                <?php endwhile;
+                                <?php
+                                if ($type_utilisateur >= 1) : ?>
+                                    <div class="quizzButton quizzModif">
+                                        <form action="modif.php" method="POST">
+                                            <input type="hidden" name="id_quizz" value="<?php echo $row['id_quizz']; ?>">
+                                            <button type="submit" name="modify2-btn" class="quizzButton modify2-btn">Modifier</button>
+                                        </form>
+                                    </div>
+                                    <div class="quizzButton quizzDelete">
+                                        <input type="hidden" name="id_quizz" value="<?php echo $row['id_quizz']; ?>">
+                                        <button type="submit" name="delete2-btn" class="quizzButton delete2-btn" onclick="openPopup()">Supprimer</button>
+                                    </div>
+                                <?php
+                                endif;
+                                ?>
+                            </div>
+                    <?php 
+                        }
+                    endwhile;
                 endif;
                 ?>
                 </div>
+                </div>
+
+
                 <div class="usermenuQuizzList">Tous les quizz :</div>
+                <div class="displayAll">
                 <div class="display displayAllQuizz">
 
                     <?php
@@ -145,6 +158,7 @@
                     <?php endwhile;
                     }
                     ?>
+                </div>
                 </div>
             </div>
             <div class=" banner">
@@ -197,7 +211,7 @@
     </div>
     </div>
 
-    <script>
+    <!-- <script>
         //open popup and close popup animation
         const popup = document.querySelector('.popup');
 
@@ -212,7 +226,7 @@
         function closePopup() {
             popup.classList.remove('open-popup');
         }
-    </script>
+    </script> -->
 </body>
 
 </html>
