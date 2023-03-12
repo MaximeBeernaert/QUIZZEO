@@ -54,19 +54,64 @@
                     <div class='themequizzmainpage'>
                         $theme_quizz
                     </div>
-                    <div class='quizzButton quizzPlay'>
+                    <div class='quizzPlay'>
                         <form action='quizz.php' method='POST'>
                             <input type='hidden' name='id_quizz' value='$id_quizz'>
                             <button type='submit' name='choose2-quizz-btn' class='quizzButton choose2-quizz-btn'>Jouer !</button>
                         </form>
+                        <div class='spaceDiv'></div>
+                        <form action='modif.php' method='POST'>
+                            <input type='hidden' name='id_quizz' value='$id_quizz'>
+                            <button type='submit' name='modify2-quizz-btn' class='quizzButton modify2-quizz-btn'>Modifier !</button>
+                        </form>
+                        <form action='usermenu.php' method='POST'>
+                            <input type='hidden' name='id_quizz' value='$id_quizz'>
+                            <button type='submit' name='delete2-quizz-btn' class='quizzButton delete2-quizz-btn'>Supprimer !</button>
+                        </form>
                     </div>";
             }
-            /*
-            * page: carrousel.php
-            */
-            require('DBconnexion.php');
-            $user = $_SESSION['user'];
-            $id_utilisateur = $user['id_utilisateur'];
+            function checkSuppression() {
+                if(isset($_POST['id_quizz'])){
+                    $id_quizz = $_POST['id_quizz'];
+                    echo "
+                                <br>
+                                <p>Êtes-vous sûr de vouloir supprimer ce quizz ?</p>
+                                <form action='usermenu.php' method='POST'>
+                                    <input type='hidden' name='id_quizz' value='$id_quizz'>
+                                    <button type='submit' name='confirm-delete-btn' class='confirm-delete-btn buttonRed'>Oui</button>
+                                </form>
+                                <form action='usermenu.php' method='POST'>
+                                    <button type='submit' name='buttonBlack cancel-delete-btn' class='buttonBlack cancel-delete-btn'>Non</button>
+                                </form>
+                                <br>";
+                    
+                }
+            }
+            function suppresion() {
+                if (isset($_POST['confirm-delete-btn'])) {
+                    $id_quizz = $_POST['id_quizz'];
+            
+                    $query = "DELETE FROM `choix` WHERE id_choix IN (SELECT id_choix FROM `appartenir` WHERE id_question IN (SELECT id_question FROM `questions` WHERE id_question IN (SELECT id_question FROM `contient` WHERE id_quizz='$id_quizz')))";
+                    $result = mysqli_query($conn, $query);
+            
+                    $query = "DELETE FROM `appartenir` WHERE id_question IN (SELECT id_question FROM `questions` WHERE id_question IN (SELECT id_question FROM `contient` WHERE id_quizz='$id_quizz'))";
+                    $result = mysqli_query($conn, $query);
+            
+                    $query = "DELETE FROM `questions` WHERE id_question IN (SELECT id_question FROM `contient` WHERE id_quizz='$id_quizz')";
+                    $result = mysqli_query($conn, $query);
+            
+                    $query = "DELETE FROM `contient` WHERE id_quizz='$id_quizz'";
+                    $result = mysqli_query($conn, $query);
+            
+                    $query = "DELETE FROM 'jouer' WHERE id_quizz='$id_quizz'";
+                    $result = mysqli_query($conn, $query);
+            
+                    $query = "DELETE FROM `quizz` WHERE id_quizz='$id_quizz'";
+                    $result = mysqli_query($conn, $query);
+            
+                    echo ("<meta http-equiv='refresh' content='1'>");
+                }
+            }
             $query = "SELECT * FROM `quizz` WHERE auteur_quizz='$id_utilisateur'";
             $result = mysqli_query($conn, $query);
             $carrouselMyQuizzArray = [0];
@@ -81,8 +126,11 @@
                 $previousLink='';
                 $quizzShown=$carrouselMyQuizzArray[1];
                 if(count($carrouselMyQuizzArray) == 2) {
-                    $previousLink=isset($carrouselMyQuizzArray[1])?'<a href="usermenu.php?quizz='.(1).'">Quizz précédent</a>':'';
+                    $previousLink='';
+                    $previousQuizz='';
                     $quizzShown=quizzDivMaker($carrouselMyQuizzArray[1]);
+                    $nextQuizz='';
+                    $nextLink='';
                 }elseif( count($carrouselMyQuizzArray) == 3 ) {
                     $previousLink=isset($carrouselMyQuizzArray[2])?'<a href="usermenu.php?quizz='.(2).'">Quizz précédent</a>':'';
                     $previousQuizz=quizzDivMaker($carrouselMyQuizzArray[count($carrouselMyQuizzArray)-1]);
@@ -133,16 +181,12 @@
             }
             echo '</div>';
         endif;
+        checkSuppression();
         ?>
+        
                 <div class="usermenuQuizzList">Tous les quizz :</div>
                 <?php
             
-            /*
-            * page: carrousel.php
-            */
-            require('DBconnexion.php');
-            $user = $_SESSION['user'];
-            $id_utilisateur = $user['id_utilisateur'];
             $query = "SELECT * FROM `quizz`";
             $result = mysqli_query($conn, $query);
             $carrouselMyQuizzArray = [0];
@@ -157,8 +201,11 @@
                 $previousLink='';
                 $quizzShown=$carrouselMyQuizzArray[1];
                 if(count($carrouselMyQuizzArray) == 2) {
-                    $previousLink=isset($carrouselMyQuizzArray[1])?'<a href="usermenu.php?quizz='.(1).'">Quizz précédent</a>':'';
+                    $previousLink='';
+                    $previousQuizz='';
                     $quizzShown=quizzDivMaker($carrouselMyQuizzArray[1]);
+                    $nextQuizz='';
+                    $nextLink='';
                 }elseif( count($carrouselMyQuizzArray) == 3 ) {
                     $previousLink=isset($carrouselMyQuizzArray[2])?'<a href="usermenu.php?quizz='.(2).'">Quizz précédent</a>':'';
                     $previousQuizz=quizzDivMaker($carrouselMyQuizzArray[count($carrouselMyQuizzArray)-1]);
@@ -215,42 +262,11 @@
             </div>
     </div>
     <?php
-    $id_quizz = $_POST['id_quizz'];
-    echo "
-                <br>
-                <form action='usermenu.php' method='POST'>
-                    <input type='hidden' name='id_quizz' value='$id_quizz'>
-                    <p>Êtes-vous sûr de vouloir supprimer ce quizz ?</p>
-                    <button type='submit' name='confirm-delete-btn' class='confirm-delete-btn buttonRed' onclick='closePopup()'>Oui</button>
-                    <button type='submit' name='buttonBlack cancel-delete-btn' class='buttonBlack cancel-delete-btn' onclick='closePopup()'>Non</button>
-                </form>
-                <br>";
+    
     ?>
     </div>
     <?php
-    if (isset($_POST['confirm-delete-btn'])) {
-        $id_quizz = $_POST['id_quizz'];
-
-        $query = "DELETE FROM `choix` WHERE id_choix IN (SELECT id_choix FROM `appartenir` WHERE id_question IN (SELECT id_question FROM `questions` WHERE id_question IN (SELECT id_question FROM `contient` WHERE id_quizz='$id_quizz')))";
-        $result = mysqli_query($conn, $query);
-
-        $query = "DELETE FROM `appartenir` WHERE id_question IN (SELECT id_question FROM `questions` WHERE id_question IN (SELECT id_question FROM `contient` WHERE id_quizz='$id_quizz'))";
-        $result = mysqli_query($conn, $query);
-
-        $query = "DELETE FROM `questions` WHERE id_question IN (SELECT id_question FROM `contient` WHERE id_quizz='$id_quizz')";
-        $result = mysqli_query($conn, $query);
-
-        $query = "DELETE FROM `contient` WHERE id_quizz='$id_quizz'";
-        $result = mysqli_query($conn, $query);
-
-        $query = "DELETE FROM 'jouer' WHERE id_quizz='$id_quizz'";
-        $result = mysqli_query($conn, $query);
-
-        $query = "DELETE FROM `quizz` WHERE id_quizz='$id_quizz'";
-        $result = mysqli_query($conn, $query);
-
-        echo ("<meta http-equiv='refresh' content='1'>");
-    }
+    
     ?>
 
     <?php
@@ -258,21 +274,6 @@
     ?>
     </div>
     </div>
-
-    <!-- <script>
-        //open popup and close popup animation
-        const popup = document.querySelector('.popup');
-        const id_quizz_input = document.querySelector('.quizzDelete');
-
-        function openPopup(id_quizz) {
-            id_quizz_input.value = id_quizz;
-            popup.classList.add('open-popup');
-        }
-
-        function closePopup() {
-            popup.classList.remove('open-popup');
-        }
-    </script> -->
 </body>
 
 </html>
