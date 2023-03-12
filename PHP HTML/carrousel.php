@@ -40,8 +40,6 @@ $carrouselMyQuizzArray = [0];
 while($row = mysqli_fetch_assoc($result)){
     array_push($carrouselMyQuizzArray,$row['id_quizz']);
 }
-var_dump($carrouselMyQuizzArray);
-
 
 echo '<div id="carrouselMyQuizz">';
 if(count($carrouselMyQuizzArray)==1){
