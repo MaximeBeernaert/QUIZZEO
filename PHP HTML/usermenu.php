@@ -35,130 +35,180 @@
         if ($type_utilisateur == 1 || $type_utilisateur == 2) :
         ?>
             <div class="userQuizzList">
-                <div class="usermenuQuizzList">Mes quizz :</div>
-                <div class="displayAll">
-                <div class="display displayPersonalQuizz">
+            <p>Mes Quizz</p>
+        <?php
+            
 
-                    <?php
-                    $query = "SELECT * FROM `quizz` WHERE auteur_quizz='$id_utilisateur'";
-                    $result = mysqli_query($conn, $query);
-
-                    ?>
-                    <div class="myquizz">
-                        <?php
-                        if (mysqli_num_rows($result) == 0) :
-                        ?>
-                            <h2>Tu n'as pas encore créé de quizz !</h2>
-                        <?php
-                        endif;
-                        ?>
+            function quizzDivMaker($id_quizz) {
+                require('DBconnexion.php');
+                $query = "SELECT * FROM `quizz` WHERE id_quizz='$id_quizz'";
+                $result = mysqli_query($conn, $query);
+                $quizz = mysqli_fetch_assoc($result);
+                $title_quizz = $quizz['titre_quizz'];
+                $theme_quizz = $quizz['theme_quizz'];
+            
+                return "<div class='quizz'>
+                    <div class='titlequizzmainpage'>
+                        $title_quizz
                     </div>
-                    <?php
-                    $quizzListArray = [];
-                    while ($row = mysqli_fetch_assoc($result)) :
-                        $quizzArray = [];
-                        $id_quizz = $row['id_quizz'];
-                        $id_userQuizz = $row['auteur_quizz'];
-                        $queryUserQuizz = "SELECT * FROM `utilisateurs` WHERE `id_utilisateur` = '$id_userQuizz'";
-                        $resultUserQuizz = mysqli_query($conn, $queryUserQuizz);
-                        $userQuizz = mysqli_fetch_assoc($resultUserQuizz);
-                        array_push($quizzArray,$row['titre_quizz']);
-                        array_push($quizzArray,$row['titre_quizz']);
-                        array_push($quizzArray,$row['theme_quizz']);
-                        array_push($quizzListArray,$quizzArray);
-                        if(!isset($quizzListArray[3][0])){
-                            ?>
-                            <div class="quizz">
-                                <div class="titlequizzmainpage">
-                                    <?php echo $row['titre_quizz']; ?>
-                                </div>
-                                <div class="themequizzmainpage">
-                                    <?php echo $row['theme_quizz']; ?>
-                                </div>
-                                <div class="quizzButton quizzPlay">
-                                    <form action="quizz.php" method="POST">
-                                        <?php echo "<input type='hidden' name='id_quizz' value='$id_quizz'>" ?>
-                                        <button type="submit" name="choose2-quizz-btn" class="quizzButton choose2-quizz-btn">Jouer !</button>
-                                    </form>
-                                </div>
-                                <?php
-                                if ($type_utilisateur >= 1) : ?>
-                                    <div class="quizzButton quizzModif">
-                                        <form action="modif.php" method="POST">
-                                            <input type="hidden" name="id_quizz" value="<?php echo $row['id_quizz']; ?>">
-                                            <button type="submit" name="modify2-btn" class="quizzButton modify2-btn">Modifier</button>
-                                        </form>
-                                    </div>
-                                    <div class="quizzButton quizzDelete">
-                                        <input type="hidden" name="id_quizz" value="<?php echo $row['id_quizz']; ?>">
-                                        <button type="submit" name="delete2-btn" class="quizzButton delete2-btn" onclick="openPopup()">Supprimer</button>
-                                    </div>
-                                <?php
-                                endif;
-                                ?>
-                            </div>
-                    <?php 
+                    <div class='themequizzmainpage'>
+                        $theme_quizz
+                    </div>
+                    <div class='quizzButton quizzPlay'>
+                        <form action='quizz.php' method='POST'>
+                            <input type='hidden' name='id_quizz' value='$id_quizz'>
+                            <button type='submit' name='choose2-quizz-btn' class='quizzButton choose2-quizz-btn'>Jouer !</button>
+                        </form>
+                    </div>";
+            }
+            /*
+            * page: carrousel.php
+            */
+            require('DBconnexion.php');
+            $user = $_SESSION['user'];
+            $id_utilisateur = $user['id_utilisateur'];
+            $query = "SELECT * FROM `quizz` WHERE auteur_quizz='$id_utilisateur'";
+            $result = mysqli_query($conn, $query);
+            $carrouselMyQuizzArray = [0];
+            while($row = mysqli_fetch_assoc($result)){
+                array_push($carrouselMyQuizzArray,$row['id_quizz']);
+            }
+            
+            echo '<div id="carrouselMyQuizz">';
+            if(count($carrouselMyQuizzArray)==1){
+                echo "Tu n'as pas encore créé de quizz !";
+            } else {
+                $previousLink='';
+                $quizzShown=$carrouselMyQuizzArray[1];
+                if(count($carrouselMyQuizzArray) == 2) {
+                    $previousLink=isset($carrouselMyQuizzArray[1])?'<a href="usermenu.php?quizz='.(1).'">Quizz précédent</a>':'';
+                    $quizzShown=quizzDivMaker($carrouselMyQuizzArray[1]);
+                }elseif( count($carrouselMyQuizzArray) == 3 ) {
+                    $previousLink=isset($carrouselMyQuizzArray[2])?'<a href="usermenu.php?quizz='.(2).'">Quizz précédent</a>':'';
+                    $previousQuizz=quizzDivMaker($carrouselMyQuizzArray[count($carrouselMyQuizzArray)-1]);
+                    $quizzShown=quizzDivMaker($carrouselMyQuizzArray[1]);
+                    $nextQuizz=quizzDivMaker($carrouselMyQuizzArray[2]);
+                    $nextLink=isset($carrouselMyQuizzArray[2])?'<a href="usermenu.php?quizz='.(2).'">Quizz suivant</a>':'';
+                }elseif(count($carrouselMyQuizzArray) >= 4) {
+                    $previousLink=isset($carrouselMyQuizzArray[count($carrouselMyQuizzArray)-1])?'<a href="usermenu.php?quizz='.(count($carrouselMyQuizzArray)-1).'">Quizz précédent</a>':'';
+                    $previousQuizz=quizzDivMaker($carrouselMyQuizzArray[1]);
+                    $quizzShown=quizzDivMaker($carrouselMyQuizzArray[2]);
+                    $nextQuizz=quizzDivMaker($carrouselMyQuizzArray[3]);
+                    $nextLink=isset($carrouselMyQuizzArray[3])?'<a href="usermenu.php?quizz='.(3).'">Quizz suivant</a>':'';
+                }
+            
+                if(isset($_GET['quizz']) and is_int((int)$_GET['quizz'])){
+                    if(array_key_exists($_GET['quizz'],$carrouselMyQuizzArray)){
+                        if($_GET['quizz'] == 1){
+                            $previousLink=isset($carrouselMyQuizzArray[count($carrouselMyQuizzArray)-1])?'<a href="usermenu.php?quizz='.(count($carrouselMyQuizzArray)-1).'">Quizz précédent</a>':'';
+                            $previousQuizz=quizzDivMaker($carrouselMyQuizzArray[count($carrouselMyQuizzArray)-1]);
+                            $quizzShown=quizzDivMaker($carrouselMyQuizzArray[$_GET['quizz']]);
+                            $nextQuizz=quizzDivMaker($carrouselMyQuizzArray[$_GET['quizz']+1]);
+                            $nextLink=isset($carrouselMyQuizzArray[$_GET['quizz']+1])?'<a href="usermenu.php?quizz='.($_GET['quizz']+1).'">Quizz suivant</a>':'';
+                            
+                        }elseif($_GET['quizz'] == count($carrouselMyQuizzArray)-1){
+                            $previousLink=isset($carrouselMyQuizzArray[$_GET['quizz']-1])?'<a href="usermenu.php?quizz='.($_GET['quizz']-1).'">Quizz précédent</a>':'';
+                            $previousQuizz=quizzDivMaker($carrouselMyQuizzArray[$_GET['quizz']-1]);
+                            $quizzShown=quizzDivMaker($carrouselMyQuizzArray[$_GET['quizz']]);
+                            $nextQuizz=quizzDivMaker($carrouselMyQuizzArray[1]);
+                            $nextLink=isset($carrouselMyQuizzArray[1])?'<a href="usermenu.php?quizz='.(1).'">Quizz suivant</a>':'';
+                        }else{
+                            $previousLink=isset($carrouselMyQuizzArray[$_GET['quizz']-1])?'<a href="usermenu.php?quizz='.($_GET['quizz']-1).'">Quizz précédent</a>':'';
+                            $previousQuizz=quizzDivMaker($carrouselMyQuizzArray[$_GET['quizz']-1]);
+                            $quizzShown=quizzDivMaker($carrouselMyQuizzArray[$_GET['quizz']]);
+                            $nextQuizz=quizzDivMaker($carrouselMyQuizzArray[$_GET['quizz']+1]);
+                            $nextLink=isset($carrouselMyQuizzArray[$_GET['quizz']+1])?'<a href="usermenu.php?quizz='.($_GET['quizz']+1).'">Quizz suivant</a>':'';
                         }
-                    endwhile;
-                endif;
-                ?>
-                </div>
-                </div>
-
-
-                <div class="usermenuQuizzList">Tous les quizz :</div>
-                <div class="displayAll">
-                <div class="display displayAllQuizz">
-
-                    <?php
-                    $query = "SELECT * FROM `quizz`";
-                    $result = mysqli_query($conn, $query);
-                    if (mysqli_num_rows($result) == 0) {
-                    ?>
-                        <h2>Il n'y a pas encore de quizz sur le site !</h2>
-                        <?php
-                    } else {
-
-                        while ($row = mysqli_fetch_assoc($result)) :
-                            $id_quizz = $row['id_quizz'];
-                            $id_userQuizz = $row['auteur_quizz'];
-                            $queryUserQuizz = "SELECT * FROM `utilisateurs` WHERE `id_utilisateur` = '$id_userQuizz'";
-                            $resultUserQuizz = mysqli_query($conn, $queryUserQuizz);
-                            $userQuizz = mysqli_fetch_assoc($resultUserQuizz);
-                        ?>
-                            <div class="quizz">
-                                <div class="titlequizzmainpage">
-                                    <?php echo $row['titre_quizz']; ?>
-                                </div>
-                                <div class="themequizzmainpage">
-                                    <?php echo $row['theme_quizz']; ?>
-                                </div>
-                                <div class="quizzButton quizzPlay">
-                                    <form action="quizz.php" method="POST">
-                                        <?php echo "<input type='hidden' name='id_quizz' value='$id_quizz'>" ?>
-                                        <button type="submit" name="choose2-quizz-btn" class="quizzButton choose2-quizz-btn">Jouer !</button>
-                                    </form>
-                                </div>
-                                <?php
-                                if ($type_utilisateur == 2) : ?>
-                                    <div class="quizzButton quizzModif">
-                                        <form action="modif.php" method="POST">
-                                            <input type="hidden" name="id_quizz" value="<?php echo $row['id_quizz']; ?>">
-                                            <button type="submit" name="modify2-btn" class="quizzButton modify2-btn">Modifier</button>
-                                        </form>
-                                    </div>
-                                    <div class="quizzButton quizzDelete">
-                                        <button type="submit" name="delete2-btn" class="quizzButton delete2-btn" id="id_quizz" value="<?php echo $row['id_quizz']; ?>" onclick="openPopup(this.value)">Supprimer</button>
-                                    </div>
-                                <?php
-                                endif;
-                                ?>
-                            </div>
-                    <?php endwhile;
                     }
-                    ?>
-                </div>
-                </div>
+                }
+                echo '<table style="width:100%">';
+                    echo '<tr>
+                    <td style="text-align:center">'.$previousLink.'</td>
+                    <td style="text-align:center">'.$quizzShown.'</td>
+                    <td style="text-align:center">'.$previousQuizz.'</td>
+                    <td style="text-align:center">'.$nextQuizz.'</td>
+                    <td style="text-align:center">'.$nextLink.'</td>
+                    </tr>';
+                echo '</table>';
+            }
+            echo '</div>';
+        endif;
+        ?>
+                <div class="usermenuQuizzList">Tous les quizz :</div>
+                <?php
+            
+            /*
+            * page: carrousel.php
+            */
+            require('DBconnexion.php');
+            $user = $_SESSION['user'];
+            $id_utilisateur = $user['id_utilisateur'];
+            $query = "SELECT * FROM `quizz`";
+            $result = mysqli_query($conn, $query);
+            $carrouselMyQuizzArray = [0];
+            while($row = mysqli_fetch_assoc($result)){
+                array_push($carrouselMyQuizzArray,$row['id_quizz']);
+            }
+            
+            echo '<div id="carrouselMyQuizz">';
+            if(count($carrouselMyQuizzArray)==1){
+                echo "Il n'y a pas encore de quizz !";
+            } else {
+                $previousLink='';
+                $quizzShown=$carrouselMyQuizzArray[1];
+                if(count($carrouselMyQuizzArray) == 2) {
+                    $previousLink=isset($carrouselMyQuizzArray[1])?'<a href="usermenu.php?quizz='.(1).'">Quizz précédent</a>':'';
+                    $quizzShown=quizzDivMaker($carrouselMyQuizzArray[1]);
+                }elseif( count($carrouselMyQuizzArray) == 3 ) {
+                    $previousLink=isset($carrouselMyQuizzArray[2])?'<a href="usermenu.php?quizz='.(2).'">Quizz précédent</a>':'';
+                    $previousQuizz=quizzDivMaker($carrouselMyQuizzArray[count($carrouselMyQuizzArray)-1]);
+                    $quizzShown=quizzDivMaker($carrouselMyQuizzArray[1]);
+                    $nextQuizz=quizzDivMaker($carrouselMyQuizzArray[2]);
+                    $nextLink=isset($carrouselMyQuizzArray[2])?'<a href="usermenu.php?quizz='.(2).'">Quizz suivant</a>':'';
+                }elseif(count($carrouselMyQuizzArray) >= 4) {
+                    $previousLink=isset($carrouselMyQuizzArray[count($carrouselMyQuizzArray)-1])?'<a href="usermenu.php?quizz='.(count($carrouselMyQuizzArray)-1).'">Quizz précédent</a>':'';
+                    $previousQuizz=quizzDivMaker($carrouselMyQuizzArray[1]);
+                    $quizzShown=quizzDivMaker($carrouselMyQuizzArray[2]);
+                    $nextQuizz=quizzDivMaker($carrouselMyQuizzArray[3]);
+                    $nextLink=isset($carrouselMyQuizzArray[3])?'<a href="usermenu.php?quizz='.(3).'">Quizz suivant</a>':'';
+                }
+            
+                if(isset($_GET['quizz']) and is_int((int)$_GET['quizz'])){
+                    if(array_key_exists($_GET['quizz'],$carrouselMyQuizzArray)){
+                        if($_GET['quizz'] == 1){
+                            $previousLink=isset($carrouselMyQuizzArray[count($carrouselMyQuizzArray)-1])?'<a href="usermenu.php?quizz='.(count($carrouselMyQuizzArray)-1).'">Quizz précédent</a>':'';
+                            $previousQuizz=quizzDivMaker($carrouselMyQuizzArray[count($carrouselMyQuizzArray)-1]);
+                            $quizzShown=quizzDivMaker($carrouselMyQuizzArray[$_GET['quizz']]);
+                            $nextQuizz=quizzDivMaker($carrouselMyQuizzArray[$_GET['quizz']+1]);
+                            $nextLink=isset($carrouselMyQuizzArray[$_GET['quizz']+1])?'<a href="usermenu.php?quizz='.($_GET['quizz']+1).'">Quizz suivant</a>':'';
+                            
+                        }elseif($_GET['quizz'] == count($carrouselMyQuizzArray)-1){
+                            $previousLink=isset($carrouselMyQuizzArray[$_GET['quizz']-1])?'<a href="usermenu.php?quizz='.($_GET['quizz']-1).'">Quizz précédent</a>':'';
+                            $previousQuizz=quizzDivMaker($carrouselMyQuizzArray[$_GET['quizz']-1]);
+                            $quizzShown=quizzDivMaker($carrouselMyQuizzArray[$_GET['quizz']]);
+                            $nextQuizz=quizzDivMaker($carrouselMyQuizzArray[1]);
+                            $nextLink=isset($carrouselMyQuizzArray[1])?'<a href="usermenu.php?quizz='.(1).'">Quizz suivant</a>':'';
+                        }else{
+                            $previousLink=isset($carrouselMyQuizzArray[$_GET['quizz']-1])?'<a href="usermenu.php?quizz='.($_GET['quizz']-1).'">Quizz précédent</a>':'';
+                            $previousQuizz=quizzDivMaker($carrouselMyQuizzArray[$_GET['quizz']-1]);
+                            $quizzShown=quizzDivMaker($carrouselMyQuizzArray[$_GET['quizz']]);
+                            $nextQuizz=quizzDivMaker($carrouselMyQuizzArray[$_GET['quizz']+1]);
+                            $nextLink=isset($carrouselMyQuizzArray[$_GET['quizz']+1])?'<a href="usermenu.php?quizz='.($_GET['quizz']+1).'">Quizz suivant</a>':'';
+                        }
+                    }
+                }
+                echo '<table style="width:100%">';
+                    echo '<tr>
+                    <td style="text-align:center">'.$previousLink.'</td>
+                    <td style="text-align:center">'.$quizzShown.'</td>
+                    <td style="text-align:center">'.$previousQuizz.'</td>
+                    <td style="text-align:center">'.$nextQuizz.'</td>
+                    <td style="text-align:center">'.$nextLink.'</td>
+                    </tr>';
+                echo '</table>';
+            }
+            echo '</div>';
+        ?>
             </div>
             <div class=" banner">
                 <?php echo "<img class='houseIcone $currentHouse' src='GriffondorIcone.png'>" ?>
