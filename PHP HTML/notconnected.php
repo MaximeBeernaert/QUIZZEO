@@ -15,20 +15,16 @@
     ?>
   </header>
 
-  <!-- // When the user is not yet logged in, he is forwarded to this page, where he has the option to go to Login, or the Main Page.  -->
-
-  <div class="containerNot">
-    <div class="containerText">
+  <div class="container">
+    <div class="containerNot">
       Vous n'êtes pas encore connecté !
+      <br>
     </div>
-
-    <form action="login.php">
-      <input type="submit" name="submit" value="Connexion" class="buttonBlue">
-    </form>
-
-    <form action="accueil.php">
-      <input type="submit" name="submit" value="Accueil" class="buttonBlue">
-    </form>
+    <div class="text">
+      Pour accéder à Quizzeo vous devez être connecté à votre compte !
+      <br>
+      Si vous n'avez pas de compte vous pouvez en créer un dès maintenant !
+    </div>
   </div>
 </body>
 
