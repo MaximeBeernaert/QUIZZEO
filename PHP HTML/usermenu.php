@@ -35,7 +35,6 @@
                     <input type='hidden' name='id_quizz' value='$id_quizz'>
                     <button type='submit' name='choose2-quizz-btn' class='quizzButton choose2-quizz-btn'>Jouer !</button>
                 </form>
-                <div class='spaceDiv'></div>
                 <form action='modif.php' method='POST'>
                     <input type='hidden' name='id_quizz' value='$id_quizz'>
                     <button type='submit' name='modify2-quizz-btn' class='quizzButton modify2-quizz-btn'>Modifier !</button>
@@ -107,11 +106,13 @@
         $id_utilisateur = $user['id_utilisateur'];
         $type_utilisateur = $user['type_utilisateur'];
         ?>
+        <div class="userQuizzList">
         <?php
+        
         //if the user is a  utilisateur (type_utilisateur = 0), he can only see all the quizzes
         if ($type_utilisateur == 1 || $type_utilisateur == 2) :
         ?>
-            <div class="userQuizzList">
+            
             <div class="usermenuQuizzList">Mes quizz :</div>
         <?php
             
@@ -247,8 +248,8 @@
                     }
                 }
                 echo $previousLink;
-                echo $quizzShown;
                 echo $previousQuizz;
+                echo $quizzShown;
                 echo $nextQuizz;
                 echo $nextLink;
             }

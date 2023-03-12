@@ -167,6 +167,7 @@ h1 {
     border-radius: 5px;
     font-size: 12px;
     cursor: pointer;
+    text-align: center;
 }
 
 .buttonRed  {
@@ -177,6 +178,7 @@ h1 {
     border-radius: 5px;
     font-size: 12px;
     cursor: pointer;
+    text-align: center;
 }
 
 .buttonBlue  {
@@ -187,6 +189,7 @@ h1 {
     border-radius: 5px;
     font-size: 12px;
     cursor: pointer;
+    text-align: center;
 }
 
 .buttonBlack:hover {
@@ -274,6 +277,14 @@ td {
     display: flex;
     flex-direction: column;
     justify-content: space-around;
+    align-items: center;
+  }
+  .quizzPlay{
+    width: 100px;
+    height: 100px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
     align-items: center;
   }
   .quizzButton{
