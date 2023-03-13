@@ -46,7 +46,7 @@ class create {
                 for(let i=0;i<answersId.length;i++) {
                     const textDiv = document.createElement('div')
                     textDiv.className = `textDiv`
-                    const newQuestionAnswer = document.createTextNode(`${answersText[i].value}`) 
+                    const newQuestionAnswer = document.createTextNode(`${answersText[i].value}`)
 
                     textDiv.appendChild(newQuestionAnswer)
                     newDivAnswer.appendChild(textDiv)
