@@ -8,9 +8,9 @@ if (isset($_POST['modif-btn'])) {
     $id = $_POST['id_utilisateur'];
     $nom = $_POST['nom'];
     $prenom = $_POST['prenom'];
-    if(isset($_POST['email'])){
+    if (isset($_POST['email'])) {
         $email = $_POST['email'];
-    }else{
+    } else {
         $email = $_SESSION['email'];
     }
 
@@ -31,7 +31,7 @@ if (isset($_POST['modif-btn'])) {
     if ($result) {
 
         $id_current_user = $_SESSION['user']['id_utilisateur'];
-        if( $id_current_user == $id) {
+        if ($id_current_user == $id) {
             $query    = "SELECT * FROM `utilisateurs` WHERE id_utilisateur = '$id'";
             $result = mysqli_query($conn, $query);
             $_SESSION['user'] = mysqli_fetch_assoc($result);
@@ -41,6 +41,6 @@ if (isset($_POST['modif-btn'])) {
     } else {
         echo "L'utilisateur n'a pas été modifié";
     }
-}else{
+} else {
     header("Location: usermenu.php");
 }

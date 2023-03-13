@@ -7,21 +7,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="header.css">
     <style>
-        header { 
+        header {
             background-color: #37373c;
         }
+
         .containerHeader {
             background-image: url("poudlard.jpeg");
         }
-        .banner{
+
+        .banner {
             background-color: #4d4d61;
         }
-        .containerPage{
-            min-height:70.5vh;
+
+        .containerPage {
+            min-height: 70.5vh;
             margin: 0 40px;
-            display:flex;
-            flex-direction:column;
-            align-items:center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
     </style>
 </head>
@@ -42,20 +45,20 @@
 
                 </div>
                 <div class="containerAccount">
-                    
+
                 </div>
-                
+
             </div>
             <div class="containerOptions">
-                    <p class='spaceHeader'>|</p>
-                    <p class="accountName"><a href="login.php">Connexion</a></p>
-                    
-                    <p class='spaceHeader'>|</p>
-                    <p classe="decoText"><a href="signin.php">Inscription</a></p>
-                    <p class='spaceHeader'>|</p>
-                </div>
+                <p class='spaceHeader'>|</p>
+                <p class="accountName"><a href="login.php">Connexion</a></p>
+
+                <p class='spaceHeader'>|</p>
+                <p classe="decoText"><a href="signin.php">Inscription</a></p>
+                <p class='spaceHeader'>|</p>
+            </div>
         </header>
-        
+
     <?php
     } else {
     ?>
