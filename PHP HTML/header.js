@@ -42,6 +42,7 @@ class header {
         let footer = document.querySelector('.footer')
         let thead = document.querySelector('thead')
         let titleRed = document.querySelector('.titleRed')
+        let starDiv = document.querySelectorAll('.starDiv')
 
         let color3 = color1 
         let color4 = color2
@@ -75,6 +76,12 @@ class header {
         }
         if((titleRed) != null){
             titleRed.style.backgroundColor = color4;
+        }
+        if((starDiv) != null){
+            starDiv.forEach(star2 => {
+                star2.style.backgroundColor = color3;
+            })
+            
         }
     }
     createCookie(name, value, days) {
