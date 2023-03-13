@@ -31,6 +31,22 @@
         $quizz = mysqli_fetch_assoc($result);
         $title_quizz = $quizz['titre_quizz'];
         $theme_quizz = $quizz['theme_quizz'];
+        $modif = '';
+
+        $user = $_SESSION['user'];
+        $id_user = $user['id_utilisateur'];
+        $query = "SELECT * FROM `quizz` WHERE id_quizz='$id_quizz' AND id_utilisateur='$id_user'";
+        if($result = mysqli_query($conn, $query)) {
+            $modif = "<form action='modif.php' method='POST'>
+            <input type='hidden' name='id_quizz' value='$id_quizz'>
+            <button type='submit' name='modify2-quizz-btn' class='quizzButton modify2-quizz-btn'>Modifier !</button>
+        </form>
+        <form action='usermenu.php' method='POST'>
+            <input type='hidden' name='id_quizz' value='$id_quizz'>
+            <button type='submit' name='delete2-quizz-btn' class='quizzButton delete2-quizz-btn'>Supprimer !</button>
+        </form>";
+        }
+
         return "<div class='quizz'>
             <div class='titlequizzmainpage'>
                 $title_quizz
@@ -43,14 +59,7 @@
                     <input type='hidden' name='id_quizz' value='$id_quizz'>
                     <button type='submit' name='choose2-quizz-btn' class='quizzButton choose2-quizz-btn'>Jouer !</button>
                 </form>
-                <form action='modif.php' method='POST'>
-                    <input type='hidden' name='id_quizz' value='$id_quizz'>
-                    <button type='submit' name='modify2-quizz-btn' class='quizzButton modify2-quizz-btn'>Modifier !</button>
-                </form>
-                <form action='usermenu.php' method='POST'>
-                    <input type='hidden' name='id_quizz' value='$id_quizz'>
-                    <button type='submit' name='delete2-quizz-btn' class='quizzButton delete2-quizz-btn'>Supprimer !</button>
-                </form>
+                $modif
             </div>
             </div>";
     }
