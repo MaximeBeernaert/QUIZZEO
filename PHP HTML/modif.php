@@ -30,6 +30,9 @@
     } else {
         $currentHouse = 'Serpentard';
     }
+    if(!isset($_POST['id_quizz'])){
+        header("Location:usermenu.php");
+    }
     ?>
     <div class="mainPage">
         <div class="banner">

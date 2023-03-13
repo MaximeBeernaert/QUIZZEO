@@ -28,6 +28,9 @@
         <div class="form">
             <table>
                 <?php
+                if(!isset($_SESSION['id_quizz'])){
+                    header("Location:usermenu.php");
+                }
                 $user = $_SESSION['user'];
                 $id_quizz = $_SESSION['id_quizz'];
 

@@ -50,7 +50,7 @@
             <br>
             <div class="quizzdiff" name="quizzdiff">Difficulté : Moyen <input type="hidden" class="hiddenQuizzDiff" name="hiddenQuizzDiff" value="3"></div>
             <div>
-                <i class="diffilculteStarCreateQuizz" data-note="1">&#9733;</i>
+        header733;</i>
                 <i class="diffilculteStarCreateQuizz" data-note="2">&#9733;</i>
                 <i class="diffilculteStarCreateQuizz" data-note="3">&#9733;</i>
                 <i class="diffilculteStarCreateQuizz" data-note="4">&#9733;</i>

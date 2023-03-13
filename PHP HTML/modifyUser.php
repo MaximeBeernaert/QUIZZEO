@@ -20,6 +20,10 @@
     } else {
         $currentHouse = 'Serpentard';
     }
+    
+    if(!isset($_POST['id_utilisateur'])){
+        header("Location:usermenu.php");
+    }
     ?>
     <div class="mainPage">
         <div class="banner">

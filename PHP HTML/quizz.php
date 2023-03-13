@@ -18,6 +18,10 @@
     } else {
         $currentHouse = 'Serpentard';
     }
+    
+    if(!isset($_SESSION['id_quizz'])){
+        header("Location:usermenu.php");
+    }
     ?>
     <div class="mainPage">
         <div class="banner">
