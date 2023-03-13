@@ -11,8 +11,9 @@ class CreateQuizz {
         this.removeAnswer1.addEventListener('click', () => { this.removeAnswerJS(this.removeAnswer1.name) } )
     }
 
+    //this funvtion add a question to the form and add a button to add an answer to the question and a button to remove an answer to the question
     addQuestionJS() {
-        
+
         const elementQuestion = document.querySelectorAll('.DivQuestion')
         for(let i_question=1; i_question<=elementQuestion.length; i_question++){
             this.numberQuestion = i_question
@@ -102,6 +103,7 @@ class CreateQuizz {
         element.insertBefore(newDiv, currentDiv)
     }
 
+    //this function add an answer to the question and add a button to remove an answer to the question
     addAnswerJS(buttonNumber) {
         let number = buttonNumber.replace("Button", "")
         const element = document.querySelector(`.DivAnswer${buttonNumber}`)
