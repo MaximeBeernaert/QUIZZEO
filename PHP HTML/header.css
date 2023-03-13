@@ -127,7 +127,7 @@ h1 {
 }
 .carrouselMyQuizz{
     display:flex;
-    justify-content:space-between;
+    justify-content:space-around;
 }
 .carrouselButton{
     
@@ -218,7 +218,7 @@ th {
     color: #fff;
     padding: 10px;
 }
-  
+  var_dump
 td {
     border: 1px solid #ddd;
     padding: 10px;
