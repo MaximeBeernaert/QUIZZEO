@@ -361,3 +361,7 @@ td {
     justify-content: center;
     flex-wrap: wrap;
   }
+  .DivQuestion{
+    display:flex;
+    flex-direction: column;
+  }

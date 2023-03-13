@@ -23,7 +23,7 @@ class create {
 
                 //we create a div to put all the answers in
                 const newDivQuestion = document.createElement("div")
-                newDivQuestion.className = `DivQuestion${numberQuestion}`
+                newDivQuestion.className = `DivQuestion DivQuestion${numberQuestion}`
                 newDivQuestion.id = `DivQuestion${numberQuestion}`
                 
                 const newQuestionText = document.createTextNode(`${questionText}`) 
@@ -39,8 +39,13 @@ class create {
                 const newDivAnswer = document.createElement("div")
                 newDivAnswer.className = `DivAnswers DivAnswers${numberQuestion}`
 
+                const newDiv = document.createElement("div")
+
+
                 const newSelect = document.createElement("select")
                 newSelect.setAttribute("id",`select${numberQuestion}`)
+
+                
 
                 //we create an option selector to get all the questions
                 for(let i=0;i<answersId.length;i++) {
@@ -51,6 +56,7 @@ class create {
                     textDiv.appendChild(newQuestionAnswer)
                     newDivAnswer.appendChild(textDiv)
 
+                    
                     const newOptionAnswer = document.createElement("option")
                     newOptionAnswer.setAttribute("value",`${answersId[i].value}`)
                     const newOptionText = document.createTextNode(`${answersText[i].value}`)
@@ -61,16 +67,18 @@ class create {
                 
                 newDivQuestion.appendChild(newDivAnswer)
                 
-                newDivQuestion.appendChild(newSelect)
+                newDiv.appendChild(newSelect)
+                newDivQuestion.appendChild(newDiv)
                 const confirmButton = document.createElement('input')
                 confirmButton.type = 'button'
-                confirmButton.id = `Confirm`
+                confirmButton.id = `buttonBlack Confirm`
                 confirmButton.value = `Valider`
-                confirmButton.className = `Confirm`
+                confirmButton.className = `buttonBlack Confirm`
                 confirmButton.addEventListener('click', () => { this.newQuestion(questions,numberQuestion) } )
 
-                newDivQuestion.appendChild(confirmButton)
-
+                const newDiv1 = document.createElement("div")
+                newDiv1.appendChild(confirmButton)
+                newDivQuestion.appendChild(newDiv1)
                 const element1 = document.querySelector('.table1')
                 const currentDiv1 = document.querySelector('.src')
                 element1.insertBefore(newDivQuestion, currentDiv1)
