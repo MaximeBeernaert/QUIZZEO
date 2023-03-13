@@ -51,8 +51,8 @@
             <p class='optionHeader'><a href="usermenu.php">Retour menu principal</a></p>
             <p class='spaceHeader'>|</p>
             <?php
-                echo "<img class='$currentHouse' src=''></div>"
+            echo "<img class='$currentHouse' src=''></div>"
             ?>
         </div>
-        
+
     </header>

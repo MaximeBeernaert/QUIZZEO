@@ -80,12 +80,12 @@
 
             <div class="quizzdiff" name="quizzdiff"><?php echo $quizz_diff_text; ?><input type="hidden" class="hiddenQuizzDiff" name="hiddenQuizzDiff" value=<?php echo $diff_quizz; ?>></div>
             <div>
-            <i class="diffilculteStarCreateQuizz" data-note="1">&#9733;</i>
-            <i class="diffilculteStarCreateQuizz" data-note="2">&#9733;</i>
-            <i class="diffilculteStarCreateQuizz" data-note="3">&#9733;</i>
-            <i class="diffilculteStarCreateQuizz" data-note="4">&#9733;</i>
-            <i class="diffilculteStarCreateQuizz" data-note="5">&#9733;</i>
-        </div>
+                <i class="diffilculteStarCreateQuizz" data-note="1">&#9733;</i>
+                <i class="diffilculteStarCreateQuizz" data-note="2">&#9733;</i>
+                <i class="diffilculteStarCreateQuizz" data-note="3">&#9733;</i>
+                <i class="diffilculteStarCreateQuizz" data-note="4">&#9733;</i>
+                <i class="diffilculteStarCreateQuizz" data-note="5">&#9733;</i>
+            </div>
             <br>
 
             <script>

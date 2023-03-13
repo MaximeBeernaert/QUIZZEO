@@ -5,4 +5,3 @@ session_unset();
 session_destroy();
 // forward the user back toward the main menu
 header("Location: accueil.php");
-?>
