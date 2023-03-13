@@ -161,6 +161,7 @@ h1 {
     font-size: 12px;
     cursor: pointer;
     text-align: center;
+    transition: all 0.3s ease-in-out;
 }
 
 .buttonRed  {
@@ -187,6 +188,8 @@ h1 {
 
 .buttonBlack:hover {
     background-color: #383737;
+    transform: scale(1.05);
+    transition: all 0.3s ease-in-out;
 }
 
 .buttonRed:hover{
@@ -275,7 +278,14 @@ td {
     flex-direction: column;
     justify-content: space-around;
     align-items: center;
+    transition: all 0.4s ease-in-out;
   }
+
+  .quizz:hover{
+    transform: scale(1.1);
+    transition: all 0.4s ease-in-out;
+  }
+
   .quizzPlay{
     width: 100px;
     height: 100px;
@@ -287,6 +297,11 @@ td {
   .quizzButton{
     border-radius: 5px;
     color: white;
+    transition: all 0.3s ease-in-out;
+  }
+  .quizzButton:hover{
+    transform: scale(1.1);
+    transition: all 0.3s ease-in-out;
   }
   .choose2-quizz-btn {
     font-size: 13px;

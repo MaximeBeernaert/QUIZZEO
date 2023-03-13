@@ -7,8 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Menu utilisateur</title>
     <style>
-          
-        </style>
+
+    </style>
 </head>
 <script>
     document.addEventListener("DOMContentLoaded", function(event) {
@@ -40,19 +40,19 @@
             $title_quizz = $quizz['titre_quizz'];
             $theme_quizz = $quizz['theme_quizz'];
             $modif = '';
-            
-            $star="<i class='diffilculteStarMainQuizz'>&#9733;</i>";
+
+            $star = "<i class='diffilculteStarMainQuizz'>&#9733;</i>";
             $diff = "<div class='starDiv'>";
-            if($quizz['difficulte_quizz'] == 1){
+            if ($quizz['difficulte_quizz'] == 1) {
                 $diff .= $star;
-            }elseif($quizz['difficulte_quizz'] == 2){
-                $diff .= $star.$star;
-            }elseif($quizz['difficulte_quizz'] == 3){
-                $diff .= $star.$star.$star;
-            }elseif($quizz['difficulte_quizz'] == 4){
-                $diff .= $star.$star.$star.$star;
-            }elseif($quizz['difficulte_quizz'] == 5){
-                $diff .= $star.$star.$star.$star.$star;
+            } elseif ($quizz['difficulte_quizz'] == 2) {
+                $diff .= $star . $star;
+            } elseif ($quizz['difficulte_quizz'] == 3) {
+                $diff .= $star . $star . $star;
+            } elseif ($quizz['difficulte_quizz'] == 4) {
+                $diff .= $star . $star . $star . $star;
+            } elseif ($quizz['difficulte_quizz'] == 5) {
+                $diff .= $star . $star . $star . $star . $star;
             }
             $diff .= "</div>";
 
@@ -63,27 +63,25 @@
             if ($quizz = mysqli_fetch_assoc($result)) {
                 $modif = "<form action='modif.php' method='POST'>
                 <input type='hidden' name='id_quizz' value='$id_quizz'>
-                <button type='submit' name='modify2-quizz-btn' class='quizzButton modify2-quizz-btn'>Modifier !</button>
+                <button type='submit' name='modify2-quizz-btn' class='quizzButton modify2-quizz-btn'>Modifier</button>
             </form>
             <form action='usermenu.php' method='POST'>
                 <input type='hidden' name='id_quizz' value='$id_quizz'>
-                <button type='submit' name='delete2-quizz-btn' class='quizzButton delete2-quizz-btn'>Supprimer !</button>
+                <button type='submit' name='delete2-quizz-btn' class='quizzButton delete2-quizz-btn'>Supprimer</button>
             </form>";
-            
             }
             if ($user['type_utilisateur'] == 2) {
                 $modif = "<form action='modif.php' method='POST'>
                 <input type='hidden' name='id_quizz' value='$id_quizz'>
-                <button type='submit' name='modify2-quizz-btn' class='quizzButton modify2-quizz-btn'>Modifier !</button>
+                <button type='submit' name='modify2-quizz-btn' class='quizzButton modify2-quizz-btn'>Modifier</button>
             </form>
             <form action='usermenu.php' method='POST'>
                 <input type='hidden' name='id_quizz' value='$id_quizz'>
-                <button type='submit' name='delete2-quizz-btn' class='quizzButton delete2-quizz-btn'>Supprimer !</button>
+                <button type='submit' name='delete2-quizz-btn' class='quizzButton delete2-quizz-btn'>Supprimer</button>
             </form>";
-            
             }
-            
-    
+
+
             return "<div class='quizz'>
                 <div class='titlequizzmainpage'>
                     $title_quizz
