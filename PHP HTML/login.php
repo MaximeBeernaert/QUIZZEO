@@ -15,7 +15,13 @@
         ?>
     </header>
 
+    <div class="mainPage">
+    <div class=" banner">
+        <?php echo "<img class='houseIcone' src='poudlardMaison.png'>" ?>
+    </div>
+    
     <?php
+    
     // When form submitted, check and create user session.
     if (isset($_POST['email'])) {
         // removes backslashes
@@ -54,6 +60,10 @@
     <?php
     }
     ?>
+    <div class=" banner">
+        <?php echo "<img class='houseIcone' src='poudlardMaison.png'>" ?>
+    </div>
+    </div>
 </body>
 
 </html>

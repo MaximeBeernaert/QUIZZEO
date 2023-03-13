@@ -14,7 +14,10 @@
         require('headermenu.php');
         ?>
     </header>
-
+    <div class="mainPage">
+    <div class=" banner">
+        <?php echo "<img class='houseIcone' src='poudlardMaison.png'>" ?>
+    </div>
     <?php
     require('DBconnexion.php');
     // When form submitted, insert values into the database.
@@ -88,7 +91,10 @@
     <?php
     }
     ?>
-
+    <div class=" banner">
+        <?php echo "<img class='houseIcone' src='poudlardMaison.png'>" ?>
+    </div>
+    </div>
 </body>
 
 </html>

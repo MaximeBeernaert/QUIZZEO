@@ -6,6 +6,24 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="header.css">
+    <style>
+        header { 
+            background-color: #37373c;
+        }
+        .containerHeader {
+            background-image: url("poudlard.jpeg");
+        }
+        .banner{
+            background-color: #4d4d61;
+        }
+        .containerPage{
+            min-height:70.5vh;
+            margin: 0 40px;
+            display:flex;
+            flex-direction:column;
+            align-items:center;
+        }
+    </style>
 </head>
 
 <body>
@@ -15,7 +33,7 @@
     if (!isset($_SESSION['user'])) {
     ?>
         <header>
-            <div class="containerHeaderMenu">
+            <div class="containerHeader">
                 <div class="containerIPSSI">
                     <img src="ipssi-logo.png" class="image">
                 </div>
@@ -24,12 +42,20 @@
 
                 </div>
                 <div class="containerAccount">
-                    <p class="accountName"><a href="login.php">Connexion</a></p>
-                    <p classe="decoText"><a href="signin.php">Inscription</a></p>
+                    
                 </div>
+                
             </div>
-
+            <div class="containerOptions">
+                    <p class='spaceHeader'>|</p>
+                    <p class="accountName"><a href="login.php">Connexion</a></p>
+                    
+                    <p class='spaceHeader'>|</p>
+                    <p classe="decoText"><a href="signin.php">Inscription</a></p>
+                    <p class='spaceHeader'>|</p>
+                </div>
         </header>
+        
     <?php
     } else {
     ?>
@@ -55,20 +81,11 @@
                 if ($_SESSION['user']['type_utilisateur'] != 0) {
                     echo "<p class='optionHeader'><a href='createquizz.php'>Création de quizz</a></p> <p class='spaceHeader'>|</p>";
                 }
-                if (isset($_COOKIE['currentHouse'])) {
-                    $currentHouse = $_COOKIE['currentHouse'];
-                } else {
-                    $currentHouse = 'houseButton Serpentard';
-                }
 
                 ?>
                 <p class='optionHeader'><a href="score.php">Mes Scores</a></p>
                 <p class='spaceHeader'>|</p>
                 <p class='optionHeader'><a href="usermenu.php">Retour menu principal</a></p>
-                <p class='spaceHeader'>|</p>
-                <?php
-                echo "<img class='$currentHouse' src=''></div>"
-                ?>
             </div>
 
         </header>
