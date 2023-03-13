@@ -251,7 +251,7 @@
             } else {
                 echo carrouselMaker($carrouselMyQuizzArray, "quizz");
             }
-            echo '</div>';
+            echo '</div><br><br>';
             ?>
         </div>
         <div class=" banner">
