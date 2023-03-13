@@ -300,12 +300,16 @@ td {
   }
   .choose2-quizz-btn:hover{
     background-color: #017ec7;
+    cursor: pointer;
   }
   .delete2-btn:hover{
     background-color: #017ec7;
+    cursor: pointer;
   }
   .modify2-btn:hover{
     background-color: #017ec7;
+    cursor: pointer;
+
   }
   
   .usermenuQuizzList{
