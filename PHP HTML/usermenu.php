@@ -83,7 +83,9 @@
             $id_quizz = $_POST['id_quizz'];
             echo "
                         <br>
+                        <div class='suppressionMenu'>
                         <p>Êtes-vous sûr de vouloir supprimer ce quizz ?</p>
+                        <div class='suppressionMenuButton'>
                         <form action='usermenu.php' method='POST'>
                             <input type='hidden' name='id_quizz' value='$id_quizz'>
                             <button type='submit' name='confirm-delete-btn' class='confirm-delete-btn buttonRed'>Oui</button>
@@ -91,6 +93,8 @@
                         <form action='usermenu.php' method='POST'>
                             <button type='submit' name='buttonBlack cancel-delete-btn' class='buttonBlack cancel-delete-btn'>Non</button>
                         </form>
+                        </div>
+                        </div>
                         <br>";
         }
     }

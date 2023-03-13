@@ -25,9 +25,7 @@
         <div class="banner">
             <?php echo "<img class='houseIcone $currentHouse' src='GriffondorIcone.png'>" ?>
         </div>
-    <div class="container">
-        <div class="currentUserInfo">
-            <?php
+        <?php
             if (!isset($_SESSION['user'])) {
                 header("Location:notconnected.php");
             }
@@ -52,8 +50,7 @@
                     break;
             }
             ?>
-            <div class="infoDisplay">
-                <form class='form' action="saveUser.php" method="POST">
+            <form class='form' action="saveUser.php" method="POST">
                     <h1>Mon espace personnel</h1>
                     <?php $id_utilisateur = $actualUser['id_utilisateur'];
                     echo "<input type='hidden' name='id_utilisateur' id='id_utilisateur' value='$id_utilisateur'>"; ?>
@@ -81,11 +78,6 @@
                         <button type="submit" name="modif-btn" class="buttonBlue modif-btn">Modifier</button>
                     </div>
                 </form>
-
-
-            </div>
-        </div>
-    </div>
     <div class="banner">
                 <?php echo "<img class='houseIcone $currentHouse' src='GriffondorIcone.png'>" ?>
             </div>

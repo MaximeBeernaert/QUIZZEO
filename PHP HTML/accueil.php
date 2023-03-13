@@ -23,7 +23,7 @@
             <h1>Bienvenue sur Quizzeo !</h1>
         </div>
         <div class="text">
-            <h2>Tu es à l'accueil, tu peux te connecter ou si tu n'as pas encore de compte t'inscrire !</h2>
+            <h2>Tu es à l'accueil, tu peux te connecter ou t'inscrire !</h2>
             <h3>
                 Quizzeo est une plateforme de quizz en ligne. Le site vous permet de s’inscrire et de choisir si vous êtes utilisateur ou quizzeur, puis de vous connecter.
                 <br>

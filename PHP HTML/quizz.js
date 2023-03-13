@@ -37,7 +37,7 @@ class create {
                 let answersText = document.querySelectorAll(`.answerTextQ${numberQuestion}`)
 
                 const newDivAnswer = document.createElement("div")
-                newDivAnswer.className = `DivAnswers${numberQuestion}`
+                newDivAnswer.className = `DivAnswers DivAnswers${numberQuestion}`
 
                 const newSelect = document.createElement("select")
                 newSelect.setAttribute("id",`select${numberQuestion}`)
@@ -65,7 +65,7 @@ class create {
                 const confirmButton = document.createElement('input')
                 confirmButton.type = 'button'
                 confirmButton.id = `Confirm`
-                confirmButton.value = `Confirm`
+                confirmButton.value = `Valider`
                 confirmButton.className = `Confirm`
                 confirmButton.addEventListener('click', () => { this.newQuestion(questions,numberQuestion) } )
 

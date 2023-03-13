@@ -318,25 +318,17 @@ td {
     justify-content:center;
     text-align: center;
   }
-
-  .popup{
-    width: 400px;
-    background: #fff;
-    border-radius: px;
-    position: absolute;
-    top: 0;
-    left: 50%;
-    transform: translate(-50%, -50%) scale(0.1);
+  .titlequizzmainpage{
+    display: flex;
+    align-items: center;
+    justify-content:center;
     text-align: center;
-    padding: 0 30px 30px;
-    visibility: hidden;
-    transition: transform 0.4s, top 0.4s;
   }
-
-  .open-popup{
-    visibility: visible;
-    top: 50%;
-    transform: translate(-50%, -50%) scale(1);
+  .suppressionMenu{
+    display: flex;
+    flex-direction: column;
+    justify-content:center;
+    text-align: center;
   }
   
 
@@ -350,4 +342,22 @@ td {
   .link a {
     color: #333;
     text-decoration: none;
+  }
+
+  /* Quizz */
+  .textDiv{
+    width: 210px;
+    height:50px;
+    margin:10px;
+    padding:10px;
+    background-color: #ada6a6;
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    align-items:center;
+  }
+  .DivAnswers{
+    display:flex;
+    justify-content: center;
+    flex-wrap: wrap;
   }
