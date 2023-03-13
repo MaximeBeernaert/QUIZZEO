@@ -375,3 +375,13 @@ td {
     font-size: 12px;
     text-align: center;
   }
+.starDiv{
+    width:90px;
+    border-radius: 50px;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+}
+.diffilculteStarMainQuizz{
+    color: #FFD700;
+}

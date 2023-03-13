@@ -6,6 +6,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Menu utilisateur</title>
+    <style>
+          
+        </style>
 </head>
     <script>
         document.addEventListener("DOMContentLoaded", function(event) { 
@@ -35,7 +38,22 @@
             $title_quizz = $quizz['titre_quizz'];
             $theme_quizz = $quizz['theme_quizz'];
             $modif = '';
-    
+            
+            $star="<i class='diffilculteStarMainQuizz'>&#9733;</i>";
+            $diff = "<div class='starDiv'>";
+            if($quizz['difficulte_quizz'] == 1){
+                $diff .= $star;
+            }elseif($quizz['difficulte_quizz'] == 2){
+                $diff .= $star.$star;
+            }elseif($quizz['difficulte_quizz'] == 3){
+                $diff .= $star.$star.$star;
+            }elseif($quizz['difficulte_quizz'] == 4){
+                $diff .= $star.$star.$star.$star;
+            }elseif($quizz['difficulte_quizz'] == 5){
+                $diff .= $star.$star.$star.$star.$star;
+            }
+            $diff .= "</div>";
+
             $user = $_SESSION['user'];
             $id_user = $user['id_utilisateur'];
             $query = "SELECT * FROM `quizz` WHERE id_quizz='$id_quizz' AND auteur_quizz='$id_user'";
@@ -49,6 +67,7 @@
                 <input type='hidden' name='id_quizz' value='$id_quizz'>
                 <button type='submit' name='delete2-quizz-btn' class='quizzButton delete2-quizz-btn'>Supprimer !</button>
             </form>";
+            
             }
             if($user['type_utilisateur']==2){
                 $modif = "<form action='modif.php' method='POST'>
@@ -59,7 +78,9 @@
                 <input type='hidden' name='id_quizz' value='$id_quizz'>
                 <button type='submit' name='delete2-quizz-btn' class='quizzButton delete2-quizz-btn'>Supprimer !</button>
             </form>";
+            
             }
+            
     
             return "<div class='quizz'>
                 <div class='titlequizzmainpage'>
@@ -67,6 +88,9 @@
                 </div>
                 <div class='themequizzmainpage'>
                     $theme_quizz
+                </div>
+                <div class='diffquizzmainpage'>
+                    $diff
                 </div>
                 <div class='quizzPlay'>
                     <form action='quizz.php' method='POST'>
