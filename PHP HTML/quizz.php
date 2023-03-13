@@ -109,7 +109,8 @@
             $query = "SELECT * FROM `quizz` WHERE `id_quizz` = '$id_quizz'";
             $result = mysqli_query($conn, $query);
             $quizz = mysqli_fetch_assoc($result);
-            echo $quizz['titre_quizz'];
+            
+            echo '<div class="titleRed">'.$quizz['titre_quizz'].'</div>';
             //get every questions that are linked to the quizz
             $query = "SELECT * FROM `contient` WHERE `id_quizz` = '$id_quizz'";
             $result = mysqli_query($conn, $query);

@@ -35,7 +35,7 @@
         $result = mysqli_query($conn, $query);
         $quizz = mysqli_fetch_assoc($result);
 
-        echo "Résultats : " . $quizz['titre_quizz'] . "<br><br>";
+        echo "<div class='titleRed'>Résultats : " . $quizz['titre_quizz'] . "</div><br><br>";
 
         $number = 0;
         $answers_array = [];
@@ -50,18 +50,18 @@
             $result_question = mysqli_query($conn, $query);
             $question = mysqli_fetch_assoc($result_question);
             $question_text = $question['intitule_question'];
-            echo "Question " . $number . " : " . $question_text . "<br>";
+            echo "Question " . ($number+1) . " : " . $question_text . "<br>";
 
             $id_choix  = $_COOKIE['cookieAnswer' . $number];
             $query    = "SELECT * FROM `choix` WHERE id_choix='$id_choix'";
             $result_answer = mysqli_query($conn, $query);
             $answer = mysqli_fetch_assoc($result_answer);
-            echo "Réponse : " . $answer['reponse_choix'] . " - ";
+            echo "<br>Réponse choisie : " . $answer['reponse_choix'];
             if ($answer['bonne_reponse_choix'] == 0) {
-                echo "C'est une mauvaise réponse.";
+                echo "<br>C'est une mauvaise réponse.";
                 array_push($answers_array, 0);
             } else {
-                echo "C'est une bonne réponse.";
+                echo "<br>C'est une bonne réponse.";
                 array_push($answers_array, 100);
             }
             echo "<br><br>";

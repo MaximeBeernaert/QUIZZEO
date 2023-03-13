@@ -41,6 +41,7 @@ class header {
         let quizzbuttons = document.querySelectorAll('.quizzButton')
         let footer = document.querySelector('.footer')
         let thead = document.querySelector('thead')
+        let titleRed = document.querySelector('.titleRed')
 
         let color3 = color1 
         let color4 = color2
@@ -72,7 +73,9 @@ class header {
         if(document.querySelector('thead')){
             thead.style.backgroundColor = color10;
         }
-        
+        if((titleRed) != null){
+            titleRed.style.backgroundColor = color4;
+        }
     }
     createCookie(name, value, days) {
         var expires;

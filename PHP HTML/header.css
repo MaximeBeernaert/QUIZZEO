@@ -84,6 +84,7 @@ a {
 .houseButton{
     width:2.7em;
     height: 2.7em;
+    cursor: pointer;
 }
 .decoText{
     display: flex;
@@ -364,4 +365,13 @@ td {
   .DivQuestion{
     display:flex;
     flex-direction: column;
+  }
+  .titleRed{
+    padding: 15px 40px;
+    background-color: #d06767;
+    color: #FFFFFF;
+    border: none;
+    border-radius: 5px;
+    font-size: 12px;
+    text-align: center;
   }
