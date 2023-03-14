@@ -153,8 +153,10 @@
                 //Select the question created in the Database
                 $query = "SELECT * FROM `questions` WHERE intitule_question='$question_text'";
                 $result = mysqli_query($conn, $query);
-                $question = mysqli_fetch_assoc($result);
-                $id_question = $question['id_question'];
+                while($question = mysqli_fetch_assoc($result)){
+                    $id_question = $question['id_question'];
+                }
+                
                 //Create the link between the question and the quizz in the database
                 $query = "INSERT INTO `contient`(`id_quizz`, `id_question`) VALUES ('$id_quizz','$id_question')";
                 $result = mysqli_query($conn, $query);
@@ -164,15 +166,15 @@
                 //Create the answer in the database
                 $query = "INSERT INTO `choix`(`reponse_choix`, `bonne_reponse_choix`) VALUES ('$answer_text','1')";
                 $result = mysqli_query($conn, $query);
-                if (!$result) {
-                    echo "raté";
-                }
 
-                //Select the question created in the Database
+                //Select the answer created in the Database
                 $query = "SELECT * FROM `choix` WHERE reponse_choix='$answer_text' AND bonne_reponse_choix='1'";
                 $result = mysqli_query($conn, $query);
-                $answer = mysqli_fetch_assoc($result);
-                $id_answer = $answer['id_choix'];
+                while($answer = mysqli_fetch_assoc($result)){
+                    $id_answer = $answer['id_choix'];
+                }
+                
+               
                 //Create the link between the question and the quizz in the database
                 $query = "INSERT INTO `appartenir`(`ID_question`, `ID_choix`) VALUES ('$id_question','$id_answer')";
                 $result = mysqli_query($conn, $query);
@@ -186,11 +188,12 @@
                     $query = "INSERT INTO `choix`(`reponse_choix`, `bonne_reponse_choix`) VALUES ('$answer_text','0')";
                     $result = mysqli_query($conn, $query);
 
-                    //Select the question created in the Database
+                    //Select the answer created in the Database
                     $query = "SELECT * FROM `choix` WHERE reponse_choix='$answer_text' AND bonne_reponse_choix='0'";
                     $result = mysqli_query($conn, $query);
-                    $answer = mysqli_fetch_assoc($result);
-                    $id_answer = $answer['id_choix'];
+                    while($answer = mysqli_fetch_assoc($result)){
+                        $id_answer = $answer['id_choix'];
+                    }
                     //Create the link between the question and the quizz in the database
                     $query = "INSERT INTO `appartenir`(`ID_question`, `ID_choix`) VALUES ('$id_question','$id_answer')";
                     $result = mysqli_query($conn, $query);
