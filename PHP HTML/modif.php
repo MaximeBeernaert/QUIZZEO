@@ -7,10 +7,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Modify Quizz</title>
     <style>
+        /* stars got style!! */
         .diffilculteStarCreateQuizz {
             font-size: 1.5rem;
         }
-
         .hover {
             color: #FFD700;
         }
@@ -20,48 +20,58 @@
 
 <body>
     <header>
+        <!-- we call for the header.php for the header HTML and the CSS -->
         <?php
         require('header.php');
         ?>
     </header>
     <?php
+    // Then we call for the current colors (out of the SESSION cookies) chosen by the user (if not set, we put Serpentard>Griffondor colors)
     if (isset($_COOKIE['currentHouse'])) {
         $currentHouse = str_replace("houseButton ", "", $_COOKIE['currentHouse']);
     } else {
         $currentHouse = 'Serpentard';
     }
+    // If the user got there without clicking on a quiz, he is forwarded to the usermenu.php
     if(!isset($_POST['id_quizz'])){
         header("Location:usermenu.php");
     }
     ?>
     <div class="mainPage">
+        <!-- first banner -->
         <div class="banner">
             <?php echo "<img class='houseIcone $currentHouse' src='GriffondorIcone.png'>" ?>
         </div>
 
 
         <?php
+
         $user = $_SESSION['user'];
+        // We check if the user has the rights to be here
         if ($user['type_utilisateur'] < 1) {
             header("Location:notpermited.php");
         }
 
         $id_quizz = $_POST['id_quizz'];
         $_SESSION['id_quizz'] = $id_quizz;
+        // we get the quizz that has been selected from the database
         $query    = "SELECT * FROM `quizz` WHERE id_quizz='$id_quizz'";
         $result = mysqli_query($conn, $query);
         $quizz = mysqli_fetch_assoc($result);
+        // we get its title, difficulty and theme
         $title_quizz = $quizz['titre_quizz'];
         $diff_quizz = $quizz['difficulte_quizz'];
         $theme_quizz = $quizz['theme_quizz'];
 
         ?>
-
+        <!-- and we create a form to put them in and modify the quiz -->
         <form class="form" action="savemodif.php" method="post">
 
             <h1 class="Create Quizz">Modification de quizz</h1>
+            <!-- first the tile -->
             <input type="text" class="input quizztitle" name="quizztitle" placeholder="Titre Quizz" value="<?php echo $title_quizz; ?>" required />
             <?php
+            // then the div, with the stars
             switch ($diff_quizz) {
                 case 1:
                     $quizz_diff_text = 'Difficulté : Très facile';
@@ -80,7 +90,7 @@
                     break;
             }
             ?>
-
+            <!-- cf. createquizz.php to  see how the stars work. -->
             <div class="quizzdiff" name="quizzdiff"><?php echo $quizz_diff_text; ?><input type="hidden" class="hiddenQuizzDiff" name="hiddenQuizzDiff" value=<?php echo $diff_quizz; ?>></div>
             <div>
                 <i class="diffilculteStarCreateQuizz" data-note="1">&#9733;</i>
@@ -173,14 +183,16 @@
             </script>
 
             <br>
-
+                <!-- we then create the template for the questions/answers and fill them with the questions/answers of the quiz in the database -->
             <input type="text" class="input themequizz" name="themequizz" placeholder="Thème du Quizz" value="<?php echo $theme_quizz; ?>" required />
             <?php
             $index_question = 1;
             $query    = "SELECT * FROM `contient` WHERE id_quizz='$id_quizz'";
             $result_contient = mysqli_query($conn, $query);
+            // we get the 'contient' with the quiz id
             while ($current_contient = mysqli_fetch_assoc($result_contient)) :
                 $id_question = $current_contient['id_question'];
+                // we get the questions out of the 'contient'
                 $query    = "SELECT * FROM `questions` WHERE id_question='$id_question'";
                 $result_question = mysqli_query($conn, $query);
                 $current_question = mysqli_fetch_assoc($result_question);
@@ -189,6 +201,7 @@
             ?>
                 <input type="text" class="Question<?php echo $index_question; ?>" name="Question<?php echo $index_question; ?>" value="<?php echo $text_question; ?>" required />
                 <?php
+                // we select the 'appartenir' correpsonding to the question
                 $query    = "SELECT * FROM `appartenir` WHERE id_question='$id_question'";
                 $result_appartenir = mysqli_query($conn, $query);
                 $index_answer = 0;
