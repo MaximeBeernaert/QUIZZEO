@@ -15,6 +15,8 @@
     ?>
   </header>
 
+  <!-- If the user is not connected on her accont they will display this page -->
+
   <div class="container">
     <div class="containerNot">
       Vous n'êtes pas encore connecté !
