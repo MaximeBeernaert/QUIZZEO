@@ -10,11 +10,13 @@
 
 <body>
     <header>
+        <!-- we call the headermenu.php, different of header.php for a different style while not-connected-->
         <?php
         require('headermenu.php');
         ?>
     </header>
     <div class="mainPage">
+        <!-- we call for the first banner -->
         <div class=" banner">
             <?php echo "<img class='houseIcone' src='poudlardMaison.png'>" ?>
         </div>
@@ -39,6 +41,7 @@
             </div>
 
         </div>
+        <!-- we call the second banner -->
         <div class=" banner">
             <?php echo "<img class='houseIcone' src='poudlardMaison.png'>" ?>
         </div>

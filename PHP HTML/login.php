@@ -11,6 +11,7 @@
 <body>
     <header>
         <?php
+        // we call headermenu.php (not header.php since its a connection menu)
         require('headermenu.php');
         ?>
     </header>
@@ -47,6 +48,7 @@
             }
         } else {
         ?>
+        <!-- corresponding HTML in a form to get the informations for the connection -->
             <form class="form" action='' method="post">
 
                 <h1 class="login-title">Connexion</h1>
@@ -60,6 +62,7 @@
         <?php
         }
         ?>
+        <!-- second banner -->
         <div class=" banner">
             <?php echo "<img class='houseIcone' src='poudlardMaison.png'>" ?>
         </div>

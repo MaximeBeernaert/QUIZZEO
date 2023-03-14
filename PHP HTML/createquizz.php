@@ -6,6 +6,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Creation Quizz</title>
+    <!-- !! inside CSS for the stars !! -->
+    <!-- woopwoop -->
+    <!-- stars! -->
     <style>
         .diffilculteStarCreateQuizz {
             font-size: 1.5rem;
@@ -20,36 +23,42 @@
 
 <body>
     <header>
+                <!-- we call for the header.php for the header HTML and the CSS -->
         <?php
         require 'header.php';
         ?>
     </header>
     <?php
+    // Then we call for the current colors (out of the SESSION cookies) chosen by the user (if not set, we put Serpentard>Griffondor colors)
     if (isset($_COOKIE['currentHouse'])) {
         $currentHouse = str_replace("houseButton ", "", $_COOKIE['currentHouse']);
     } else {
         $currentHouse = 'Serpentard';
     }
     ?>
+    <!-- Main page, where the banners and table of users will be -->
     <div class="mainPage">
         <div class="banner">
             <?php echo "<img class='houseIcone $currentHouse' src='GriffondorIcone.png'>" ?>
         </div>
         <?php
         $user = $_SESSION['user'];
+        // Verify if the user connected has the right to be on the admin page.
         if ($user['type_utilisateur'] < 1) {
             header("Location:notpermited.php");
         }
         ?>
-
+        <!-- Form where the quizz is inputed -->
         <form class="form" action="savequizz.php" method="post">
 
             <h1 class="Create Quizz">Création de quizz</h1>
             <input type="text" class="input quizztitle" name="quizztitle" placeholder="Titre Quizz" required />
 
             <br>
+            <!-- stars! -->
             <div class="quizzdiff" name="quizzdiff">Difficulté : Moyen <input type="hidden" class="hiddenQuizzDiff" name="hiddenQuizzDiff" value="3"></div>
             <div>
+                <!-- data-node for the animation -->
                 <i class="diffilculteStarCreateQuizz" data-note="1">&#9733;</i>
                 <i class="diffilculteStarCreateQuizz" data-note="2">&#9733;</i>
                 <i class="diffilculteStarCreateQuizz" data-note="3">&#9733;</i>
@@ -59,13 +68,15 @@
             <br>
 
             <script>
+                // script for the stars
+                // we add event listeners here : mouseover, mouseleave, and when the user click
                 const stars = document.querySelectorAll('.diffilculteStarCreateQuizz');
                 stars.forEach(star => {
                     star.addEventListener('mouseover', onHover)
                     star.addEventListener('mouseleave', unselectStars)
                     star.addEventListener('click', activeSelect)
                 });
-
+                // the corresponding functions
                 function onHover(e) {
                     const data = e.target;
                     const etoiles = priviousSiblings(data);
@@ -83,7 +94,6 @@
                 }
 
                 function activeSelect(e) {
-                    // Switch for the diffilculty replace number in letter
 
                     const hiddenDiff = document.createElement('input');
                     hiddenDiff.type = 'hidden';
@@ -139,6 +149,7 @@
                 }
             </script>
 
+            <!-- HTML for the first question to input -->
             <br>
             <input type="text" class="input themequizz" name="themequizz" placeholder="Thème du Quizz" required />
 
@@ -172,9 +183,11 @@
             <?php echo "<img class='houseIcone $currentHouse' src='GriffondorIcone.png'>" ?>
         </div>
     </div>
+    <!-- footer of the page -->
     <?php
     require('footer.php');
     ?>
+    <!-- JS script corresponding -->
     <script src="createquizz.js"></script>
 </body>
 

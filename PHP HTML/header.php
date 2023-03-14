@@ -5,19 +5,23 @@
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- link to the header.css -->
     <link rel="stylesheet" href="header.css">
 </head>
 
 <body>
     <?php
+    // we connect to the Session and the database, and since this page is called almost eveywhere, all the pages will have access to the session and database
     session_start();
     require('DBconnexion.php');
+    // We also check if the user is connected 
     if (!isset($_SESSION['user'])) {
         header("Location:notconnected.php");
     }
 
     ?>
     <header>
+        <!-- HTML of the header -->
         <div class="containerHeader">
             <div class="containerIPSSI">
                 <img src="ipssi-logo.png" class="image">
