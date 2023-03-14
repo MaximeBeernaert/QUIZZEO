@@ -206,13 +206,13 @@
                 $result_appartenir = mysqli_query($conn, $query);
                 $index_answer = 0;
                 while ($current_appartenir = mysqli_fetch_assoc($result_appartenir)) {
-
+                    // then we select the answers out of the list of 'appartenir'
                     $id_answer = $current_appartenir['id_choix'];
                     $query    = "SELECT * FROM `choix` WHERE id_choix='$id_answer'";
                     $result_answer = mysqli_query($conn, $query);
                     $current_answer = mysqli_fetch_assoc($result_answer);
                     $text_answer = $current_answer['reponse_choix'];
-
+                    // we check if it is a right/wrong answer
                     if ($index_answer == 0) {
                         echo "<p>Entrer la bonne réponse : </p>";
                         echo "<input type='text' class='rightAnswer" . $index_question . "' name='rightAnswer" . $index_question . "' value='" . $text_answer . "' required>";
@@ -226,15 +226,17 @@
                 }
                 ?>
                 <br>
+                <!-- close the divs -->
                 <div class='DivAnswer DivAnswerButton<?php echo $index_question ?>'> </div>
                 <div class="DivAnswerRemove DivAnswerRemove<?php echo $index_question ?>"></div>
 
             <?php
                 $index_question++;
                 echo "</div>";
-
+            // and loop it in a while()
             endwhile;
             ?>
+            <!-- HTML for the buttons to add/remove a question and submit the new quiz -->
             <div class="spaceDiv spaceDivQuestion"></div>
             <div class="addQuestions">
                 <input type="button" class="buttonBlack addQuestion" name="addQuestion" value="Ajouter une question">
@@ -247,6 +249,7 @@
             <div class="spaceDiv"></div>
             <input type="submit" name="submit" value="Valider le quizz" class="buttonBlue submit-button">
         </form>
+        <!-- banner and footer -->
         <div class="banner">
             <?php echo "<img class='houseIcone $currentHouse' src='GriffondorIcone.png'>" ?>
         </div>
