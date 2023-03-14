@@ -8,13 +8,16 @@
     <title>Fin du Quizz</title>
 </head>
 
+<!-- This page is to confirm the reception of the quiz -->
 <body>
     <header>
+        <!-- we call for the header.php for the header HTML and the CSS -->
         <?php
         require('header.php');
         ?>
     </header>
     <?php
+    // Then we call for the current colors (out of the SESSION cookies) chosen by the user (if not set, we put Serpentard>Griffondor colors)
     if (isset($_COOKIE['currentHouse'])) {
         $currentHouse = str_replace("houseButton ", "", $_COOKIE['currentHouse']);
     } else {
@@ -22,12 +25,14 @@
     }
     ?>
     <div class="mainPage">
+        <!-- Main page, where the banners and the listing of the quiz will be -->
         <div class="banner">
             <?php echo "<img class='houseIcone $currentHouse' src='GriffondorIcone.png'>" ?>
         </div>
         <div class="form">
             <table>
                 <?php
+                // we check if the user is here with a quiz ID
                 if(!isset($_SESSION['id_quizz'])){
                     header("Location:usermenu.php");
                 }
@@ -45,7 +50,7 @@
 
                 $query    = "SELECT * FROM `contient` WHERE id_quizz='$id_quizz'";
                 $result = mysqli_query($conn, $query);
-
+                // we list the answers chosen by the user and if they are right/wrong answers
                 while ($row_question = mysqli_fetch_assoc($result)) {
 
                     $id_question = $row_question['id_question'];
@@ -70,6 +75,7 @@
                     echo "<br><br>";
                     $number++;
                 }
+                // We show the result in a percentage form
                 $average_result = round(array_sum($answers_array) / count($answers_array), 2);
                 echo "<br>Votre score : " . $average_result;
 
@@ -80,11 +86,12 @@
                 ?>
             </table>
         </div>
+        <!-- second banner -->
         <div class="banner">
             <?php echo "<img class='houseIcone $currentHouse' src='GriffondorIcone.png'>" ?>
         </div>
     </div>
-
+<!-- footer -->
     <?php
     require('footer.php');
     ?>

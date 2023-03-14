@@ -10,17 +10,19 @@
 
 <body>
     <header>
+        <!-- we call for the header.php for the header HTML and the CSS -->
         <?php
         require('header.php');
         ?>
     </header>
     <?php
+    // Then we call for the current colors (out of the SESSION cookies) chosen by the user (if not set, we put Serpentard>Griffondor colors)
     if (isset($_COOKIE['currentHouse'])) {
         $currentHouse = str_replace("houseButton ", "", $_COOKIE['currentHouse']);
     } else {
         $currentHouse = 'Serpentard';
     }
-
+    // we check if the user is here with a quiz ID
     if (!isset($_SESSION['id_quizz'])) {
         header("Location:usermenu.php");
     }
@@ -30,6 +32,7 @@
             <?php echo "<img class='houseIcone $currentHouse' src='GriffondorIcone.png'>" ?>
         </div>
         <?php
+        // this function is to check if the string doesn't have single quotes - for use in the sql query later on.
         function stringCheck($string)
         {
             $needle = "'";
