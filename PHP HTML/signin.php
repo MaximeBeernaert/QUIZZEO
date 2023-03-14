@@ -71,7 +71,7 @@
             }
         } else {
         ?>
-        <!-- same as login.php : form action to signin -->
+            <!-- same as login.php : form action to signin -->
             <form class="form" action="" method="post">
 
                 <h1 class="login-title">Inscription</h1>
@@ -83,7 +83,7 @@
                 <input type="password" class="input" name="confirmPassword" placeholder="Confirmer le mot de passe" require>
 
                 <select type="role" name="role" class="input">
-                    <option value="0">Utilisateur : vous pourrez uniquement jouer au quizz déjà créer par d'autre joueur</option>
+                    <option value="0">Utilisateur : vous pourrez uniquement jouer aux quiz déjà créés par d'autres joueurs</option>
                     <option value="1">Quizzeur : vous pourrez jouer et créer des quizz</option>
                 </select>
 
