@@ -1,4 +1,4 @@
-class create {
+  class create {
     constructor(){
         //we get every item with the 'question' selector : that is every question item with a text
         let questions = document.querySelectorAll(`.question`)
