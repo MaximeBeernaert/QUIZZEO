@@ -10,17 +10,20 @@
 
 <body>
     <header>
+        <!-- we call for the header.php for the header HTML and the CSS -->
         <?php
         require 'header.php';
         ?>
     </header>
     <?php
+    // Then we call for the current colors (out of the SESSION cookies) chosen by the user (if not set, we put Serpentard>Griffondor colors)
     if (isset($_COOKIE['currentHouse'])) {
         $currentHouse = str_replace("houseButton ", "", $_COOKIE['currentHouse']);
     } else {
         $currentHouse = 'Serpentard';
     }
     ?>
+    <!-- Main page, where the banners and table of users will be -->
     <div class="mainPage">
         <div class="banner">
             <?php echo "<img class='houseIcone $currentHouse' src='GriffondorIcone.png'>" ?>
@@ -32,11 +35,13 @@
                 <h2>Listes des utilisateurs de Quizzeo :</h2>
 
                 <?php
+                
                 $user = $_SESSION['user'];
-
+                // Verify if the user connected has the right to be on the admin page.
                 if ($user['type_utilisateur'] != 2) {
                     header("Location:notpermited.php");
                 }
+                
                 $sql = "SELECT * FROM utilisateurs";
                 $result = mysqli_query($conn, $sql);
                 $resultCheck = mysqli_num_rows($result);

@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="header.css">
     <style>
+        /* style specific to this page, since it is not linked to header.php but follow the same lines */
         header {
             background-color: #37373c;
         }
@@ -31,7 +32,9 @@
 
 <body>
     <?php
+    // connect to the session
     session_start();
+    // connect to the database
     require('DBconnexion.php');
     if (!isset($_SESSION['user'])) {
     ?>
@@ -78,9 +81,11 @@
             </div>
             <div class="containerOptions">
                 <?php
+                // if the user is an admin 
                 if ($_SESSION['user']['type_utilisateur'] == 2) {
                     echo "<p class='optionHeader'><a href='admin.php'>Administration</a></p><p class='spaceHeader'>|</p>";
                 }
+                // if the user is not a single user
                 if ($_SESSION['user']['type_utilisateur'] != 0) {
                     echo "<p class='optionHeader'><a href='createquizz.php'>Création de quizz</a></p> <p class='spaceHeader'>|</p>";
                 }

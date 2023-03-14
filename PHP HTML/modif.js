@@ -106,7 +106,7 @@ class CreateQuizz {
         const addAnswer = document.createElement('input')
         addAnswer.type = 'button'
         addAnswer.id = `addAnswer${this.numberQuestion}`
-        addAnswer.value = `Ajouter une réponse ${this.numberQuestion}`
+        addAnswer.value = `Ajouter une réponse à la question ${this.numberQuestion}`
         addAnswer.className = `Button${this.numberQuestion}`
         addAnswer.addEventListener('click', () => { this.addAnswerJS(addAnswer.className) } )
 
@@ -116,7 +116,7 @@ class CreateQuizz {
         const removeAnswer = document.createElement('input')
         removeAnswer.type = 'button'
         removeAnswer.id = `removeAnswer${this.numberQuestion}`
-        removeAnswer.value = `Retirer une réponse ${this.numberQuestion}`
+        removeAnswer.value = `Retirer une réponse à la question ${this.numberQuestion}`
         removeAnswer.className = `removeAnswer${this.numberQuestion}`
         removeAnswer.name = `removeAnswer${this.numberQuestion}`
         removeAnswer.addEventListener('click', () => { this.removeAnswerJS(removeAnswer.name) } )

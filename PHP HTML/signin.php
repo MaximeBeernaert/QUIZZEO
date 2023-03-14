@@ -11,9 +11,11 @@
 <body>
     <header>
         <?php
+        // we call headermenu.php (not header.php since its a connection menu)
         require('headermenu.php');
         ?>
     </header>
+    <!-- first banner -->
     <div class="mainPage">
         <div class=" banner">
             <?php echo "<img class='houseIcone' src='poudlardMaison.png'>" ?>
@@ -69,7 +71,7 @@
             }
         } else {
         ?>
-
+        <!-- same as login.php : form action to signin -->
             <form class="form" action="" method="post">
 
                 <h1 class="login-title">Inscription</h1>
@@ -91,6 +93,7 @@
         <?php
         }
         ?>
+        <!-- second banner -->
         <div class=" banner">
             <?php echo "<img class='houseIcone' src='poudlardMaison.png'>" ?>
         </div>

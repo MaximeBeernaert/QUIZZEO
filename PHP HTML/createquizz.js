@@ -11,7 +11,7 @@ class CreateQuizz {
         this.removeAnswer1.addEventListener('click', () => { this.removeAnswerJS(this.removeAnswer1.name) } )
     }
 
-    //this funvtion add a question to the form and add a button to add an answer to the question and a button to remove an answer to the question
+    //this function add a question to the form and add a button to add an answer to the question and a button to remove an answer to the question
     addQuestionJS() {
 
         const elementQuestion = document.querySelectorAll('.DivQuestion')
@@ -68,7 +68,7 @@ class CreateQuizz {
         const addAnswer = document.createElement('input')
         addAnswer.type = 'button'
         addAnswer.id = `addAnswer${this.numberQuestion}`
-        addAnswer.value = `Ajouter une réponse ${this.numberQuestion}`
+        addAnswer.value = `Ajouter une réponse à la question ${this.numberQuestion}`
         addAnswer.className = `Button${this.numberQuestion}`
         addAnswer.addEventListener('click', () => { this.addAnswerJS(addAnswer.className) } )
 
@@ -78,7 +78,7 @@ class CreateQuizz {
         const removeAnswer = document.createElement('input')
         removeAnswer.type = 'button'
         removeAnswer.id = `removeAnswer${this.numberQuestion}`
-        removeAnswer.value = `Retirer une réponse ${this.numberQuestion}`
+        removeAnswer.value = `Retirer une réponse à la question ${this.numberQuestion}`
         removeAnswer.className = `removeAnswer${this.numberQuestion}`
         removeAnswer.name = `removeAnswer${this.numberQuestion}`
         removeAnswer.addEventListener('click', () => { this.removeAnswerJS(removeAnswer.name) } )
