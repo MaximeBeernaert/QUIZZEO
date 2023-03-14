@@ -50,6 +50,7 @@
                 break;
         }
         ?>
+        <!-- Display user information, name and surname can be modify by user. The mail and type can't be modify by here -->
         <form class='form' action="saveUser.php" method="POST">
             <h1>Mon espace personnel</h1>
             <?php $id_utilisateur = $actualUser['id_utilisateur'];
@@ -74,6 +75,7 @@
             echo "<label for='type' name='type' id='type'>Vous avez le grade : $type_utilisateur </label>"; ?>
             <br>
             <br>
+            <!-- When user click on this button they will change here information with 'saveUser.php' -->
             <div class="modif-btn">
                 <button type="submit" name="modif-btn" class="buttonBlue modif-btn">Modifier</button>
             </div>

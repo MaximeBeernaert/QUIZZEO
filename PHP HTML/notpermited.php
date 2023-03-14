@@ -15,6 +15,8 @@
         ?>
     </header>
 
+    <!-- If the user d'ont have the good permision on her accont they will display this page -->
+
     <div class="container">
         <div class="containerNot">
             Vous n'avez pas les droits pour accéder à cette page !
