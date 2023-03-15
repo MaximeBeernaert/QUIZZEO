@@ -72,7 +72,8 @@
             <br>
             <br>
             <?php $type_utilisateur = $actualUser['type_utilisateur'];
-            echo "<label for='type' name='type' id='type'>Vous avez le grade : $type_utilisateur </label>"; ?>
+            echo "<input type='hidden' name='type' id='type' value='$type_utilisateur'>";
+            echo "<label for='type' name='type' class='type' id='type' value='$type_utilisateur'>Vous avez le grade : $type_utilisateur </label>"; ?>
             <br>
             <br>
             <!-- When user click on this button they will change here information with 'saveUser.php' -->
