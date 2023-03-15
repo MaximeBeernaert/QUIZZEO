@@ -58,7 +58,7 @@
                     //check if user is added to database
                     if ($result) {
                         echo "<div class='form'>
-                        <h3>Votre compte a bien été créer !</h3><br/>
+                        <h3>Votre compte a bien été créé !</h3><br/>
                         <p class='link'>Cliquez <a href='login.php'>ici</a> pour vous connecter</p>
                         </div>";
                     } else {

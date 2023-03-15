@@ -127,8 +127,8 @@
                 // if the user click on the confirm delete button, delete the user from the database
                 if (isset($_POST['confirm-delete-btn'])) {
                     $id = $_POST['id'];
-                    $sql = "DELETE FROM utilisateurs WHERE id_utilisateur = $id";
-                    $sql = "DELETE FROM jouer WHERE id_utilisateur = $id";
+                    $sql = "DELETE FROM `utilisateurs` WHERE id_utilisateur = $id";
+                    $sql = "DELETE FROM `jouer` WHERE id_utilisateur = $id";
 
                     $result = mysqli_query($conn, $sql);
                     if (!$result) {
